@@ -5,9 +5,6 @@ on:
     types: [opened, edited]
   issue_comment:
     types: [created]
-  # Optional: Add batch checking for reactions
-  schedule:
-    - cron: "0 * * * *" # Every hour
 
 jobs:
   notify:
