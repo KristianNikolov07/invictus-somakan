@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dori07ft56380"]
+[gd_scene load_steps=8 format=3 uid="uid://dori07ft56380"]
 
 [ext_resource type="Script" uid="uid://bvyx04ku23qic" path="res://Testing/testing.gd" id="1_dhbyd"]
 [ext_resource type="Script" uid="uid://b3sn8h0wc0ike" path="res://Scripts/Classes/Enemy.gd" id="2_xfn5v"]
@@ -14,14 +14,11 @@ distance = -642.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dt2kf"]
 size = Vector2(127, 129)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ekqsl"]
-size = Vector2(290, 20)
-
 [node name="Testing" type="Node2D"]
 script = ExtResource("1_dhbyd")
 
 [node name="Enemy" type="CharacterBody2D" parent="."]
-position = Vector2(208, 496)
+position = Vector2(528, 552)
 scale = Vector2(0.4, 0.4)
 collision_layer = 2
 collision_mask = 8
@@ -42,7 +39,7 @@ collision_layer = 10
 shape = SubResource("WorldBoundaryShape2D_xfn5v")
 
 [node name="TestPlayer" type="CharacterBody2D" parent="." groups=["Players"]]
-position = Vector2(488, 616)
+position = Vector2(180, 538)
 scale = Vector2(0.4, 0.4)
 collision_mask = 8
 script = ExtResource("4_e3kgr")
@@ -53,12 +50,3 @@ texture = ExtResource("3_phgwe")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TestPlayer"]
 position = Vector2(0.5, -0.5)
 shape = SubResource("RectangleShape2D_dt2kf")
-
-[node name="StaticBody2D2" type="StaticBody2D" parent="."]
-position = Vector2(80, 432)
-collision_layer = 8
-collision_mask = 3
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
-position = Vector2(128, 128)
-shape = SubResource("RectangleShape2D_ekqsl")

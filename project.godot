@@ -13,3 +13,7 @@ config_version=5
 config/name="gameloft-internship-2025"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://Textures/icon.svg"
+
+[global_group]
+
+Players=""
