@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Issue Notification Action
-        uses: your-username/github-action-issue-ack@v1
+        uses: joshdholtz/github-action-issue-ack@v16
         with:
           slack_webhook_url: ${{ secrets.SLACK_WEBHOOK_URL }}
           discord_webhook_url: ${{ secrets.DISCORD_WEBHOOK_URL }}
