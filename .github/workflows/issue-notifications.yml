@@ -13,7 +13,6 @@ jobs:
       - name: Issue Notification Action
         uses: joshdholtz/github-action-issue-ack@v16
         with:
-          slack_webhook_url: ${{ secrets.SLACK_WEBHOOK_URL }}
           discord_webhook_url: ${{ secrets.DISCORD_WEBHOOK_URL }}
           title_keywords: "urgent,security,bug"
           excluded_labels: "acknowledged"
