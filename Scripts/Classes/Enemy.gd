@@ -4,6 +4,8 @@ class_name Enemy
 @export var speed = 150
 const JUMP_VELOCITY = -400.0
 const FOLLOW_DEADZONE = 1
+var is_moving = true
+
 
 var target : CharacterBody2D
 var timer = Timer.new()
@@ -15,6 +17,9 @@ func _ready() -> void:
 	add_child(timer)
 	set_new_target()
 
+func set_is_moving(_is_moving : bool):
+	is_moving = _is_moving
+
 func set_new_target():
 	var closest_player : CharacterBody2D
 	for player in get_tree().get_nodes_in_group("Players"):
@@ -25,19 +30,20 @@ func set_new_target():
 	target = closest_player
 
 func _physics_process(delta: float) -> void:
-	if not is_on_floor():
-		velocity += get_gravity() * delta
+	if is_moving:
+		if not is_on_floor():
+			velocity += get_gravity() * delta
 
 
-	var direction
-	if target.global_position.x < global_position.x:
-		direction = -1
-	else:
-		direction = 1
-	
-	if direction and (target.global_position - global_position).abs().x > FOLLOW_DEADZONE:
-		velocity.x = direction * speed
-	else:
-		velocity.x = move_toward(velocity.x, 0, speed)
+		var direction
+		if target.global_position.x < global_position.x:
+			direction = -1
+		else:
+			direction = 1
+		
+		if direction and (target.global_position - global_position).abs().x > FOLLOW_DEADZONE:
+			velocity.x = direction * speed
+		else:
+			velocity.x = move_toward(velocity.x, 0, speed)
 
-	move_and_slide()
+		move_and_slide()
