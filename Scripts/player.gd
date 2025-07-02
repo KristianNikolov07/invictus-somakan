@@ -42,6 +42,8 @@ func _input(event: InputEvent) -> void:
 		velocity = Vector2(dash_speed * direction, 0)
 	elif event.is_action_pressed("Attack"):
 		attack()
+	elif event.is_action_pressed("Interact"):
+		interact_with()
 
 func process_movement():
 	if Input.is_action_pressed("Right"):
@@ -77,4 +79,9 @@ func damage(amount, knockback) -> void:
 
 func _on_invincibility_timeout() -> void:
 	set_collision_layer_value(1, true)
-
+	
+func interact_with():
+	for area in $InteractionRange.get_overlapping_areas():
+		if area.has_method("interact"):
+			area.interact()
+			return
