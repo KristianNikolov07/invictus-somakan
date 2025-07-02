@@ -2,6 +2,12 @@ extends CharacterBody2D
 class_name Enemy
 
 @export var speed = 150
+@export var coll_damage = 5
+@export var damage = 15
+@export var knockback_strength = 400
+@export var hp = 20
+@export var coll_knockback = 1
+@export var max_hp = 20
 const JUMP_VELOCITY = -400.0
 const FOLLOW_DEADZONE = 1
 var is_moving = true
@@ -30,20 +36,19 @@ func set_new_target():
 	target = closest_player
 
 func _physics_process(delta: float) -> void:
-	if is_moving:
-		if not is_on_floor():
-			velocity += get_gravity() * delta
-
-
-		var direction
-		if target.global_position.x < global_position.x:
-			direction = -1
-		else:
-			direction = 1
-		
-		if direction and (target.global_position - global_position).abs().x > FOLLOW_DEADZONE:
-			velocity.x = direction * speed
-		else:
-			velocity.x = move_toward(velocity.x, 0, speed)
-
-		move_and_slide()
+	if not is_on_floor():
+		velocity += get_gravity() * delta
+	
+	
+	var direction
+	if target.global_position.x < global_position.x:
+		direction = -1
+	else:
+		direction = 1
+	
+	if direction and (target.global_position - global_position).abs().x > FOLLOW_DEADZONE and is_moving:
+		velocity.x = direction * speed
+	else:
+		velocity.x = move_toward(velocity.x, 0, speed)
+	
+	move_and_slide()
