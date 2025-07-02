@@ -14,7 +14,7 @@ func _on_collision_damage_body_entered(body: Node2D) -> void:
 			knockback_dir = -1
 		
 		if attacking:
-			body.damage(damage, knockback_strength * knockback_dir)
+			body.damage(attack_damage, knockback_strength * knockback_dir)
 		else:
 			body.damage(coll_damage, coll_knockback * knockback_dir)
 

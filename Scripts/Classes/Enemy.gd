@@ -3,7 +3,7 @@ class_name Enemy
 
 @export var speed = 150
 @export var coll_damage = 5
-@export var damage = 15
+@export var attack_damage = 15
 @export var knockback_strength = 1.5
 @export var hp = 20
 @export var coll_knockback = 1
@@ -22,6 +22,9 @@ func _ready() -> void:
 	timer.autostart = true
 	add_child(timer)
 	set_new_target()
+
+func damage(amount, knockback):
+	pass
 
 func set_is_moving(_is_moving : bool):
 	is_moving = _is_moving
