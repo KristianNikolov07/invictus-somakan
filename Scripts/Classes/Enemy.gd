@@ -5,7 +5,7 @@ class_name Enemy
 const JUMP_VELOCITY = -400.0
 const FOLLOW_DEADZONE = 1
 var is_moving = true
-
+@export var hp = 100
 
 var target : CharacterBody2D
 var timer = Timer.new()
@@ -33,8 +33,6 @@ func _physics_process(delta: float) -> void:
 	if is_moving:
 		if not is_on_floor():
 			velocity += get_gravity() * delta
-
-
 		var direction
 		if target.global_position.x < global_position.x:
 			direction = -1
