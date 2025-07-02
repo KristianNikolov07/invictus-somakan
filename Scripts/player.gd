@@ -60,11 +60,11 @@ func damage(amount, knockback) -> void:
 	set_collision_layer_value(1, false)
 	$Invincibility.start()
 	velocity.x = 1600 * knockback
-	velocity.y = -600 * abs(knockback)
+	velocity.y = -500 * abs(knockback)
 	hp -= amount
 	#if hp <= 0:
 		#get_tree().quit()
-	print("Hit")
+	print(amount)
 
 func _on_invincibility_timeout() -> void:
 	set_collision_layer_value(1, true)
