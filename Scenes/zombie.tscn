@@ -1,0 +1,60 @@
+[gd_scene load_steps=6 format=3 uid="uid://byt6b6gsvgl2r"]
+
+[ext_resource type="Script" uid="uid://ctvhr04onudmb" path="res://Scripts/zombie.gd" id="1_h3kin"]
+[ext_resource type="Texture2D" uid="uid://c1lo75th7b88g" path="res://Textures/icon.svg" id="2_n70j1"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_iyl7r"]
+radius = 35.0
+height = 126.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_n70j1"]
+radius = 35.0
+height = 126.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n70j1"]
+size = Vector2(232, 112)
+
+[node name="Zombie" type="CharacterBody2D" groups=["Enemies"]]
+collision_mask = 2
+script = ExtResource("1_h3kin")
+knockback_strength = 1.8
+
+[node name="PlayerSprite" type="Sprite2D" parent="."]
+position = Vector2(-1.90735e-06, 0)
+scale = Vector2(0.337, 0.599)
+texture = ExtResource("2_n70j1")
+
+[node name="PlayerCollision" type="CollisionShape2D" parent="."]
+scale = Vector2(0.61, 0.61)
+shape = SubResource("CapsuleShape2D_iyl7r")
+
+[node name="CollisionDamage" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="PlayerCollision" type="CollisionShape2D" parent="CollisionDamage"]
+scale = Vector2(0.61, 0.61)
+shape = SubResource("CapsuleShape2D_n70j1")
+
+[node name="AttackRange" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackRange"]
+position = Vector2(1, -18)
+shape = SubResource("RectangleShape2D_n70j1")
+
+[node name="AttackCharge" type="Timer" parent="."]
+one_shot = true
+
+[node name="Stagger" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
+
+[node name="Attack" type="Timer" parent="."]
+wait_time = 0.3
+one_shot = true
+
+[connection signal="body_entered" from="CollisionDamage" to="." method="_on_collision_damage_body_entered"]
+[connection signal="body_entered" from="AttackRange" to="." method="_on_attack_range_body_entered"]
+[connection signal="timeout" from="AttackCharge" to="." method="_on_attack_charge_timeout"]
+[connection signal="timeout" from="Stagger" to="." method="_on_stagger_timeout"]
+[connection signal="timeout" from="Attack" to="." method="_on_attack_timeout"]
