@@ -1,8 +1,6 @@
 extends Enemy
 
 var direction = 1
-var attacking = false
-
 
 func _on_collision_damage_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Players"):
@@ -14,7 +12,14 @@ func _on_collision_damage_body_entered(body: Node2D) -> void:
 			knockback_dir = -1
 		
 		if attacking:
-			body.damage(attack_damage, knockback_strength * knockback_dir)
+			var parry_time_left = body.check_parry(self)
+			if parry_time_left > 1:
+				pass
+			elif parry_time_left > 0:
+				body.damage(attack_damage / 3, (knockback_strength * knockback_dir) / 5)
+			else:
+				body.damage(attack_damage, knockback_strength * knockback_dir)
+			
 		else:
 			body.damage(coll_damage, coll_knockback * knockback_dir)
 

@@ -1,7 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://byt6b6gsvgl2r"]
+[gd_scene load_steps=9 format=3 uid="uid://byt6b6gsvgl2r"]
 
 [ext_resource type="Script" uid="uid://ctvhr04onudmb" path="res://Scripts/zombie.gd" id="1_h3kin"]
 [ext_resource type="Texture2D" uid="uid://c1lo75th7b88g" path="res://Textures/icon.svg" id="2_n70j1"]
+[ext_resource type="Script" uid="uid://drqow7af66ehm" path="res://Scripts/Classes/Hitbox.gd" id="3_iyl7r"]
+[ext_resource type="PackedScene" uid="uid://bqo6qnqcmww4y" path="res://Scenes/UI/health_bar.tscn" id="4_vy0uf"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_iyl7r"]
 radius = 35.0
@@ -13,6 +15,9 @@ height = 126.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n70j1"]
 size = Vector2(232, 112)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vy0uf"]
+size = Vector2(55, 77)
 
 [node name="Zombie" type="CharacterBody2D" groups=["Enemies"]]
 collision_mask = 2
@@ -52,6 +57,20 @@ one_shot = true
 [node name="Attack" type="Timer" parent="."]
 wait_time = 0.3
 one_shot = true
+
+[node name="AttackHitbox" type="Area2D" parent="."]
+script = ExtResource("3_iyl7r")
+metadata/_custom_type_script = "uid://drqow7af66ehm"
+
+[node name="AttackCollisionShape" type="CollisionShape2D" parent="AttackHitbox"]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_vy0uf")
+
+[node name="HealthBar" parent="." instance=ExtResource("4_vy0uf")]
+offset_left = -57.0
+offset_top = -78.0
+offset_right = 57.0
+offset_bottom = -51.0
 
 [connection signal="body_entered" from="CollisionDamage" to="." method="_on_collision_damage_body_entered"]
 [connection signal="body_entered" from="AttackRange" to="." method="_on_attack_range_body_entered"]
