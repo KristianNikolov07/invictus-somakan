@@ -11,7 +11,8 @@ class_name Enemy
 const JUMP_VELOCITY = -400.0
 const FOLLOW_DEADZONE = 1
 var is_moving = true
-
+@export var hp = 100
+@export var max_hp = 100
 
 var target : CharacterBody2D
 var timer = Timer.new()
