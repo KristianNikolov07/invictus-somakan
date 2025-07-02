@@ -14,6 +14,8 @@ var direction = 1
 var max_hp = 50
 var hp = 50
 
+#Change this for other weapons
+var selected_weapon = Weapons.Weapons.SWORD
 
 func _physics_process(delta: float) -> void:
 	if $DashTimer.is_stopped():
@@ -38,6 +40,8 @@ func _input(event: InputEvent) -> void:
 		$DashTimer.start()
 		$DashCooldown.start()
 		velocity = Vector2(dash_speed * direction, 0)
+	elif event.is_action_pressed("Attack"):
+		attack()
 
 func process_movement():
 	if Input.is_action_pressed("Right"):
@@ -56,6 +60,11 @@ func process_movement():
 	
 
 
+func attack():
+	if selected_weapon == Weapons.Weapons.SWORD:
+		$Weapons/Sword.hit(direction)
+
+
 func damage(amount, knockback) -> void:
 	set_collision_layer_value(1, false)
 	$Invincibility.start()
@@ -68,3 +77,4 @@ func damage(amount, knockback) -> void:
 
 func _on_invincibility_timeout() -> void:
 	set_collision_layer_value(1, true)
+
