@@ -5,12 +5,14 @@ const max_falling_speed = 1000
 const max_walking_speed = 400
 const jump_force = 900
 const gravity = 40
-const jump_easing = -250
+const jump_easing = -200
 const dash_speed = 3 * max_walking_speed
 var jumps_remaining = 1
 var max_jumps = 1
 var speed_mult = 1
 var direction = 1
+var max_hp = 50
+var hp = 50
 
 #Change this for other weapons
 var selected_weapon = Weapons.Weapons.SWORD
@@ -57,6 +59,22 @@ func process_movement():
 	velocity.y = move_toward(velocity.y, max_falling_speed, gravity)
 	
 
+
 func attack():
 	if selected_weapon == Weapons.Weapons.SWORD:
 		$Weapons/Sword.hit(direction)
+
+
+func damage(amount, knockback) -> void:
+	set_collision_layer_value(1, false)
+	$Invincibility.start()
+	velocity.x = 1600 * knockback
+	velocity.y = -500 * abs(knockback)
+	hp -= amount
+	#if hp <= 0:
+		#get_tree().quit()
+	print(amount)
+
+func _on_invincibility_timeout() -> void:
+	set_collision_layer_value(1, true)
+
