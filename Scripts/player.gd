@@ -12,6 +12,8 @@ var max_jumps = 1
 var speed_mult = 1
 var direction = 1
 
+#Change this for other weapons
+var selected_weapon = Weapons.Weapons.SWORD
 
 func _physics_process(delta: float) -> void:
 	if $DashTimer.is_stopped():
@@ -36,6 +38,8 @@ func _input(event: InputEvent) -> void:
 		$DashTimer.start()
 		$DashCooldown.start()
 		velocity = Vector2(dash_speed * direction, 0)
+	elif event.is_action_pressed("Attack"):
+		attack()
 
 func process_movement():
 	if Input.is_action_pressed("Right"):
@@ -52,3 +56,7 @@ func process_movement():
 	
 	velocity.y = move_toward(velocity.y, max_falling_speed, gravity)
 	
+
+func attack():
+	if selected_weapon == Weapons.Weapons.SWORD:
+		$Weapons/Sword.hit(direction)
