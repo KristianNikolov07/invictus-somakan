@@ -1,16 +1,17 @@
 extends CharacterBody2D
 
-var accel = 150
-var max_falling_speed = 1000
-var max_walking_speed = 400
-var jump_force = 800
+const accel = 150
+const max_falling_speed = 1000
+const max_walking_speed = 400
+const jump_force = 900
+const gravity = 40
+const jump_easing = -250
+const dash_speed = 3 * max_walking_speed
 var jumps_remaining = 1
 var max_jumps = 1
-var gravity = 40
-var jump_easing = -250
 var speed_mult = 1
 var direction = 1
-var dash_speed = 3 * max_walking_speed
+
 
 func _physics_process(delta: float) -> void:
 	if $DashTimer.is_stopped():
