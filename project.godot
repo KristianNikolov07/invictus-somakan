@@ -11,6 +11,7 @@ config_version=5
 [application]
 
 config/name="gameloft-internship-2025"
+run/main_scene="uid://drc5ejy1kocf"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://Textures/icon.svg"
 
