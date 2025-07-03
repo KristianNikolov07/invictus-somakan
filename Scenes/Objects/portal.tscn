@@ -7,9 +7,11 @@
 size = Vector2(128, 128)
 
 [node name="Portal" type="Area2D"]
+self_modulate = Color(0.439216, 1, 0.12549, 1)
 script = ExtResource("1_j133l")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+self_modulate = Color(0, 0.609754, 0.242067, 1)
 texture = ExtResource("1_yjf24")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

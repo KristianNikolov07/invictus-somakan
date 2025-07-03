@@ -17,8 +17,6 @@ const FOLLOW_DEADZONE = 1
 @export var is_moving = true
 var attacking = false
 
-var target : CharacterBody2D
-var retarget_timer = Timer.new()
 var invincibility_timer = Timer.new()
 
 func _ready() -> void:
@@ -26,6 +24,9 @@ func _ready() -> void:
 	invincibility_timer.timeout.connect(_on_invincibility_timer_timeout)
 	invincibility_timer.autostart = true
 	add_child(invincibility_timer)
+
+func set_is_moving(_is_moving : bool):
+	is_moving = _is_moving
 
 func parry():
 	damage(parry_damage, parry_knockback_mult)

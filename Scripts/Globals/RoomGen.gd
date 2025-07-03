@@ -2,6 +2,10 @@ extends Node
 
 var combat_rooms: Array[PackedScene]
 var puzzle_rooms: Array[PackedScene]
+var shop_room: PackedScene
+var boss_room: PackedScene
+var hub: PackedScene = preload("res://Scenes/Rooms/Hub/hub.tscn")
+
 var current_room: int = 0
 
 func _ready() -> void:
@@ -24,7 +28,6 @@ func fill_rooms(era: Stages.Stages) -> void:
 	var rand = randi_range(1, variations.size())
 	path += "/Var" + str(rand)
 	
-	
 	var combat_files = DirAccess.get_files_at(path + "/Combat")
 	for file in combat_files:
 		combat_rooms.append(load(path + "/Combat/" + file))
@@ -32,17 +35,30 @@ func fill_rooms(era: Stages.Stages) -> void:
 	var puzzle_files = DirAccess.get_files_at(path + "/Puzzles")
 	for file in puzzle_files:
 		puzzle_rooms.append(load(path + "/Puzzles/" + file))
+	
+	shop_room = load(path + "/Shop/shop.tscn")
+	boss_room = load(path + "/Boss/boss.tscn")
 
 
 func pull_combat_room() -> PackedScene:
-	var rand = randi_range(0, combat_rooms.size())
+	var rand = randi_range(0, combat_rooms.size() - 1)
+	next_room()
 	return combat_rooms.pop_at(rand)
 
 func pull_puzzle_room() -> PackedScene:
-	var rand = randi_range(0, puzzle_rooms.size())
+	var rand = randi_range(0, puzzle_rooms.size() - 1)
+	next_room()
 	return puzzle_rooms.pop_at(rand)
 
 func next_room() -> void:
 	current_room += 1
-	#if current_room > smth:
-		#smth
+		
+func get_shop_room() -> PackedScene:
+	current_room = 0
+	return shop_room
+	
+func get_boss_room():
+	return boss_room
+
+func get_hub():
+	return hub

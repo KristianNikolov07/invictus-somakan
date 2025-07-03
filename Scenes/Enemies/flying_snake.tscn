@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://dk2vjvg75cd3q"]
+
+[ext_resource type="Script" uid="uid://cg8pbch1s6ga2" path="res://Scripts/Classes/FlyingEnemy.gd" id="1_w0uml"]
+[ext_resource type="Texture2D" uid="uid://c1lo75th7b88g" path="res://Textures/icon.svg" id="2_irrbb"]
+[ext_resource type="PackedScene" uid="uid://bqo6qnqcmww4y" path="res://Scenes/UI/health_bar.tscn" id="3_irrbb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dt2kf"]
+size = Vector2(128, 128)
+
+[node name="FlyingEnemy" type="CharacterBody2D" groups=["Enemies"]]
+collision_mask = 6
+script = ExtResource("1_w0uml")
+metadata/_custom_type_script = "uid://cg8pbch1s6ga2"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_irrbb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_dt2kf")
+
+[node name="HealthBar" parent="." instance=ExtResource("3_irrbb")]
+offset_left = -96.0
+offset_top = -112.0
+offset_right = 96.0
+offset_bottom = -85.0
