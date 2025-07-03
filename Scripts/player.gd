@@ -14,9 +14,16 @@ var direction = 1
 var max_hp = 50
 var hp = 50
 
+#Change this for other weapons
+var selected_weapon = Weapons.Weapons.SWORD
+
+
 func _ready() -> void:
 	$Parry.start()
 	$Parry.stop()
+
+
+
 
 func _physics_process(delta: float) -> void:
 	if $DashTimer.is_stopped():
@@ -44,6 +51,10 @@ func _input(event: InputEvent) -> void:
 		$DashTimer.start()
 		$DashCooldown.start()
 		velocity = Vector2(dash_speed * direction, 0)
+	elif event.is_action_pressed("Attack"):
+		attack()
+	elif event.is_action_pressed("Interact"):
+		interact_with()
 	elif event.is_action_pressed("Parry"):
 		$ParryArea.set_collision_mask_value(1, true)
 		$ParryArea.set_collision_mask_value(3, true)
@@ -64,6 +75,7 @@ func stop_parry():
 		_on_parry_timeout()
 		$Invincibility.start()
 
+
 func process_movement():
 	if $Parry.is_stopped():
 		if Input.is_action_pressed("Right"):
@@ -83,6 +95,11 @@ func process_movement():
 		velocity = Vector2(0, 0)
 
 
+func attack():
+	if selected_weapon == Weapons.Weapons.SWORD:
+		$Weapons/Sword.hit(direction)
+
+
 func damage(amount, knockback) -> void:
 	set_collision_layer_value(1, false)
 	$Invincibility.start()
@@ -96,7 +113,6 @@ func damage(amount, knockback) -> void:
 
 func _on_invincibility_timeout() -> void:
 	set_collision_layer_value(1, true)
-
 
 func _on_parry_area_area_entered(area: Area2D) -> void:
 	pass
@@ -115,3 +131,9 @@ func _on_parry_timeout() -> void:
 func _on_hitstop_timeout() -> void:
 	pass
 	#set_deferred("process_mode", Node.PROCESS_MODE_INHERIT)
+	
+func interact_with():
+	for area in $InteractionRange.get_overlapping_areas():
+		if area.has_method("interact"):
+			area.interact()
+			return

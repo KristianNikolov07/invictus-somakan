@@ -75,5 +75,7 @@ func _physics_process(delta: float) -> void:
 	
 	move_and_slide()
 
+
 func _on_invincibility_timer_timeout():
 	set_collision_layer_value(1, true)
+
