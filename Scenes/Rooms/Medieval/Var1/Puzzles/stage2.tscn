@@ -1,9 +1,9 @@
-[gd_scene format=3 uid="uid://c8slqqth26qom"]
+[gd_scene format=3 uid="uid://bsmwi4i0w73co"]
 
-[node name="Stage1" type="Node2D"]
+[node name="Stage2" type="Node2D"]
 
 [node name="Label" type="Label" parent="."]
 offset_right = 183.0
 offset_bottom = 69.0
-text = "Var1 Combat1"
+text = "Var1 Puzzle2"
 metadata/_edit_use_anchors_ = true

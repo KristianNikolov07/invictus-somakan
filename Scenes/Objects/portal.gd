@@ -12,8 +12,6 @@ func interact():
 		RoomGen.fill_rooms(next_stage)
 	match room_type:
 		RoomTypes.RoomTypes.PUZZLE:
-			#Add Puzzle transition here
-			pass
+			get_tree().change_scene_to_packed(RoomGen.pull_puzzle_room())
 		RoomTypes.RoomTypes.COMBAT:
-			#Add Combat transition here
-			pass
+			get_tree().change_scene_to_packed(RoomGen.pull_combat_room())
