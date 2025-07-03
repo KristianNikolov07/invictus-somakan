@@ -1,6 +1,6 @@
-[gd_scene load_steps=9 format=3 uid="uid://dthstfrmgfd46"]
+[gd_scene load_steps=9 format=3 uid="uid://byt6b6gsvgl2r"]
 
-[ext_resource type="Script" uid="uid://ctvhr04onudmb" path="res://Scripts/zombie.gd" id="1_h3kin"]
+[ext_resource type="Script" uid="uid://ctvhr04onudmb" path="res://Scripts/Enemies/zombie.gd" id="1_h3kin"]
 [ext_resource type="Texture2D" uid="uid://c1lo75th7b88g" path="res://Textures/icon.svg" id="2_n70j1"]
 [ext_resource type="Script" uid="uid://drqow7af66ehm" path="res://Scripts/Classes/Hitbox.gd" id="3_iyl7r"]
 [ext_resource type="PackedScene" uid="uid://bqo6qnqcmww4y" path="res://Scenes/UI/health_bar.tscn" id="4_vy0uf"]
@@ -23,7 +23,6 @@ size = Vector2(55, 77)
 collision_mask = 2
 script = ExtResource("1_h3kin")
 knockback_strength = 1.8
-parry_damage = 10
 
 [node name="PlayerSprite" type="Sprite2D" parent="."]
 position = Vector2(-1.90735e-06, 0)
@@ -48,16 +47,6 @@ collision_layer = 0
 position = Vector2(1, -18)
 shape = SubResource("RectangleShape2D_n70j1")
 
-[node name="AttackHitbox" type="Area2D" parent="."]
-collision_layer = 0
-collision_mask = 0
-script = ExtResource("3_iyl7r")
-metadata/_custom_type_script = "uid://drqow7af66ehm"
-
-[node name="AttackCollisionShape" type="CollisionShape2D" parent="AttackHitbox"]
-position = Vector2(0, -1)
-shape = SubResource("RectangleShape2D_vy0uf")
-
 [node name="AttackCharge" type="Timer" parent="."]
 one_shot = true
 
@@ -69,11 +58,15 @@ one_shot = true
 wait_time = 0.3
 one_shot = true
 
-[node name="Hitstop" type="Timer" parent="."]
-process_mode = 3
-wait_time = 0.2
-one_shot = true
-ignore_time_scale = true
+[node name="AttackHitbox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("3_iyl7r")
+metadata/_custom_type_script = "uid://drqow7af66ehm"
+
+[node name="AttackCollisionShape" type="CollisionShape2D" parent="AttackHitbox"]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_vy0uf")
 
 [node name="HealthBar" parent="." instance=ExtResource("4_vy0uf")]
 offset_left = -57.0
@@ -83,8 +76,7 @@ offset_bottom = -51.0
 
 [connection signal="body_entered" from="CollisionDamage" to="." method="_on_collision_damage_body_entered"]
 [connection signal="body_entered" from="AttackRange" to="." method="_on_attack_range_body_entered"]
-[connection signal="body_entered" from="AttackHitbox" to="." method="_on_attack_hitbox_body_entered"]
 [connection signal="timeout" from="AttackCharge" to="." method="_on_attack_charge_timeout"]
 [connection signal="timeout" from="Stagger" to="." method="_on_stagger_timeout"]
 [connection signal="timeout" from="Attack" to="." method="_on_attack_timeout"]
-[connection signal="timeout" from="Hitstop" to="." method="_on_hitstop_timeout"]
+[connection signal="body_entered" from="AttackHitbox" to="." method="_on_attack_hitbox_body_entered"]

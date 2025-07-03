@@ -1,6 +1,10 @@
 extends Area2D
-@export var room : PackedScene
 
+@export_subgroup("Stage Transitions")
+@export var is_stage_transition = false
+@export var next_stage : Stages.Stages
 
 func interact():
-	get_tree().change_scene_to_packed(room)
+	if is_stage_transition:
+		RoomGen.fill_rooms(next_stage)
+	# TODO: Add the teleportation here
