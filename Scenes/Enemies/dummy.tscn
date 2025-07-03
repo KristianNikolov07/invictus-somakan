@@ -8,7 +8,10 @@
 size = Vector2(128, 128)
 
 [node name="Dummy" type="CharacterBody2D"]
+collision_mask = 14
 script = ExtResource("1_ccesc")
+can_be_knockedback = false
+is_moving = false
 metadata/_custom_type_script = "uid://b3sn8h0wc0ike"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
