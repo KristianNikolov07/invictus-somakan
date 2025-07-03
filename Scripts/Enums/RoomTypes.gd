@@ -2,5 +2,6 @@ extends Node
 class_name RoomTypes
 enum RoomTypes{
 	PUZZLE,
-	COMBAT
+	COMBAT,
+	SHOP
 }
