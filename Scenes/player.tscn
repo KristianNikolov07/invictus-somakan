@@ -2,7 +2,11 @@
 
 [ext_resource type="Script" uid="uid://dl6w610ren8v7" path="res://Scripts/player.gd" id="1_cvnsp"]
 [ext_resource type="Texture2D" uid="uid://c1lo75th7b88g" path="res://Textures/icon.svg" id="1_v0iea"]
+[ext_resource type="PackedScene" uid="uid://bqo6qnqcmww4y" path="res://Scenes/UI/health_bar.tscn" id="3_6t5aa"]
 [ext_resource type="Script" uid="uid://qsumhs18y3t0" path="res://Scripts/Weapons/sword.gd" id="3_6t5aa"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6t5aa"]
+size = Vector2(38, 82)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cvnsp"]
 radius = 35.0
@@ -114,6 +118,14 @@ position = Vector2(-1.90735e-06, 0)
 scale = Vector2(0.337, 0.599)
 texture = ExtResource("1_v0iea")
 
+[node name="ParryArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ParryArea"]
+position = Vector2(19, 0)
+shape = SubResource("RectangleShape2D_6t5aa")
+
 [node name="PlayerCollision" type="CollisionShape2D" parent="."]
 scale = Vector2(0.61, 0.61)
 shape = SubResource("CapsuleShape2D_cvnsp")
@@ -154,5 +166,31 @@ libraries = {
 [node name="Invincibility" type="Timer" parent="."]
 one_shot = true
 
+
+[node name="Parry" type="Timer" parent="."]
+wait_time = 0.3
+one_shot = true
+
+[node name="Hitstop" type="Timer" parent="."]
+process_mode = 3
+wait_time = 0.5
+one_shot = true
+ignore_time_scale = true
+
+[node name="HealthBar" parent="." instance=ExtResource("3_6t5aa")]
+offset_left = -89.0
+offset_top = -74.0
+offset_right = 91.0
+offset_bottom = -47.0
+
+[node name="ParryTimerTestLabel" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[connection signal="area_entered" from="ParryArea" to="." method="_on_parry_area_area_entered"]
+
 [connection signal="body_entered" from="Weapons/Sword/Sword" to="Weapons/Sword" method="_on_sword_body_entered"]
+
 [connection signal="timeout" from="Invincibility" to="." method="_on_invincibility_timeout"]
+[connection signal="timeout" from="Parry" to="." method="_on_parry_timeout"]
+[connection signal="timeout" from="Hitstop" to="." method="_on_hitstop_timeout"]

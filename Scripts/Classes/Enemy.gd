@@ -8,24 +8,42 @@ class_name Enemy
 @export var hp = 20
 @export var coll_knockback = 1
 @export var max_hp = 20
+@export var parry_damage = 1
+@export var parry_knockback_mult = 1
+@export var invincibility_length = 0.5
 const JUMP_VELOCITY = -400.0
 const FOLLOW_DEADZONE = 1
 var is_moving = true
-@export var hp = 100
-@export var max_hp = 100
+var attacking = false
 
 var target : CharacterBody2D
-var timer = Timer.new()
+var retarget_timer = Timer.new()
+var invincibility_timer = Timer.new()
 
 func _ready() -> void:
-	timer.wait_time = 1
-	timer.timeout.connect(set_new_target)
-	timer.autostart = true
-	add_child(timer)
+	retarget_timer.wait_time = 1
+	retarget_timer.timeout.connect(set_new_target)
+	retarget_timer.autostart = true
+	add_child(retarget_timer)
 	set_new_target()
+	
+	invincibility_timer.wait_time = invincibility_length
+	invincibility_timer.timeout.connect(_on_invincibility_timer_timeout)
+	invincibility_timer.autostart = true
+	add_child(invincibility_timer)
 
-func damage(amount, knockback):
-	pass
+func parry():
+	damage(parry_damage, parry_knockback_mult)
+
+func damage(amount, knockback) -> void:
+	set_collision_layer_value(1, false)
+	invincibility_timer.start()
+	velocity.x = 1600 * knockback
+	velocity.y = -500 * abs(knockback)
+	hp -= amount
+	if hp <= 0:
+		get_tree().quit()
+	print(amount)
 
 func set_is_moving(_is_moving : bool):
 	is_moving = _is_moving
@@ -56,3 +74,8 @@ func _physics_process(delta: float) -> void:
 		velocity.x = move_toward(velocity.x, 0, speed)
 	
 	move_and_slide()
+
+
+func _on_invincibility_timer_timeout():
+	set_collision_layer_value(1, true)
+
