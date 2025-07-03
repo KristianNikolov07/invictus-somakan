@@ -50,10 +50,19 @@ func _input(event: InputEvent) -> void:
 		$Parry.start()
 
 func check_parry(area):
-	if area.get_parent().has_method("parry") and !$Parry.is_stopped() and area.get_parent().attacking:
-		if (area.get_parent().global_position.x < global_position.x and direction == -1) or (area.get_parent().global_position.x > global_position.x and direction == 1):
+	if area.has_method("parry") and !$Parry.is_stopped() and area.attacking:
+		if(area.global_position.x < global_position.x and direction == -1 and area.velocity.x >= 0) or (area.global_position.x > global_position.x and direction == 1 and area.velocity.x <= 0):
 			return $Parry.time_left
 	return 0
+
+func get_parry_time():
+	return $Parry.wait_time
+
+func stop_parry():
+	if !$Parry.is_stopped():
+		$Parry.stop()
+		_on_parry_timeout()
+		$Invincibility.start()
 
 func process_movement():
 	if $Parry.is_stopped():
@@ -90,15 +99,14 @@ func _on_invincibility_timeout() -> void:
 
 
 func _on_parry_area_area_entered(area: Area2D) -> void:
-	if area.get_parent().has_method("parry") and check_parry(area) > 0:
-		area.get_parent().parry()
-		$Parry.call_deferred("stop")
-		$Invincibility.start()
-		self.call_deferred("_on_parry_timeout")
+	pass
+	#if area.get_parent().has_method("parry") and check_parry(area) > 0:
+		#area.get_parent().parry()
+		#$Parry.call_deferred("stop")
+		#$Invincibility.start()
+		#call_deferred("_on_parry_timeout")
 		#$Hitstop.start()
 		#set_deferred("process_mode", Node.PROCESS_MODE_DISABLED)
-			
-
 
 func _on_parry_timeout() -> void:
 	$ParryArea.set_collision_mask_value(1, false)

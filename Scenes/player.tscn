@@ -46,7 +46,7 @@ one_shot = true
 one_shot = true
 
 [node name="Parry" type="Timer" parent="."]
-wait_time = 1.5
+wait_time = 0.3
 one_shot = true
 
 [node name="Hitstop" type="Timer" parent="."]
