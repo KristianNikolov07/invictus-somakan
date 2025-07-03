@@ -43,6 +43,5 @@ func damage(amount, knockback) -> void:
 		queue_free()
 
 
-
 func _on_invincibility_timer_timeout():
 	set_collision_layer_value(1, true)

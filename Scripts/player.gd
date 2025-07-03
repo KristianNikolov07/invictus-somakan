@@ -54,12 +54,17 @@ func _input(event: InputEvent) -> void:
 		$Parry.start()
 
 func check_parry(area):
-	if area.has_method("parry") and !$Parry.is_stopped() and area.attacking:
-		if(area.global_position.x < global_position.x and direction == -1 and area.velocity.x >= 0) or (area.global_position.x > global_position.x and direction == 1 and area.velocity.x <= 0):
-			return $Parry.time_left
+	if !$Parry.is_stopped():
+		if area.has_method("parry") and area.attacking:
+			if(area.global_position.x < global_position.x and direction == -1 and area.velocity.x >= 0) or (area.global_position.x > global_position.x and direction == 1 and area.velocity.x <= 0):
+				return $Parry.time_left
+		elif area is Projectile:
+			if(area.global_position.x < global_position.x and direction == -1) or (area.global_position.x > global_position.x and direction == 1):
+				return $Parry.time_left
 	return 0
 
 func get_parry_time():
+	print($Parry.time_left)
 	return $Parry.wait_time
 
 func stop_parry():
