@@ -2,5 +2,5 @@ extends Enemy
 
 
 func _process(delta: float) -> void:
-	if hp <= 0:
+	if hp <= 100:
 		hp = max_hp
