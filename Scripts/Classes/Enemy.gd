@@ -11,9 +11,10 @@ class_name Enemy
 @export var parry_damage = 1
 @export var parry_knockback_mult = 1
 @export var invincibility_length = 0.5
+@export var can_be_knockedback = true
 const JUMP_VELOCITY = -400.0
 const FOLLOW_DEADZONE = 1
-var is_moving = true
+@export var is_moving = true
 var attacking = false
 
 var target : CharacterBody2D
@@ -38,11 +39,13 @@ func parry():
 func damage(amount, knockback) -> void:
 	set_collision_layer_value(1, false)
 	invincibility_timer.start()
+	if !can_be_knockedback:
+		knockback = 0
 	velocity.x = 1600 * knockback
 	velocity.y = -500 * abs(knockback)
 	hp -= amount
 	if hp <= 0:
-		get_tree().quit()
+		queue_free()
 	print(amount)
 
 func set_is_moving(_is_moving : bool):
@@ -63,19 +66,19 @@ func _physics_process(delta: float) -> void:
 	
 	
 	var direction
-	if target.global_position.x < global_position.x:
-		direction = -1
-	else:
-		direction = 1
-	
-	if direction and (target.global_position - global_position).abs().x > FOLLOW_DEADZONE and is_moving:
-		velocity.x = direction * speed
-	else:
-		velocity.x = move_toward(velocity.x, 0, speed)
+	if target != null:
+		if target.global_position.x < global_position.x:
+			direction = -1
+		else:
+			direction = 1
+		
+		if direction and (target.global_position - global_position).abs().x > FOLLOW_DEADZONE and is_moving:
+			velocity.x = direction * speed
+		else:
+			velocity.x = move_toward(velocity.x, 0, speed)
 	
 	move_and_slide()
 
 
 func _on_invincibility_timer_timeout():
 	set_collision_layer_value(1, true)
-
