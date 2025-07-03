@@ -46,7 +46,6 @@ func damage(amount, knockback) -> void:
 	hp -= amount
 	if hp <= 0:
 		queue_free()
-	print(amount)
 
 func set_is_moving(_is_moving : bool):
 	is_moving = _is_moving
