@@ -42,12 +42,5 @@ func damage(amount, knockback) -> void:
 		queue_free()
 
 
-func _physics_process(delta: float) -> void:
-	if not is_on_floor():
-		velocity += get_gravity() * delta
-	
-	move_and_slide()
-
-
 func _on_invincibility_timer_timeout():
 	set_collision_layer_value(1, true)
