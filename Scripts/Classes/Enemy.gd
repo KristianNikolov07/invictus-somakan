@@ -42,8 +42,7 @@ func damage(amount, knockback) -> void:
 	velocity.y = -500 * abs(knockback)
 	hp -= amount
 	if hp <= 0:
-		get_tree().quit()
-	print(amount)
+		queue_free()
 
 func set_is_moving(_is_moving : bool):
 	is_moving = _is_moving
@@ -78,4 +77,3 @@ func _physics_process(delta: float) -> void:
 
 func _on_invincibility_timer_timeout():
 	set_collision_layer_value(1, true)
-

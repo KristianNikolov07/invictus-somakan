@@ -45,13 +45,19 @@ func _on_attack_hitbox_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Players"):
 		var knockback_dir = calculate_direction(body)
 		var parry_time_left = body.check_parry(self)
-		print(parry_time_left)
-		if parry_time_left > body.get_parry_time() / 1.2:
-			damage(parry_damage, parry_knockback_mult)
+		if parry_time_left > 0:
+			$Hitstop.start()
+			body.begin_hitstop()
+			call_deferred("set_process_mode", Node.PROCESS_MODE_DISABLED)
+			
+			var is_perfect = parry_time_left > body.get_parry_time() / 1.2
+			damage(max_hp if is_perfect else parry_damage, parry_knockback_mult)
 			body.stop_parry()
-		elif parry_time_left > 0:
-			damage(parry_damage, parry_knockback_mult)
-			body.stop_parry()
-			body.damage(attack_damage / 3, (knockback_strength * knockback_dir) / 3)
+			if not is_perfect:
+				body.damage(attack_damage / 3, (knockback_strength * knockback_dir) / 3)
 		else:
 			body.damage(attack_damage, knockback_strength * knockback_dir)
+
+
+func _on_hitstop_timeout() -> void:
+	process_mode = Node.PROCESS_MODE_INHERIT

@@ -18,13 +18,6 @@ var hp = 50
 var selected_weapon = Weapons.Weapons.SWORD
 
 
-func _ready() -> void:
-	$Parry.start()
-	$Parry.stop()
-
-
-
-
 func _physics_process(delta: float) -> void:
 	if $DashTimer.is_stopped():
 		process_movement()
@@ -89,10 +82,10 @@ func process_movement():
 			speed_mult = 1.6
 		elif not Input.is_action_pressed("Dash"):
 			speed_mult = 1
-		
-		velocity.y = move_toward(velocity.y, max_falling_speed, gravity)
 	else:
-		velocity = Vector2(0, 0)
+		velocity.x = 0
+	
+	velocity.y = move_toward(velocity.y, max_falling_speed, gravity)
 
 
 func attack():
@@ -114,24 +107,20 @@ func damage(amount, knockback) -> void:
 func _on_invincibility_timeout() -> void:
 	set_collision_layer_value(1, true)
 
-func _on_parry_area_area_entered(area: Area2D) -> void:
-	pass
-	#if area.get_parent().has_method("parry") and check_parry(area) > 0:
-		#area.get_parent().parry()
-		#$Parry.call_deferred("stop")
-		#$Invincibility.start()
-		#call_deferred("_on_parry_timeout")
-		#$Hitstop.start()
-		#set_deferred("process_mode", Node.PROCESS_MODE_DISABLED)
 
 func _on_parry_timeout() -> void:
 	$ParryArea.set_collision_mask_value(1, false)
 	$ParryArea.set_collision_mask_value(3, false)
 
+func begin_hitstop():
+	$Hitstop.start()
+	$Camera2D/Hitstop.play("flash")
+	call_deferred("set_process_mode", Node.PROCESS_MODE_DISABLED)
+
 func _on_hitstop_timeout() -> void:
-	pass
-	#set_deferred("process_mode", Node.PROCESS_MODE_INHERIT)
-	
+	call_deferred("set_process_mode", Node.PROCESS_MODE_INHERIT)
+
+
 func interact_with():
 	for area in $InteractionRange.get_overlapping_areas():
 		if area.has_method("interact"):
