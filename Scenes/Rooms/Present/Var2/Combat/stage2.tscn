@@ -1,9 +1,0 @@
-[gd_scene format=3 uid="uid://bftectpn5v1gi"]
-
-[node name="Stage2" type="Node2D"]
-
-[node name="Label" type="Label" parent="."]
-offset_right = 183.0
-offset_bottom = 69.0
-text = "Var2 Combat2"
-metadata/_edit_use_anchors_ = true

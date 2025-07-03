@@ -22,3 +22,7 @@ func interact():
 			get_tree().change_scene_to_packed(RoomGen.pull_combat_room())
 		RoomTypes.RoomTypes.SHOP:
 			get_tree().change_scene_to_packed(RoomGen.get_shop_room())
+		RoomTypes.RoomTypes.BOSS:
+			get_tree().change_scene_to_packed(RoomGen.get_boss_room())
+		RoomTypes.RoomTypes.HUB:
+			get_tree().change_scene_to_packed(RoomGen.get_hub())
