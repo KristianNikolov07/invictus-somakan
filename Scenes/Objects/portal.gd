@@ -4,7 +4,16 @@ extends Area2D
 @export var is_stage_transition = false
 @export var next_stage : Stages.Stages
 
+@export_subgroup("Room Transitions")
+@export var room_type : RoomTypes.RoomTypes
+
 func interact():
 	if is_stage_transition:
 		RoomGen.fill_rooms(next_stage)
-	# TODO: Add the teleportation here
+	match room_type:
+		RoomTypes.RoomTypes.PUZZLE:
+			#Add Puzzle transition here
+			pass
+		RoomTypes.RoomTypes.COMBAT:
+			#Add Combat transition here
+			pass
