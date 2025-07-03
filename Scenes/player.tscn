@@ -3,6 +3,11 @@
 [ext_resource type="Script" uid="uid://dl6w610ren8v7" path="res://Scripts/player.gd" id="1_cvnsp"]
 [ext_resource type="Texture2D" uid="uid://c1lo75th7b88g" path="res://Textures/icon.svg" id="1_v0iea"]
 [ext_resource type="Script" uid="uid://qsumhs18y3t0" path="res://Scripts/Weapons/sword.gd" id="3_6t5aa"]
+[ext_resource type="PackedScene" uid="uid://ck27w40tryjbv" path="res://Scenes/Weapons/sword.tscn" id="3_6t5aa"]
+[ext_resource type="PackedScene" uid="uid://bqo6qnqcmww4y" path="res://Scenes/UI/health_bar.tscn" id="4_vgqql"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6t5aa"]
+size = Vector2(120, 104)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cvnsp"]
 radius = 35.0
@@ -190,21 +195,7 @@ debug_color = Color(0, 0.627881, 0.497695, 0.42)
 
 [node name="Weapons" type="Node2D" parent="."]
 
-[node name="Sword" type="Node2D" parent="Weapons"]
-script = ExtResource("3_6t5aa")
-
-[node name="Sword" type="Area2D" parent="Weapons/Sword"]
-rotation = -1.5708
-monitoring = false
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Weapons/Sword/Sword"]
-position = Vector2(88, 0)
-shape = SubResource("RectangleShape2D_cvnsp")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Weapons/Sword"]
-libraries = {
-&"": SubResource("AnimationLibrary_vgqql")
-}
+[node name="Sword" parent="Weapons" instance=ExtResource("3_6t5aa")]
 
 [node name="DashTimer" type="Timer" parent="."]
 wait_time = 0.2
@@ -247,6 +238,12 @@ offset_right = 40.0
 offset_bottom = 23.0
 
 [connection signal="body_entered" from="Weapons/Sword/Sword" to="Weapons/Sword" method="_on_sword_body_entered"]
+[node name="HealthBar" parent="." instance=ExtResource("4_vgqql")]
+offset_left = -96.0
+offset_top = -104.0
+offset_right = 96.0
+offset_bottom = -77.0
+
 [connection signal="timeout" from="Invincibility" to="." method="_on_invincibility_timeout"]
 [connection signal="timeout" from="Parry" to="." method="_on_parry_timeout"]
 [connection signal="timeout" from="Hitstop" to="." method="_on_hitstop_timeout"]
