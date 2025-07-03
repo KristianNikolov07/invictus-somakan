@@ -7,6 +7,10 @@ extends Area2D
 @export_subgroup("Room Transitions")
 @export var room_type : RoomTypes.RoomTypes
 
+func _ready() -> void:
+	if RoomGen.current_room == 5:
+		room_type = RoomTypes.RoomTypes.SHOP
+
 func interact():
 	if is_stage_transition:
 		RoomGen.fill_rooms(next_stage)
@@ -16,3 +20,5 @@ func interact():
 			get_tree().change_scene_to_packed(RoomGen.pull_puzzle_room())
 		RoomTypes.RoomTypes.COMBAT:
 			get_tree().change_scene_to_packed(RoomGen.pull_combat_room())
+		RoomTypes.RoomTypes.SHOP:
+			get_tree().change_scene_to_packed(RoomGen.get_shop_room())
