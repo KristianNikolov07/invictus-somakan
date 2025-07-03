@@ -10,6 +10,7 @@ extends Area2D
 func interact():
 	if is_stage_transition:
 		RoomGen.fill_rooms(next_stage)
+		
 	match room_type:
 		RoomTypes.RoomTypes.PUZZLE:
 			get_tree().change_scene_to_packed(RoomGen.pull_puzzle_room())

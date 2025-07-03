@@ -1,4 +1,4 @@
-extends Enemy
+extends WalkingEnemy
 
 var direction = 1
 

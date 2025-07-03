@@ -7,7 +7,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ccesc"]
 size = Vector2(128, 128)
 
-[node name="Dummy" type="CharacterBody2D"]
+[node name="Dummy" type="CharacterBody2D" groups=["Enemies"]]
 collision_mask = 14
 script = ExtResource("1_ccesc")
 hp = 1000

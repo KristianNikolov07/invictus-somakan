@@ -13,6 +13,5 @@ func hit(direction : int):
 
 
 func _on_sword_body_entered(body: Node2D) -> void:
-	print(body)
-	if body.has_method("damage"):
+	if body.has_method("damage") and body.is_in_group("Enemies"):
 		body.damage(attack_damage, knockback_amount * dir)
