@@ -1,8 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://bq37pauhr7ehy"]
+[gd_scene load_steps=6 format=3 uid="uid://bq37pauhr7ehy"]
 
 [ext_resource type="Script" uid="uid://bygp0rxw28pnh" path="res://Scripts/Enemies/crossbower.gd" id="1_50btn"]
 [ext_resource type="Texture2D" uid="uid://c1lo75th7b88g" path="res://Textures/icon.svg" id="2_1qho8"]
-[ext_resource type="Script" uid="uid://drqow7af66ehm" path="res://Scripts/Classes/Hitbox.gd" id="3_1qho8"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kuff7"]
 radius = 35.0
@@ -13,10 +12,7 @@ radius = 35.0
 height = 126.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_50btn"]
-size = Vector2(849, 333)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_kuff7"]
-size = Vector2(55, 77)
+size = Vector2(849, 374)
 
 [node name="Crossbower" type="CharacterBody2D" groups=["Enemies"]]
 collision_mask = 2
@@ -48,26 +44,15 @@ shape = SubResource("CapsuleShape2D_pm5xl")
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackRange"]
-position = Vector2(0.5, -122.5)
+position = Vector2(0.5, -102)
 shape = SubResource("RectangleShape2D_50btn")
-
-[node name="AttackHitbox" type="Area2D" parent="."]
-collision_layer = 0
-collision_mask = 0
-script = ExtResource("3_1qho8")
-damage = 0
-metadata/_custom_type_script = "uid://drqow7af66ehm"
-
-[node name="AttackCollisionShape" type="CollisionShape2D" parent="AttackHitbox"]
-position = Vector2(0, -1)
-shape = SubResource("RectangleShape2D_kuff7")
 
 [node name="AttackCharge" type="Timer" parent="."]
 wait_time = 0.5
 one_shot = true
 
 [node name="AttackCool" type="Timer" parent="."]
-wait_time = 1.5
+wait_time = 2.0
 one_shot = true
 
 [connection signal="body_entered" from="CollisionDamage" to="." method="_on_collision_damage_body_entered"]

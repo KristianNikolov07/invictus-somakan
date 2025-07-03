@@ -1,7 +1,15 @@
 extends WalkingEnemy
 
 var direction = 1
+var arrow := preload("res://Scenes/Projectiles/arrow.tscn")
 
+
+func fire_arrow() -> void:
+	var arrow: Projectile = arrow.instantiate()
+	arrow.global_position = global_position
+	arrow.rotation = global_position.direction_to(target.global_position).angle()
+	arrow.shooter_vel = velocity
+	get_tree().current_scene.add_child(arrow)
 
 func calculate_direction(body):
 	var knockback_dir = 1
@@ -19,9 +27,11 @@ func _on_collision_damage_body_entered(body: Node2D) -> void:
 			body.damage(coll_damage, coll_knockback * knockback_dir)
 
 func _on_attack_range_body_entered(body: Node2D) -> void:
-	if body.is_in_group("Players") and $AttackCharge.is_stopped() and $AttackCool.is_stopped():
-		$AttackCharge.start()
+	if body.is_in_group("Players"):
 		set_is_moving(false)
+		if $AttackCharge.is_stopped() and $AttackCool.is_stopped():
+			print("ready")
+			$AttackCharge.start()
 
 func _on_attack_range_body_exited(body: Node2D) -> void:
 	if target != null and body == target:
@@ -32,7 +42,7 @@ func _on_attack_range_body_exited(body: Node2D) -> void:
 
 
 func _on_attack_charge_timeout() -> void:
-	print("Shoot")
+	fire_arrow()
 	$AttackCool.start()
 
 func _on_attack_cool_timeout() -> void:
