@@ -10,4 +10,5 @@ func set_item(_item: Item) -> void:
 
 
 func _on_texture_button_pressed() -> void:
-	pass # Replace with function body.
+	if item != null:
+		get_node("../../").show_item_options(self)
