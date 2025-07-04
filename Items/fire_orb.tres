@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://cm7g5mjsok0q5"]
+
+[ext_resource type="Texture2D" uid="uid://doaj5jrka7pib" path="res://Textures/fire_orb.png" id="1_6iuo3"]
+[ext_resource type="Script" uid="uid://b3auab72tb6j6" path="res://Scripts/Classes/Item.gd" id="1_xxbsx"]
+
+[resource]
+script = ExtResource("1_xxbsx")
+item_name = "Fire Orb"
+icon = ExtResource("1_6iuo3")
+type = 0
+metadata/_custom_type_script = "uid://b3auab72tb6j6"
