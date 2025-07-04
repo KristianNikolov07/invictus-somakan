@@ -12,6 +12,8 @@ class_name Enemy
 @export var parry_knockback_mult = 1
 @export var invincibility_length = 0.5
 @export var can_be_knockedback = true
+@export var damage_number_scale: float = 2
+@export var damage_number_duration: float = 2
 const JUMP_VELOCITY = -400.0
 const FOLLOW_DEADZONE = 1
 @export var is_moving = true
@@ -32,7 +34,7 @@ func parry():
 	damage(parry_damage, parry_knockback_mult)
 
 func damage(amount, knockback) -> void:
-	Utils.summon_damage_number(self, amount, Color.WHITE, 1, 1)
+	Utils.summon_damage_number(self, amount, Color.WHITE, damage_number_scale, damage_number_duration)
 	set_collision_layer_value(1, false)
 	invincibility_timer.start()
 	if !can_be_knockedback:
