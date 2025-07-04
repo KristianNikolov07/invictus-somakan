@@ -100,7 +100,8 @@ func attack():
 		$Weapons/Sword.hit(direction)
 
 
-func damage(amount, knockback) -> void:
+
+func damage_amount(amount: int, knockback) -> void:
 	Utils.summon_damage_number(self, amount, Color.RED, damage_number_scale, damage_number_duration)
 	set_collision_layer_value(1, false)
 	$Invincibility.start()
@@ -111,6 +112,19 @@ func damage(amount, knockback) -> void:
 	#if hp <= 0:
 		#get_tree().quit()
 	print(amount)
+	
+func damage(hitbox: Hitbox, knockback):
+	var is_crit = Utils.calculate_crit(hitbox.get_crit_chance())
+	set_collision_layer_value(1, false)
+	$Invincibility.start()
+	$Parry.stop()
+	velocity.x = 1600 * knockback
+	velocity.y = -500 * abs(knockback)
+	var damage = hitbox.get_damage() * (hitbox.get_crit_mult() if is_crit else 1)
+	Utils.summon_damage_number(self, damage, Color.RED, damage_number_scale, damage_number_duration)
+	hp -= damage
+	if hp <= 0:
+		queue_free()
 
 func _on_invincibility_timeout() -> void:
 	set_collision_layer_value(1, true)

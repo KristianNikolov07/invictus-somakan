@@ -26,6 +26,7 @@ knockback_strength = 1.8
 damage_number_scale = 1.5
 damage_number_duration = 1.5
 
+
 [node name="PlayerSprite" type="Sprite2D" parent="."]
 position = Vector2(-1.90735e-06, 0)
 scale = Vector2(0.337, 0.599)

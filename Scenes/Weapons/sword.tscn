@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://ck27w40tryjbv"]
+[gd_scene load_steps=8 format=3 uid="uid://ck27w40tryjbv"]
 
 [ext_resource type="Script" uid="uid://qsumhs18y3t0" path="res://Scripts/Weapons/sword.gd" id="1_1jmgt"]
+[ext_resource type="Script" uid="uid://drqow7af66ehm" path="res://Scripts/Classes/Hitbox.gd" id="2_v4uo3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cvnsp"]
 size = Vector2(88, 20)
@@ -102,6 +103,8 @@ script = ExtResource("1_1jmgt")
 rotation = -1.5708
 collision_layer = 4
 monitoring = false
+script = ExtResource("2_v4uo3")
+metadata/_custom_type_script = "uid://drqow7af66ehm"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sword"]
 position = Vector2(88, 0)

@@ -9,3 +9,7 @@ func summon_damage_number(body: CharacterBody2D, damage: int, color: Color, scal
 	damage_number.add_theme_color_override("font_color", color)
 	damage_number.scale = Vector2(scale, scale)
 	damage_number.start_playing()
+
+func calculate_crit(crit_chance: float):
+	return true if randf_range(0, 1) < crit_chance else false
+
