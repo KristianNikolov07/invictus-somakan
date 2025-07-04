@@ -1,4 +1,6 @@
+
 [gd_scene load_steps=9 format=3 uid="uid://da1ppyo25futr"]
+
 
 [ext_resource type="Script" uid="uid://b8jhelo4ovpd1" path="res://Scripts/UI/Inventory/inventory.gd" id="1_0etao"]
 [ext_resource type="PackedScene" uid="uid://bdpc5j2mvdovi" path="res://Scenes/UI/Inventory/item_slot.tscn" id="1_kd7ct"]
@@ -7,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://bqdkhdq1k5t0j" path="res://Scenes/UI/Inventory/aspect_slot.tscn" id="4_5acsc"]
 [ext_resource type="Texture2D" uid="uid://doaj5jrka7pib" path="res://Textures/fire_orb.png" id="4_c6eky"]
 [ext_resource type="PackedScene" uid="uid://encvpxp077bd" path="res://Scenes/UI/Inventory/consumable_slot.tscn" id="5_feywu"]
+[ext_resource type="Texture2D" uid="uid://dt57eouwpxfuc" path="res://Textures/slot.png" id="3_c6eky"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_g1tdo"]
 
@@ -98,10 +101,10 @@ layout_mode = 2
 
 [node name="Consumables" type="HBoxContainer" parent="Inventory"]
 layout_mode = 0
-offset_left = 216.0
-offset_top = 281.0
-offset_right = 440.0
-offset_bottom = 321.0
+offset_left = 217.0
+offset_top = 348.0
+offset_right = 441.0
+offset_bottom = 388.0
 theme_override_constants/separation = 224
 alignment = 1
 
@@ -125,7 +128,6 @@ mesh = SubResource("BoxMesh_g1tdo")
 [node name="Item" type="Sprite2D" parent="Inventory/OptionsMenu"]
 position = Vector2(326, 450)
 scale = Vector2(1.715, 1.715)
-texture = ExtResource("4_c6eky")
 
 [node name="Label" type="Label" parent="Inventory/OptionsMenu"]
 layout_mode = 0
@@ -135,11 +137,11 @@ offset_right = 464.0
 offset_bottom = 533.0
 scale = Vector2(0.44, 0.44)
 theme_override_font_sizes/font_size = 44
-text = "Fire Orb"
 horizontal_alignment = 1
 
-[node name="Button" type="Button" parent="Inventory/OptionsMenu"]
+[node name="Equip1" type="Button" parent="Inventory/OptionsMenu"]
 layout_mode = 0
+
 offset_left = 512.0
 offset_top = 454.0
 offset_right = 2041.0
@@ -166,9 +168,22 @@ offset_right = 1645.0
 offset_bottom = 788.0
 scale = Vector2(0.07, 0.07)
 theme_override_font_sizes/font_size = 236
+disabled = true
 text = "Equip to slot 1"
 
-[node name="Button4" type="Button" parent="Inventory/OptionsMenu"]
+
+[node name="Equip2" type="Button" parent="Inventory/OptionsMenu"]
+layout_mode = 0
+offset_left = 156.0
+offset_top = 457.0
+offset_right = 1778.0
+offset_bottom = 788.0
+scale = Vector2(0.07, 0.07)
+theme_override_font_sizes/font_size = 236
+disabled = true
+text = "Equip to slot 2"
+
+[node name="Unequip" type="Button" parent="Inventory/OptionsMenu"]
 layout_mode = 0
 offset_left = 388.0
 offset_top = 454.0
@@ -176,7 +191,19 @@ offset_right = 1917.0
 offset_bottom = 785.0
 scale = Vector2(0.07, 0.07)
 theme_override_font_sizes/font_size = 236
+disabled = true
 text = "Unequip"
+
+[node name="Drop" type="Button" parent="Inventory/OptionsMenu"]
+layout_mode = 0
+offset_left = 512.0
+offset_top = 454.0
+offset_right = 2041.0
+offset_bottom = 785.0
+scale = Vector2(0.07, 0.07)
+theme_override_font_sizes/font_size = 236
+disabled = true
+text = "Drop"
 
 [node name="BG" type="Sprite2D" parent="Inventory"]
 z_index = -1
