@@ -3,7 +3,7 @@ class_name CombatRoom
 
 signal on_completion
 
-var current_level_data : Array = []
+var current_level_data : Dictionary = {}
 var current_wave : int = 1
 var current_enemy_count : int = 0
 var remaining_spawnpoints : Array = []
@@ -13,9 +13,18 @@ var completed = false
 @export var spawn_delay : float = 2.5
 
 func _ready():
-	current_level_data = RoomData.RoomData["MedievalVar1Data"][CurrentRunStats.current_level - 1]
+	current_wave = 1
+	current_enemy_count = 0
+	var stage = CurrentRunStats.current_stage
+	var stage_name
+	match stage:
+		Stages.Stages.MEDIEVAL: stage_name = 'Medieval'
+		Stages.Stages.PRESENT: stage_name = 'Present'
+		Stages.Stages.FUTURE: stage_name = 'Future'
+		
+	current_level_data = RoomData.RoomData[stage_name + "Var" + str(CurrentRunStats.current_level) + "Data"]["Level" + str(CurrentRunStats.current_level)]
 	remaining_spawnpoints = $Spawnpoints.get_children()
-	var enemies_to_load = current_level_data[current_wave - 1][1]
+	var enemies_to_load = current_level_data["Wave" + str(current_wave)]["Enemies"]
 	for i in range(len(enemies_to_load)):
 		current_enemies.append(load("res://Scenes/Enemies/" + enemies_to_load[i] + ".tscn"))
 	spawn_delay_timer.wait_time = spawn_delay
@@ -38,10 +47,10 @@ func _physics_process(_delta: float) -> void:
 			else:
 				completed = true
 				on_completion.emit()
-				print("you ween")
+				CurrentRunStats.current_level += 1
 			
 func spawn_current_wave():
-	current_enemy_count = int(current_level_data[current_wave - 1][0] * len(remaining_spawnpoints))
+	current_enemy_count = int(current_level_data["Wave" + str(current_wave)]["SpawnQuantity"] * len(remaining_spawnpoints))
 	for i in range(current_enemy_count):
 		var rand = randi_range(0, len($Spawnpoints.get_children()) - 1)
 		var current_spawnpoint = remaining_spawnpoints.pop_at(rand)
