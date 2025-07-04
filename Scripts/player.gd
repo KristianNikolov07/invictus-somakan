@@ -100,6 +100,7 @@ func attack():
 		$Weapons/Sword.hit(direction)
 
 
+
 func damage_amount(amount: int, knockback) -> void:
 	Utils.summon_damage_number(self, amount, Color.RED, damage_number_scale, damage_number_duration)
 	set_collision_layer_value(1, false)

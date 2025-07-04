@@ -33,6 +33,7 @@ func set_is_moving(_is_moving : bool):
 func parry():
 	damage_amount(parry_damage, parry_knockback_mult)
 
+
 func damage_amount(amount, knockback) -> void:
 	Utils.summon_damage_number(self, amount, Color.WHITE, damage_number_scale, damage_number_duration)
 	set_collision_layer_value(1, false)
