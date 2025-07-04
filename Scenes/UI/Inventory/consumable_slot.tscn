@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://encvpxp077bd"]
+
+[ext_resource type="Script" uid="uid://expx8nvurpj4" path="res://Scripts/UI/Inventory/consumable_slot.gd" id="1_1dm6b"]
+[ext_resource type="Texture2D" uid="uid://dt57eouwpxfuc" path="res://Textures/slot.png" id="1_ivkrs"]
+
+[node name="ConsumableSlot" type="Control"]
+texture_filter = 1
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_1dm6b")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(3.5, 3.5)
+texture = ExtResource("1_ivkrs")
+
+[node name="ConsumableIcon" type="Sprite2D" parent="."]
