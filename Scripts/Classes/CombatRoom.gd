@@ -52,7 +52,7 @@ func _physics_process(_delta: float) -> void:
 func spawn_current_wave():
 	current_enemy_count = int(current_level_data["Wave" + str(current_wave)]["SpawnQuantity"] * len(remaining_spawnpoints))
 	for i in range(current_enemy_count):
-		var rand = randi_range(0, len($Spawnpoints.get_children()) - 1)
+		var rand = randi_range(0, len(remaining_spawnpoints) - 1)
 		var current_spawnpoint = remaining_spawnpoints.pop_at(rand)
 		var current_enemy = current_enemies[randi_range(0, len(current_enemies) - 1)].instantiate()
 		current_enemy.position = current_spawnpoint.position

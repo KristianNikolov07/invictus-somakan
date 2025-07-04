@@ -13,6 +13,8 @@ var speed_mult = 1
 var direction = 1
 var max_hp = 50
 var hp = 50
+var damage_number_scale: float = 1.5
+var damage_number_duration: float = 1.5
 
 #Change this for other weapons
 var selected_weapon = Weapons.Weapons.SWORD
@@ -99,6 +101,7 @@ func attack():
 
 
 func damage(amount, knockback) -> void:
+	Utils.summon_damage_number(self, amount, Color.RED, damage_number_scale, damage_number_duration)
 	set_collision_layer_value(1, false)
 	$Invincibility.start()
 	velocity.x = 1600 * knockback
