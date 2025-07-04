@@ -1,0 +1,75 @@
+[gd_scene load_steps=9 format=3 uid="uid://bf7yiovv1vtwb"]
+
+[ext_resource type="Script" uid="uid://dgbvmb7u82qca" path="res://Scripts/Cutscenes/Cutscene1.gd" id="1_nxq1u"]
+[ext_resource type="Texture2D" uid="uid://c1lo75th7b88g" path="res://Textures/icon.svg" id="2_g4djx"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_q3urf"]
+
+[sub_resource type="Theme" id="Theme_0jsd3"]
+
+[sub_resource type="Theme" id="Theme_jnnbi"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5520t"]
+bg_color = Color(0.286275, 0.286275, 0.286275, 0.443137)
+
+[sub_resource type="LabelSettings" id="LabelSettings_j3wdg"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_g4djx"]
+
+[node name="Cutscene1" type="Node2D"]
+script = ExtResource("1_nxq1u")
+
+[node name="BlackBackground" type="MeshInstance2D" parent="."]
+self_modulate = Color(0, 0, 0, 1)
+position = Vector2(576.25, 324.75)
+scale = Vector2(1458.65, 822.582)
+mesh = SubResource("BoxMesh_q3urf")
+
+[node name="CurrentImage" type="Sprite2D" parent="."]
+position = Vector2(576, 324)
+scale = Vector2(9, 5.0625)
+texture = ExtResource("2_g4djx")
+
+[node name="Panel" type="Panel" parent="."]
+offset_top = 439.0
+offset_right = 1152.0
+offset_bottom = 846.0
+theme = SubResource("Theme_0jsd3")
+
+[node name="NameLabel" type="Label" parent="."]
+z_index = 1
+offset_left = 158.0
+offset_top = 402.0
+offset_right = 301.0
+offset_bottom = 439.0
+theme = SubResource("Theme_jnnbi")
+theme_override_font_sizes/font_size = 1
+theme_override_styles/normal = SubResource("StyleBoxFlat_5520t")
+text = "???"
+label_settings = SubResource("LabelSettings_j3wdg")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextLabel" type="Label" parent="."]
+offset_left = 176.0
+offset_top = 476.0
+offset_right = 976.0
+offset_bottom = 617.0
+text = "gej"
+label_settings = SubResource("LabelSettings_g4djx")
+
+[node name="LetterTimer" type="Timer" parent="."]
+wait_time = 0.06
+
+[node name="PressArrow" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(1057, 592)
+scale = Vector2(0.335938, 0.351563)
+texture = ExtResource("2_g4djx")
+
+[node name="PressArrowTimer" type="Timer" parent="."]
+wait_time = 0.3
+autostart = true
+
+[connection signal="timeout" from="LetterTimer" to="." method="_on_letter_timer_timeout"]
+[connection signal="timeout" from="PressArrowTimer" to="." method="_on_press_arrow_timer_timeout"]

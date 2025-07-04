@@ -12,4 +12,3 @@ func summon_damage_number(body: CharacterBody2D, damage: int, color: Color, scal
 
 func calculate_crit(crit_chance: float):
 	return true if randf_range(0, 1) < crit_chance else false
-
