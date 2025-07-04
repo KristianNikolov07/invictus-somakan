@@ -4,5 +4,4 @@ extends Control
 
 func set_consumable(_item: Item) -> void:
 	consumable = _item
-	$Name.text = consumable.item_name
-	$WeaponIcon.texture = consumable.icon
+	$ConsumableIcon.texture = consumable.icon

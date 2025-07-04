@@ -5,5 +5,4 @@ extends Control
 
 func set_aspect(_item: Item) -> void:
 	aspect = _item
-	$Name.text = aspect.item_name
-	$WeaponIcon.texture = aspect.icon
+	$AspectIcon.texture = aspect.icon
