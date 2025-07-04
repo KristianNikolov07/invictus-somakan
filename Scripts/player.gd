@@ -99,6 +99,7 @@ func attack():
 
 
 func damage(amount, knockback) -> void:
+	Utils.summon_damage_number(self, amount, Color.WHITE, 1, 1)
 	set_collision_layer_value(1, false)
 	$Invincibility.start()
 	velocity.x = 1600 * knockback

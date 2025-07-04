@@ -32,6 +32,7 @@ func parry():
 	damage(parry_damage, parry_knockback_mult)
 
 func damage(amount, knockback) -> void:
+	Utils.summon_damage_number(self, amount, Color.WHITE, 1, 1)
 	set_collision_layer_value(1, false)
 	invincibility_timer.start()
 	if !can_be_knockedback:
