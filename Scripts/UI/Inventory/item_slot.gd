@@ -8,6 +8,15 @@ func set_item(_item: Item) -> void:
 	$Name.text = item.item_name
 	$ItemIcon.texture = item.icon
 
+func increase_amount(amount:= 1):
+	if item != null:
+		item.amount += amount
+
+func decrease_amount(amount:= 1):
+	if item != null:
+		item.amount -= amount
+		if item.amount <= 0:
+			item = null
 
 func _on_texture_button_pressed() -> void:
 	if item != null:

@@ -1,8 +1,14 @@
-[gd_scene load_steps=6 format=3 uid="uid://da1ppyo25futr"]
+
+[gd_scene load_steps=9 format=3 uid="uid://da1ppyo25futr"]
+
 
 [ext_resource type="Script" uid="uid://b8jhelo4ovpd1" path="res://Scripts/UI/Inventory/inventory.gd" id="1_0etao"]
 [ext_resource type="PackedScene" uid="uid://bdpc5j2mvdovi" path="res://Scenes/UI/Inventory/item_slot.tscn" id="1_kd7ct"]
 [ext_resource type="Texture2D" uid="uid://oby2itttta8i" path="res://Textures/inventory.png" id="2_nljv7"]
+[ext_resource type="PackedScene" uid="uid://4h170v4cwj67" path="res://Scenes/UI/Inventory/weapon_slot.tscn" id="3_g1tdo"]
+[ext_resource type="PackedScene" uid="uid://bqdkhdq1k5t0j" path="res://Scenes/UI/Inventory/aspect_slot.tscn" id="4_5acsc"]
+[ext_resource type="Texture2D" uid="uid://doaj5jrka7pib" path="res://Textures/fire_orb.png" id="4_c6eky"]
+[ext_resource type="PackedScene" uid="uid://encvpxp077bd" path="res://Scenes/UI/Inventory/consumable_slot.tscn" id="5_feywu"]
 [ext_resource type="Texture2D" uid="uid://dt57eouwpxfuc" path="res://Textures/slot.png" id="3_c6eky"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_g1tdo"]
@@ -48,7 +54,7 @@ layout_mode = 2
 [node name="ItemSlot5" parent="Inventory/Slots" instance=ExtResource("1_kd7ct")]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Inventory"]
+[node name="WeaponSlots" type="HBoxContainer" parent="Inventory"]
 layout_mode = 0
 offset_left = 10.0
 offset_top = 124.0
@@ -57,21 +63,13 @@ offset_bottom = 191.0
 theme_override_constants/separation = 295
 alignment = 1
 
-[node name="Slot1" type="Control" parent="Inventory/HBoxContainer"]
+[node name="Slot1" parent="Inventory/WeaponSlots" instance=ExtResource("3_g1tdo")]
 layout_mode = 2
 
-[node name="Sprite2D" type="Sprite2D" parent="Inventory/HBoxContainer/Slot1"]
-scale = Vector2(5, 5)
-texture = ExtResource("3_c6eky")
-
-[node name="Slot2" type="Control" parent="Inventory/HBoxContainer"]
+[node name="Slot2" parent="Inventory/WeaponSlots" instance=ExtResource("3_g1tdo")]
 layout_mode = 2
 
-[node name="Sprite2D" type="Sprite2D" parent="Inventory/HBoxContainer/Slot2"]
-scale = Vector2(5, 5)
-texture = ExtResource("3_c6eky")
-
-[node name="HBoxContainer2" type="HBoxContainer" parent="Inventory"]
+[node name="AspectSlots1" type="HBoxContainer" parent="Inventory"]
 layout_mode = 0
 offset_left = 80.0
 offset_top = 234.0
@@ -80,21 +78,13 @@ offset_bottom = 274.0
 theme_override_constants/separation = 134
 alignment = 1
 
-[node name="Slot1" type="Control" parent="Inventory/HBoxContainer2"]
+[node name="Slot1" parent="Inventory/AspectSlots1" instance=ExtResource("4_5acsc")]
 layout_mode = 2
 
-[node name="Sprite2D" type="Sprite2D" parent="Inventory/HBoxContainer2/Slot1"]
-scale = Vector2(2.5, 2.5)
-texture = ExtResource("3_c6eky")
-
-[node name="Slot2" type="Control" parent="Inventory/HBoxContainer2"]
+[node name="Slot2" parent="Inventory/AspectSlots1" instance=ExtResource("4_5acsc")]
 layout_mode = 2
 
-[node name="Sprite2D" type="Sprite2D" parent="Inventory/HBoxContainer2/Slot2"]
-scale = Vector2(2.5, 2.5)
-texture = ExtResource("3_c6eky")
-
-[node name="HBoxContainer3" type="HBoxContainer" parent="Inventory"]
+[node name="AspectSlots2" type="HBoxContainer" parent="Inventory"]
 layout_mode = 0
 offset_left = 368.0
 offset_top = 234.0
@@ -103,21 +93,13 @@ offset_bottom = 274.0
 theme_override_constants/separation = 134
 alignment = 1
 
-[node name="Slot1" type="Control" parent="Inventory/HBoxContainer3"]
+[node name="Slot1" parent="Inventory/AspectSlots2" instance=ExtResource("4_5acsc")]
 layout_mode = 2
 
-[node name="Sprite2D" type="Sprite2D" parent="Inventory/HBoxContainer3/Slot1"]
-scale = Vector2(2.5, 2.5)
-texture = ExtResource("3_c6eky")
-
-[node name="Slot2" type="Control" parent="Inventory/HBoxContainer3"]
+[node name="Slot2" parent="Inventory/AspectSlots2" instance=ExtResource("4_5acsc")]
 layout_mode = 2
 
-[node name="Sprite2D" type="Sprite2D" parent="Inventory/HBoxContainer3/Slot2"]
-scale = Vector2(2.5, 2.5)
-texture = ExtResource("3_c6eky")
-
-[node name="HBoxContainer4" type="HBoxContainer" parent="Inventory"]
+[node name="Consumables" type="HBoxContainer" parent="Inventory"]
 layout_mode = 0
 offset_left = 217.0
 offset_top = 348.0
@@ -126,19 +108,11 @@ offset_bottom = 388.0
 theme_override_constants/separation = 224
 alignment = 1
 
-[node name="Slot1" type="Control" parent="Inventory/HBoxContainer4"]
+[node name="Slot1" parent="Inventory/Consumables" instance=ExtResource("5_feywu")]
 layout_mode = 2
 
-[node name="Sprite2D" type="Sprite2D" parent="Inventory/HBoxContainer4/Slot1"]
-scale = Vector2(3.5, 3.5)
-texture = ExtResource("3_c6eky")
-
-[node name="Slot2" type="Control" parent="Inventory/HBoxContainer4"]
+[node name="Slot2" parent="Inventory/Consumables" instance=ExtResource("5_feywu")]
 layout_mode = 2
-
-[node name="Sprite2D" type="Sprite2D" parent="Inventory/HBoxContainer4/Slot2"]
-scale = Vector2(3.5, 3.5)
-texture = ExtResource("3_c6eky")
 
 [node name="OptionsMenu" type="Control" parent="Inventory"]
 anchors_preset = 0
@@ -167,6 +141,27 @@ horizontal_alignment = 1
 
 [node name="Equip1" type="Button" parent="Inventory/OptionsMenu"]
 layout_mode = 0
+
+offset_left = 512.0
+offset_top = 454.0
+offset_right = 2041.0
+offset_bottom = 785.0
+scale = Vector2(0.07, 0.07)
+theme_override_font_sizes/font_size = 236
+text = "Drop"
+
+[node name="Button2" type="Button" parent="Inventory/OptionsMenu"]
+layout_mode = 0
+offset_left = 152.0
+offset_top = 458.0
+offset_right = 1774.0
+offset_bottom = 789.0
+scale = Vector2(0.07, 0.07)
+theme_override_font_sizes/font_size = 236
+text = "Equip to slot 2"
+
+[node name="Button3" type="Button" parent="Inventory/OptionsMenu"]
+layout_mode = 0
 offset_left = 23.0
 offset_top = 457.0
 offset_right = 1645.0
@@ -175,6 +170,7 @@ scale = Vector2(0.07, 0.07)
 theme_override_font_sizes/font_size = 236
 disabled = true
 text = "Equip to slot 1"
+
 
 [node name="Equip2" type="Button" parent="Inventory/OptionsMenu"]
 layout_mode = 0
