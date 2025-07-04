@@ -12,6 +12,8 @@ class_name Enemy
 @export var parry_knockback_mult = 1
 @export var invincibility_length = 0.5
 @export var can_be_knockedback = true
+@export var damage_number_scale: float = 2
+@export var damage_number_duration: float = 2
 const JUMP_VELOCITY = -400.0
 const FOLLOW_DEADZONE = 1
 @export var is_moving = true
@@ -29,9 +31,10 @@ func set_is_moving(_is_moving : bool):
 	is_moving = _is_moving
 
 func parry():
-	damage(parry_damage, parry_knockback_mult)
+	damage_amount(parry_damage, parry_knockback_mult)
 
-func damage(amount, knockback) -> void:
+func damage_amount(amount, knockback) -> void:
+	Utils.summon_damage_number(self, amount, Color.WHITE, damage_number_scale, damage_number_duration)
 	set_collision_layer_value(1, false)
 	invincibility_timer.start()
 	if !can_be_knockedback:
@@ -42,6 +45,19 @@ func damage(amount, knockback) -> void:
 	if hp <= 0:
 		queue_free()
 
+func damage(hitbox: Hitbox, knockback) -> void:
+	var is_crit = Utils.calculate_crit(hitbox.get_crit_chance())
+	set_collision_layer_value(1, false)
+	invincibility_timer.start()
+	if !can_be_knockedback:
+		knockback = 0
+	velocity.x = 1600 * knockback
+	velocity.y = -500 * abs(knockback)
+	var damage = hitbox.get_damage() * (hitbox.get_crit_mult() if is_crit else 1)
+	Utils.summon_damage_number(self, damage, Color.ORANGE_RED if is_crit else Color.WHITE, damage_number_scale, damage_number_duration)
+	hp -= damage
+	if hp <= 0:
+		queue_free()
 
 func _on_invincibility_timer_timeout():
 	set_collision_layer_value(1, true)
