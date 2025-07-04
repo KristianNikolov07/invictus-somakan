@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://4h170v4cwj67"]
+
+[ext_resource type="Texture2D" uid="uid://dt57eouwpxfuc" path="res://Textures/slot.png" id="1_6wjnr"]
+[ext_resource type="Script" uid="uid://bcna5x8dic1rp" path="res://Scenes/UI/Inventory/weapon_slot.gd" id="1_e4mmv"]
+
+[node name="WeaponSlot" type="Control"]
+texture_filter = 1
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_e4mmv")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(5, 5)
+texture = ExtResource("1_6wjnr")
+
+[node name="WeaponIcon" type="Sprite2D" parent="."]
