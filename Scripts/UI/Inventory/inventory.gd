@@ -3,12 +3,29 @@ extends Control
 var item_slot: Control = null
 var is_equipped = false
 
+const dropped_item_scene = preload("res://Scenes/Objects/dropped_item.tscn")
 
 func _ready() -> void:
 	var item = load("res://Items/fire_orb.tres")
 	$Slots/ItemSlot1.set_item(item)
 	item = load("res://Items/ice_orb.tres")
 	$Slots/ItemSlot2.set_item(item)
+
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("Inventory"):
+		visible = !visible
+
+func add_item(item: Item):
+	if item != null:
+		for slot in $Slots.get_children():
+			if slot.item == null:
+				slot.set_item(item)
+				return true
+			elif slot.item.item_name == item.item_name:
+				slot.increase_amount()
+				return true
+	return false
+
 
 
 func refresh() -> void:
@@ -68,3 +85,13 @@ func _on_equip_2_pressed() -> void:
 	
 	item_slot.decrease_amount()
 	refresh()
+
+
+func _on_drop_pressed() -> void:
+	if item_slot != null and item_slot.item != null:
+		var node = dropped_item_scene.instantiate()
+		node.set_item(item_slot.item)
+		node.global_position = get_node("../../").global_position
+		get_node("../../../").add_child(node)
+		item_slot.decrease_amount()
+		

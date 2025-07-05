@@ -12,6 +12,7 @@
 [node name="UI" type="CanvasLayer"]
 
 [node name="Inventory" type="Control" parent="."]
+visible = false
 texture_filter = 1
 layout_mode = 3
 anchor_left = 0.118
@@ -188,3 +189,4 @@ metadata/_edit_lock_ = true
 
 [connection signal="pressed" from="Inventory/OptionsMenu/Equip1" to="Inventory" method="_on_equip_1_pressed"]
 [connection signal="pressed" from="Inventory/OptionsMenu/Equip2" to="Inventory" method="_on_equip_2_pressed"]
+[connection signal="pressed" from="Inventory/OptionsMenu/Drop" to="Inventory" method="_on_drop_pressed"]
