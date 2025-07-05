@@ -19,6 +19,7 @@ var damage_number_duration: float = 1.5
 #Change this for other weapons
 var selected_weapon = Weapons.Weapons.SWORD
 
+@onready var inventory = $UI/Inventory
 
 func _physics_process(delta: float) -> void:
 	if $DashTimer.is_stopped():
@@ -146,5 +147,5 @@ func _on_hitstop_timeout() -> void:
 func interact_with():
 	for area in $InteractionRange.get_overlapping_areas():
 		if area.has_method("interact"):
-			area.interact()
+			area.interact(get_path())
 			return
