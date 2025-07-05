@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://b451yhoqiov5a"]
+[gd_scene load_steps=10 format=3 uid="uid://b451yhoqiov5a"]
 
 [ext_resource type="Script" uid="uid://ctvhr04onudmb" path="res://Scripts/Enemies/zombie.gd" id="1_h3kin"]
 [ext_resource type="Texture2D" uid="uid://c1lo75th7b88g" path="res://Textures/icon.svg" id="2_n70j1"]
+[ext_resource type="Resource" uid="uid://cu00ittwd3mke" path="res://Items/lice_orb.tres" id="2_o6bce"]
 [ext_resource type="Script" uid="uid://drqow7af66ehm" path="res://Scripts/Classes/Hitbox.gd" id="3_iyl7r"]
 [ext_resource type="PackedScene" uid="uid://bqo6qnqcmww4y" path="res://Scenes/UI/health_bar.tscn" id="4_vy0uf"]
 
@@ -25,6 +26,7 @@ script = ExtResource("1_h3kin")
 knockback_strength = 1.8
 damage_number_scale = 1.5
 damage_number_duration = 1.5
+loot = ExtResource("2_o6bce")
 
 [node name="PlayerSprite" type="Sprite2D" parent="."]
 position = Vector2(-1.90735e-06, 0)

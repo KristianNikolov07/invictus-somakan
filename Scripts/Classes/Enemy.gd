@@ -53,8 +53,8 @@ func drop_loot():
 	if loot != null:
 		var node = dropped_item_scene.instantiate()
 		node.set_item(loot)
-		node.global_position = get_node("../../").global_position
-		get_node("../../../").add_child(node)
+		node.global_position = global_position
+		get_node("../").add_child(node)
 
 func damage(hitbox: Hitbox, knockback) -> void:
 	var is_crit = Utils.calculate_crit(hitbox.get_crit_chance())
@@ -68,6 +68,7 @@ func damage(hitbox: Hitbox, knockback) -> void:
 	Utils.summon_damage_number(self, damage, Color.ORANGE_RED if is_crit else Color.WHITE, damage_number_scale, damage_number_duration)
 	hp -= damage
 	if hp <= 0:
+		drop_loot()
 		queue_free()
 
 func _on_invincibility_timer_timeout():
