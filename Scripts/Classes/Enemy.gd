@@ -18,6 +18,8 @@ const JUMP_VELOCITY = -400.0
 const FOLLOW_DEADZONE = 1
 @export var is_moving = true
 var attacking = false
+@export var loot : Item
+const dropped_item_scene = preload("res://Scenes/Objects/dropped_item.tscn")
 
 var invincibility_timer = Timer.new()
 
@@ -44,7 +46,15 @@ func damage_amount(amount, knockback) -> void:
 	velocity.y = -500 * abs(knockback)
 	hp -= amount
 	if hp <= 0:
+		drop_loot()
 		queue_free()
+
+func drop_loot():
+	if loot != null:
+		var node = dropped_item_scene.instantiate()
+		node.set_item(loot)
+		node.global_position = get_node("../../").global_position
+		get_node("../../../").add_child(node)
 
 func damage(hitbox: Hitbox, knockback) -> void:
 	var is_crit = Utils.calculate_crit(hitbox.get_crit_chance())
