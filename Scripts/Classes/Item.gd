@@ -11,4 +11,4 @@ enum Type {
 @export var item_name: String
 @export var icon: Texture2D
 @export var type: Type
-var amount: int
+var amount = 1

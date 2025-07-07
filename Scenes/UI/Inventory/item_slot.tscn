@@ -41,4 +41,12 @@ position = Vector2(119.5, 52.6563)
 scale = Vector2(3.73437, 2.72949)
 texture = ExtResource("1_incig")
 
+[node name="Amount" type="Label" parent="."]
+layout_mode = 0
+offset_left = 143.0
+offset_top = 71.0
+offset_right = 230.0
+offset_bottom = 94.0
+horizontal_alignment = 2
+
 [connection signal="pressed" from="TextureButton" to="." method="_on_texture_button_pressed"]

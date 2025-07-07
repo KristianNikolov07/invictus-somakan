@@ -4,8 +4,9 @@ extends Control
 
 
 func set_aspect(_item: Item) -> void:
-	aspect = _item
-	$AspectIcon.texture = aspect.icon
+	if _item != null:
+	  aspect = _item
+	  $AspectIcon.texture = aspect.icon
 
 func take_item():
 	if aspect != null:

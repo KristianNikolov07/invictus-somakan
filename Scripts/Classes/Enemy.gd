@@ -52,7 +52,7 @@ func damage_amount(amount, knockback) -> void:
 func drop_loot():
 	if loot != null:
 		var node = dropped_item_scene.instantiate()
-		node.set_item(loot)
+		node.get_node("Area").set_item(loot)
 		node.global_position = global_position
 		get_node("../").add_child(node)
 
