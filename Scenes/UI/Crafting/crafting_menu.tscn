@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://chmforw2q6tjr"]
+
+[ext_resource type="Script" uid="uid://b5pgylqdufln4" path="res://Scripts/UI/Crafting/crafting_menu.gd" id="1_n5tx4"]
+[ext_resource type="Texture2D" uid="uid://nfjd1wonq2h2" path="res://Textures/Crafting/crafting_background.png" id="2_qs4gd"]
+
+[node name="CraftingMenu" type="Control"]
+texture_filter = 1
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_n5tx4")
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(400, 270)
+scale = Vector2(10, 6)
+texture = ExtResource("2_qs4gd")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
+layout_mode = 2
