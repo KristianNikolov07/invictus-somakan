@@ -14,5 +14,10 @@ func take_item():
 			clear()
 
 func clear():
-	$ConsumableIcon.texture = null
+	$AspectIcon.texture = null
 	aspect = null
+
+
+func _on_texture_button_pressed() -> void:
+	if aspect != null:
+		get_node("../../").show_item_options(self, true)

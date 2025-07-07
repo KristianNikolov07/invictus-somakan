@@ -47,7 +47,7 @@ func show_item_options(_item_slot: Control, _is_equipped: bool):
 	var item
 	if !is_equipped:
 		item = item_slot.item
-	elif item_slot.name == "ConsumableSlot":
+	elif item_slot.get_parent().name == "Consumables":
 		item = item_slot.consumable
 	else:
 		item = item_slot.aspect
@@ -107,6 +107,13 @@ func _on_drop_pressed() -> void:
 
 
 func _on_unequip_pressed() -> void:
-	if item_slot.name == "ConsumableSlot":
+	if item_slot.get_parent().name == "Consumables":
 		add_item(item_slot.consumable)
 		item_slot.take_item()
+		if item_slot.consumable == null:
+			refresh()
+	else:
+		add_item(item_slot.aspect)
+		item_slot.take_item()
+		if item_slot.aspect == null:
+			refresh()
