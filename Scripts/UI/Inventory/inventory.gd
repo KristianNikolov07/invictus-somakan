@@ -25,7 +25,7 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("Inventory"):
 		visible = !visible
 
-func add_item(item: Item):
+func add_item(item: Item, amount:= 1):
 	if item != null:
 		for slot in $Slots.get_children():
 			if slot.item == null:
@@ -33,11 +33,18 @@ func add_item(item: Item):
 				update_globals()
 				return true
 			elif slot.item.item_name == item.item_name:
-				slot.increase_amount()
+				slot.increase_amount(amount)
 				update_globals()
 				return true
 		
 	return false
+
+func remove_item(item: Item, amount:= 1):
+	if item != null:
+		for slot in $Slots.get_children():
+			if slot.item != null:
+				if slot.item.item_name == item.item_name:
+					slot.decrease_amount(amount)
 
 func update_globals():
 	for i in range($Slots.get_children().size()):

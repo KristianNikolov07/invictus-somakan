@@ -67,7 +67,6 @@ func check_parry(area):
 	return 0
 
 func get_parry_time():
-	print($Parry.time_left)
 	return $Parry.wait_time
 
 func stop_parry():
@@ -75,7 +74,6 @@ func stop_parry():
 		$Parry.stop()
 		_on_parry_timeout()
 		$Invincibility.start()
-
 
 func process_movement():
 	if $Parry.is_stopped():
@@ -95,12 +93,16 @@ func process_movement():
 	
 	velocity.y = move_toward(velocity.y, max_falling_speed, gravity)
 
-
 func attack():
 	if selected_weapon == Weapons.Weapons.SWORD:
 		$Weapons/Sword.hit(direction)
 
+func open_crafting_menu():
+	$UI/Crafting.show()
+	$UI/Crafting.refresh()
 
+func close_crafting_menu():
+	$UI/Crafting.hide()
 
 func damage_amount(amount: int, knockback) -> void:
 	Utils.summon_damage_number(self, amount, Color.RED, damage_number_scale, damage_number_duration)

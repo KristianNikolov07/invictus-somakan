@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://qyvcg1lkbbak"
-path="res://.godot/imported/crafting_slot_background.png-8cd81cf8f4030f0d822b7fce30bb55c2.ctex"
+uid="uid://cavse8ld5bby8"
+path="res://.godot/imported/crafting_slot_selected.png-5de19c0b4208894a3bae77088c616d1d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Textures/Crafting/crafting_slot_background.png"
-dest_files=["res://.godot/imported/crafting_slot_background.png-8cd81cf8f4030f0d822b7fce30bb55c2.ctex"]
+source_file="res://Textures/Crafting/crafting_slot_selected.png"
+dest_files=["res://.godot/imported/crafting_slot_selected.png-5de19c0b4208894a3bae77088c616d1d.ctex"]
 
 [params]
 
