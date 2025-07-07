@@ -11,9 +11,11 @@ func _ready() -> void:
 	item = load("res://Items/ice_orb.tres")
 	$Slots/ItemSlot2.set_item(item)
 
+
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("Inventory"):
 		visible = !visible
+
 
 func add_item(item: Item):
 	if item != null:
@@ -25,7 +27,6 @@ func add_item(item: Item):
 				slot.increase_amount()
 				return true
 	return false
-
 
 
 func refresh() -> void:
@@ -42,7 +43,15 @@ func show_item_options(_item_slot: Control, _is_equipped: bool):
 	refresh()
 	is_equipped = _is_equipped
 	item_slot = _item_slot
-	var item = item_slot.item
+	
+	var item
+	if !is_equipped:
+		item = item_slot.item
+	elif item_slot.name == "ConsumableSlot":
+		item = item_slot.consumable
+	else:
+		item = item_slot.aspect
+	
 	$OptionsMenu/Item.texture = item.icon
 	$OptionsMenu/Label.text = item.item_name
 	$OptionsMenu/Drop.disabled = false
@@ -51,9 +60,9 @@ func show_item_options(_item_slot: Control, _is_equipped: bool):
 		return
 	
 	if item.type == Item.Type.CONSUMABLE:
-		if $Consumables/Slot1.consumable != null and $Consumables/Slot1.consumable != item_slot.item:
+		if $Consumables/Slot1.consumable == null or ($Consumables/Slot1.consumable == item_slot.item):
 			$OptionsMenu/Equip1.disabled = false
-		if $Consumables/Slot2.consumable != null and $Consumables/Slot2.consumable != item_slot.item:
+		if $Consumables/Slot2.consumable == null or ($Consumables/Slot2.consumable == item_slot.item):
 			$OptionsMenu/Equip2.disabled = false
 	elif item.type == Item.Type.ASPECT:
 		if ($AspectSlots1/Slot1.aspect != item_slot.item and $AspectSlots1/Slot2.aspect != item_slot.item) or ($AspectSlots1/Slot1.aspect != null and $AspectSlots1/Slot1.aspect == null):
@@ -95,3 +104,9 @@ func _on_drop_pressed() -> void:
 		get_node("../../../").add_child(node)
 		item_slot.decrease_amount()
 		
+
+
+func _on_unequip_pressed() -> void:
+	if item_slot.name == "ConsumableSlot":
+		add_item(item_slot.consumable)
+		item_slot.take_item()

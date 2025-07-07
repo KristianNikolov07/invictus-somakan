@@ -14,3 +14,4 @@ scale = Vector2(2.5, 2.5)
 texture = ExtResource("1_tr4cu")
 
 [node name="AspectIcon" type="Sprite2D" parent="."]
+z_index = 1

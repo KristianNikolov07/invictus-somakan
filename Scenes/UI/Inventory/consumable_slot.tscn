@@ -9,8 +9,16 @@ layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_1dm6b")
 
+[node name="TextureButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_right = 91.0
+offset_bottom = 87.0
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(46, 45)
 scale = Vector2(3.5, 3.5)
 texture = ExtResource("1_ivkrs")
 
 [node name="ConsumableIcon" type="Sprite2D" parent="."]
+
+[connection signal="pressed" from="TextureButton" to="." method="_on_pressed"]
