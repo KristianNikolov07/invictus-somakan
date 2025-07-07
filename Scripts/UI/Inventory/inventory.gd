@@ -119,7 +119,7 @@ func _on_equip_2_pressed() -> void:
 func _on_drop_pressed() -> void:
 	if item_slot != null and item_slot.item != null:
 		var node = dropped_item_scene.instantiate()
-		node.set_item(item_slot.item.duplicate())
+		node.get_node("Area").set_item(item_slot.item.duplicate())
 		node.global_position = get_node("../../").global_position
 		get_node("../../../").add_child(node)
 		item_slot.decrease_amount()
