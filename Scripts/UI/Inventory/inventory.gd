@@ -133,6 +133,8 @@ func _on_drop_pressed() -> void:
 		node.global_position = get_node("../../").global_position
 		get_node("../../../").add_child(node)
 		item_slot.decrease_amount()
+		if item_slot.item == null:
+			refresh()
  
 func _on_unequip_pressed() -> void:
 	if item_slot.get_parent().name == "Consumables":
@@ -142,7 +144,5 @@ func _on_unequip_pressed() -> void:
 			refresh()
 	else:
 		add_item(item_slot.aspect)
-		item_slot.take_item()
-		if item_slot.aspect == null:
-			refresh()
+		refresh()
 	update_globals()

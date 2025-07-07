@@ -97,10 +97,10 @@ layout_mode = 2
 
 [node name="Consumables" type="HBoxContainer" parent="Inventory"]
 layout_mode = 0
-offset_left = 217.0
-offset_top = 348.0
-offset_right = 441.0
-offset_bottom = 388.0
+offset_left = 190.0
+offset_top = 326.0
+offset_right = 414.0
+offset_bottom = 366.0
 theme_override_constants/separation = 224
 alignment = 1
 
