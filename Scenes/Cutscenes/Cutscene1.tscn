@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://bf7yiovv1vtwb"]
 
-[ext_resource type="Script" uid="uid://dgbvmb7u82qca" path="res://Scripts/Cutscenes/Cutscene1.gd" id="1_nxq1u"]
+[ext_resource type="Script" uid="uid://dgbvmb7u82qca" path="res://Scripts/Cutscenes/cutscene1.gd" id="1_nxq1u"]
 [ext_resource type="Texture2D" uid="uid://c1lo75th7b88g" path="res://Textures/icon.svg" id="2_g4djx"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_q3urf"]

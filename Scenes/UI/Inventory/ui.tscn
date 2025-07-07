@@ -187,6 +187,20 @@ scale = Vector2(13.88, 13.88)
 texture = ExtResource("2_nljv7")
 metadata/_edit_lock_ = true
 
+[node name="Crafting" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Crafting"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Crafting/ScrollContainer"]
+layout_mode = 2
+
 [connection signal="pressed" from="Inventory/OptionsMenu/Equip1" to="Inventory" method="_on_equip_1_pressed"]
 [connection signal="pressed" from="Inventory/OptionsMenu/Equip2" to="Inventory" method="_on_equip_2_pressed"]
 [connection signal="pressed" from="Inventory/OptionsMenu/Drop" to="Inventory" method="_on_drop_pressed"]

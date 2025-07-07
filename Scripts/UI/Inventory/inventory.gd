@@ -7,19 +7,19 @@ const dropped_item_scene = preload("res://Scenes/Objects/dropped_item.tscn")
 
 func _ready() -> void:
 	for i in range($Slots.get_children().size()):
-		$Slots.get_children()[i].set_item(Inv.items[i]) 
+		$Slots.get_children()[i].set_item(PlayerStats.items[i]) 
 		
-	$WeaponSlots/Slot1.set_weapon(Inv.weapon1)
-	$WeaponSlots/Slot2.set_weapon(Inv.weapon2)
+	$WeaponSlots/Slot1.set_weapon(PlayerStats.weapon1)
+	$WeaponSlots/Slot2.set_weapon(PlayerStats.weapon2)
 	
 	for i in range($AspectSlots1.get_children().size()):
-		$AspectSlots1.get_children()[i].set_aspect(Inv.weapon1_aspects[i]) 
+		$AspectSlots1.get_children()[i].set_aspect(PlayerStats.weapon1_aspects[i]) 
 		
 	for i in range($AspectSlots2.get_children().size()):
-		$AspectSlots2.get_children()[i].set_aspect(Inv.weapon2_aspects[i]) 
+		$AspectSlots2.get_children()[i].set_aspect(PlayerStats.weapon2_aspects[i]) 
 		
 	for i in range($Consumables.get_children().size()):
-		$Consumables.get_children()[i].set_consumable(Inv.consumables[i]) 
+		$Consumables.get_children()[i].set_consumable(PlayerStats.consumables[i]) 
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("Inventory"):
@@ -41,19 +41,19 @@ func add_item(item: Item):
 
 func update_globals():
 	for i in range($Slots.get_children().size()):
-		Inv.items[i] = $Slots.get_children()[i].item
+		PlayerStats.items[i] = $Slots.get_children()[i].item
 		
-	Inv.weapon1 = $WeaponSlots/Slot1.weapon
-	Inv.weapon2 = $WeaponSlots/Slot2.weapon
+	PlayerStats.weapon1 = $WeaponSlots/Slot1.weapon
+	PlayerStats.weapon2 = $WeaponSlots/Slot2.weapon
 	
 	for i in range($AspectSlots1.get_children().size()):
-		Inv.weapon1_aspects[i] = $AspectSlots1.get_children()[i].aspect
+		PlayerStats.weapon1_aspects[i] = $AspectSlots1.get_children()[i].aspect
 		
 	for i in range($AspectSlots2.get_children().size()):
-		Inv.weapon2_aspects[i] = $AspectSlots2.get_children()[i].aspect
+		PlayerStats.weapon2_aspects[i] = $AspectSlots2.get_children()[i].aspect
 		
 	for i in range($Consumables.get_children().size()):
-		Inv.consumables[i] = $Consumables.get_children()[i].consumable
+		PlayerStats.consumables[i] = $Consumables.get_children()[i].consumable
 
 func refresh() -> void:
 	$OptionsMenu/Equip1.disabled = true

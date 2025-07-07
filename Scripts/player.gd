@@ -127,6 +127,9 @@ func damage(hitbox: Hitbox, knockback):
 	if hp <= 0:
 		queue_free()
 
+func unlock_recipe(recipe: Recipe):
+	PlayerStats.unlocked_recipes.append(recipe)
+
 func _on_invincibility_timeout() -> void:
 	set_collision_layer_value(1, true)
 
