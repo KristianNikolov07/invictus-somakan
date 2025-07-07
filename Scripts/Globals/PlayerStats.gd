@@ -7,6 +7,7 @@ var weapon1_aspects : Array[Item]
 var weapon2_aspects : Array[Item]
 var consumables : Array[Item]
 var unlocked_recipes : Array[Recipe]
+var scrap: int
 
 func _ready() -> void:
 	unlocked_recipes.append(load("res://Recipes/fire_aspect.tres"))

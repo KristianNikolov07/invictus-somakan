@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://da1ppyo25futr"]
+[gd_scene load_steps=10 format=3 uid="uid://da1ppyo25futr"]
 
 [ext_resource type="Script" uid="uid://b8jhelo4ovpd1" path="res://Scripts/UI/Inventory/inventory.gd" id="1_0etao"]
 [ext_resource type="PackedScene" uid="uid://bdpc5j2mvdovi" path="res://Scenes/UI/Inventory/item_slot.tscn" id="1_kd7ct"]
@@ -6,13 +6,14 @@
 [ext_resource type="PackedScene" uid="uid://4h170v4cwj67" path="res://Scenes/UI/Inventory/weapon_slot.tscn" id="3_g1tdo"]
 [ext_resource type="PackedScene" uid="uid://bqdkhdq1k5t0j" path="res://Scenes/UI/Inventory/aspect_slot.tscn" id="4_5acsc"]
 [ext_resource type="PackedScene" uid="uid://encvpxp077bd" path="res://Scenes/UI/Inventory/consumable_slot.tscn" id="5_feywu"]
+[ext_resource type="Texture2D" uid="uid://cavse8ld5bby8" path="res://Textures/Crafting/crafting_slot_background.png" id="7_feywu"]
+[ext_resource type="PackedScene" uid="uid://d1tt7e66b1oyv" path="res://Scenes/UI/Shop/shopping_slot.tscn" id="8_b7uhy"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_g1tdo"]
 
 [node name="UI" type="CanvasLayer"]
 
 [node name="Inventory" type="Control" parent="."]
-visible = false
 texture_filter = 1
 layout_mode = 3
 anchor_left = 0.118
@@ -200,6 +201,95 @@ offset_bottom = 40.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Crafting/ScrollContainer"]
 layout_mode = 2
+
+[node name="Shop" type="Control" parent="."]
+z_index = 1
+texture_filter = 1
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="BuyText" type="Label" parent="Shop"]
+z_index = 1
+layout_mode = 0
+offset_left = 132.0
+offset_top = 56.0
+offset_right = 1974.0
+offset_bottom = 335.0
+scale = Vector2(0.24, 0.24)
+theme_override_font_sizes/font_size = 156
+text = "BUY"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SellText" type="Label" parent="Shop"]
+z_index = 1
+layout_mode = 0
+offset_left = 574.0
+offset_top = 56.0
+offset_right = 2416.0
+offset_bottom = 335.0
+scale = Vector2(0.24, 0.24)
+theme_override_font_sizes/font_size = 156
+text = "SELL"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Buy" type="TextureRect" parent="Shop"]
+layout_mode = 0
+offset_left = 132.0
+offset_top = 56.0
+offset_right = 208.0
+offset_bottom = 84.0
+scale = Vector2(5.89474, 2.40909)
+texture = ExtResource("7_feywu")
+
+[node name="Sell" type="TextureRect" parent="Shop"]
+layout_mode = 0
+offset_left = 568.0
+offset_top = 56.0
+offset_right = 644.0
+offset_bottom = 84.0
+scale = Vector2(5.94737, 2.40909)
+texture = ExtResource("7_feywu")
+
+[node name="ItemsToBuy" type="VBoxContainer" parent="Shop"]
+layout_mode = 0
+offset_left = 146.0
+offset_top = 124.0
+offset_right = 186.0
+offset_bottom = 164.0
+theme_override_constants/separation = 78
+
+[node name="ShopSlot" parent="Shop/ItemsToBuy" instance=ExtResource("8_b7uhy")]
+layout_mode = 2
+
+[node name="ShopSlot2" parent="Shop/ItemsToBuy" instance=ExtResource("8_b7uhy")]
+layout_mode = 2
+
+[node name="ShopSlot3" parent="Shop/ItemsToBuy" instance=ExtResource("8_b7uhy")]
+layout_mode = 2
+
+[node name="ShopSlot4" parent="Shop/ItemsToBuy" instance=ExtResource("8_b7uhy")]
+layout_mode = 2
+
+[node name="ShopSlot5" parent="Shop/ItemsToBuy" instance=ExtResource("8_b7uhy")]
+layout_mode = 2
+
+[node name="ItemsToSell" type="VBoxContainer" parent="Shop"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Buy2" type="TextureRect" parent="Shop"]
+layout_mode = 0
+offset_left = 132.0
+offset_top = 498.0
+offset_right = 208.0
+offset_bottom = 526.0
+scale = Vector2(5.89474, 2.40909)
+texture = ExtResource("7_feywu")
 
 [connection signal="pressed" from="Inventory/OptionsMenu/Equip1" to="Inventory" method="_on_equip_1_pressed"]
 [connection signal="pressed" from="Inventory/OptionsMenu/Equip2" to="Inventory" method="_on_equip_2_pressed"]

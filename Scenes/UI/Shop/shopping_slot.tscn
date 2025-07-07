@@ -1,0 +1,25 @@
+[gd_scene load_steps=2 format=3 uid="uid://d1tt7e66b1oyv"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_wef43"]
+
+[node name="ShopSlot" type="Control"]
+z_index = 1
+texture_filter = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -299.0
+offset_bottom = -587.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+position = Vector2(432.25, 38.75)
+scale = Vector2(865.5, 78.5)
+mesh = SubResource("BoxMesh_wef43")
