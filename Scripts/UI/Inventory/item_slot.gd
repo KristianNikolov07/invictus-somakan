@@ -4,7 +4,8 @@ extends Control
 
 func set_item(_item: Item) -> void:
 	if _item != null:
-		item = _item
+		item = _item.duplicate()
+		item.amount = _item.amount
 		$Name.text = item.item_name
 		$ItemIcon.texture = item.icon
 		update_amount_label()

@@ -4,7 +4,7 @@ extends Control
 
 func set_consumable(_item: Item) -> void:
 	if _item != null:
-		consumable = _item
+		consumable = _item.duplicate()
 		$ConsumableIcon.texture = consumable.icon
 
 
