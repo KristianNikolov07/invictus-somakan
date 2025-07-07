@@ -54,7 +54,7 @@ func drop_loot():
 		var node = dropped_item_scene.instantiate()
 		node.get_node("Area").set_item(loot)
 		node.global_position = global_position
-		get_node("../").add_child(node)
+		get_parent().call_deferred("add_child", node)
 
 func damage(hitbox: Hitbox, knockback) -> void:
 	var is_crit = Utils.calculate_crit(hitbox.get_crit_chance())
