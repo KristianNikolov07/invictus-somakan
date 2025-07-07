@@ -6,10 +6,20 @@ var is_equipped = false
 const dropped_item_scene = preload("res://Scenes/Objects/dropped_item.tscn")
 
 func _ready() -> void:
-	var item = load("res://Items/fire_orb.tres")
-	$Slots/ItemSlot1.set_item(item)
-	item = load("res://Items/ice_orb.tres")
-	$Slots/ItemSlot2.set_item(item)
+	for i in range($Slots.get_children().size()):
+		$Slots.get_children()[i].set_item(Inv.items[i]) 
+		
+	$WeaponSlots/Slot1.set_weapon(Inv.weapon1)
+	$WeaponSlots/Slot2.set_weapon(Inv.weapon2)
+	
+	for i in range($AspectSlots1.get_children().size()):
+		$AspectSlots1.get_children()[i].set_aspect(Inv.weapon1_aspects[i]) 
+		
+	for i in range($AspectSlots2.get_children().size()):
+		$AspectSlots2.get_children()[i].set_aspect(Inv.weapon2_aspects[i]) 
+		
+	for i in range($Consumables.get_children().size()):
+		$Consumables.get_children()[i].set_consumable(Inv.consumables[i]) 
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("Inventory"):
@@ -20,13 +30,30 @@ func add_item(item: Item):
 		for slot in $Slots.get_children():
 			if slot.item == null:
 				slot.set_item(item)
+				update_globals()
 				return true
 			elif slot.item.item_name == item.item_name:
 				slot.increase_amount()
+				update_globals()
 				return true
+		
 	return false
 
-
+func update_globals():
+	for i in range($Slots.get_children().size()):
+		Inv.items[i] = $Slots.get_children()[i].item
+		
+	Inv.weapon1 = $WeaponSlots/Slot1.weapon
+	Inv.weapon2 = $WeaponSlots/Slot2.weapon
+	
+	for i in range($AspectSlots1.get_children().size()):
+		Inv.weapon1_aspects[i] = $AspectSlots1.get_children()[i].aspect
+		
+	for i in range($AspectSlots2.get_children().size()):
+		Inv.weapon2_aspects[i] = $AspectSlots2.get_children()[i].aspect
+		
+	for i in range($Consumables.get_children().size()):
+		Inv.consumables[i] = $Consumables.get_children()[i].consumable
 
 func refresh() -> void:
 	$OptionsMenu/Equip1.disabled = true
@@ -73,6 +100,7 @@ func _on_equip_1_pressed() -> void:
 	
 	item_slot.decrease_amount()
 	refresh()
+	update_globals()
 
 func _on_equip_2_pressed() -> void:
 	if item_slot.item.type == Item.Type.CONSUMABLE:
@@ -85,13 +113,14 @@ func _on_equip_2_pressed() -> void:
 	
 	item_slot.decrease_amount()
 	refresh()
+	update_globals()
 
 
 func _on_drop_pressed() -> void:
 	if item_slot != null and item_slot.item != null:
 		var node = dropped_item_scene.instantiate()
-		node.set_item(item_slot.item)
+		node.get_node("Area").set_item(item_slot.item.duplicate())
 		node.global_position = get_node("../../").global_position
 		get_node("../../../").add_child(node)
 		item_slot.decrease_amount()
-		
+	update_globals()

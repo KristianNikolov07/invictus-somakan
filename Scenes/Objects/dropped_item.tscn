@@ -1,16 +1,27 @@
-[gd_scene load_steps=4 format=3 uid="uid://dg8hy4n42lxx3"]
+[gd_scene load_steps=5 format=3 uid="uid://dg8hy4n42lxx3"]
 
 [ext_resource type="Script" uid="uid://dqxv6f04454e" path="res://Scripts/Objects/dropped_item.gd" id="1_1k5q3"]
 [ext_resource type="Texture2D" uid="uid://doaj5jrka7pib" path="res://Textures/fire_orb.png" id="1_5cnki"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_5cnki"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1k5q3"]
 
-[node name="DroppedItem" type="Area2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5cnki"]
+size = Vector2(28, 27)
+
+[node name="DroppedItem" type="RigidBody2D"]
+collision_layer = 16
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_1k5q3")
+
+[node name="Area" type="Area2D" parent="."]
 texture_filter = 1
 script = ExtResource("1_1k5q3")
 
-[node name="ItemIcon" type="Sprite2D" parent="."]
+[node name="ItemIcon" type="Sprite2D" parent="Area"]
 texture = ExtResource("1_5cnki")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area"]
+position = Vector2(1, 0.5)
 shape = SubResource("RectangleShape2D_5cnki")

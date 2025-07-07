@@ -3,5 +3,6 @@ extends Control
 
 
 func set_consumable(_item: Item) -> void:
-	consumable = _item
-	$ConsumableIcon.texture = consumable.icon
+	if _item != null:
+		consumable = _item
+		$ConsumableIcon.texture = consumable.icon
