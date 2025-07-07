@@ -22,6 +22,7 @@ func add_item(item: Item):
 				slot.set_item(item)
 				return true
 			elif slot.item.item_name == item.item_name:
+				print("aaa")
 				slot.increase_amount()
 				return true
 	return false
@@ -90,7 +91,7 @@ func _on_equip_2_pressed() -> void:
 func _on_drop_pressed() -> void:
 	if item_slot != null and item_slot.item != null:
 		var node = dropped_item_scene.instantiate()
-		node.set_item(item_slot.item)
+		node.set_item(item_slot.item.duplicate())
 		node.global_position = get_node("../../").global_position
 		get_node("../../../").add_child(node)
 		item_slot.decrease_amount()

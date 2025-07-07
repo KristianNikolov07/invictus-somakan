@@ -39,4 +39,12 @@ offset_top = 4.0
 offset_right = 239.0
 offset_bottom = 99.0
 
+[node name="Amount" type="Label" parent="."]
+layout_mode = 0
+offset_left = 143.0
+offset_top = 71.0
+offset_right = 230.0
+offset_bottom = 94.0
+horizontal_alignment = 2
+
 [connection signal="pressed" from="TextureButton" to="." method="_on_texture_button_pressed"]
