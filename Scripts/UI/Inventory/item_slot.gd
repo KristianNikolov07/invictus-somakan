@@ -3,9 +3,11 @@ extends Control
 @export var item: Item
 
 func set_item(_item: Item) -> void:
-	item = _item
-	$Name.text = item.item_name
-	$ItemIcon.texture = item.icon
+	if _item != null:
+		item = _item
+		$Name.text = item.item_name
+		$ItemIcon.texture = item.icon
+		update_amount_label()
 
 func clear_item() -> void:
 	item = null

@@ -21,6 +21,7 @@ RoomGen="*res://Scripts/Globals/RoomGen.gd"
 RoomData="*res://Scripts/Globals/RoomData.gd"
 CurrentRunStats="*res://Scripts/Globals/CurrentRunStats.gd"
 Utils="*res://Scripts/Globals/Utils.gd"
+Inv="*res://Scripts/Globals/Inv.gd"
 
 [global_group]
 
