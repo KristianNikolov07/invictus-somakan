@@ -12,7 +12,7 @@ length = 0.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Mace:rotation")
+tracks/0/path = NodePath("Hitbox:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -24,7 +24,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Mace:monitoring")
+tracks/1/path = NodePath("Hitbox:monitoring")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -40,7 +40,7 @@ length = 0.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Mace:rotation")
+tracks/0/path = NodePath("Hitbox:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -52,7 +52,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Mace:monitoring")
+tracks/1/path = NodePath("Hitbox:monitoring")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -67,7 +67,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Mace:rotation")
+tracks/0/path = NodePath("Hitbox:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -79,7 +79,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Mace:monitoring")
+tracks/1/path = NodePath("Hitbox:monitoring")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -95,7 +95,7 @@ length = 0.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Mace:rotation")
+tracks/0/path = NodePath("Hitbox:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -107,7 +107,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Mace:monitoring")
+tracks/1/path = NodePath("Hitbox:monitoring")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -123,7 +123,7 @@ length = 0.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Mace:rotation")
+tracks/0/path = NodePath("Hitbox:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -135,7 +135,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Mace:monitoring")
+tracks/1/path = NodePath("Hitbox:monitoring")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -158,14 +158,14 @@ _data = {
 script = ExtResource("1_sfmbj")
 attack_damage = 15
 
-[node name="Mace" type="Area2D" parent="."]
+[node name="Hitbox" type="Area2D" parent="."]
 rotation = -1.5708
 collision_layer = 4
 monitoring = false
 script = ExtResource("2_d3hq7")
 metadata/_custom_type_script = "uid://drqow7af66ehm"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Mace"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 position = Vector2(88, 0)
 shape = SubResource("RectangleShape2D_cvnsp")
 
@@ -177,5 +177,5 @@ libraries = {
 [node name="Cooldown" type="Timer" parent="."]
 wait_time = 0.5
 
-[connection signal="body_entered" from="Mace" to="." method="_on_sword_body_entered"]
+[connection signal="body_entered" from="Hitbox" to="." method="_on_sword_body_entered"]
 [connection signal="timeout" from="Cooldown" to="." method="_on_cooldown_timeout"]

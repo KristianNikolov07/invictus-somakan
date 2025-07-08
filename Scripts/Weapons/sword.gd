@@ -2,9 +2,6 @@ extends Weapon
 var dir = 1
 var is_down = false
 
-func _ready() -> void:
-	$Mace.set_crit_chance(crit_chance)
-	$Mace.set_crit_mult(crit_mult)
 
 func hit(direction : int):
 	if !is_down:
