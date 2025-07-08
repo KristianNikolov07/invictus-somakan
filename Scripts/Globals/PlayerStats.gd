@@ -11,6 +11,9 @@ var scrap: int = 1000000
 
 func _ready() -> void:
 	unlocked_recipes.append(load("res://Recipes/fire_aspect.tres"))
+	weapon1 = load("res://Items/Weapons/Mace.tres")
+	weapon2 = load("res://Items/Weapons/DamageCircle.tres")
+	
 	items.resize(5)
 	weapon1_aspects.resize(2)
 	weapon2_aspects.resize(2)

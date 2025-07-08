@@ -16,8 +16,7 @@ var hp = 50
 var damage_number_scale: float = 1.5
 var damage_number_duration: float = 1.5
 
-#Change this for other weapons
-var selected_weapon = Weapons.Weapons.BOW
+var selected_weapon = PlayerStats.weapon1
 
 @onready var inventory = $UI/Inventory
 
@@ -55,6 +54,15 @@ func _input(event: InputEvent) -> void:
 		$ParryArea.set_collision_mask_value(1, true)
 		$ParryArea.set_collision_mask_value(3, true)
 		$Parry.start()
+	elif event.is_action_pressed("Weapon1"):
+		selected_weapon = PlayerStats.weapon1
+	elif event.is_action_pressed("Weapon2"):
+		selected_weapon = PlayerStats.weapon2
+	elif event.is_action_released("PreviousWeapon") or event.is_action_released("NextWeapon"):
+		if selected_weapon.item_name == PlayerStats.weapon1.item_name:
+			selected_weapon = PlayerStats.weapon2
+		else:
+			selected_weapon = PlayerStats.weapon1
 
 func check_parry(area):
 	if !$Parry.is_stopped():
@@ -94,13 +102,13 @@ func process_movement():
 	velocity.y = move_toward(velocity.y, max_falling_speed, gravity)
 
 func attack():
-	if selected_weapon == Weapons.Weapons.MACE:
+	if selected_weapon.item_name == "Mace":
 		$Weapons/Mace.hit(direction)
-	elif selected_weapon == Weapons.Weapons.CLAWS:
+	elif selected_weapon.item_name == "Claws":
 		$Weapons/Claws.hit(direction)
-	elif selected_weapon == Weapons.Weapons.DAMAGE_CIRCLE:
+	elif selected_weapon.item_name == "Damage Circle":
 		$Weapons/DamageCircle.hit(direction)
-	elif selected_weapon == Weapons.Weapons.BOW:
+	elif selected_weapon.item_name == "Bow":
 		$Weapons/Bow.hit(direction)
 
 func open_crafting_menu():
