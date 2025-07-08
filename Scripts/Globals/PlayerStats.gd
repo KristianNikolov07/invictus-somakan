@@ -7,7 +7,7 @@ var weapon1_aspects : Array[Item]
 var weapon2_aspects : Array[Item]
 var consumables : Array[Item]
 var unlocked_recipes : Array[Recipe]
-var scrap: int = 10000
+var scrap: int = 1000000
 
 func _ready() -> void:
 	unlocked_recipes.append(load("res://Recipes/fire_aspect.tres"))
@@ -18,13 +18,20 @@ func _ready() -> void:
 
 func check_item(item: Item, amount: int):
 	for current_item in items:
-		if item.item_name == current_item.item_name and amount >= current_item.amount:
-			return true
+		if current_item != null:
+			if item.item_name == current_item.item_name and amount <= current_item.amount:
+				return true
 	return false
 	
 func get_item_quantity(item: Item):
 	for current_item in items:
-		if item.item_name == current_item.item_name:
-			return current_item.amount
+		if current_item != null:
+			if item.item_name == current_item.item_name:
+				return current_item.amount
 	return 0
 	
+func is_inventory_full():
+	for current_item in items:
+		if current_item == null:
+			return false
+	return true

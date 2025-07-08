@@ -54,7 +54,7 @@ func drop_loot():
 		var node = dropped_item_scene.instantiate()
 		node.get_node("Area").set_item(loot)
 		node.global_position = global_position
-		get_node("../").add_child(node)
+		get_parent().call_deferred("add_child", node)
 
 func damage(hitbox: Hitbox, knockback) -> void:
 	var is_crit = Utils.calculate_crit(hitbox.get_crit_chance())
@@ -64,9 +64,9 @@ func damage(hitbox: Hitbox, knockback) -> void:
 		knockback = 0
 	velocity.x = 1600 * knockback
 	velocity.y = -500 * abs(knockback)
-	var damage = hitbox.get_damage() * (hitbox.get_crit_mult() if is_crit else 1)
-	Utils.summon_damage_number(self, damage, Color.ORANGE_RED if is_crit else Color.WHITE, damage_number_scale, damage_number_duration)
-	hp -= damage
+	var dam = hitbox.get_damage() * (hitbox.get_crit_mult() if is_crit else 1)
+	Utils.summon_damage_number(self, dam, Color.ORANGE_RED if is_crit else Color.WHITE, damage_number_scale, damage_number_duration)
+	hp -= dam
 	if hp <= 0:
 		drop_loot()
 		queue_free()

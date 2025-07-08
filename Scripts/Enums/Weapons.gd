@@ -1,5 +1,8 @@
 extends Node
 class_name Weapons
 enum Weapons{
-	SWORD
+	MACE,
+	CLAWS,
+	DAMAGE_CIRCLE,
+	BOW
 }

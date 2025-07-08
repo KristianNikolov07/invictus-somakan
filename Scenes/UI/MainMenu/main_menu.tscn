@@ -1,0 +1,167 @@
+[gd_scene load_steps=2 format=3 uid="uid://c62bupgibxlpk"]
+
+[ext_resource type="Script" uid="uid://ce1pqsx1d6flq" path="res://Scripts/UI/MainMenu/main_menu.gd" id="1_j3ucw"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_j3ucw")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -35.0
+offset_top = -50.5
+offset_right = 35.0
+offset_bottom = 50.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 40
+
+[node name="Play" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Play"
+
+[node name="Options" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Options"
+
+[node name="Quit" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Quit"
+
+[node name="Play" type="Camera2D" parent="."]
+position = Vector2(1792, 324)
+enabled = false
+
+[node name="Saves" type="VBoxContainer" parent="Play"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -81.0
+offset_top = -224.72
+offset_right = 81.0
+offset_bottom = 86.28
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 40
+
+[node name="Save1" type="Button" parent="Play/Saves"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Save 1"
+
+[node name="Save2" type="Button" parent="Play/Saves"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Save 2"
+
+[node name="Save3" type="Button" parent="Play/Saves"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Save 3"
+
+[node name="Back" type="Button" parent="Play"]
+offset_left = -576.0
+offset_top = -324.0
+offset_right = -448.0
+offset_bottom = -261.0
+theme_override_font_sizes/font_size = 40
+text = "←"
+
+[node name="SaveInfo" type="Label" parent="Play"]
+visible = false
+offset_left = -172.0
+offset_top = 160.0
+offset_right = 171.0
+offset_bottom = 229.0
+theme_override_font_sizes/font_size = 50
+text = "Save info here"
+
+[node name="ActionButtons" type="HBoxContainer" parent="Play"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -456.5
+offset_top = 233.0
+offset_right = 468.5
+offset_bottom = 324.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 600
+
+[node name="PlaySave" type="Button" parent="Play/ActionButtons"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 60
+disabled = true
+text = "Play"
+
+[node name="DeleteSave" type="Button" parent="Play/ActionButtons"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 60
+disabled = true
+text = "Delete"
+
+[node name="SingleplayerOrMultiplayer" type="Camera2D" parent="."]
+position = Vector2(3009, 324)
+enabled = false
+
+[node name="Back" type="Button" parent="SingleplayerOrMultiplayer"]
+offset_left = -576.0
+offset_top = -324.0
+offset_right = -448.0
+offset_bottom = -261.0
+theme_override_font_sizes/font_size = 40
+text = "←"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SingleplayerOrMultiplayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -35.0
+offset_top = -50.5
+offset_right = 35.0
+offset_bottom = 50.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 40
+
+[node name="Singleplayer" type="Button" parent="SingleplayerOrMultiplayer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = " Singleplayer "
+
+[node name="Multiplayer" type="Button" parent="SingleplayerOrMultiplayer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Multiplayer"
+
+[connection signal="pressed" from="VBoxContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="VBoxContainer/Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="VBoxContainer/Quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="Play/Saves/Save1" to="." method="_on_save_1_pressed"]
+[connection signal="pressed" from="Play/Saves/Save2" to="." method="_on_save_2_pressed"]
+[connection signal="pressed" from="Play/Saves/Save3" to="." method="_on_save_3_pressed"]
+[connection signal="pressed" from="Play/Back" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="Play/ActionButtons/PlaySave" to="." method="_on_play_save_pressed"]
+[connection signal="pressed" from="Play/ActionButtons/DeleteSave" to="." method="_on_delete_save_pressed"]
+[connection signal="pressed" from="SingleplayerOrMultiplayer/Back" to="." method="_on_back_to_saves_pressed"]
+[connection signal="pressed" from="SingleplayerOrMultiplayer/VBoxContainer/Singleplayer" to="." method="_on_singleplayer_pressed"]
+[connection signal="pressed" from="SingleplayerOrMultiplayer/VBoxContainer/Multiplayer" to="." method="_on_multiplayer_pressed"]

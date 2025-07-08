@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://drp6ipmox6vyo"]
+
+[ext_resource type="Script" uid="uid://de0i0xid3y53r" path="res://Scripts/Objects/crafting_table.gd" id="1_8642y"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wephv"]
+size = Vector2(179, 157)
+
+[node name="CraftingTable" type="Area2D"]
+script = ExtResource("1_8642y")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_wephv")
+
+[node name="Texture" type="Sprite2D" parent="."]

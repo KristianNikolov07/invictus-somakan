@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://da1ppyo25futr"]
+[gd_scene load_steps=9 format=3 uid="uid://da1ppyo25futr"]
 
 [ext_resource type="Script" uid="uid://b8jhelo4ovpd1" path="res://Scripts/UI/Inventory/inventory.gd" id="1_0etao"]
 [ext_resource type="PackedScene" uid="uid://bdpc5j2mvdovi" path="res://Scenes/UI/Inventory/item_slot.tscn" id="1_kd7ct"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://cavse8ld5bby8" path="res://Textures/Crafting/crafting_slot_background.png" id="7_feywu"]
 [ext_resource type="PackedScene" uid="uid://d1tt7e66b1oyv" path="res://Scenes/UI/Shop/shopping_slot.tscn" id="8_b7uhy"]
 [ext_resource type="Script" uid="uid://bvk4femy1m5e0" path="res://Scripts/UI/Shop/shopui.gd" id="8_vhbqn"]
+[ext_resource type="PackedScene" uid="uid://chmforw2q6tjr" path="res://Scenes/UI/Crafting/crafting_menu.tscn" id="7_5acsc"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_g1tdo"]
 
@@ -194,19 +195,8 @@ scale = Vector2(13.88, 13.88)
 texture = ExtResource("2_nljv7")
 metadata/_edit_lock_ = true
 
-[node name="Crafting" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="ScrollContainer" type="ScrollContainer" parent="Crafting"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Crafting/ScrollContainer"]
-layout_mode = 2
+[node name="Crafting" parent="." instance=ExtResource("7_5acsc")]
+visible = false
 
 [node name="Shop" type="Control" parent="."]
 z_index = 1

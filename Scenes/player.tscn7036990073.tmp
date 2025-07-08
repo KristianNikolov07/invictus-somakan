@@ -109,10 +109,6 @@ debug_color = Color(0, 0.627881, 0.497695, 0.42)
 [node name="DamageCircle" parent="Weapons" instance=ExtResource("5_3smsa")]
 
 [node name="Bow" parent="Weapons" instance=ExtResource("6_8erm5")]
-attack_damage = 10
-crit_chance = 0.1
-crit_mult = 2
-knockback_amount = 1
 
 [node name="DashTimer" type="Timer" parent="."]
 wait_time = 0.2
@@ -125,7 +121,7 @@ one_shot = true
 one_shot = true
 
 [node name="Parry" type="Timer" parent="."]
-wait_time = 0.35
+wait_time = 0.3
 one_shot = true
 
 [node name="Hitstop" type="Timer" parent="."]

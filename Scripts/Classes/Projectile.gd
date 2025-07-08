@@ -7,6 +7,7 @@ class_name Projectile
 @export var knockback = 1
 @export var can_be_parried := true
 @export var can_hit_enemies := false
+@export var can_hit_players := true
 var times_parried = 0
 var shooter_vel = 0
 

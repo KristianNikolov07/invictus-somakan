@@ -17,7 +17,7 @@ var damage_number_scale: float = 1.5
 var damage_number_duration: float = 1.5
 
 #Change this for other weapons
-var selected_weapon = Weapons.Weapons.SWORD
+var selected_weapon = Weapons.Weapons.BOW
 
 @onready var inventory = $UI/Inventory
 
@@ -67,7 +67,6 @@ func check_parry(area):
 	return 0
 
 func get_parry_time():
-	print($Parry.time_left)
 	return $Parry.wait_time
 
 func stop_parry():
@@ -75,7 +74,6 @@ func stop_parry():
 		$Parry.stop()
 		_on_parry_timeout()
 		$Invincibility.start()
-
 
 func process_movement():
 	if $Parry.is_stopped():
@@ -95,12 +93,22 @@ func process_movement():
 	
 	velocity.y = move_toward(velocity.y, max_falling_speed, gravity)
 
-
 func attack():
-	if selected_weapon == Weapons.Weapons.SWORD:
-		$Weapons/Sword.hit(direction)
+	if selected_weapon == Weapons.Weapons.MACE:
+		$Weapons/Mace.hit(direction)
+	elif selected_weapon == Weapons.Weapons.CLAWS:
+		$Weapons/Claws.hit(direction)
+	elif selected_weapon == Weapons.Weapons.DAMAGE_CIRCLE:
+		$Weapons/DamageCircle.hit(direction)
+	elif selected_weapon == Weapons.Weapons.BOW:
+		$Weapons/Bow.hit(direction)
 
+func open_crafting_menu():
+	$UI/Crafting.show()
+	$UI/Crafting.refresh()
 
+func close_crafting_menu():
+	$UI/Crafting.hide()
 
 func damage_amount(amount: int, knockback) -> void:
 	Utils.summon_damage_number(self, amount, Color.RED, damage_number_scale, damage_number_duration)
