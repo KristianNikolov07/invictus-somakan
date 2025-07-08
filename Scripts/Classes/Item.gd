@@ -5,7 +5,8 @@ enum Type {
 	RESOURCE,
 	ASPECT,
 	BLUEPRINT,
-	CONSUMABLE
+	CONSUMABLE,
+	WEAPON
 }
 
 @export var item_name: String
