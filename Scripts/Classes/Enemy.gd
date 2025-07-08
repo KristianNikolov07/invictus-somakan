@@ -4,12 +4,12 @@ class_name Enemy
 @export var speed = 150
 @export var coll_damage = 5
 @export var attack_damage = 15
-@export var knockback_strength = 1.5
+@export var knockback_strength: float = 1.5
 @export var hp = 20
-@export var coll_knockback = 1
+@export var coll_knockback: float = 1
 @export var max_hp = 20
-@export var parry_damage = 1
-@export var parry_knockback_mult = 1
+@export var parry_damage: int = 1
+@export var parry_knockback_mult: float = 1
 @export var invincibility_length = 0.5
 @export var can_be_knockedback = true
 @export var damage_number_scale: float = 2

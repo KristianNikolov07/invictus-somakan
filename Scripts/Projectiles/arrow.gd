@@ -14,21 +14,21 @@ func _on_body_entered(body: Node2D) -> void:
 			var is_perfect = parry_time_left > body.get_parry_time() / 1.2
 			body.stop_parry()
 			if not is_perfect and times_parried <= 1:
-				body.damage(damage / 3, knockback / 3)
+				body.damage_amount(damage / 3, knockback / 3)
 				times_parried += 1
 				damage += floor(damage / 2)
 				speed += speed / 2
-				knockback += knockback/10
+				knockback += knockback / 10
 			else:
 				can_be_parried = false
-				knockback += knockback/6
+				knockback += knockback / 6
 				speed *= 3
 				damage += damage*2
 			
 			can_hit_enemies = true
 			rotation_degrees += 180
 		else:
-			body.damage(damage, knockback * knockback_dir)
+			body.damage_amount(damage, knockback * knockback_dir)
 			queue_free()
 		
 	elif body.is_in_group("Enemies") and can_hit_enemies:

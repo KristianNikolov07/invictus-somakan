@@ -1,0 +1,62 @@
+[gd_scene load_steps=5 format=3 uid="uid://cmg24y6xh86c6"]
+
+[ext_resource type="Script" uid="uid://copuc5s0tlk35" path="res://Scripts/Bosses/aboneination.gd" id="1_semmi"]
+[ext_resource type="Script" uid="uid://drqow7af66ehm" path="res://Scripts/Classes/Hitbox.gd" id="2_72veu"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_semmi"]
+radius = 70.4918
+height = 308.197
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_72veu"]
+size = Vector2(332.125, 20)
+
+[node name="Aboneination" type="CharacterBody2D"]
+script = ExtResource("1_semmi")
+speed = 100
+hp = 200
+coll_knockback = 1.3
+max_hp = 200
+parry_knockback_mult = 0.3
+metadata/_custom_type_script = "uid://71tfv86yxlid"
+
+[node name="PlayerCollision" type="CollisionShape2D" parent="."]
+scale = Vector2(0.61, 0.61)
+shape = SubResource("CapsuleShape2D_semmi")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+
+[node name="AttackTimers" type="Node" parent="."]
+
+[node name="RibarangTimer" type="Timer" parent="AttackTimers"]
+wait_time = 0.6
+one_shot = true
+
+[node name="RibarangReturnDelayTimer" type="Timer" parent="AttackTimers"]
+wait_time = 0.5
+one_shot = true
+
+[node name="SmashTimer" type="Timer" parent="AttackTimers"]
+wait_time = 0.8
+one_shot = true
+
+[node name="AttackHitboxes" type="Node" parent="."]
+
+[node name="SmashHitbox" type="Area2D" parent="AttackHitboxes"]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("2_72veu")
+damage = 30
+crit_chance = 0.0
+crit_mult = 1
+metadata/_custom_type_script = "uid://drqow7af66ehm"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackHitboxes/SmashHitbox"]
+position = Vector2(0, 90)
+shape = SubResource("RectangleShape2D_72veu")
+
+[node name="AttackDelayTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[connection signal="timeout" from="AttackTimers/RibarangTimer" to="." method="_on_ribarang_timer_timeout"]
+[connection signal="timeout" from="AttackTimers/SmashTimer" to="." method="_on_smash_timer_timeout"]

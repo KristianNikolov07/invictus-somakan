@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://odh6vo7318xo"]
+[gd_scene load_steps=5 format=3 uid="uid://odh6vo7318xo"]
 
 [ext_resource type="Texture2D" uid="uid://qyvcg1lkbbak" path="res://Textures/Crafting/crafting_slot_background.png" id="1_j5isv"]
 [ext_resource type="Script" uid="uid://cn7reipbxjwws" path="res://Scripts/UI/Crafting/crafting_slot.gd" id="1_yi4xb"]
 [ext_resource type="Texture2D" uid="uid://cavse8ld5bby8" path="res://Textures/Crafting/crafting_slot_selected.png" id="3_n8jiv"]
+[ext_resource type="Texture2D" uid="uid://b6utsplrtxjhh" path="res://Textures/metal_scrap.png" id="4_rwl2l"]
 
 [node name="CraftingSlot" type="Control"]
 texture_filter = 1
@@ -63,7 +64,8 @@ vertical_alignment = 1
 
 [node name="ScrapTexture" type="Sprite2D" parent="."]
 position = Vector2(590, 66)
-scale = Vector2(3, 3)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("4_rwl2l")
 
 [node name="TextureButton" type="TextureButton" parent="."]
 layout_mode = 0
