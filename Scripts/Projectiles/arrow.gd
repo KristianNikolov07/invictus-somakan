@@ -2,7 +2,7 @@ extends Projectile
 
 
 func _on_body_entered(body: Node2D) -> void:
-	if body.is_in_group("Players"):
+	if body.is_in_group("Players") and can_hit_players:
 		var knockback_dir = calculate_direction(body)
 		var parry_time_left = body.check_parry(self)
 		print(parry_time_left)
@@ -14,7 +14,7 @@ func _on_body_entered(body: Node2D) -> void:
 			var is_perfect = parry_time_left > body.get_parry_time() / 1.2
 			body.stop_parry()
 			if not is_perfect and times_parried <= 1:
-				body.damage(damage / 3, knockback / 3)
+				body.damage_amount(damage / 3, knockback / 3)
 				times_parried += 1
 				damage += floor(damage / 2)
 				speed += speed / 2
@@ -28,11 +28,11 @@ func _on_body_entered(body: Node2D) -> void:
 			can_hit_enemies = true
 			rotation_degrees += 180
 		else:
-			body.damage(damage, knockback * knockback_dir)
+			body.damage_amount(damage, knockback * knockback_dir)
 			queue_free()
 		
 	elif body.is_in_group("Enemies") and can_hit_enemies:
-		body.damage(damage, knockback)
+		body.damage_amount(damage, knockback)
 		queue_free()
 
 

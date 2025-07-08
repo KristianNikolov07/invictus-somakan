@@ -17,7 +17,7 @@ var damage_number_scale: float = 1.5
 var damage_number_duration: float = 1.5
 
 #Change this for other weapons
-var selected_weapon = Weapons.Weapons.DAMAGE_CIRCLE
+var selected_weapon = Weapons.Weapons.BOW
 
 @onready var inventory = $UI/Inventory
 
@@ -100,6 +100,8 @@ func attack():
 		$Weapons/Claws.hit(direction)
 	elif selected_weapon == Weapons.Weapons.DAMAGE_CIRCLE:
 		$Weapons/DamageCircle.hit(direction)
+	elif selected_weapon == Weapons.Weapons.BOW:
+		$Weapons/Bow.hit(direction)
 
 func open_crafting_menu():
 	$UI/Crafting.show()
