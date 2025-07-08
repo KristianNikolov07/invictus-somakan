@@ -3,5 +3,6 @@ class_name Weapons
 enum Weapons{
 	MACE,
 	CLAWS,
-	DAMAGE_CIRCLE
+	DAMAGE_CIRCLE,
+	BOW
 }

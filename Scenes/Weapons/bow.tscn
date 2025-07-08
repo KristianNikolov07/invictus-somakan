@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3 uid="uid://cvvu657tj36g5"]
+
+[ext_resource type="Script" uid="uid://dkbay5f0kyf6i" path="res://Scripts/Weapons/bow.gd" id="1_cggr6"]
+
+[node name="Bow" type="Node2D"]
+script = ExtResource("1_cggr6")
+arrow_damage = 20
+reload_time_per_arrow = 2
+attack_damage = 0
+metadata/_custom_type_script = "uid://c365hr0ip46v1"
+
+[node name="ReloadTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="Cooldown" type="Timer" parent="."]
+wait_time = 0.5
+
+[connection signal="timeout" from="ReloadTimer" to="." method="_on_reload_timer_timeout"]
+[connection signal="timeout" from="Cooldown" to="." method="_on_cooldown_timeout"]
