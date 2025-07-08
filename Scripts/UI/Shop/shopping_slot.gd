@@ -33,5 +33,5 @@ func _on_texture_button_pressed() -> void:
 		for button in get_parent().get_children():
 			button.reset_bg_color()
 		
-		get_node("../../").select(item, true)
+		get_node("../../").select(item)
 		$BG.color = Color(0.3, 0.3, 0.3, 1)

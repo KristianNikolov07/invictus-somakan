@@ -233,8 +233,11 @@ layout_mode = 2
 [node name="ItemsToSell" type="VBoxContainer" parent="Shop"]
 visible = false
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 146.0
+offset_top = 124.0
+offset_right = 1010.0
+offset_bottom = 519.0
+theme_override_constants/separation = 78
 
 [node name="ShopSlot1" parent="Shop/ItemsToSell" instance=ExtResource("8_b7uhy")]
 layout_mode = 2

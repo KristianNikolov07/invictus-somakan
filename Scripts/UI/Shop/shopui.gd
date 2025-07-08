@@ -8,6 +8,7 @@ func _ready() -> void:
 
 
 func _on_buy_button_pressed() -> void:
+	is_buying = true
 	$BuyButton.modulate = Color(1, 1, 1, 1)
 	$SellButton.modulate = Color(0.6, 0.6, 0.6, 1)
 	$ItemsToBuy.show()
@@ -15,6 +16,7 @@ func _on_buy_button_pressed() -> void:
 
 
 func _on_sell_button_pressed() -> void:
+	is_buying = false
 	$BuyButton.modulate = Color(0.6, 0.6, 0.6, 1)
 	$SellButton.modulate = Color(1, 1, 1, 1)
 	$ItemsToBuy.hide()
@@ -45,9 +47,8 @@ func set_confirm_status(enabled: bool):
 		$ActButton.disabled = true
 		$ActButton.modulate = Color(0.6, 0.6, 0.6, 1)
 
-func select(item: Item, _is_buying: bool):
+func select(item: Item):
 	selected_item = item
-	is_buying = _is_buying
 	if selected_item.price > PlayerStats.scrap:
 		set_confirm_status(false)
 	else:
@@ -57,3 +58,12 @@ func add_buttons():
 	$ItemsToBuy/ShopSlot1.set_item(load("res://Items/Consumables/healing_vial.tres"))
 	$ItemsToBuy/ShopSlot2.set_item(load("res://Items/Consumables/healing_potion.tres"))
 	$ItemsToBuy/ShopSlot3.set_item(load("res://Items/Consumables/healing_barrel.tres"))
+	
+	var item_slots: Control = get_node("../Inventory/Slots")
+	var index = 1
+	for slot: Control in item_slots.get_children():
+		if slot.item != null:
+			get_node("ItemsToSell/ShopSlot" + str(index)).set_item(slot.item)
+			get_node("ItemsToSell/ShopSlot" + str(index) + "/ItemName").text += "   " + str(slot.item.amount) + "x"
+			get_node("ItemsToSell/ShopSlot" + str(index) + "/Price").text = str(int(get_node("ItemsToSell/ShopSlot" + str(index) + "/Price").text)/2)
+			index += 1
