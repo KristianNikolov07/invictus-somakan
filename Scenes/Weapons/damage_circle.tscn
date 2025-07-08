@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://dyxwxd6esrj8g"]
+
+[ext_resource type="Script" uid="uid://4oehem51oqah" path="res://Scripts/Weapons/damage_circle.gd" id="1_ahcn0"]
+[ext_resource type="Script" uid="uid://drqow7af66ehm" path="res://Scripts/Classes/Hitbox.gd" id="2_qau4o"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qau4o"]
+radius = 312.103
+
+[node name="DamageCircle" type="Node2D"]
+script = ExtResource("1_ahcn0")
+crit_chance = 0.0
+crit_mult = 0
+knockback_amount = 0
+metadata/_custom_type_script = "uid://c365hr0ip46v1"
+
+[node name="Hitbox" type="Area2D" parent="."]
+script = ExtResource("2_qau4o")
+metadata/_custom_type_script = "uid://drqow7af66ehm"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("CircleShape2D_qau4o")
+
+[node name="HitCooldown" type="Timer" parent="."]
+wait_time = 0.5
+autostart = true
+
+[node name="Duration" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="HitCooldown" to="." method="_on_hit_cooldown_timeout"]
+[connection signal="timeout" from="Duration" to="." method="_on_duration_timeout"]
