@@ -38,6 +38,7 @@ vertical_alignment = 1
 
 [node name="Scrap" type="TextureRect" parent="."]
 visible = false
+modulate = Color(3, 3, 3, 1)
 layout_mode = 0
 offset_left = 787.0
 offset_right = 865.0

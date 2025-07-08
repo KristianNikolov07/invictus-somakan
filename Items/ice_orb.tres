@@ -7,5 +7,6 @@
 script = ExtResource("2_whmkl")
 item_name = "Ice Orb"
 icon = ExtResource("1_wp1rx")
-type = 1
+type = 3
+price = 0
 metadata/_custom_type_script = "uid://b3auab72tb6j6"

@@ -7,6 +7,7 @@ const dropped_item_scene = preload("res://Scenes/Objects/dropped_item.tscn")
 
 func _ready() -> void:
 	$Slots/ItemSlot1.item.amount = 3
+	$Slots/ItemSlot2.item.amount = 3
 	for i in range($Slots.get_children().size()):
 		$Slots.get_children()[i].set_item(PlayerStats.items[i]) 
 		

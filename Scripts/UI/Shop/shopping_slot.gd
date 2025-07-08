@@ -21,14 +21,15 @@ func reset_bg_color():
 	$BG.color = Color(0, 0, 0, 1)
 
 func refresh_price_color():
-	if PlayerStats.scrap < item.price:
-		$Price.self_modulate = Color(1, 0, 0, 1)
-	else:
-		$Price.self_modulate = Color(1, 1, 1, 1)
+	if item != null:
+		if PlayerStats.scrap < item.price:
+			$Price.self_modulate = Color(1, 0, 0, 1)
+		else:
+			$Price.self_modulate = Color(1, 1, 1, 1)
 
 
 func _on_texture_button_pressed() -> void:
-	if item != null or true:
+	if item != null:
 		for button in get_parent().get_children():
 			button.reset_bg_color()
 		
