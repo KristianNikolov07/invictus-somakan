@@ -27,7 +27,11 @@ func _on_act_button_pressed() -> void:
 		for button in $ItemsToBuy.get_children():
 			button.refresh_price_color()
 		
-		get_node("../Inventory").add_item(selected_item)
+		var new_item: RigidBody2D = load("res://Scenes/Objects/dropped_item.tscn").instantiate()
+		new_item.global_position = get_node("../../").global_position
+		new_item.get_child(1).set_item(selected_item.duplicate())
+		get_tree().current_scene.add_child(new_item)
+		#get_node("../Inventory").add_item(selected_item)
 
 
 func _on_exit_button_pressed() -> void:

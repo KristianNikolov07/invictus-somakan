@@ -33,7 +33,7 @@ func add_item(item: Item, amount:= 1):
 	if item != null:
 		for slot in $Slots.get_children():
 			if slot.item == null:
-				slot.set_item(item)
+				slot.set_item(item.duplicate())
 				update_globals()
 				return true
 			elif slot.item.item_name == item.item_name:

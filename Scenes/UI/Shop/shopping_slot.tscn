@@ -27,6 +27,7 @@ theme_override_font_sizes/font_size = 60
 vertical_alignment = 1
 
 [node name="Price" type="Label" parent="."]
+layout_mode = 0
 offset_left = 472.0
 offset_top = 10.0
 offset_right = 966.0
@@ -51,6 +52,7 @@ offset_right = 85.0
 offset_bottom = 77.0
 
 [node name="Border" type="ColorRect" parent="."]
+layout_mode = 0
 offset_top = 76.0
 offset_right = 865.0
 offset_bottom = 78.0
