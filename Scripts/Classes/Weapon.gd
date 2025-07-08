@@ -14,4 +14,3 @@ func _ready() -> void:
 		$Hitbox.set_damage(attack_damage)
 		$Hitbox.set_crit_chance(crit_chance)
 		$Hitbox.set_crit_mult(crit_mult)
-		
