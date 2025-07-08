@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dl6w610ren8v7" path="res://Scripts/player.gd" id="1_cvnsp"]
 [ext_resource type="Texture2D" uid="uid://c1lo75th7b88g" path="res://Textures/icon.svg" id="1_v0iea"]
-[ext_resource type="PackedScene" uid="uid://ck27w40tryjbv" path="res://Scenes/Weapons/mace.tscn" id="3_6t5aa"]
+[ext_resource type="PackedScene" uid="uid://ck27w40tryjbv" path="res://Scenes/Weapons/sword.tscn" id="3_6t5aa"]
 [ext_resource type="PackedScene" uid="uid://bqo6qnqcmww4y" path="res://Scenes/UI/health_bar.tscn" id="4_vgqql"]
 [ext_resource type="PackedScene" uid="uid://da1ppyo25futr" path="res://Scenes/UI/Inventory/ui.tscn" id="5_fkybt"]
 
