@@ -5,10 +5,16 @@ extends Control
 
 func set_aspect(_item: Item) -> void:
 	if _item != null:
-		aspect = _item
+		aspect = _item.duplicate()
 		$AspectIcon.texture = aspect.icon
 
-func clear():
+func take_item():
+	if aspect != null:
+		aspect.amount -= 1
+		if aspect.amount <= 0:
+			clear_item()
+
+func clear_item():
 	$AspectIcon.texture = null
 	aspect = null
 
