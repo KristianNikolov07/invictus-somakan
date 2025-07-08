@@ -1,9 +1,6 @@
 extends Weapon
 var dir = 1
 
-func _ready() -> void:
-	$Hitbox.set_crit_chance(crit_chance)
-	$Hitbox.set_crit_mult(crit_mult)
 
 func hit(direction : int):
 	if direction == -1:

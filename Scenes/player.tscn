@@ -103,7 +103,6 @@ debug_color = Color(0, 0.627881, 0.497695, 0.42)
 [node name="Mace" parent="Weapons" instance=ExtResource("3_6t5aa")]
 
 [node name="Claws" parent="Weapons" instance=ExtResource("4_x3wgy")]
-attack_damage = 10
 
 [node name="DashTimer" type="Timer" parent="."]
 wait_time = 0.2
