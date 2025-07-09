@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://bg8im0c4xvd0d"]
+
+[ext_resource type="Script" uid="uid://l30awvhf8bse" path="res://Scripts/StatusEffects/toxic.gd" id="1_0gy4n"]
+
+[node name="Toxic" type="Node2D"]
+script = ExtResource("1_0gy4n")
+damage = 3
+tick_time = 0.6
+damage_number_color = Color(0.390903, 0.00176717, 0.84677, 1)
+metadata/_custom_type_script = "uid://yp3lw7og4m3t"

@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://cj4xj1e24k3t0"]
+
+[ext_resource type="Script" uid="uid://xjey6auj7r4n" path="res://Scripts/StatusEffects/chemical_burn.gd" id="1_q3rk4"]
+
+[node name="ChemicalBurn" type="Node2D"]
+script = ExtResource("1_q3rk4")
+damage = 10
+damage_number_color = Color(0.756863, 0, 0.372549, 1)
+metadata/_custom_type_script = "uid://yp3lw7og4m3t"

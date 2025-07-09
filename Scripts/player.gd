@@ -177,7 +177,7 @@ func switch_weapon(weapon : WeaponItem):
 	if $Weapons.get_child(0) != null:
 		$Weapons.get_child(0).queue_free()
 	if weapon != null:
-		var node = weapon.weapon_action_scene.instantiate()
+		var node = weapon.get_action_node()
 		$Weapons.add_child(node)
 	else:
 		if $Weapons.get_child(0) != null:

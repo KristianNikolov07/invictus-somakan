@@ -22,6 +22,7 @@ var attacking = false
 const dropped_item_scene = preload("res://Scenes/Objects/dropped_item.tscn")
 var active_status_effects: Array[StatusEffect] = []
 var damage_mult: float = 1
+var bleed_stacks: int = 0
 
 var invincibility_timer = Timer.new()
 
@@ -92,7 +93,8 @@ func remove_status_effect(effect: StatusEffect):
 			active_status_effects.pop_at(i)
 	
 	
-func status_damage(damage: int, number_color: Color):
+func status_damage(damage: int, number_color: Color, crit_chance: float = 0):
+	damage *= 2 if crit_chance >= randf_range(0, 1) else 1
 	Utils.summon_damage_number(self, damage, number_color, damage_number_scale / 1.3, damage_number_duration / 1.3)
 	hp -= damage
 	if hp <= 0:

@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://c8kc2d8qj82ri"]
+
+[ext_resource type="Script" uid="uid://yp3lw7og4m3t" path="res://Scripts/Classes/StatusEffect.gd" id="1_qlo1m"]
+
+[node name="InstantPoison" type="Node2D"]
+script = ExtResource("1_qlo1m")
+damage = 3
+needed_stacks = 1
+damage_number_color = Color(0.562884, 0.00407379, 0.985392, 1)
+metadata/_custom_type_script = "uid://yp3lw7og4m3t"
