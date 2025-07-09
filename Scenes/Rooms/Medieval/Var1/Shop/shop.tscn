@@ -1,7 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://b6upe1f4qtnim"]
+[gd_scene load_steps=7 format=3 uid="uid://b6upe1f4qtnim"]
 
 [ext_resource type="PackedScene" uid="uid://be53snhq2r11i" path="res://Scenes/player.tscn" id="1_pxgw1"]
 [ext_resource type="PackedScene" uid="uid://ch7esotluxknf" path="res://Scenes/Objects/portal.tscn" id="2_u8j54"]
+[ext_resource type="PackedScene" uid="uid://drp6ipmox6vyo" path="res://Scenes/Objects/crafting_table.tscn" id="3_u8j54"]
+[ext_resource type="PackedScene" uid="uid://dg8hy4n42lxx3" path="res://Scenes/Objects/dropped_item.tscn" id="4_x8g23"]
+[ext_resource type="Resource" uid="uid://dnofb2jqjs35o" path="res://Items/Blueprints/fire_aspect.tres" id="5_dw5jv"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_x8g23"]
 
@@ -27,3 +30,14 @@ offset_top = 392.0
 offset_right = 64.0
 offset_bottom = 415.0
 text = "Welcome to Medieval Var 1 Shop"
+
+[node name="CraftingTable" parent="." instance=ExtResource("3_u8j54")]
+position = Vector2(496, 560)
+
+[node name="DroppedItem" parent="." instance=ExtResource("4_x8g23")]
+position = Vector2(328, 424)
+
+[node name="Area" parent="DroppedItem" index="1"]
+item = ExtResource("5_dw5jv")
+
+[editable path="DroppedItem"]

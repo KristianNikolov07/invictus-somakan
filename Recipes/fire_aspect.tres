@@ -6,6 +6,7 @@
 
 [resource]
 script = ExtResource("1_7ni1h")
+id = "fire_orb"
 item = ExtResource("2_1ph4v")
 amount = 2
 result = ExtResource("1_slfyl")

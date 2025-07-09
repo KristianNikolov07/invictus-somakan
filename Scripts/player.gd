@@ -16,9 +16,12 @@ var hp = 50
 var damage_number_scale: float = 1.5
 var damage_number_duration: float = 1.5
 
-var selected_weapon = PlayerStats.weapon1
+var selected_weapon
 
 @onready var inventory = $UI/Inventory
+
+func _ready() -> void:
+	switch_weapon(PlayerStats.weapon1)
 
 func _physics_process(delta: float) -> void:
 	if $DashTimer.is_stopped():
@@ -55,9 +58,10 @@ func _input(event: InputEvent) -> void:
 		$ParryArea.set_collision_mask_value(3, true)
 		$Parry.start()
 	elif event.is_action_pressed("Weapon1"):
-		selected_weapon = PlayerStats.weapon1
+		switch_weapon(PlayerStats.weapon1)
 	elif event.is_action_pressed("Weapon2"):
-		selected_weapon = PlayerStats.weapon2
+		switch_weapon(PlayerStats.weapon2)
+
 	#elif event.is_action_released("PreviousWeapon") or event.is_action_released("NextWeapon"):
 	#	if selected_weapon.item_name == PlayerStats.weapon1.item_name:
 	#		selected_weapon = PlayerStats.weapon2
@@ -103,14 +107,7 @@ func process_movement():
 
 func attack():
 	if selected_weapon != null:
-		if selected_weapon.item_name == "Mace":
-			$Weapons/Mace.hit(direction)
-		elif selected_weapon.item_name == "Claws":
-			$Weapons/Claws.hit(direction)
-		elif selected_weapon.item_name == "Damage Circle":
-			$Weapons/DamageCircle.hit(direction)
-		elif selected_weapon.item_name == "Bow":
-			$Weapons/Bow.hit(direction)
+		$Weapons.get_child(0).hit(direction)
 
 func open_crafting_menu():
 	$UI/Crafting.show()
@@ -170,3 +167,19 @@ func interact_with():
 		if area.has_method("interact"):
 			area.interact(get_path())
 			return
+
+
+func _on_interaction_range_area_entered(area: Area2D) -> void:
+	if area.has_method("pickup_weapon"):
+		area.pickup_weapon()
+
+func switch_weapon(weapon : WeaponItem):
+	if $Weapons.get_child(0) != null:
+		$Weapons.get_child(0).queue_free()
+	if weapon != null:
+		var node = weapon.weapon_action_scene.instantiate()
+		$Weapons.add_child(node)
+	else:
+		if $Weapons.get_child(0) != null:
+			$Weapons.get_child(0).queue_free()
+	selected_weapon = weapon

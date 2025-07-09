@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://cgku7vpseg76d"]
+
+[ext_resource type="Script" uid="uid://c2i64ow4rcu57" path="res://Scripts/Triggers/blueprint_unlock_trigger.gd" id="1_77gqc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o01hc"]
+size = Vector2(192, 192)
+
+[node name="BlueprintUnlockTrigger" type="Area2D"]
+script = ExtResource("1_77gqc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(32, 32)
+shape = SubResource("RectangleShape2D_o01hc")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

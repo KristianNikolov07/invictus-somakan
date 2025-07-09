@@ -1,12 +1,17 @@
-[gd_scene load_steps=9 format=3 uid="uid://da1ppyo25futr"]
+[gd_scene load_steps=14 format=3 uid="uid://da1ppyo25futr"]
 
 [ext_resource type="Script" uid="uid://b8jhelo4ovpd1" path="res://Scripts/UI/Inventory/inventory.gd" id="1_0etao"]
 [ext_resource type="PackedScene" uid="uid://bdpc5j2mvdovi" path="res://Scenes/UI/Inventory/item_slot.tscn" id="1_kd7ct"]
 [ext_resource type="Texture2D" uid="uid://oby2itttta8i" path="res://Textures/inventory.png" id="2_nljv7"]
+[ext_resource type="Resource" uid="uid://cm7g5mjsok0q5" path="res://Items/fire_orb.tres" id="3_b7uhy"]
 [ext_resource type="PackedScene" uid="uid://4h170v4cwj67" path="res://Scenes/UI/Inventory/weapon_slot.tscn" id="3_g1tdo"]
 [ext_resource type="PackedScene" uid="uid://bqdkhdq1k5t0j" path="res://Scenes/UI/Inventory/aspect_slot.tscn" id="4_5acsc"]
+[ext_resource type="Resource" uid="uid://c2f4m1tu0vpb6" path="res://Items/ice_orb.tres" id="4_mhdw1"]
 [ext_resource type="PackedScene" uid="uid://encvpxp077bd" path="res://Scenes/UI/Inventory/consumable_slot.tscn" id="5_feywu"]
 [ext_resource type="PackedScene" uid="uid://chmforw2q6tjr" path="res://Scenes/UI/Crafting/crafting_menu.tscn" id="7_5acsc"]
+[ext_resource type="Texture2D" uid="uid://cavse8ld5bby8" path="res://Textures/Crafting/crafting_slot_selected.png" id="7_feywu"]
+[ext_resource type="PackedScene" uid="uid://d1tt7e66b1oyv" path="res://Scenes/UI/Shop/shopping_slot.tscn" id="8_b7uhy"]
+[ext_resource type="Script" uid="uid://bvk4femy1m5e0" path="res://Scripts/UI/Shop/shopui.gd" id="8_vhbqn"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_g1tdo"]
 
@@ -39,9 +44,11 @@ theme_override_constants/separation = 97
 [node name="ItemSlot1" parent="Inventory/Slots" instance=ExtResource("1_kd7ct")]
 layout_mode = 2
 size_flags_vertical = 0
+item = ExtResource("3_b7uhy")
 
 [node name="ItemSlot2" parent="Inventory/Slots" instance=ExtResource("1_kd7ct")]
 layout_mode = 2
+item = ExtResource("4_mhdw1")
 
 [node name="ItemSlot3" parent="Inventory/Slots" instance=ExtResource("1_kd7ct")]
 layout_mode = 2
@@ -191,7 +198,225 @@ metadata/_edit_lock_ = true
 [node name="Crafting" parent="." instance=ExtResource("7_5acsc")]
 visible = false
 
+[node name="Shop" type="Control" parent="."]
+visible = false
+z_index = 1
+texture_filter = 1
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("8_vhbqn")
+
+[node name="ItemsToBuy" type="VBoxContainer" parent="Shop"]
+layout_mode = 0
+offset_left = 146.0
+offset_top = 124.0
+offset_right = 1010.0
+offset_bottom = 519.0
+theme_override_constants/separation = 78
+
+[node name="ShopSlot1" parent="Shop/ItemsToBuy" instance=ExtResource("8_b7uhy")]
+layout_mode = 2
+
+[node name="ShopSlot2" parent="Shop/ItemsToBuy" instance=ExtResource("8_b7uhy")]
+layout_mode = 2
+
+[node name="ShopSlot3" parent="Shop/ItemsToBuy" instance=ExtResource("8_b7uhy")]
+layout_mode = 2
+
+[node name="ShopSlot4" parent="Shop/ItemsToBuy" instance=ExtResource("8_b7uhy")]
+layout_mode = 2
+
+[node name="ShopSlot5" parent="Shop/ItemsToBuy" instance=ExtResource("8_b7uhy")]
+layout_mode = 2
+
+[node name="ItemsToSell" type="VBoxContainer" parent="Shop"]
+visible = false
+layout_mode = 0
+offset_left = 146.0
+offset_top = 124.0
+offset_right = 1010.0
+offset_bottom = 519.0
+theme_override_constants/separation = 78
+
+[node name="ShopSlot1" parent="Shop/ItemsToSell" instance=ExtResource("8_b7uhy")]
+layout_mode = 2
+
+[node name="ShopSlot2" parent="Shop/ItemsToSell" instance=ExtResource("8_b7uhy")]
+layout_mode = 2
+
+[node name="ShopSlot3" parent="Shop/ItemsToSell" instance=ExtResource("8_b7uhy")]
+layout_mode = 2
+
+[node name="ShopSlot4" parent="Shop/ItemsToSell" instance=ExtResource("8_b7uhy")]
+layout_mode = 2
+
+[node name="ShopSlot5" parent="Shop/ItemsToSell" instance=ExtResource("8_b7uhy")]
+layout_mode = 2
+
+[node name="BuyButton" type="TextureButton" parent="Shop"]
+layout_mode = 0
+offset_left = 143.0
+offset_top = 62.0
+offset_right = 568.0
+offset_bottom = 117.0
+
+[node name="Buy" type="TextureRect" parent="Shop/BuyButton"]
+layout_mode = 0
+offset_left = -11.0
+offset_top = -6.0
+offset_right = 65.0
+offset_bottom = 22.0
+scale = Vector2(5.89474, 2.40909)
+texture = ExtResource("7_feywu")
+
+[node name="SellButton" type="TextureButton" parent="Shop"]
+modulate = Color(0.6, 0.6, 0.6, 1)
+layout_mode = 0
+offset_left = 580.0
+offset_top = 62.0
+offset_right = 1008.0
+offset_bottom = 117.0
+
+[node name="Sell" type="TextureRect" parent="Shop/SellButton"]
+layout_mode = 0
+offset_left = -12.0
+offset_top = -6.0
+offset_right = 64.0
+offset_bottom = 22.0
+scale = Vector2(5.94737, 2.40909)
+texture = ExtResource("7_feywu")
+
+[node name="ActButton" type="TextureButton" parent="Shop"]
+modulate = Color(0.6, 0.6, 0.6, 1)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+disabled = true
+
+[node name="Act" type="TextureRect" parent="Shop/ActButton"]
+layout_mode = 0
+offset_left = 132.0
+offset_top = 514.0
+offset_right = 209.0
+offset_bottom = 537.0
+scale = Vector2(5.89474, 2.40909)
+texture = ExtResource("7_feywu")
+
+[node name="ExitButton" type="TextureButton" parent="Shop"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Exit" type="TextureRect" parent="Shop/ExitButton"]
+layout_mode = 0
+offset_left = 572.0
+offset_top = 514.0
+offset_right = 648.0
+offset_bottom = 537.0
+scale = Vector2(5.89474, 2.40909)
+texture = ExtResource("7_feywu")
+
+[node name="Border1" type="ColorRect" parent="Shop"]
+layout_mode = 0
+offset_left = 132.0
+offset_top = 123.0
+offset_right = 146.0
+offset_bottom = 515.0
+color = Color(1, 0.760784, 0.054902, 1)
+
+[node name="Border2" type="ColorRect" parent="Shop"]
+layout_mode = 0
+offset_left = 1006.0
+offset_top = 123.0
+offset_right = 1020.0
+offset_bottom = 515.0
+color = Color(1, 0.760784, 0.054902, 1)
+
+[node name="Border3" type="ColorRect" parent="Shop"]
+z_index = 1
+layout_mode = 0
+offset_left = 132.0
+offset_top = 117.0
+offset_right = 1020.0
+offset_bottom = 124.0
+color = Color(1, 0.760784, 0.054902, 1)
+
+[node name="Border4" type="ColorRect" parent="Shop"]
+layout_mode = 0
+offset_left = 568.0
+offset_top = 56.0
+offset_right = 580.0
+offset_bottom = 124.0
+color = Color(1, 0.760784, 0.054902, 1)
+
+[node name="Border5" type="ColorRect" parent="Shop"]
+z_index = 1
+layout_mode = 0
+offset_left = 132.0
+offset_top = 512.0
+offset_right = 1020.0
+offset_bottom = 519.0
+color = Color(1, 0.760784, 0.054902, 1)
+
+[node name="BuyText" type="Label" parent="Shop"]
+z_index = 1
+layout_mode = 0
+offset_left = 132.0
+offset_top = 56.0
+offset_right = 1974.0
+offset_bottom = 335.0
+scale = Vector2(0.24, 0.24)
+theme_override_font_sizes/font_size = 156
+text = "BUY"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SellText" type="Label" parent="Shop"]
+z_index = 1
+layout_mode = 0
+offset_left = 574.0
+offset_top = 56.0
+offset_right = 2416.0
+offset_bottom = 335.0
+scale = Vector2(0.24, 0.24)
+theme_override_font_sizes/font_size = 156
+text = "SELL"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ExitText" type="Label" parent="Shop"]
+z_index = 1
+layout_mode = 0
+offset_left = 576.0
+offset_top = 508.0
+offset_right = 2418.0
+offset_bottom = 787.0
+scale = Vector2(0.24, 0.24)
+theme_override_font_sizes/font_size = 156
+text = "EXIT"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ActText" type="Label" parent="Shop"]
+z_index = 1
+layout_mode = 0
+offset_left = 137.0
+offset_top = 508.0
+offset_right = 1979.0
+offset_bottom = 787.0
+scale = Vector2(0.24, 0.24)
+theme_override_font_sizes/font_size = 156
+text = "CONFIRM"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [connection signal="pressed" from="Inventory/OptionsMenu/Equip1" to="Inventory" method="_on_equip_1_pressed"]
 [connection signal="pressed" from="Inventory/OptionsMenu/Equip2" to="Inventory" method="_on_equip_2_pressed"]
 [connection signal="pressed" from="Inventory/OptionsMenu/Unequip" to="Inventory" method="_on_unequip_pressed"]
 [connection signal="pressed" from="Inventory/OptionsMenu/Drop" to="Inventory" method="_on_drop_pressed"]
+[connection signal="pressed" from="Shop/BuyButton" to="Shop" method="_on_buy_button_pressed"]
+[connection signal="pressed" from="Shop/SellButton" to="Shop" method="_on_sell_button_pressed"]
+[connection signal="pressed" from="Shop/ActButton" to="Shop" method="_on_act_button_pressed"]
+[connection signal="pressed" from="Shop/ExitButton" to="Shop" method="_on_exit_button_pressed"]
