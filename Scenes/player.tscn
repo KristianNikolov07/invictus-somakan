@@ -98,6 +98,8 @@ debug_color = Color(0, 0.627881, 0.497695, 0.42)
 
 [node name="Weapons" type="Node2D" parent="."]
 
+[node name="Consumables" type="Node2D" parent="."]
+
 [node name="DashTimer" type="Timer" parent="."]
 wait_time = 0.2
 one_shot = true

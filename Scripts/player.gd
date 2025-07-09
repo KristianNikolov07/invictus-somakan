@@ -66,6 +66,10 @@ func _input(event: InputEvent) -> void:
 	#		selected_weapon = PlayerStats.weapon2
 	#	else:
 	#		selected_weapon = PlayerStats.weapon1
+	elif event.is_action_pressed("UseConsumable1"):
+		use_consumable(1)
+	elif event.is_action_pressed("UseConsumable2"):
+		use_consumable(2)
 
 func check_parry(area):
 	if !$Parry.is_stopped():
@@ -107,6 +111,10 @@ func process_movement():
 func attack():
 	if selected_weapon != null:
 		$Weapons.get_child(0).hit(direction)
+
+func use_consumable(consumable: int):
+	if $Consumables.get_node(str(consumable)) != null:
+		$Consumables.get_node(str(consumable)).use()
 
 func open_crafting_menu():
 	$UI/Crafting.show()
