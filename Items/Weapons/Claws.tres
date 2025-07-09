@@ -1,9 +1,12 @@
-[gd_resource type="Resource" script_class="Item" load_steps=2 format=3 uid="uid://cn8jop51ov0jj"]
+[gd_resource type="Resource" script_class="WeaponItem" load_steps=3 format=3 uid="uid://emkxbj4kotly"]
 
-[ext_resource type="Script" uid="uid://b3auab72tb6j6" path="res://Scripts/Classes/Item.gd" id="1_fnspf"]
+[ext_resource type="Script" uid="uid://cyk6fbvc2v7n6" path="res://Scripts/Classes/WeaponItem.gd" id="1_t555r"]
+[ext_resource type="PackedScene" uid="uid://b0pqw55wif1lb" path="res://Scenes/Weapons/claws.tscn" id="2_t555r"]
 
 [resource]
-script = ExtResource("1_fnspf")
+script = ExtResource("1_t555r")
+weapon_action_scene = ExtResource("2_t555r")
 item_name = "Claws"
 type = 4
-metadata/_custom_type_script = "uid://b3auab72tb6j6"
+price = 0
+metadata/_custom_type_script = "uid://cyk6fbvc2v7n6"
