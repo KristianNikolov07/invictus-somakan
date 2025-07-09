@@ -1,0 +1,73 @@
+[gd_scene load_steps=3 format=3 uid="uid://d1tt7e66b1oyv"]
+
+[ext_resource type="Script" uid="uid://d3hlaml6gmrw8" path="res://Scripts/UI/Shop/shopping_slot.gd" id="1_4i2iv"]
+[ext_resource type="Texture2D" uid="uid://c6w8tuaqpvb6" path="res://Textures/metal_scrap.png" id="2_w41ao"]
+
+[node name="ShopSlot" type="Control"]
+z_index = 1
+texture_filter = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -287.0
+offset_bottom = -570.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_4i2iv")
+
+[node name="ItemName" type="Label" parent="."]
+layout_mode = 0
+offset_left = 104.0
+offset_top = 10.0
+offset_right = 598.0
+offset_bottom = 106.0
+scale = Vector2(0.61, 0.61)
+theme_override_font_sizes/font_size = 60
+vertical_alignment = 1
+
+[node name="Price" type="Label" parent="."]
+layout_mode = 0
+offset_left = 472.0
+offset_top = 10.0
+offset_right = 966.0
+offset_bottom = 106.0
+scale = Vector2(0.61, 0.61)
+theme_override_font_sizes/font_size = 60
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Scrap" type="TextureRect" parent="."]
+visible = false
+modulate = Color(3, 3, 3, 1)
+layout_mode = 0
+offset_left = 787.0
+offset_right = 865.0
+offset_bottom = 78.0
+texture = ExtResource("2_w41ao")
+
+[node name="Item" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 85.0
+offset_bottom = 77.0
+
+[node name="Border" type="ColorRect" parent="."]
+layout_mode = 0
+offset_top = 76.0
+offset_right = 865.0
+offset_bottom = 78.0
+color = Color(1, 0.760784, 0.054902, 1)
+
+[node name="BG" type="ColorRect" parent="."]
+z_index = -1
+layout_mode = 0
+offset_right = 865.0
+offset_bottom = 77.0
+color = Color(0, 0, 0, 1)
+
+[node name="TextureButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_right = 865.0
+offset_bottom = 78.0
+
+[connection signal="pressed" from="TextureButton" to="." method="_on_texture_button_pressed"]
