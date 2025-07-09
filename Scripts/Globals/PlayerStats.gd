@@ -7,6 +7,7 @@ var weapon1_aspects : Array[Item]
 var weapon2_aspects : Array[Item]
 var consumables : Array[Item]
 var unlocked_recipes : Array[Recipe]
+var unlocked_weapons : Array[Item]
 var scrap: int = 1000000
 
 func _ready() -> void:
@@ -42,3 +43,9 @@ func set_weapon1(weapon: Item):
 	
 func set_weapon2(weapon: Item):
 	weapon2 = weapon
+	
+func unlock_weapon(weapon: Item):
+	for w in unlocked_weapons:
+		if w.item_name == weapon.item_name:
+			return
+	unlocked_weapons.append(weapon)
