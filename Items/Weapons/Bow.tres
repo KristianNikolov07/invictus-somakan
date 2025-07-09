@@ -1,9 +1,12 @@
-[gd_resource type="Resource" script_class="Item" load_steps=2 format=3 uid="uid://ca3fu74jnnl8a"]
+[gd_resource type="Resource" script_class="WeaponItem" load_steps=3 format=3 uid="uid://bs78vroexy87t"]
 
-[ext_resource type="Script" uid="uid://b3auab72tb6j6" path="res://Scripts/Classes/Item.gd" id="1_u4i6g"]
+[ext_resource type="Script" uid="uid://cyk6fbvc2v7n6" path="res://Scripts/Classes/WeaponItem.gd" id="1_mgxln"]
+[ext_resource type="PackedScene" uid="uid://cvvu657tj36g5" path="res://Scenes/Weapons/bow.tscn" id="2_qbv4l"]
 
 [resource]
-script = ExtResource("1_u4i6g")
+script = ExtResource("1_mgxln")
+weapon_action_scene = ExtResource("2_qbv4l")
 item_name = "Bow"
 type = 4
-metadata/_custom_type_script = "uid://b3auab72tb6j6"
+price = 0
+metadata/_custom_type_script = "uid://cyk6fbvc2v7n6"

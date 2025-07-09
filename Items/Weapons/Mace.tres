@@ -1,9 +1,12 @@
-[gd_resource type="Resource" script_class="Item" load_steps=2 format=3 uid="uid://dwe4u8vqso6cx"]
+[gd_resource type="Resource" script_class="WeaponItem" load_steps=3 format=3 uid="uid://bvlar1rchiy25"]
 
-[ext_resource type="Script" uid="uid://b3auab72tb6j6" path="res://Scripts/Classes/Item.gd" id="1_wk7n5"]
+[ext_resource type="Script" uid="uid://cyk6fbvc2v7n6" path="res://Scripts/Classes/WeaponItem.gd" id="1_hbikc"]
+[ext_resource type="PackedScene" uid="uid://ck27w40tryjbv" path="res://Scenes/Weapons/mace.tscn" id="2_hbikc"]
 
 [resource]
-script = ExtResource("1_wk7n5")
+script = ExtResource("1_hbikc")
+weapon_action_scene = ExtResource("2_hbikc")
 item_name = "Mace"
 type = 4
-metadata/_custom_type_script = "uid://b3auab72tb6j6"
+price = 0
+metadata/_custom_type_script = "uid://cyk6fbvc2v7n6"
