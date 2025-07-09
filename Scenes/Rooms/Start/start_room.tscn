@@ -3,8 +3,8 @@
 [ext_resource type="PackedScene" uid="uid://be53snhq2r11i" path="res://Scenes/player.tscn" id="1_i44vj"]
 [ext_resource type="PackedScene" uid="uid://ch7esotluxknf" path="res://Scenes/Objects/portal.tscn" id="2_0od41"]
 [ext_resource type="PackedScene" uid="uid://dg8hy4n42lxx3" path="res://Scenes/Objects/dropped_item.tscn" id="3_0tr35"]
-[ext_resource type="Resource" uid="uid://bvlar1rchiy25" path="res://Items/Weapons/Mace.tres" id="4_b7uyn"]
-[ext_resource type="Resource" uid="uid://emkxbj4kotly" path="res://Items/Weapons/claws.tres" id="5_xgbhl"]
+[ext_resource type="Resource" uid="uid://ca7em7q8srtxe" path="res://Items/Weapons/mace.tres" id="4_b7uyn"]
+[ext_resource type="Resource" uid="uid://djbh0r2b5yx2v" path="res://Items/Weapons/claws.tres" id="5_xgbhl"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_qvui7"]
 

@@ -1,24 +1,20 @@
 extends Control
 
-@export var aspect: Item
+@export var item: Item
 
 
-func set_aspect(_item: Item) -> void:
+func set_item(_item: Item) -> void:
 	if _item != null:
-		aspect = _item.duplicate()
-		$AspectIcon.texture = aspect.icon
-
-func take_item():
-	if aspect != null:
-		aspect.amount -= 1
-		if aspect.amount <= 0:
-			clear_item()
+		item = _item.duplicate()
+		$AspectIcon.texture = item.icon
+	else:
+		clear_item()
 
 func clear_item():
 	$AspectIcon.texture = null
-	aspect = null
+	item = null
 
 
 func _on_texture_button_pressed() -> void:
-	if aspect != null:
+	if item != null:
 		get_node("../../").show_item_options(self, true)

@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="WeaponItem" load_steps=3 format=3 uid="uid://emkxbj4kotly"]
+[gd_resource type="Resource" script_class="WeaponItem" load_steps=3 format=3 uid="uid://djbh0r2b5yx2v"]
 
 [ext_resource type="Script" uid="uid://cyk6fbvc2v7n6" path="res://Scripts/Classes/WeaponItem.gd" id="1_t555r"]
 [ext_resource type="PackedScene" uid="uid://b0pqw55wif1lb" path="res://Scenes/Weapons/claws.tscn" id="2_t555r"]
