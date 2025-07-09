@@ -7,8 +7,6 @@ var arrow = preload("res://Scenes/Projectiles/arrow.tscn")
 
 var can_be_shot = true
 
-func _process(delta: float) -> void:
-	print($ReloadTimer.time_left)
 
 func hit(direction: int):
 	if loaded_arrows > 0 and can_be_shot:
