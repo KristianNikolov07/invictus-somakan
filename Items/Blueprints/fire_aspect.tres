@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Blueprint" load_steps=3 format=3 uid="uid://dnofb2jqjs35o"]
+
+[ext_resource type="Resource" uid="uid://sdrrnfuoyvkg" path="res://Recipes/fire_aspect.tres" id="1_tpr0g"]
+[ext_resource type="Script" uid="uid://cao0septh7c23" path="res://Scripts/Classes/Blueprint.gd" id="2_fc8d4"]
+
+[resource]
+script = ExtResource("2_fc8d4")
+recipe = ExtResource("1_tpr0g")
+item_name = "Fire Aspect Blueprint"
+type = 2
+price = 0
+metadata/_custom_type_script = "uid://cao0septh7c23"
