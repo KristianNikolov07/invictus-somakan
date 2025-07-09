@@ -1,7 +1,9 @@
 extends Control
 
+var selected_index: int = -1
 var selected_item: Item = null
 var is_buying := true
+
 
 func _ready() -> void:
 	add_buttons()
@@ -34,6 +36,15 @@ func _on_act_button_pressed() -> void:
 		new_item.get_child(1).set_item(selected_item.duplicate())
 		get_tree().current_scene.add_child(new_item)
 		#get_node("../Inventory").add_item(selected_item)
+	else:
+		var node = get_node("../Inventory/Slots").get_child(selected_index)
+		if node.item != null:
+			PlayerStats.scrap += node.item.price/2
+			node.decrease_amount()
+			if node.item == null:
+				set_confirm_status(false)
+				$ItemsToSell.get_child(selected_index).reset_bg_color()
+			refresh_sell()
 
 
 func _on_exit_button_pressed() -> void:
@@ -47,7 +58,8 @@ func set_confirm_status(enabled: bool):
 		$ActButton.disabled = true
 		$ActButton.modulate = Color(0.6, 0.6, 0.6, 1)
 
-func select(item: Item):
+func select(item: Item, index: int):
+	selected_index = index
 	selected_item = item
 	if selected_item.price > PlayerStats.scrap:
 		set_confirm_status(false)
@@ -59,6 +71,10 @@ func add_buttons():
 	$ItemsToBuy/ShopSlot2.set_item(load("res://Items/Consumables/healing_potion.tres"))
 	$ItemsToBuy/ShopSlot3.set_item(load("res://Items/Consumables/healing_barrel.tres"))
 	
+	refresh_sell()
+
+
+func refresh_sell():
 	var item_slots: Control = get_node("../Inventory/Slots")
 	var index = 1
 	for slot: Control in item_slots.get_children():
@@ -66,4 +82,6 @@ func add_buttons():
 			get_node("ItemsToSell/ShopSlot" + str(index)).set_item(slot.item)
 			get_node("ItemsToSell/ShopSlot" + str(index) + "/ItemName").text += "   " + str(slot.item.amount) + "x"
 			get_node("ItemsToSell/ShopSlot" + str(index) + "/Price").text = str(int(get_node("ItemsToSell/ShopSlot" + str(index) + "/Price").text)/2)
-			index += 1
+		else:
+			get_node("ItemsToSell/ShopSlot" + str(index)).clear_item()
+		index += 1

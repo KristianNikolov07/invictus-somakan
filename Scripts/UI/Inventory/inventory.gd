@@ -50,6 +50,7 @@ func remove_item(item: Item, amount:= 1):
 				if slot.item.item_name == item.item_name:
 					slot.decrease_amount(amount)
 
+
 func update_globals():
 	for i in range($Slots.get_children().size()):
 		PlayerStats.items[i] = $Slots.get_children()[i].item
