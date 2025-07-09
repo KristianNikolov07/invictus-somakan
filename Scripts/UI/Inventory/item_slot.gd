@@ -9,6 +9,8 @@ func set_item(_item: Item) -> void:
 		$Name.text = item.item_name
 		$ItemIcon.texture = item.icon
 		update_amount_label()
+	else:
+		clear_item()
 
 func clear_item() -> void:
 	item = null

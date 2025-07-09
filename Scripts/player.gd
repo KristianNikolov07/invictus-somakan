@@ -170,3 +170,8 @@ func interact_with():
 		if area.has_method("interact"):
 			area.interact(get_path())
 			return
+
+
+func _on_interaction_range_area_entered(area: Area2D) -> void:
+	if area.has_method("pickup_weapon"):
+		area.pickup_weapon()

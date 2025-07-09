@@ -143,6 +143,7 @@ offset_bottom = -77.0
 
 [node name="UI" parent="." instance=ExtResource("5_fkybt")]
 
+[connection signal="area_entered" from="InteractionRange" to="." method="_on_interaction_range_area_entered"]
 [connection signal="timeout" from="Invincibility" to="." method="_on_invincibility_timeout"]
 [connection signal="timeout" from="Parry" to="." method="_on_parry_timeout"]
 [connection signal="timeout" from="Hitstop" to="." method="_on_hitstop_timeout"]

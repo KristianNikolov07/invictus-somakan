@@ -8,25 +8,14 @@ const dropped_item_scene = preload("res://Scenes/Objects/dropped_item.tscn")
 func _ready() -> void:
 	$Slots/ItemSlot1.item.amount = 3
 	$Slots/ItemSlot2.item.amount = 3
-	for i in range($Slots.get_children().size()):
-		$Slots.get_children()[i].set_item(PlayerStats.items[i]) 
-		
-	$WeaponSlots/Slot1.set_weapon(PlayerStats.weapon1)
-	$WeaponSlots/Slot2.set_weapon(PlayerStats.weapon2)
+	refresh()
 	
-	for i in range($AspectSlots1.get_children().size()):
-		$AspectSlots1.get_children()[i].set_aspect(PlayerStats.weapon1_aspects[i]) 
-		
-	for i in range($AspectSlots2.get_children().size()):
-		$AspectSlots2.get_children()[i].set_aspect(PlayerStats.weapon2_aspects[i]) 
-		
-	for i in range($Consumables.get_children().size()):
-		$Consumables.get_children()[i].set_consumable(PlayerStats.consumables[i]) 
 
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("Inventory"):
 		visible = !visible
+		refresh()
 
 
 func add_item(item: Item, amount:= 1):
@@ -75,6 +64,21 @@ func refresh() -> void:
 	$OptionsMenu/Item.texture = null
 	$OptionsMenu/Label.text = ""
 	item_slot = null
+	
+	for i in range($Slots.get_children().size()):
+		$Slots.get_children()[i].set_item(PlayerStats.items[i]) 
+		
+	$WeaponSlots/Slot1.set_weapon(PlayerStats.weapon1)
+	$WeaponSlots/Slot2.set_weapon(PlayerStats.weapon2)
+	
+	for i in range($AspectSlots1.get_children().size()):
+		$AspectSlots1.get_children()[i].set_aspect(PlayerStats.weapon1_aspects[i]) 
+		
+	for i in range($AspectSlots2.get_children().size()):
+		$AspectSlots2.get_children()[i].set_aspect(PlayerStats.weapon2_aspects[i]) 
+		
+	for i in range($Consumables.get_children().size()):
+		$Consumables.get_children()[i].set_consumable(PlayerStats.consumables[i]) 
 
 
 func show_item_options(_item_slot: Control, _is_equipped: bool):
