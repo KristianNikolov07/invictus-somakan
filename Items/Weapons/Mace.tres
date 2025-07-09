@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="WeaponItem" load_steps=3 format=3 uid="uid://bvlar1rchiy25"]
+[gd_resource type="Resource" script_class="WeaponItem" load_steps=3 format=3 uid="uid://ca7em7q8srtxe"]
 
 [ext_resource type="Script" uid="uid://cyk6fbvc2v7n6" path="res://Scripts/Classes/WeaponItem.gd" id="1_hbikc"]
 [ext_resource type="PackedScene" uid="uid://ck27w40tryjbv" path="res://Scenes/Weapons/mace.tscn" id="2_hbikc"]

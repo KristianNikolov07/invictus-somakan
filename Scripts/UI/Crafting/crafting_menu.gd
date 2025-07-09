@@ -41,8 +41,8 @@ func _on_exit_button_pressed() -> void:
 
 func _on_craft_button_pressed() -> void:
 	if (not PlayerStats.is_inventory_full() or PlayerStats.check_item(selected_slot.get_recipe().result, 1)) and PlayerStats.scrap >= selected_slot.get_recipe().price:
-		get_node("../../").inventory.remove_item(selected_slot.get_recipe().item, selected_slot.get_recipe().amount)
-		get_node("../../").inventory.add_item(selected_slot.get_recipe().result, selected_slot.get_recipe().result_amount)
+		PlayerStats.remove_item(selected_slot.get_recipe().item, selected_slot.get_recipe().amount)
+		PlayerStats.add_item(selected_slot.get_recipe().result, selected_slot.get_recipe().result_amount)
 		PlayerStats.scrap -= selected_slot.get_recipe().price
 		refresh()
 		

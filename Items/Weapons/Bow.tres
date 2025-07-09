@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="WeaponItem" load_steps=3 format=3 uid="uid://bs78vroexy87t"]
+[gd_resource type="Resource" script_class="WeaponItem" load_steps=3 format=3 uid="uid://cos1nvi2km0id"]
 
 [ext_resource type="Script" uid="uid://cyk6fbvc2v7n6" path="res://Scripts/Classes/WeaponItem.gd" id="1_mgxln"]
 [ext_resource type="PackedScene" uid="uid://cvvu657tj36g5" path="res://Scenes/Weapons/bow.tscn" id="2_qbv4l"]
