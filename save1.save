@@ -1,0 +1,5 @@
+[save]
+
+souls=0
+recipes=Array[Resource("res://Scripts/Classes/Recipe.gd")]([Resource("res://Recipes/fire_aspect.tres")])
+weapons=Array[Resource("res://Scripts/Classes/Item.gd")]([])

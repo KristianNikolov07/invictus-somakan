@@ -49,14 +49,7 @@ func show_item_options(_item_slot: Control, _is_equipped: bool):
 	is_equipped = _is_equipped
 	item_slot = _item_slot
 	
-	var item
-	if !is_equipped:
-		item = item_slot.item
-	elif item_slot.get_parent().name == "Consumables":
-		item = item_slot.item
-	else:
-		item = item_slot.item
-	
+	var item = item_slot.item
 	$OptionsMenu/Item.texture = item.icon
 	$OptionsMenu/Label.text = item.item_name
 	$OptionsMenu/Drop.disabled = false
