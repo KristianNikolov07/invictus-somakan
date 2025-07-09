@@ -25,8 +25,8 @@ func hit(direction : int):
 
 func _on_sword_body_entered(body: Node2D) -> void:
 	if body.has_method("damage") and body.is_in_group("Enemies"):
+		
 		body.damage($Hitbox, knockback_amount * dir)
-
 
 func _on_cooldown_timeout() -> void:
 	is_down = false

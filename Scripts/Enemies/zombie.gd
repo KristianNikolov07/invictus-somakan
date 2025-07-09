@@ -52,6 +52,6 @@ func _on_attack_hitbox_body_entered(body: Node2D) -> void:
 		elif parry_time_left > 0:
 			damage_amount(parry_damage, parry_knockback_mult)
 			body.stop_parry()
-			body.damage_amount(attack_damage / 3, (knockback_strength * knockback_dir) / 3)
+			body.damage_amount((attack_damage / 3) * damage_mult, (knockback_strength * knockback_dir) / 3)
 		else:
-			body.damage_amount(attack_damage, knockback_strength * knockback_dir)
+			body.damage_amount((attack_damage) * damage_mult, knockback_strength * knockback_dir)

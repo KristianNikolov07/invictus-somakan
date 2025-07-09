@@ -58,11 +58,11 @@ func _input(event: InputEvent) -> void:
 		selected_weapon = PlayerStats.weapon1
 	elif event.is_action_pressed("Weapon2"):
 		selected_weapon = PlayerStats.weapon2
-	elif event.is_action_released("PreviousWeapon") or event.is_action_released("NextWeapon"):
-		if selected_weapon.item_name == PlayerStats.weapon1.item_name:
-			selected_weapon = PlayerStats.weapon2
-		else:
-			selected_weapon = PlayerStats.weapon1
+	#elif event.is_action_released("PreviousWeapon") or event.is_action_released("NextWeapon"):
+	#	if selected_weapon.item_name == PlayerStats.weapon1.item_name:
+	#		selected_weapon = PlayerStats.weapon2
+	#	else:
+	#		selected_weapon = PlayerStats.weapon1
 
 func check_parry(area):
 	if !$Parry.is_stopped():
@@ -102,14 +102,15 @@ func process_movement():
 	velocity.y = move_toward(velocity.y, max_falling_speed, gravity)
 
 func attack():
-	if selected_weapon.item_name == "Mace":
-		$Weapons/Mace.hit(direction)
-	elif selected_weapon.item_name == "Claws":
-		$Weapons/Claws.hit(direction)
-	elif selected_weapon.item_name == "Damage Circle":
-		$Weapons/DamageCircle.hit(direction)
-	elif selected_weapon.item_name == "Bow":
-		$Weapons/Bow.hit(direction)
+	if selected_weapon != null:
+		if selected_weapon.item_name == "Mace":
+			$Weapons/Mace.hit(direction)
+		elif selected_weapon.item_name == "Claws":
+			$Weapons/Claws.hit(direction)
+		elif selected_weapon.item_name == "Damage Circle":
+			$Weapons/DamageCircle.hit(direction)
+		elif selected_weapon.item_name == "Bow":
+			$Weapons/Bow.hit(direction)
 
 func open_crafting_menu():
 	$UI/Crafting.show()
@@ -126,8 +127,8 @@ func damage_amount(amount: int, knockback) -> void:
 	velocity.y = -500 * abs(knockback)
 	hp -= amount
 	$Parry.stop()
-	#if hp <= 0:
-		#get_tree().quit()
+	if hp <= 0:
+		queue_free()
 	print(amount)
 	
 func damage(hitbox: Hitbox, knockback):
@@ -165,6 +166,7 @@ func _on_hitstop_timeout() -> void:
 
 func interact_with():
 	for area in $InteractionRange.get_overlapping_areas():
+		print(area)
 		if area.has_method("interact"):
 			area.interact(get_path())
 			return

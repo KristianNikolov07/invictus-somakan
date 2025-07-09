@@ -8,4 +8,5 @@ script = ExtResource("1_no3n7")
 item_name = "Lice Orb"
 icon = ExtResource("1_87ju2")
 type = 3
+price = 0
 metadata/_custom_type_script = "uid://b3auab72tb6j6"

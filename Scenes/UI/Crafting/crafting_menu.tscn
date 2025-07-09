@@ -27,6 +27,7 @@ texture = ExtResource("3_j28l4")
 
 [node name="CraftingLabel" type="Label" parent="."]
 texture_filter = 2
+layout_mode = 0
 offset_left = 317.0
 offset_top = 16.0
 offset_right = 472.0
@@ -67,6 +68,7 @@ theme_override_font_sizes/font_size = 28
 text = "Exit"
 
 [node name="CraftButton" type="Button" parent="."]
+layout_mode = 0
 offset_left = 155.0
 offset_top = 473.0
 offset_right = 357.0

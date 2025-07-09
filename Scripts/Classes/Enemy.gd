@@ -20,8 +20,12 @@ const FOLLOW_DEADZONE = 1
 var attacking = false
 @export var loot : Item
 const dropped_item_scene = preload("res://Scenes/Objects/dropped_item.tscn")
+var active_status_effects: Array[StatusEffect] = []
+var damage_mult: float = 1
 
 var invincibility_timer = Timer.new()
+
+var fire_status_scene = preload("res://Scenes/StatusEffects/fire.tscn")
 
 func _ready() -> void:
 	invincibility_timer.wait_time = invincibility_length
@@ -67,6 +71,30 @@ func damage(hitbox: Hitbox, knockback) -> void:
 	var dam = hitbox.get_damage() * (hitbox.get_crit_mult() if is_crit else 1)
 	Utils.summon_damage_number(self, dam, Color.ORANGE_RED if is_crit else Color.WHITE, damage_number_scale, damage_number_duration)
 	hp -= dam
+	if hp <= 0:
+		drop_loot()
+		queue_free()
+
+func apply_status_effect(effect: PackedScene):
+	var effect_node = effect.instantiate()
+	for active_effect in active_status_effects:
+		if active_effect.damage_number_color == effect_node.damage_number_color:
+			active_effect.add_stack()
+			effect_node.queue_free()
+			return
+	add_child(effect_node)
+	active_status_effects.append(effect_node)
+	effect_node.add_stack()
+	
+func remove_status_effect(effect: StatusEffect):
+	for i in range(len(active_status_effects)):
+		if active_status_effects[i].damage_number_color == effect.damage_number_color:
+			active_status_effects.pop_at(i)
+	
+	
+func status_damage(damage: int, number_color: Color):
+	Utils.summon_damage_number(self, damage, number_color, damage_number_scale / 1.3, damage_number_duration / 1.3)
+	hp -= damage
 	if hp <= 0:
 		drop_loot()
 		queue_free()
