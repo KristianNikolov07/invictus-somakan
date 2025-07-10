@@ -17,3 +17,4 @@ func _on_check_door_timeout() -> void:
 func _on_boss_dead() -> void:
 	$Doors/AnimationPlayer.play("open")
 	$Trapforms/AnimationPlayer.play_backwards("lower")
+	$ArenaCam.enabled = false
