@@ -8,3 +8,12 @@ func _on_check_door_timeout() -> void:
 		$DoorChecker.queue_free()
 		$ArenaCam.enabled = true
 		$ArenaCam.make_current()
+		await $Doors/AnimationPlayer.animation_finished
+		$Boss/Attacks.play("intro")
+		await $Boss/Attacks.animation_finished
+		$Boss.start()
+
+
+func _on_boss_dead() -> void:
+	$Doors/AnimationPlayer.play("open")
+	$Trapforms/AnimationPlayer.play_backwards("lower")

@@ -41,7 +41,7 @@ func _on_body_entered(body: Node2D) -> void:
 func _on_area_entered(area: Area2D) -> void:
 	if area.is_in_group("Enemies") and $Return.is_stopped():
 		if times_parried > 0:
-			get_parent().damage_amount(damage, knockback)
+			area.get_parent().damage_amount(damage, knockback)
 		queue_free()
 
 

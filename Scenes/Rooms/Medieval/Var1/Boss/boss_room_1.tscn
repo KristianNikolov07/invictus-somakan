@@ -1,10 +1,10 @@
-[gd_scene load_steps=36 format=3 uid="uid://iviyiy2qotsm"]
+[gd_scene load_steps=37 format=3 uid="uid://iviyiy2qotsm"]
 
-[ext_resource type="Script" uid="uid://c80uwe0iluece" path="res://Temp/boss_room_1.gd" id="1_hnpp2"]
+[ext_resource type="Script" uid="uid://c80uwe0iluece" path="res://Scripts/Rooms/boss_room_1.gd" id="1_hnpp2"]
 [ext_resource type="Texture2D" uid="uid://c1lo75th7b88g" path="res://Textures/icon.svg" id="1_tjvdc"]
 [ext_resource type="PackedScene" uid="uid://be53snhq2r11i" path="res://Scenes/player.tscn" id="2_hnpp2"]
 [ext_resource type="Animation" uid="uid://bhkqidi0qd30h" path="res://bone_rain.res" id="3_286j2"]
-[ext_resource type="Script" uid="uid://c0r8ikcl8si3u" path="res://Temp/boss.gd" id="4_w82vf"]
+[ext_resource type="Script" uid="uid://c0r8ikcl8si3u" path="res://Scripts/Enemies/boss.gd" id="4_w82vf"]
 [ext_resource type="PackedScene" uid="uid://bqo6qnqcmww4y" path="res://Scenes/UI/health_bar.tscn" id="5_sufch"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w82vf"]
@@ -323,6 +323,107 @@ tracks/8/keys = {
 "update": 0,
 "values": [Vector2(1, 1)]
 }
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath(".:position")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(860, -250)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("../ArenaCam:zoom")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1.5, 1.5)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("../ArenaCam:position")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(867, 455)]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath(".:collision_layer")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [130]
+}
+
+[sub_resource type="Animation" id="Animation_p7duw"]
+resource_name = "intro"
+length = 3.5
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.6, 3.5),
+"transitions": PackedFloat32Array(2.07053, 1, 1),
+"update": 0,
+"values": [Vector2(860, -250), Vector2(860, 534), Vector2(860, 534)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../ArenaCam:zoom")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.9, 3.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1.5, 1.5), Vector2(1.5, 1.5), Vector2(0.658, 0.658)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../ArenaCam:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.9, 3.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(867, 455), Vector2(867, 455), Vector2(867, 300)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:collision_layer")
+tracks/3/interp = 0
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 3.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [130, 131]
+}
 
 [sub_resource type="Animation" id="Animation_w82vf"]
 resource_name = "smash"
@@ -368,6 +469,7 @@ tracks/2/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_v638s"]
 _data = {
 &"RESET": SubResource("Animation_ly2s5"),
+&"intro": SubResource("Animation_p7duw"),
 &"smash": SubResource("Animation_w82vf")
 }
 
@@ -568,22 +670,22 @@ libraries = {
 }
 
 [node name="ArenaCam" type="Camera2D" parent="."]
-position = Vector2(867, 300)
+position = Vector2(867, 455)
 enabled = false
-zoom = Vector2(0.658, 0.658)
+zoom = Vector2(1.5, 1.5)
 
 [node name="Player" parent="." instance=ExtResource("2_hnpp2")]
-position = Vector2(739, 609)
+position = Vector2(-509, 540)
 
 [node name="Boss" type="CharacterBody2D" parent="." node_paths=PackedStringArray("bone_positions") groups=["Enemies"]]
-position = Vector2(968, 534)
-collision_layer = 131
+position = Vector2(860, -250)
+collision_layer = 130
 collision_mask = 128
 script = ExtResource("4_w82vf")
 bone_positions = NodePath("../BoneRainGroup")
 speed = 60
-hp = 500
-max_hp = 500
+hp = 1000
+max_hp = 1000
 parry_damage = 0
 parry_knockback_mult = 0
 can_be_knockedback = false
@@ -629,7 +731,6 @@ position = Vector2(-1.77312, -231.071)
 [node name="ChooseAttack" type="Timer" parent="Boss"]
 wait_time = 3.0
 one_shot = true
-autostart = true
 ignore_time_scale = true
 
 [node name="HealthBar" parent="Boss" instance=ExtResource("5_sufch")]
@@ -691,6 +792,7 @@ layout_mode = 2
 
 [connection signal="timeout" from="DoorChecker/CheckDoor" to="." method="_on_check_door_timeout"]
 [connection signal="body_entered" from="BossBounce" to="Boss" method="_on_boss_bounce_body_entered"]
+[connection signal="dead" from="Boss" to="." method="_on_boss_dead"]
 [connection signal="body_entered" from="Boss/CollisionDamage" to="Boss" method="_on_collision_damage_body_entered"]
 [connection signal="body_entered" from="Boss/Smash/Pivot" to="Boss" method="_on_smash_body_entered"]
 [connection signal="timeout" from="Boss/ChooseAttack" to="Boss" method="_on_choose_attack_timeout"]

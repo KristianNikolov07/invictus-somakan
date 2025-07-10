@@ -7,15 +7,17 @@ var direction = 1
 var target: CharacterBody2D = null
 const smash_damage := 30
 const smash_knockback := 1.75
-const shockwave := preload("res://Temp/shockwave.tscn")
+const shockwave := preload("res://Scenes/Projectiles/shockwave.tscn")
 const rib := preload("res://Scenes/Projectiles/rib.tscn")
 const finger := preload("res://Scenes/Projectiles/bone_finger.tscn")
 @export var bone_positions: HBoxContainer
+signal dead
 
 
 func _ready() -> void:
 	super._ready()
 	target_closest_player()
+	set_is_moving(false)
 
 
 func _physics_process(delta: float) -> void:
@@ -26,11 +28,6 @@ func _physics_process(delta: float) -> void:
 		else:
 			$Smash.scale = Vector2(1, 1)
 	
-	if phase == 1 and hp <= max_hp/2:
-		phase = 2
-		speed = 100
-		get_node("../BossPushers/AnimationPlayer").play("phase")
-	
 	if is_moving and not is_dashing:
 		global_position.x = move_toward(global_position.x, target.global_position.x, delta*speed)
 	elif is_moving:
@@ -39,9 +36,14 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 
+func start():
+	set_is_moving(true)
+	$ChooseAttack.start()
+
+
 func _on_choose_attack_timeout() -> void:
 	set_is_moving(false)
-	var rand = randi_range(3, 3)
+	var rand = randi_range(1, 4)
 	match rand:
 		1: attack_smash()
 		2: attack_ram()
@@ -52,6 +54,7 @@ func _on_choose_attack_timeout() -> void:
 
 func attack_smash() -> void:
 	attacking = true
+	await get_tree().create_timer(0.5).timeout
 	$Attacks.play("smash")
 	await $Attacks.animation_finished
 	var shock1: Area2D = shockwave.instantiate()
@@ -60,6 +63,18 @@ func attack_smash() -> void:
 	shock2.dir = -1
 	get_tree().current_scene.add_child(shock1)
 	get_tree().current_scene.add_child(shock2)
+	if phase == 2:
+		for i in range(2):
+			await get_tree().create_timer(0.25).timeout
+			$Smash.scale.x *= -1
+			$Attacks.play("smash")
+			await $Attacks.animation_finished
+			shock1 = shockwave.instantiate()
+			shock1.global_position = $Smash/Pivot/WeaponEnd.global_position
+			shock2 = shock1.duplicate()
+			shock2.dir = -1
+			get_tree().current_scene.add_child(shock1)
+			get_tree().current_scene.add_child(shock2)
 	await get_tree().create_timer(stagger).timeout
 	set_is_moving(true)
 	attacking = false
@@ -88,14 +103,13 @@ func attack_riberang() -> void:
 	new_rib.shooter_vel = velocity
 	get_tree().current_scene.add_child(new_rib)
 	if phase == 2:
-		new_rib = new_rib.duplicate()
-		new_rib.rotation = global_position.direction_to(target.global_position + Vector2(0, 150)).angle()
-		new_rib.shooter_vel = velocity
-		get_tree().current_scene.add_child(new_rib)
-		new_rib = new_rib.duplicate()
-		new_rib.rotation = global_position.direction_to(target.global_position + Vector2(0, -150)).angle()
-		new_rib.shooter_vel = velocity
-		get_tree().current_scene.add_child(new_rib)
+		for i in range(2):
+			await get_tree().create_timer(0.5).timeout
+			new_rib = rib.instantiate()
+			new_rib.global_position = global_position
+			new_rib.rotation = global_position.direction_to(target.global_position).angle()
+			new_rib.shooter_vel = velocity
+			get_tree().current_scene.add_child(new_rib)
 	await new_rib.tree_exited
 	await get_tree().create_timer(0.5).timeout
 	set_is_moving(true)
@@ -105,12 +119,11 @@ func attack_riberang() -> void:
 
 func attack_bone_rain() -> void:
 	attacking = true
-	set_is_moving(false)
 	get_node("../Platforms/AnimationPlayer").play("bone_rain")
 	await get_tree().create_timer(0.5).timeout
 	for i in range(phase):
 		var array := get_bone_positions()
-		for j in range(phase+8):
+		for j in range(phase+7):
 			var new_finger: Area2D = finger.instantiate()
 			new_finger.global_position = global_position
 			new_finger.planned_pos = array.pop_at(randi_range(0, array.size()-1))
@@ -120,8 +133,28 @@ func attack_bone_rain() -> void:
 	get_node("../Platforms/AnimationPlayer").play_backwards("bone_rain")
 	set_is_moving(true)
 	attacking = false
-	$ChooseAttack.start(5)
+	$ChooseAttack.start(6-phase)
 
+
+func damage(hitbox: Hitbox, knockback):
+	var is_crit = Utils.calculate_crit(hitbox.get_crit_chance())
+	set_collision_layer_value(1, false)
+	invincibility_timer.start()
+	if !can_be_knockedback:
+		knockback = 0
+	velocity.x = 1600 * knockback
+	velocity.y = -500 * abs(knockback)
+	var dam = hitbox.get_damage() * (hitbox.get_crit_mult() if is_crit else 1)
+	Utils.summon_damage_number(self, dam, Color.ORANGE_RED if is_crit else Color.WHITE, damage_number_scale, damage_number_duration)
+	hp -= dam
+	if hp <= max_hp/2 and phase < 2:
+		phase = 2
+		speed = 100
+		get_node("../BossPushers/AnimationPlayer").play("phase")
+	elif hp <= 0:
+		drop_loot()
+		dead.emit()
+		queue_free()
 
 
 func _on_collision_damage_body_entered(body: Node2D) -> void:
