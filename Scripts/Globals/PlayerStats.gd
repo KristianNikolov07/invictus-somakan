@@ -10,7 +10,8 @@ var unlocked_recipes : Array[Recipe]
 var unlocked_weapons : Array[WeaponItem]
 var scrap: int = 0
 var souls: int = 0
-
+var hp: int = 50
+var max_hp: int = 50
 var is_multiplayer = false
 
 var config = ConfigFile.new()

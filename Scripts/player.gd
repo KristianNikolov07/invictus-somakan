@@ -22,6 +22,8 @@ var selected_weapon
 
 func _ready() -> void:
 	switch_weapon(PlayerStats.weapon1)
+	hp = PlayerStats.hp
+	max_hp = PlayerStats.max_hp
 
 func _physics_process(delta: float) -> void:
 	if $DashTimer.is_stopped():
