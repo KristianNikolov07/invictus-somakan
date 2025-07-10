@@ -15,8 +15,8 @@ var is_multiplayer = false
 var config = ConfigFile.new()
 
 func _ready() -> void:
-	unlocked_recipes.append(load("res://Recipes/fire_aspect.tres"))
-	set_weapon1(load("res://Items/Weapons/Claws.tres"))
+	#unlocked_recipes.append(load("res://Recipes/fire_aspect.tres"))
+	#set_weapon1(load("res://Items/Weapons/Claws.tres"))
 	items.resize(5)
 	weapon1_aspects.resize(2)
 	weapon2_aspects.resize(2)
@@ -115,14 +115,14 @@ func remove_consumable(slot: int, amount:= 1):
 				get_player().get_node("Consumables").get_node(str(slot + 1)).queue_free()
 
 func save_stats(saveNum: int):
-	config.load("user://save" + str(saveNum) + ".save")
+	config.load_encrypted_pass("user://save" + str(saveNum) + ".save", "cursedgodotisntrealhecanthurtyou")
 	config.set_value("save", "souls", souls)
 	config.set_value("save", "recipes", unlocked_recipes)
 	config.set_value("save", "weapons", unlocked_weapons)
-	config.save("user://save" + str(saveNum) + ".save")
+	config.save_encrypted_pass("user://save" + str(saveNum) + ".save", "cursedgodotisntrealhecanthurtyou")
 
 func load_stats(saveNum: int):
-	config.load("user://save" + str(saveNum) + ".save")
+	config.load_encrypted_pass("user://save" + str(saveNum) + ".save", "cursedgodotisntrealhecanthurtyou")
 	if config.has_section_key("save", "souls"):
 		souls = config.get_value("save", "souls")
 	if config.has_section_key("save", "recipes"):
@@ -132,7 +132,7 @@ func load_stats(saveNum: int):
 
 func read_save_file(saveNum: int):
 	if FileAccess.file_exists("user://save" + str(saveNum) + ".save"):
-		config.load("user://save" + str(saveNum) + ".save")
+		config.load_encrypted_pass("user://save" + str(saveNum) + ".save", "cursedgodotisntrealhecanthurtyou")
 		var stats = {
 			"souls" : int(config.get_value("save", "souls")),
 			"numWeapons" : config.get_value("save", "weapons").size(),

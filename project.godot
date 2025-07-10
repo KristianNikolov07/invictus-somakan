@@ -14,7 +14,7 @@ warnings/check_invalid_track_paths=false
 
 [application]
 
-config/name="gameloft-internship-2025"
+config/name="invictus:somakan"
 run/main_scene="uid://c62bupgibxlpk"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://Textures/icon.svg"
