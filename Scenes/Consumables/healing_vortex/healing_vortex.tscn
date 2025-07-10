@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://dmuvwgd0112bx"]
+
+[ext_resource type="Script" uid="uid://do6bhihtnal4x" path="res://Scripts/Consumables/healing_vortex.gd" id="1_xi1ws"]
+
+[node name="HealingVortex" type="Node2D"]
+script = ExtResource("1_xi1ws")
+metadata/_custom_type_script = "uid://7o1mrcjkjr6j"

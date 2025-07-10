@@ -10,21 +10,24 @@ var unlocked_recipes : Array[Recipe]
 var unlocked_weapons : Array[WeaponItem]
 var scrap: int = 0
 var souls: int = 0
+
 var is_multiplayer = false
 
 var config = ConfigFile.new()
 
 func _ready() -> void:
 	#unlocked_recipes.append(load("res://Recipes/fire_aspect.tres"))
-	#set_weapon1(load("res://Items/Weapons/Claws.tres"))
+	set_weapon1(load("res://Items/Weapons/Claws.tres"))
 	items.resize(5)
 	weapon1_aspects.resize(2)
 	weapon2_aspects.resize(2)
 	consumables.resize(2)
+	
+	add_item(load("res://Items/Consumables/healing_vortex.tres"))
 
 func get_player():
 	if !is_multiplayer:
-		return get_tree().get_first_node_in_group("Player")
+		return get_tree().get_first_node_in_group("Players")
 
 func add_item(_item: Item, amount:= 1):
 	for i in range(items.size()):
@@ -101,7 +104,7 @@ func add_consumable(slot: int, consumable: ConsumableItem, amount:= 1):
 		consumables[slot] = consumable
 		consumables[slot].amount = amount
 		var node = consumable.consumable_action.instantiate()
-		node.name = str(slot - 1)
+		node.name = str(slot + 1)
 		get_player().get_node("Consumables").add_child(node)
 	elif consumables[slot].item_name == consumable.item_name:
 		consumables[slot].amount += amount

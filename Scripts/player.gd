@@ -115,6 +115,7 @@ func attack():
 func use_consumable(consumable: int):
 	if $Consumables.get_node(str(consumable)) != null:
 		$Consumables.get_node(str(consumable)).use()
+		PlayerStats.remove_consumable(consumable - 1)
 
 func open_crafting_menu():
 	$UI/Crafting.show()
@@ -190,3 +191,8 @@ func switch_weapon(weapon : WeaponItem):
 		if $Weapons.get_child(0) != null:
 			$Weapons.get_child(0).queue_free()
 	selected_weapon = weapon
+
+func heal(_hp: int):
+	hp += _hp
+	if hp > max_hp:
+		hp = max_hp
