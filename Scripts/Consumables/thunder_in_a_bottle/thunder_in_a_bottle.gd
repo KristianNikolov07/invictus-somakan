@@ -9,4 +9,5 @@ func use(player_path: String):
 	bottle.global_position = global_position
 	bottle.rotation = global_position.direction_to(target).angle()
 	bottle.shooter_vel = player.velocity
+	bottle.shooter_vel.y = 0
 	get_tree().current_scene.add_child(bottle)
