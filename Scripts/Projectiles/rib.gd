@@ -1,6 +1,6 @@
 extends Projectile
 
-@export var return_speed: float = 10
+@export var return_speed: float = 25
 @export var rot_speed: float = 4
 
 
@@ -37,10 +37,11 @@ func _on_body_entered(body: Node2D) -> void:
 			rot_speed *= 3
 		else:
 			body.damage_amount(damage, knockback * knockback_dir)
-		
-	elif body.is_in_group("Enemies") and can_hit_enemies and $Return.is_stopped():
+
+func _on_area_entered(area: Area2D) -> void:
+	if area.is_in_group("Enemies") and $Return.is_stopped():
 		if times_parried > 0:
-			body.damage_amount(damage, knockback)
+			get_parent().damage_amount(damage, knockback)
 		queue_free()
 
 

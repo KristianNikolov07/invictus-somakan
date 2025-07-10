@@ -1,8 +1,9 @@
-[gd_scene load_steps=29 format=3 uid="uid://iviyiy2qotsm"]
+[gd_scene load_steps=36 format=3 uid="uid://iviyiy2qotsm"]
 
 [ext_resource type="Script" uid="uid://c80uwe0iluece" path="res://Temp/boss_room_1.gd" id="1_hnpp2"]
 [ext_resource type="Texture2D" uid="uid://c1lo75th7b88g" path="res://Textures/icon.svg" id="1_tjvdc"]
 [ext_resource type="PackedScene" uid="uid://be53snhq2r11i" path="res://Scenes/player.tscn" id="2_hnpp2"]
+[ext_resource type="Animation" uid="uid://bhkqidi0qd30h" path="res://bone_rain.res" id="3_286j2"]
 [ext_resource type="Script" uid="uid://c0r8ikcl8si3u" path="res://Temp/boss.gd" id="4_w82vf"]
 [ext_resource type="PackedScene" uid="uid://bqo6qnqcmww4y" path="res://Scenes/UI/health_bar.tscn" id="5_sufch"]
 
@@ -65,11 +66,16 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hnpp2"]
 size = Vector2(251.5, 20)
 
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_p7duw"]
+_data = {
+&"bone_rain": ExtResource("3_286j2")
+}
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b8t2r"]
 size = Vector2(880, 395)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vvxw6"]
-size = Vector2(36, 235)
+size = Vector2(41, 235)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ya6cy"]
 size = Vector2(22, 182)
@@ -142,8 +148,63 @@ _data = {
 &"open": SubResource("Animation_vvxw6")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sufch"]
+size = Vector2(67, 279.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_286j2"]
+size = Vector2(67, 279.5)
+
+[sub_resource type="Animation" id="Animation_286j2"]
+resource_name = "phase"
+length = 10.0
+step = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Trapforms:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2, 10),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(862, 658), Vector2(862, 658), Vector2(862, 1500)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../BossPushers:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2, 10),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.72, 1), Vector2(0.72, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../BossBounce:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.71, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_sufch"]
+_data = {
+&"phase": SubResource("Animation_286j2")
+}
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_71aqr"]
 size = Vector2(116, 223)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p7duw"]
+size = Vector2(118, 223)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u78rf"]
 size = Vector2(120, 225)
@@ -189,6 +250,78 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../Platforms:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../Platforms:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../Platforms:collision_layer")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("../Trapforms:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(862, 658)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("../BossPushers:scale")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("../BossBounce:scale")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_w82vf"]
@@ -352,6 +485,11 @@ position = Vector2(420, 0)
 shape = SubResource("RectangleShape2D_hnpp2")
 one_way_collision = true
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Platforms"]
+libraries = {
+&"": SubResource("AnimationLibrary_p7duw")
+}
+
 [node name="DoorChecker" type="Area2D" parent="."]
 collision_layer = 0
 
@@ -374,7 +512,7 @@ position = Vector2(-838, 63.5)
 shape = SubResource("RectangleShape2D_vvxw6")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="BossBounce"]
-position = Vector2(835, 67)
+position = Vector2(832.5, 67)
 shape = SubResource("RectangleShape2D_vvxw6")
 
 [node name="Doors" type="Node2D" parent="."]
@@ -411,6 +549,24 @@ libraries = {
 &"": SubResource("AnimationLibrary_xmk8r")
 }
 
+[node name="BossPushers" type="StaticBody2D" parent="."]
+position = Vector2(879, 542)
+collision_layer = 128
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BossPushers"]
+position = Vector2(-891.5, -12.75)
+shape = SubResource("RectangleShape2D_sufch")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="BossPushers"]
+position = Vector2(847, -19)
+shape = SubResource("RectangleShape2D_286j2")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="BossPushers"]
+libraries = {
+&"": SubResource("AnimationLibrary_sufch")
+}
+
 [node name="ArenaCam" type="Camera2D" parent="."]
 position = Vector2(867, 300)
 enabled = false
@@ -419,11 +575,12 @@ zoom = Vector2(0.658, 0.658)
 [node name="Player" parent="." instance=ExtResource("2_hnpp2")]
 position = Vector2(739, 609)
 
-[node name="Boss" type="CharacterBody2D" parent="." groups=["Enemies"]]
+[node name="Boss" type="CharacterBody2D" parent="." node_paths=PackedStringArray("bone_positions") groups=["Enemies"]]
 position = Vector2(968, 534)
 collision_layer = 131
-collision_mask = 0
+collision_mask = 128
 script = ExtResource("4_w82vf")
+bone_positions = NodePath("../BoneRainGroup")
 speed = 60
 hp = 500
 max_hp = 500
@@ -439,6 +596,13 @@ texture = ExtResource("1_tjvdc")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Boss"]
 position = Vector2(0, 2.5)
 shape = SubResource("RectangleShape2D_71aqr")
+
+[node name="RibReturn" type="Area2D" parent="Boss" groups=["Enemies"]]
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Boss/RibReturn"]
+position = Vector2(0, 1.5)
+shape = SubResource("RectangleShape2D_p7duw")
 
 [node name="CollisionDamage" type="Area2D" parent="Boss"]
 collision_layer = 0
@@ -474,6 +638,56 @@ ignore_time_scale = true
 libraries = {
 &"": SubResource("AnimationLibrary_v638s")
 }
+
+[node name="BoneRainGroup" type="HBoxContainer" parent="."]
+offset_left = 85.0
+offset_right = 1639.0
+theme_override_constants/separation = 111
+
+[node name="Container" type="Container" parent="BoneRainGroup"]
+layout_mode = 2
+
+[node name="Container2" type="Container" parent="BoneRainGroup"]
+layout_mode = 2
+
+[node name="Container3" type="Container" parent="BoneRainGroup"]
+layout_mode = 2
+
+[node name="Container4" type="Container" parent="BoneRainGroup"]
+layout_mode = 2
+
+[node name="Container5" type="Container" parent="BoneRainGroup"]
+layout_mode = 2
+
+[node name="Container6" type="Container" parent="BoneRainGroup"]
+layout_mode = 2
+
+[node name="Container7" type="Container" parent="BoneRainGroup"]
+layout_mode = 2
+
+[node name="Container8" type="Container" parent="BoneRainGroup"]
+layout_mode = 2
+
+[node name="Container9" type="Container" parent="BoneRainGroup"]
+layout_mode = 2
+
+[node name="Container10" type="Container" parent="BoneRainGroup"]
+layout_mode = 2
+
+[node name="Container11" type="Container" parent="BoneRainGroup"]
+layout_mode = 2
+
+[node name="Container12" type="Container" parent="BoneRainGroup"]
+layout_mode = 2
+
+[node name="Container13" type="Container" parent="BoneRainGroup"]
+layout_mode = 2
+
+[node name="Container14" type="Container" parent="BoneRainGroup"]
+layout_mode = 2
+
+[node name="Container15" type="Container" parent="BoneRainGroup"]
+layout_mode = 2
 
 [connection signal="timeout" from="DoorChecker/CheckDoor" to="." method="_on_check_door_timeout"]
 [connection signal="body_entered" from="BossBounce" to="Boss" method="_on_boss_bounce_body_entered"]
