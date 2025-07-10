@@ -73,3 +73,9 @@ func damage(hitbox: Hitbox, knockback) -> void:
 
 func _on_invincibility_timer_timeout():
 	set_collision_layer_value(1, true)
+
+func get_hp():
+	return hp
+
+func get_max_hp():
+	return max_hp

@@ -11,8 +11,6 @@ var jumps_remaining = 1
 var max_jumps = 1
 var speed_mult = 1
 var direction = 1
-var max_hp = 50
-var hp = 50
 var damage_number_scale: float = 1.5
 var damage_number_duration: float = 1.5
 
@@ -22,8 +20,6 @@ var selected_weapon
 
 func _ready() -> void:
 	switch_weapon(PlayerStats.weapon1)
-	hp = PlayerStats.hp
-	max_hp = PlayerStats.max_hp
 
 func _physics_process(delta: float) -> void:
 	if $DashTimer.is_stopped():
@@ -32,7 +28,6 @@ func _physics_process(delta: float) -> void:
 		jumps_remaining = max_jumps
 	move_and_slide()
 	$ParryTimerTestLabel.text = str($Parry.time_left)
-	
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("Jump") and jumps_remaining > 0:
@@ -116,7 +111,7 @@ func attack():
 
 func use_consumable(consumable: int):
 	if $Consumables.get_node(str(consumable)) != null:
-		$Consumables.get_node(str(consumable)).use()
+		$Consumables.get_node(str(consumable)).use(get_path())
 		PlayerStats.remove_consumable(consumable - 1)
 
 func open_crafting_menu():
@@ -132,7 +127,7 @@ func damage_amount(amount: int, knockback) -> void:
 	$Invincibility.start()
 	velocity.x = 1600 * knockback
 	velocity.y = -500 * abs(knockback)
-	hp -= amount
+	PlayerStats.hp -= amount
 	$Parry.stop()
 	#if hp <= 0:
 		#get_tree().quit()
@@ -147,8 +142,8 @@ func damage(hitbox: Hitbox, knockback):
 	velocity.y = -500 * abs(knockback)
 	var damage = hitbox.get_damage() * (hitbox.get_crit_mult() if is_crit else 1)
 	Utils.summon_damage_number(self, damage, Color.RED, damage_number_scale, damage_number_duration)
-	hp -= damage
-	if hp <= 0:
+	PlayerStats.hp -= damage
+	if PlayerStats.hp <= 0:
 		queue_free()
 
 func unlock_recipe(recipe: Recipe):
@@ -156,7 +151,6 @@ func unlock_recipe(recipe: Recipe):
 
 func _on_invincibility_timeout() -> void:
 	set_collision_layer_value(1, true)
-
 
 func _on_parry_timeout() -> void:
 	$ParryArea.set_collision_mask_value(1, false)
@@ -170,14 +164,12 @@ func begin_hitstop():
 func _on_hitstop_timeout() -> void:
 	call_deferred("set_process_mode", Node.PROCESS_MODE_INHERIT)
 
-
 func interact_with():
 	for area in $InteractionRange.get_overlapping_areas():
 		print(area)
 		if area.has_method("interact"):
 			area.interact(get_path())
 			return
-
 
 func _on_interaction_range_area_entered(area: Area2D) -> void:
 	if area.has_method("pickup_weapon"):
@@ -195,6 +187,12 @@ func switch_weapon(weapon : WeaponItem):
 	selected_weapon = weapon
 
 func heal(_hp: int):
-	hp += _hp
-	if hp > max_hp:
-		hp = max_hp
+	PlayerStats.hp += _hp
+	if PlayerStats.hp > PlayerStats.max_hp:
+		PlayerStats.hp = PlayerStats.max_hp
+
+func get_hp():
+	return PlayerStats.hp
+
+func get_max_hp():
+	return PlayerStats.max_hp

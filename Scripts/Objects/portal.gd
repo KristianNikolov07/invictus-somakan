@@ -12,8 +12,6 @@ func _ready() -> void:
 		room_type = RoomTypes.RoomTypes.SHOP
 
 func interact(player_path : String):
-	PlayerStats.max_hp = PlayerStats.get_player().max_hp
-	PlayerStats.hp = PlayerStats.get_player().hp
 	
 	if is_stage_transition:
 		RoomGen.fill_rooms(next_stage)
