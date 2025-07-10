@@ -1,25 +1,34 @@
 extends Node
 
 var items : Array[Item]
-var weapon1 : Item
-var weapon2 : Item
+var weapon1 : WeaponItem
+var weapon2 : WeaponItem
 var weapon1_aspects : Array[Item]
 var weapon2_aspects : Array[Item]
-var consumables : Array[Item]
+var consumables : Array[ConsumableItem]
 var unlocked_recipes : Array[Recipe]
-var unlocked_weapons : Array[Item]
+var unlocked_weapons : Array[WeaponItem]
 var scrap: int = 0
 var souls: int = 0
+var hp: int = 50
+var max_hp: int = 50
+var is_multiplayer = false
 
 var config = ConfigFile.new()
 
 func _ready() -> void:
-	unlocked_recipes.append(load("res://Recipes/fire_aspect.tres"))
+	#unlocked_recipes.append(load("res://Recipes/fire_aspect.tres"))
 	set_weapon1(load("res://Items/Weapons/Claws.tres"))
 	items.resize(5)
 	weapon1_aspects.resize(2)
 	weapon2_aspects.resize(2)
 	consumables.resize(2)
+	
+	add_item(load("res://Items/Consumables/leech.tres"))
+
+func get_player():
+	if !is_multiplayer:
+		return get_tree().get_first_node_in_group("Players")
 
 func add_item(_item: Item, amount:= 1):
 	for i in range(items.size()):
@@ -91,11 +100,14 @@ func unlock_all_blueprints():
 			if item.type == Item.Type.BLUEPRINT:
 				unlock_blueprint(item)
 
-func add_consumable(slot: int, consumable: Item, amount:= 1):
+func add_consumable(slot: int, consumable: ConsumableItem, amount:= 1):
 	if consumables[slot] == null:
 		consumables[slot] = consumable
 		consumables[slot].amount = amount
-	else:
+		var node = consumable.consumable_action.instantiate()
+		node.name = str(slot + 1)
+		get_player().get_node("Consumables").add_child(node)
+	elif consumables[slot].item_name == consumable.item_name:
 		consumables[slot].amount += amount
 
 func remove_consumable(slot: int, amount:= 1):
@@ -103,16 +115,18 @@ func remove_consumable(slot: int, amount:= 1):
 		consumables[slot].amount -= amount
 		if consumables[slot].amount <= 0:
 			consumables[slot] = null
+			if get_player().get_node("Consumables").get_node(str(slot + 1)) != null:
+				get_player().get_node("Consumables").get_node(str(slot + 1)).queue_free()
 
 func save_stats(saveNum: int):
-	config.load("user://save" + str(saveNum) + ".save")
+	config.load_encrypted_pass("user://save" + str(saveNum) + ".save", "cursedgodotisntrealhecanthurtyou")
 	config.set_value("save", "souls", souls)
 	config.set_value("save", "recipes", unlocked_recipes)
 	config.set_value("save", "weapons", unlocked_weapons)
-	config.save("user://save" + str(saveNum) + ".save")
+	config.save_encrypted_pass("user://save" + str(saveNum) + ".save", "cursedgodotisntrealhecanthurtyou")
 
 func load_stats(saveNum: int):
-	config.load("user://save" + str(saveNum) + ".save")
+	config.load_encrypted_pass("user://save" + str(saveNum) + ".save", "cursedgodotisntrealhecanthurtyou")
 	if config.has_section_key("save", "souls"):
 		souls = config.get_value("save", "souls")
 	if config.has_section_key("save", "recipes"):
@@ -122,7 +136,7 @@ func load_stats(saveNum: int):
 
 func read_save_file(saveNum: int):
 	if FileAccess.file_exists("user://save" + str(saveNum) + ".save"):
-		config.load("user://save" + str(saveNum) + ".save")
+		config.load_encrypted_pass("user://save" + str(saveNum) + ".save", "cursedgodotisntrealhecanthurtyou")
 		var stats = {
 			"souls" : int(config.get_value("save", "souls")),
 			"numWeapons" : config.get_value("save", "weapons").size(),

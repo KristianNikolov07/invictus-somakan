@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://bl8s6q1ny4lij"]
+
+[ext_resource type="Script" uid="uid://b16lw6a486lbd" path="res://Scripts/Consumables/healing_barrel.gd" id="1_3mfs7"]
+
+[node name="HealingBarrel" type="Node2D"]
+script = ExtResource("1_3mfs7")
+metadata/_custom_type_script = "uid://7o1mrcjkjr6j"

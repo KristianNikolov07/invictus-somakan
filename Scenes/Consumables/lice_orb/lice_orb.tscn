@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://dfogkdlvreyb4"]
+
+[ext_resource type="Script" uid="uid://du41ik07qn2dm" path="res://Scripts/Consumables/lice_orb/lice_orb.gd" id="1_few06"]
+
+[node name="LiceOrb" type="Node2D"]
+script = ExtResource("1_few06")
+metadata/_custom_type_script = "uid://7o1mrcjkjr6j"

@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://b8jhelo4ovpd1" path="res://Scripts/UI/Inventory/inventory.gd" id="1_1timk"]
 [ext_resource type="PackedScene" uid="uid://bdpc5j2mvdovi" path="res://Scenes/UI/Inventory/item_slot.tscn" id="2_hk6h4"]
 [ext_resource type="Resource" uid="uid://cm7g5mjsok0q5" path="res://Items/fire_orb.tres" id="3_xrb7y"]
-[ext_resource type="Resource" uid="uid://c2f4m1tu0vpb6" path="res://Items/ice_orb.tres" id="4_xlrl6"]
+[ext_resource type="Resource" uid="uid://c2f4m1tu0vpb6" path="res://Items/Consumables/lice_orb.tres" id="4_xlrl6"]
 [ext_resource type="PackedScene" uid="uid://4h170v4cwj67" path="res://Scenes/UI/Inventory/weapon_slot.tscn" id="5_74m3u"]
 [ext_resource type="PackedScene" uid="uid://bqdkhdq1k5t0j" path="res://Scenes/UI/Inventory/aspect_slot.tscn" id="6_64eau"]
 [ext_resource type="PackedScene" uid="uid://encvpxp077bd" path="res://Scenes/UI/Inventory/consumable_slot.tscn" id="7_buqpv"]

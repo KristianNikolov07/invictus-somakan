@@ -54,7 +54,7 @@ size = Vector2(120, 104)
 
 [node name="Player" type="CharacterBody2D" groups=["Players"]]
 z_index = 1
-collision_mask = 2
+collision_mask = 6
 script = ExtResource("1_cvnsp")
 
 [node name="PlayerSprite" type="Sprite2D" parent="."]
@@ -97,6 +97,8 @@ shape = SubResource("RectangleShape2D_6t5aa")
 debug_color = Color(0, 0.627881, 0.497695, 0.42)
 
 [node name="Weapons" type="Node2D" parent="."]
+
+[node name="Consumables" type="Node2D" parent="."]
 
 [node name="DashTimer" type="Timer" parent="."]
 wait_time = 0.2

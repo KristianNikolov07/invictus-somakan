@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://dmfcq2n85y1tb"]
+
+[ext_resource type="Script" uid="uid://bvya5t4eqynpp" path="res://Scripts/Consumables/karen_head.gd" id="1_nqpxv"]
+
+[node name="KarenHead" type="Node2D"]
+script = ExtResource("1_nqpxv")
+metadata/_custom_type_script = "uid://7o1mrcjkjr6j"

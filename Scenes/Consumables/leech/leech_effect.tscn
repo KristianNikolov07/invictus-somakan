@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://drfiy6kljmsx4"]
+
+[ext_resource type="Script" uid="uid://yw1t5mvmc1hc" path="res://Scripts/Consumables/leech/leech_effect.gd" id="1_1ue7b"]
+
+[node name="LeechEffect" type="Node"]
+script = ExtResource("1_1ue7b")
+
+[node name="DamageTimer" type="Timer" parent="."]
+wait_time = 0.5
+autostart = true
+
+[node name="EffectDuration" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="DamageTimer" to="." method="_on_damage_timer_timeout"]
+[connection signal="timeout" from="EffectDuration" to="." method="_on_effect_duration_timeout"]
