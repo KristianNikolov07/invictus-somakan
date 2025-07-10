@@ -12,6 +12,7 @@ collision_mask = 14
 script = ExtResource("1_ccesc")
 hp = 1000
 max_hp = 1000
+invincibility_length = 0.3
 can_be_knockedback = false
 is_moving = false
 metadata/_custom_type_script = "uid://b3sn8h0wc0ike"
