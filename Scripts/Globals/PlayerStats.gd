@@ -24,7 +24,7 @@ func _ready() -> void:
 	weapon2_aspects.resize(2)
 	consumables.resize(2)
 	
-	add_item(load("res://Items/Consumables/karen_head.tres"))
+	add_item(load("res://Items/Consumables/leech.tres"))
 
 func get_player():
 	if !is_multiplayer:
