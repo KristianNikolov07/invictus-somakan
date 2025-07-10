@@ -14,8 +14,7 @@ func _physics_process(delta: float) -> void:
 		duration += delta * charge_speed
 		if duration >= duration_limit:
 			start_damageing()
-		print(duration)
-		
+
 func _input(event: InputEvent) -> void:
 	if event.is_action_released("Attack"):
 		if is_charging:

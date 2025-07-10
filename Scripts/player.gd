@@ -3,7 +3,7 @@ extends CharacterBody2D
 const accel = 150
 const max_falling_speed = 1000
 const max_walking_speed = 400
-const jump_force = 900
+const jump_force = 1000
 const gravity = 40
 const jump_easing = -200
 const dash_speed = 3 * max_walking_speed
@@ -131,7 +131,6 @@ func damage_amount(amount: int, knockback) -> void:
 	$Parry.stop()
 	#if hp <= 0:
 		#get_tree().quit()
-	print(amount)
 	
 func damage(hitbox: Hitbox, knockback):
 	var is_crit = Utils.calculate_crit(hitbox.get_crit_chance())
@@ -166,7 +165,6 @@ func _on_hitstop_timeout() -> void:
 
 func interact_with():
 	for area in $InteractionRange.get_overlapping_areas():
-		print(area)
 		if area.has_method("interact"):
 			area.interact(get_path())
 			return
