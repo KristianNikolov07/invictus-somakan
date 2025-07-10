@@ -1,9 +1,10 @@
-[gd_scene load_steps=28 format=3 uid="uid://iviyiy2qotsm"]
+[gd_scene load_steps=29 format=3 uid="uid://iviyiy2qotsm"]
 
 [ext_resource type="Script" uid="uid://c80uwe0iluece" path="res://Temp/boss_room_1.gd" id="1_hnpp2"]
 [ext_resource type="Texture2D" uid="uid://c1lo75th7b88g" path="res://Textures/icon.svg" id="1_tjvdc"]
 [ext_resource type="PackedScene" uid="uid://be53snhq2r11i" path="res://Scenes/player.tscn" id="2_hnpp2"]
 [ext_resource type="Script" uid="uid://c0r8ikcl8si3u" path="res://Temp/boss.gd" id="4_w82vf"]
+[ext_resource type="PackedScene" uid="uid://bqo6qnqcmww4y" path="res://Scenes/UI/health_bar.tscn" id="5_sufch"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w82vf"]
 size = Vector2(22, 610)
@@ -418,9 +419,9 @@ zoom = Vector2(0.658, 0.658)
 [node name="Player" parent="." instance=ExtResource("2_hnpp2")]
 position = Vector2(739, 609)
 
-[node name="Boss" type="CharacterBody2D" parent="."]
+[node name="Boss" type="CharacterBody2D" parent="." groups=["Enemies"]]
 position = Vector2(968, 534)
-collision_layer = 130
+collision_layer = 131
 collision_mask = 0
 script = ExtResource("4_w82vf")
 speed = 60
@@ -466,6 +467,8 @@ wait_time = 3.0
 one_shot = true
 autostart = true
 ignore_time_scale = true
+
+[node name="HealthBar" parent="Boss" instance=ExtResource("5_sufch")]
 
 [node name="Attacks" type="AnimationPlayer" parent="Boss"]
 libraries = {

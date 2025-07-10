@@ -8,6 +8,7 @@ var target: CharacterBody2D = null
 const smash_damage := 30
 const smash_knockback := 1.75
 const shockwave := preload("res://Temp/shockwave.tscn")
+const rib := preload("res://Scenes/Projectiles/rib.tscn")
 
 
 func _ready() -> void:
@@ -26,7 +27,6 @@ func _physics_process(delta: float) -> void:
 		phase = 2
 	
 	if is_moving and not is_dashing:
-		print("yes")
 		global_position.x = move_toward(global_position.x, target.global_position.x, delta*speed)
 	elif is_moving:
 		global_position.x += delta*speed*direction*12
@@ -34,10 +34,7 @@ func _physics_process(delta: float) -> void:
 
 func _on_choose_attack_timeout() -> void:
 	set_is_moving(false)
-	if randi_range(1, 2) == 1:
-		attack_smash()
-	else:
-		attack_ram()
+	attack_riberang()
 
 
 func attack_smash() -> void:
@@ -65,8 +62,19 @@ func attack_ram() -> void:
 	coll_knockback = 1
 	$ChooseAttack.start(6)
 
+
 func attack_riberang() -> void:
-	pass
+	await get_tree().create_timer(0.5).timeout
+	var new_rib: Projectile = rib.instantiate()
+	new_rib.global_position = global_position
+	new_rib.rotation = global_position.direction_to(target.global_position).angle()
+	new_rib.shooter_vel = velocity
+	get_tree().current_scene.add_child(new_rib)
+	await new_rib.tree_exited
+	await get_tree().create_timer(0.5).timeout
+	set_is_moving(true)
+	$ChooseAttack.start(5)
+
 
 func attack_bone_rain() -> void:
 	pass
