@@ -19,7 +19,7 @@ func _ready() -> void:
 	#unlocked_recipes.append(load("res://Recipes/fire_aspect.tres"))
 	set_weapon1(load("res://Items/Weapons/Claws.tres"))
 	#weapon1_aspects[0] = load("res://Items/Aspects/Fire.tres")
-	weapon1_aspects[0] = load("res://Items/Aspects/Poison.tres")
+	weapon1_aspects[0] = load("res://Items/Aspects/Freeze.tres")
 
 func remove_item(item : Item, amount:= 1):
 	for i in range(items.size()):

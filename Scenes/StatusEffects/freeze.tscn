@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://wwsifbj1y0yt"]
+
+[ext_resource type="Script" uid="uid://dhnlq6j862fab" path="res://Scripts/StatusEffects/freeze.gd" id="1_8n7ra"]
+
+[node name="Freeze" type="Node2D"]
+script = ExtResource("1_8n7ra")
+tick_time = 4.983
+needed_stacks = 1
+damage_number_color = Color(0, 0.552941, 1, 1)
+metadata/_custom_type_script = "uid://yp3lw7og4m3t"

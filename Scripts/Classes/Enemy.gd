@@ -22,7 +22,6 @@ var attacking = false
 const dropped_item_scene = preload("res://Scenes/Objects/dropped_item.tscn")
 var active_status_effects: Array[StatusEffect] = []
 var damage_mult: float = 1
-var bleed_stacks: int = 0
 
 var invincibility_timer = Timer.new()
 
@@ -37,6 +36,17 @@ func _ready() -> void:
 func set_is_moving(_is_moving : bool):
 	is_moving = _is_moving
 
+func is_frozen():
+	var freeze_color = Color(0, 141, 255)
+		
+	for status in active_status_effects:
+		if status.damage_number_color.r == freeze_color.r\
+		 and status.damage_number_color.g == freeze_color.g\
+		 and status.damage_number_color.b == freeze_color.b:
+			return status
+	
+	return null
+
 func parry():
 	damage_amount(parry_damage, parry_knockback_mult)
 
@@ -49,6 +59,10 @@ func damage_amount(amount, knockback) -> void:
 		knockback = 0
 	velocity.x = 1600 * knockback
 	velocity.y = -500 * abs(knockback)
+	var frozen = is_frozen()
+	if frozen:
+		amount *= 2
+		frozen.end_effect()
 	hp -= amount
 	if hp <= 0:
 		drop_loot()
@@ -70,6 +84,10 @@ func damage(hitbox: Hitbox, knockback) -> void:
 	velocity.x = 1600 * knockback
 	velocity.y = -500 * abs(knockback)
 	var dam = hitbox.get_damage() * (hitbox.get_crit_mult() if is_crit else 1)
+	var frozen = is_frozen()
+	if frozen:
+		dam *= 2
+		frozen.end_effect()
 	Utils.summon_damage_number(self, dam, Color.ORANGE_RED if is_crit else Color.WHITE, damage_number_scale, damage_number_duration)
 	hp -= dam
 	if hp <= 0:
@@ -94,7 +112,13 @@ func remove_status_effect(effect: StatusEffect):
 	
 	
 func status_damage(damage: int, number_color: Color, crit_chance: float = 0):
-	damage *= 2 if crit_chance >= randf_range(0, 1) else 1
+		
+	var frozen = is_frozen()
+	if frozen:
+		damage *= 2
+		frozen.end_effect()
+			
+	damage *= 2 if Utils.calculate_crit(crit_chance) else 1
 	Utils.summon_damage_number(self, damage, number_color, damage_number_scale / 1.3, damage_number_duration / 1.3)
 	hp -= damage
 	if hp <= 0:

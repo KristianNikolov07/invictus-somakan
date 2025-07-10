@@ -25,6 +25,8 @@ func add_stack(amount:= 1):
 	stacks += amount
 	if stacks >= needed_stacks:
 		stacks = 0
+		if remaining_timer.is_stopped():
+			start_effect()
 		if not remaining_timer.is_stopped():
 			remaining_timer.stop()
 		remaining_timer.start()
@@ -32,12 +34,18 @@ func add_stack(amount:= 1):
 			tick_timer.stop()
 		tick_timer.start()
 
+func start_effect():
+	pass
+
 func act():
 	pass
 
 func end_effect():
 	get_parent().remove_status_effect(self)
 	queue_free()
+	
+func on_hit(hitbox: Hitbox, damage: int, knockback):
+	pass
 
 #func _on_tick_timer_timeout():
 	#act()
