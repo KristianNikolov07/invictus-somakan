@@ -21,6 +21,8 @@ var is_moving = true
 var attacking = false
 @export var loot : Item
 const dropped_item_scene = preload("res://Scenes/Objects/dropped_item.tscn")
+var knockback_velocity: Vector2 = Vector2.ZERO
+var knockback_decay: float = 800.0 
 
 var invincibility_timer = Timer.new()
 

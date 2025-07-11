@@ -26,7 +26,7 @@ func _physics_process(delta: float) -> void:
 		
 		if direction and (target.global_position - global_position).abs().x > FOLLOW_DEADZONE and is_moving and can_move:
 			velocity.x = direction * speed
-		elif is_moving and can_move:
+		else:
 			velocity.x = move_toward(velocity.x, 0, speed)
 	
 	move_and_slide()
