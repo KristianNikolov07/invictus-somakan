@@ -12,9 +12,7 @@ radius = 35.0
 height = 126.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_50btn"]
-
 size = Vector2(849, 468)
-
 
 [node name="Crossbower" type="CharacterBody2D" groups=["Enemies"]]
 scale = Vector2(0.4, 0.4)
@@ -48,7 +46,6 @@ position = Vector2(0, 104)
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackRange"]
-
 position = Vector2(0.5, -55)
 shape = SubResource("RectangleShape2D_50btn")
 
