@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://b41h8jsq5shoy"]
+
+[ext_resource type="Script" uid="uid://2vloh46uri7n" path="res://Scripts/StatusEffects/frostburn.gd" id="1_ci7im"]
+
+[node name="Frostburn" type="Node2D"]
+script = ExtResource("1_ci7im")
+status_name = "Frostburn"
+damage_number_color = Color(0, 0, 1, 1)
+metadata/_custom_type_script = "uid://yp3lw7og4m3t"

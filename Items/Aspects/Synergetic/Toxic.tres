@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="AspectItem" load_steps=3 format=3 uid="uid://deu76k630jeqk"]
+
+[ext_resource type="Script" uid="uid://bnm1nvl5v4528" path="res://Scripts/Classes/AspectItem.gd" id="1_1xynx"]
+[ext_resource type="PackedScene" uid="uid://bg8im0c4xvd0d" path="res://Scenes/StatusEffects/toxic.tscn" id="2_ybomk"]
+
+[resource]
+script = ExtResource("1_1xynx")
+status_effect = ExtResource("2_ybomk")
+aspect_name = "Toxic"
+crit_chance_mult = 1.0
+crit_damage_mult = 1.0
+item_name = "Toxic Aspect"
+type = 0
+price = 0
+metadata/_custom_type_script = "uid://bnm1nvl5v4528"

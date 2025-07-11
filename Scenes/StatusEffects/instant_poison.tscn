@@ -6,5 +6,6 @@
 script = ExtResource("1_qlo1m")
 damage = 3
 needed_stacks = 1
+status_name = "InstantPoison"
 damage_number_color = Color(0.562884, 0.00407379, 0.985392, 1)
 metadata/_custom_type_script = "uid://yp3lw7og4m3t"

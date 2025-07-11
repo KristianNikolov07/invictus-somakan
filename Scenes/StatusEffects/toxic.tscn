@@ -6,5 +6,6 @@
 script = ExtResource("1_0gy4n")
 damage = 3
 tick_time = 0.6
+status_name = "Toxic"
 damage_number_color = Color(0.390903, 0.00176717, 0.84677, 1)
 metadata/_custom_type_script = "uid://yp3lw7og4m3t"

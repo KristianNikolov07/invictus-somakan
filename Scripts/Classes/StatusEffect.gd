@@ -6,6 +6,7 @@ class_name StatusEffect
 @export var apply_time: float = 5
 @export var needed_stacks: int = 3
 @export var crit_chance: float = 0.0
+@export var status_name: String
 var remaining_timer: Timer = Timer.new()
 var tick_timer: Timer = Timer.new()
 var stacks: int = 0
@@ -44,7 +45,7 @@ func end_effect():
 	get_parent().remove_status_effect(self)
 	queue_free()
 	
-func on_hit(hitbox: Hitbox, damage: int, knockback):
+func on_hit():
 	pass
 
 #func _on_tick_timer_timeout():

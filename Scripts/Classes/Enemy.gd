@@ -25,8 +25,6 @@ var damage_mult: float = 1
 
 var invincibility_timer = Timer.new()
 
-var fire_status_scene = preload("res://Scenes/StatusEffects/fire.tscn")
-
 func _ready() -> void:
 	invincibility_timer.wait_time = invincibility_length
 	invincibility_timer.timeout.connect(_on_invincibility_timer_timeout)
@@ -37,12 +35,37 @@ func set_is_moving(_is_moving : bool):
 	is_moving = _is_moving
 
 func is_frozen():
-	var freeze_color = Color(0, 141, 255)
-		
 	for status in active_status_effects:
-		if status.damage_number_color.r == freeze_color.r\
-		 and status.damage_number_color.g == freeze_color.g\
-		 and status.damage_number_color.b == freeze_color.b:
+		print(status.status_name)
+		if status.status_name == "Freeze":
+			if not status.remaining_timer.is_stopped():
+				return status
+				
+	return null
+
+func is_frostbitten():
+	for status in active_status_effects:
+		print(status.status_name)
+		if status.status_name == "Frostbite":
+			if not status.remaining_timer.is_stopped():
+				return status
+				
+	return null
+
+func is_blizzard():
+	for status in active_status_effects:
+		print(status.status_name)
+		if status.status_name == "Blizzard":
+			if not status.remaining_timer.is_stopped():
+				return status
+				
+	return null
+
+func is_bleeding():
+	var bleed_color = Color.DARK_RED
+	
+	for status in active_status_effects:
+		if status.status_name == "Bleed":
 			return status
 	
 	return null
@@ -63,6 +86,14 @@ func damage_amount(amount, knockback) -> void:
 	if frozen:
 		amount *= 2
 		frozen.end_effect()
+	var frostbitten = is_frostbitten()
+	if frostbitten:
+		amount *= 2
+		frostbitten.end_effect()
+	var blizzard = is_blizzard()
+	if blizzard:
+		amount *= 3
+		blizzard.end_effect()
 	hp -= amount
 	if hp <= 0:
 		drop_loot()
@@ -88,6 +119,18 @@ func damage(hitbox: Hitbox, knockback) -> void:
 	if frozen:
 		dam *= 2
 		frozen.end_effect()
+	var frostbitten = is_frostbitten()
+	if frostbitten:
+		dam *= 2
+		frostbitten.end_effect()
+	var blizzard = is_blizzard()
+	if blizzard:
+		dam *= 3
+		blizzard.end_effect()
+	if is_crit:
+		var bleeding = is_bleeding()
+		if bleeding:
+			bleeding.end_effect()
 	Utils.summon_damage_number(self, dam, Color.ORANGE_RED if is_crit else Color.WHITE, damage_number_scale, damage_number_duration)
 	hp -= dam
 	if hp <= 0:
@@ -112,13 +155,21 @@ func remove_status_effect(effect: StatusEffect):
 	
 	
 func status_damage(damage: int, number_color: Color, crit_chance: float = 0):
-		
 	var frozen = is_frozen()
 	if frozen:
-		damage *= 2
 		frozen.end_effect()
-			
-	damage *= 2 if Utils.calculate_crit(crit_chance) else 1
+	var frostbitten = is_frostbitten()
+	if frostbitten:
+		frostbitten.end_effect()
+	var blizzard = is_blizzard()
+	if blizzard:
+		blizzard.end_effect()
+	var is_crit = Utils.calculate_crit(crit_chance)
+	if is_crit:
+		damage *= 2
+		var bleeding = is_bleeding()
+		if bleeding:
+			bleeding.end_effect()
 	Utils.summon_damage_number(self, damage, number_color, damage_number_scale / 1.3, damage_number_duration / 1.3)
 	hp -= damage
 	if hp <= 0:

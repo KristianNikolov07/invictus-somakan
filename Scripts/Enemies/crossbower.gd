@@ -21,13 +21,13 @@ func calculate_direction(body):
 
 
 func _on_collision_damage_body_entered(body: Node2D) -> void:
-	if body.is_in_group("Players"):
+	if body.is_in_group("Players") and not is_frozen() and not is_frostbitten() and not is_blizzard():
 		var knockback_dir = calculate_direction(body)
 		if not attacking:
 			body.damage(coll_damage, coll_knockback * knockback_dir)
 
 func _on_attack_range_body_entered(body: Node2D) -> void:
-	if body.is_in_group("Players"):
+	if body.is_in_group("Players") and not is_frozen() and not is_frostbitten() and not is_blizzard():
 		set_is_moving(false)
 		if $AttackCharge.is_stopped() and $AttackCool.is_stopped():
 			print("ready")
@@ -42,8 +42,9 @@ func _on_attack_range_body_exited(body: Node2D) -> void:
 
 
 func _on_attack_charge_timeout() -> void:
-	fire_arrow()
-	$AttackCool.start()
+	if not is_frozen() and not is_frostbitten() and not is_blizzard():
+		fire_arrow()
+		$AttackCool.start()
 
 func _on_attack_cool_timeout() -> void:
 	if target in $AttackRange.get_overlapping_bodies():

@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="AspectItem" load_steps=3 format=3 uid="uid://ja2op0qe7jju"]
+
+[ext_resource type="Script" uid="uid://bnm1nvl5v4528" path="res://Scripts/Classes/AspectItem.gd" id="1_prmfm"]
+[ext_resource type="PackedScene" uid="uid://cm2dervykj58w" path="res://Scenes/StatusEffects/wither.tscn" id="2_fk1sf"]
+
+[resource]
+script = ExtResource("1_prmfm")
+status_effect = ExtResource("2_fk1sf")
+aspect_name = "Wither"
+crit_chance_mult = 1.0
+crit_damage_mult = 1.0
+item_name = "Wither Aspect"
+type = 0
+price = 0
+metadata/_custom_type_script = "uid://bnm1nvl5v4528"

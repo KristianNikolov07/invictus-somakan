@@ -11,13 +11,13 @@ func calculate_direction(body):
 	return knockback_dir
 
 func _on_collision_damage_body_entered(body: Node2D) -> void:
-	if body.is_in_group("Players"):
+	if body.is_in_group("Players") and not is_frozen() and not is_frostbitten() and not is_blizzard():
 		var knockback_dir = calculate_direction(body)
 		if not attacking:
 			body.damage_amount(coll_damage, coll_knockback * knockback_dir)
 
 func _on_attack_range_body_entered(body: Node2D) -> void:
-	if body.is_in_group("Players") and not (is_frozen() != null):
+	if body.is_in_group("Players") and not is_frozen() and not is_frostbitten() and not is_blizzard():
 		$AttackRange.set_collision_mask_value(1, false)
 		$AttackCharge.start()
 		set_is_moving(false)
@@ -27,15 +27,17 @@ func _on_attack_range_body_entered(body: Node2D) -> void:
 			direction = 1
 
 func _on_attack_charge_timeout() -> void:
-	velocity.x = 2300 * direction
-	attacking = true
-	$Stagger.start()
-	$Attack.start()
-	$AttackHitbox.set_collision_mask_value(1, true)
+	if not is_frozen() and not is_frostbitten() and not is_blizzard():
+		velocity.x = 2300 * direction
+		attacking = true
+		$Stagger.start()
+		$Attack.start()
+		$AttackHitbox.set_collision_mask_value(1, true)
 
 func _on_stagger_timeout() -> void:
 	$AttackRange.set_collision_mask_value(1, true)
-	set_is_moving(true)
+	if not is_frozen() and not is_frostbitten() and not is_blizzard():
+		set_is_moving(true)
 
 func _on_attack_timeout() -> void:
 	$AttackHitbox.set_collision_mask_value(1, false)

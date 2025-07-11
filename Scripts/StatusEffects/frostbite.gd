@@ -5,6 +5,22 @@ var old_coll_damage
 var old_knockback_strength
 var old_coll_knockback
 
+func add_stack(amount:= 1):
+	if randi_range(0, 2) == 2:
+		stacks = needed_stacks
+	else:
+		stacks += amount
+	if stacks >= needed_stacks:
+		stacks = 0
+		if remaining_timer.is_stopped():
+			start_effect()
+		if not remaining_timer.is_stopped():
+			remaining_timer.stop()
+		remaining_timer.start()
+		if not tick_timer.is_stopped():
+			tick_timer.stop()
+		tick_timer.start()
+
 func act():
 	get_parent().status_damage(damage, damage_number_color)
 	end_effect()

@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="AspectItem" load_steps=3 format=3 uid="uid://bfj5j3u2shx72"]
+
+[ext_resource type="Script" uid="uid://bnm1nvl5v4528" path="res://Scripts/Classes/AspectItem.gd" id="1_kj210"]
+[ext_resource type="PackedScene" uid="uid://c8kc2d8qj82ri" path="res://Scenes/StatusEffects/instant_poison.tscn" id="2_pc7cd"]
+
+[resource]
+script = ExtResource("1_kj210")
+status_effect = ExtResource("2_pc7cd")
+aspect_name = "Instant Poison"
+crit_chance_mult = 1.0
+crit_damage_mult = 1.0
+item_name = "Instant Poison Aspect"
+type = 0
+price = 0
+metadata/_custom_type_script = "uid://bnm1nvl5v4528"
