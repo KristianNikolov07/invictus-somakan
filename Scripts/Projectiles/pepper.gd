@@ -53,3 +53,7 @@ func _on_area_entered(area: Area2D) -> void:
 		var ex = Utils.summon_explosion(global_position, 3, explosion_damage, knockback, 1, true, true)
 		get_tree().current_scene.call_deferred("add_child", ex)
 		queue_free()
+
+
+func _on_death_timer_timeout() -> void:
+	queue_free()

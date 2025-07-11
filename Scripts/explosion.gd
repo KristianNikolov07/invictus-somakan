@@ -9,6 +9,7 @@ var can_hit_players := false
 
 
 func _ready() -> void:
+	$AnimationPlayer.speed_scale = speed_scale
 	$AnimationPlayer.play("explode")
 
 
