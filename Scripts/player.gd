@@ -20,9 +20,11 @@ var selected_weapon
 
 func _ready() -> void:
 	var node1 = PlayerStats.weapon1.weapon_action_scene.instantiate()
+	node1.weapon_name = PlayerStats.weapon1.item_name
 	$Weapons.add_child(node1)
 	if PlayerStats.weapon2 != null:
 		var node2 = PlayerStats.weapon2.weapon_action_scene.instantiate()
+		node2.weapon_name = PlayerStats.weapon2.item_name
 		$Weapons.add_child(node2)
 		node2.process_mode = Node.PROCESS_MODE_DISABLED
 		node2.hide()

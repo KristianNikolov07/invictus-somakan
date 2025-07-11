@@ -34,7 +34,6 @@ offset_bottom = -85.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackHitbox"]
 position = Vector2(-7.15256e-06, -7.15256e-06)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_irrbb")
 
 [connection signal="body_entered" from="AttackHitbox" to="." method="_on_attack_hitbox_body_entered"]
