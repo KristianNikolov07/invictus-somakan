@@ -9,6 +9,7 @@ func fire_arrow() -> void:
 	arrow.global_position = global_position
 	arrow.rotation = global_position.direction_to(target.global_position).angle()
 	arrow.shooter_vel = velocity
+	arrow.can_hit_enemies = false
 	get_tree().current_scene.add_child(arrow)
 
 func calculate_direction(body):

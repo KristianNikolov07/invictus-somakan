@@ -156,6 +156,24 @@ func damage(hitbox: Hitbox, knockback):
 		dead.emit()
 		queue_free()
 
+func damage_amount(amount: int, knockback) -> void:
+	Utils.summon_damage_number(self, amount, Color.WHITE, damage_number_scale, damage_number_duration)
+	set_collision_layer_value(1, false)
+	invincibility_timer.start()
+	if !can_be_knockedback:
+		knockback = 0
+	velocity.x = 1600 * knockback
+	velocity.y = -500 * abs(knockback)
+	hp -= amount
+	if hp <= max_hp/2 and phase < 2:
+		phase = 2
+		speed = 100
+		get_node("../BossPushers/AnimationPlayer").play("phase")
+	elif hp <= 0:
+		drop_loot()
+		dead.emit()
+		queue_free()
+
 
 func _on_collision_damage_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Players"):

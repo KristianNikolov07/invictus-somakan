@@ -3,7 +3,7 @@ class_name Projectile
 
 
 @export var speed = 400
-@export var damage = 10
+@export var damage: int = 10
 @export var knockback: float = 1
 @export var can_be_parried := true
 @export var can_hit_enemies := false

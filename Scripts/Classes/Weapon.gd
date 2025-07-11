@@ -8,7 +8,7 @@ var weapon_name: String
 @export var crit_mult = 2
 @export var knockback_amount = 1
 
-func hit(direction: int):
+func hit(_direction: int):
 	pass
 
 func _ready() -> void:

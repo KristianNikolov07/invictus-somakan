@@ -15,7 +15,7 @@ func _input(event: InputEvent) -> void:
 		$Coins.value -= 250
 
 
-func hit(direction):
+func hit(_direction):
 	if $ShotCool.is_stopped():
 		var new_bullet: Projectile = bullet.instantiate()
 		new_bullet.global_position = player.global_position
