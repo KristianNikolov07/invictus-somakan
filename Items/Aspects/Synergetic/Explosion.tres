@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="AspectItem" load_steps=2 format=3 uid="uid://cm4qn85lfefqf"]
+
+[ext_resource type="Script" uid="uid://bnm1nvl5v4528" path="res://Scripts/Classes/AspectItem.gd" id="1_8qwo8"]
+
+[resource]
+script = ExtResource("1_8qwo8")
+aspect_name = "Explosion"
+crit_chance_mult = 1.0
+crit_damage_mult = 1.0
+item_name = ""
+type = 0
+price = 0
+metadata/_custom_type_script = "uid://bnm1nvl5v4528"
