@@ -1,0 +1,55 @@
+extends Projectile
+
+var cooking_phase = 1
+var explosion_damage
+
+func _ready() -> void:
+	var rand = randf_range(0, 359)
+	$Sprite2D.rotation_degrees = rand
+	$CollisionShape2D.rotation_degrees = rand + 90
+	
+	match cooking_phase:
+		2:
+			speed = 400
+			damage = 40
+			knockback = 0.8
+			$Sprite2D.texture = load("res://Textures/Projectiles/yellow_pepper.png")
+		3:
+			speed = 800
+			damage = 80
+			knockback = 1.2
+			explosion_damage = 25
+			$Sprite2D.texture = load("res://Textures/Projectiles/red_pepper.png")
+		4:
+			speed = 120
+			damage = 150
+			knockback = 1.8
+			explosion_damage = 60
+			$Sprite2D.texture = load("res://Textures/Projectiles/black_pepper.png")
+			$CollisionShape2D.scale = Vector2(3.2, 3.2)
+			$Sprite2D.scale = Vector2(3.2, 3.2)
+
+
+func _physics_process(delta: float) -> void:
+	super._physics_process(delta)
+	$Sprite2D.rotation_degrees += 3
+	$CollisionShape2D.rotation_degrees += 3
+
+
+func _on_body_entered(body: Node2D) -> void:
+	if cooking_phase > 2 and not body.is_in_group("Players"):
+		if body.has_method("damage_amount"):
+			body.damage_amount(damage, knockback * calculate_direction(body))
+		var ex = Utils.summon_explosion(global_position, 3 if cooking_phase == 4 else 1.5, explosion_damage, knockback, 1.2, true if cooking_phase == 4 else false, true)
+		get_tree().current_scene.call_deferred("add_child", ex)
+		queue_free()
+	elif body.is_in_group("Enemies"):
+		body.damage_amount(damage, knockback * calculate_direction(body))
+		queue_free()
+
+
+func _on_area_entered(area: Area2D) -> void:
+	if cooking_phase == 4 and area.has_method("calculate_direction"):
+		var ex = Utils.summon_explosion(global_position, 3, explosion_damage, knockback, 1, true, true)
+		get_tree().current_scene.call_deferred("add_child", ex)
+		queue_free()

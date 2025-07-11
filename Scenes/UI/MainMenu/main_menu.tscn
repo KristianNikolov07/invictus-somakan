@@ -83,7 +83,6 @@ theme_override_font_sizes/font_size = 40
 text = "←"
 
 [node name="SaveInfo" type="HBoxContainer" parent="Play"]
-visible = false
 offset_left = -576.0
 offset_top = 156.0
 offset_right = 574.0

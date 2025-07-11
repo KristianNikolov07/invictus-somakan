@@ -35,7 +35,7 @@ func _on_body_entered(body: Node2D) -> void:
 		body.damage_amount(damage, knockback)
 		queue_free()
 	#elif not body.is_in_group("Players") and not body.is_in_group("Enemies"):
-	#	queue_free()
+		#queue_free()
 
 
 func _on_hitstop_timeout() -> void:
