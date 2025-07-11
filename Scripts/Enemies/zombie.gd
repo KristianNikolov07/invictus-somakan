@@ -34,6 +34,7 @@ func _on_attack_charge_timeout() -> void:
 		$Attack.start()
 		$AttackHitbox.set_collision_mask_value(1, true)
 
+
 func _on_stagger_timeout() -> void:
 	$AttackRange.set_collision_mask_value(1, true)
 	if not is_frozen() and not is_frostbitten() and not is_blizzard():

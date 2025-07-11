@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://iviyiy2qotsm"]
+[gd_scene load_steps=37 format=3 uid="uid://bxomot65ytf5n"]
 
 [ext_resource type="Script" uid="uid://c80uwe0iluece" path="res://Scripts/Rooms/boss_room_1.gd" id="1_hnpp2"]
 [ext_resource type="Texture2D" uid="uid://c1lo75th7b88g" path="res://Textures/icon.svg" id="1_tjvdc"]

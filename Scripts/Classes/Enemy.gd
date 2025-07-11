@@ -16,12 +16,15 @@ class_name Enemy
 @export var damage_number_duration: float = 2
 const JUMP_VELOCITY = -400.0
 const FOLLOW_DEADZONE = 1
-@export var is_moving = true
+var is_moving = true
+@export var can_move = true
 var attacking = false
 @export var loot : Item
 const dropped_item_scene = preload("res://Scenes/Objects/dropped_item.tscn")
 var active_status_effects: Array[StatusEffect] = []
 var damage_mult: float = 1
+var knockback_velocity: Vector2 = Vector2.ZERO
+var knockback_decay: float = 800.0 
 
 var invincibility_timer = Timer.new()
 
@@ -112,8 +115,8 @@ func damage(hitbox: Hitbox, knockback) -> void:
 	invincibility_timer.start()
 	if !can_be_knockedback:
 		knockback = 0
-	velocity.x = 1600 * knockback
-	velocity.y = -500 * abs(knockback)
+	velocity.x = 1100 * knockback
+	velocity.y = -200 * abs(knockback)
 	var dam = hitbox.get_damage() * (hitbox.get_crit_mult() if is_crit else 1)
 	var frozen = is_frozen()
 	if frozen:

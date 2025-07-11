@@ -24,13 +24,12 @@ func _on_collision_damage_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Players") and not is_frozen() and not is_frostbitten() and not is_blizzard():
 		var knockback_dir = calculate_direction(body)
 		if not attacking:
-			body.damage(coll_damage, coll_knockback * knockback_dir)
+			body.damage_amount(coll_damage, coll_knockback * knockback_dir)
 
 func _on_attack_range_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Players") and not is_frozen() and not is_frostbitten() and not is_blizzard():
 		set_is_moving(false)
 		if $AttackCharge.is_stopped() and $AttackCool.is_stopped():
-			print("ready")
 			$AttackCharge.start()
 
 func _on_attack_range_body_exited(body: Node2D) -> void:

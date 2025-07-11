@@ -21,9 +21,11 @@ size = Vector2(232, 112)
 size = Vector2(55, 77)
 
 [node name="Zombie" type="CharacterBody2D" groups=["Enemies"]]
+scale = Vector2(0.4, 0.4)
 collision_mask = 6
 script = ExtResource("1_h3kin")
-knockback_strength = 1.8
+speed = 100
+knockback_strength = 1.0
 damage_number_scale = 1.5
 damage_number_duration = 1.5
 loot = ExtResource("2_o6bce")

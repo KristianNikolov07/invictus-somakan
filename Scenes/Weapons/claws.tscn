@@ -108,8 +108,9 @@ libraries = {
 }
 
 [node name="Hitbox" type="Area2D" parent="."]
-position = Vector2(-128, -64)
+position = Vector2(128, -64)
 collision_layer = 4
+monitoring = false
 script = ExtResource("2_43mfh")
 metadata/_custom_type_script = "uid://drqow7af66ehm"
 
