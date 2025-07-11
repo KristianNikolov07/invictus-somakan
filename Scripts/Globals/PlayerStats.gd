@@ -18,7 +18,8 @@ var config = ConfigFile.new()
 
 func _ready() -> void:
 	#unlocked_recipes.append(load("res://Recipes/fire_aspect.tres"))
-	set_weapon1(load("res://Items/Weapons/Claws.tres"))
+	set_weapon1(load("res://Items/Weapons/Marksman.tres"))
+	set_weapon2(load("res://Items/Weapons/Bow.tres"))
 	items.resize(5)
 	weapon1_aspects.resize(2)
 	weapon2_aspects.resize(2)

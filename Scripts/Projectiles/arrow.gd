@@ -34,6 +34,8 @@ func _on_body_entered(body: Node2D) -> void:
 	elif body.is_in_group("Enemies") and can_hit_enemies:
 		body.damage_amount(damage, knockback)
 		queue_free()
+	elif not body.is_in_group("Players"):
+		queue_free()
 
 
 func _on_hitstop_timeout() -> void:

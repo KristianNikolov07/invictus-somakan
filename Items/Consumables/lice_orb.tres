@@ -7,7 +7,7 @@
 [resource]
 script = ExtResource("2_8bdmt")
 consumable_action = ExtResource("1_8bdmt")
-item_name = "Ice Orb"
+item_name = "Lice Orb"
 icon = ExtResource("1_mhpur")
 type = 3
 price = 500
