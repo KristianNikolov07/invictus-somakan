@@ -5,7 +5,7 @@
 [sub_resource type="SphereMesh" id="SphereMesh_dsib4"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dsib4"]
-radius = 8.0
+radius = 12.0
 
 [node name="Coin" type="Area2D" groups=["Coins"]]
 collision_layer = 0
