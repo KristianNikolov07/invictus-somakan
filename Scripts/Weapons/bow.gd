@@ -8,17 +8,17 @@ var arrow = preload("res://Scenes/Projectiles/arrow.tscn")
 var can_be_shot = true
 
 
-func hit(direction: int):
+func hit(_direction: int):
 	if loaded_arrows > 0 and can_be_shot:
 		var player = get_node("../../")
-		var arrow: Projectile = arrow.instantiate()
-		arrow.can_hit_enemies = true
-		arrow.can_hit_players = false
-		arrow.damage = arrow_damage
-		arrow.global_position = global_position
-		arrow.rotation = global_position.direction_to(get_global_mouse_position()).angle()
-		arrow.shooter_vel = player.velocity
-		get_tree().current_scene.add_child(arrow)
+		var new_arrow: Projectile = arrow.instantiate()
+		new_arrow.can_hit_enemies = true
+		new_arrow.can_hit_players = false
+		new_arrow.damage = arrow_damage
+		new_arrow.global_position = global_position
+		new_arrow.rotation = global_position.direction_to(get_global_mouse_position()).angle()
+		new_arrow.shooter_vel = player.velocity
+		get_tree().current_scene.add_child(new_arrow)
 		loaded_arrows -= 1
 		update_timer()
 		$Cooldown.start()

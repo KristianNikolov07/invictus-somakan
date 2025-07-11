@@ -8,6 +8,10 @@ var can_hit_enemies := true
 var can_hit_players := false
 
 
+func _ready() -> void:
+	$AnimationPlayer.play("explode")
+
+
 func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Players") and can_hit_players:
 		body.damage_amount(damage, knockback*calculate_direction(body))
@@ -30,4 +34,5 @@ func calculate_direction(body):
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "explode":
+		await $AudioStreamPlayer2D.finished
 		queue_free()

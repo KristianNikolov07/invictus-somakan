@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://biew3aqmuptpn"]
+
+[ext_resource type="Script" uid="uid://7swuikbw1nfn" path="res://Scripts/Projectiles/pepper.gd" id="1_rrh7v"]
+[ext_resource type="Texture2D" uid="uid://dmgvoriv50d0s" path="res://Textures/Projectiles/green_pepper.png" id="2_p7fxp"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_p7fxp"]
+radius = 6.0
+height = 22.0
+
+[node name="Pepper" type="Area2D"]
+collision_layer = 0
+collision_mask = 15
+script = ExtResource("1_rrh7v")
+speed = 300
+knockback = 0.2
+can_hit_players = false
+metadata/_custom_type_script = "uid://dbtugjkys1kpn"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(2, 2)
+texture = ExtResource("2_p7fxp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+scale = Vector2(2, 2)
+shape = SubResource("CapsuleShape2D_p7fxp")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
