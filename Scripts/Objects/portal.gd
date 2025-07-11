@@ -11,7 +11,7 @@ func _ready() -> void:
 	if RoomGen.current_room == 5:
 		room_type = RoomTypes.RoomTypes.SHOP
 
-func interact(player_path : String):
+func interact(_player_path : String):
 	
 	if is_stage_transition:
 		RoomGen.fill_rooms(next_stage)

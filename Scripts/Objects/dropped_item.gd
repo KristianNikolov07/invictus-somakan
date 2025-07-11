@@ -7,8 +7,7 @@ func pickup_weapon():
 		PlayerStats.unlock_weapon(item)
 		get_parent().queue_free()
 
-func interact(player_path : String):
-	var player = get_node(player_path)
+func interact(_player_path : String):
 	if PlayerStats.add_item(item):
 		get_parent().queue_free()
 

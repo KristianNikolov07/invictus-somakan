@@ -28,7 +28,7 @@ func _ready() -> void:
 	node2.hide()
 
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if $DashTimer.is_stopped():
 		process_movement()
 	if is_on_floor():
@@ -147,9 +147,9 @@ func damage(hitbox: Hitbox, knockback):
 	$Parry.stop()
 	velocity.x = 1600 * knockback
 	velocity.y = -500 * abs(knockback)
-	var damage = hitbox.get_damage() * (hitbox.get_crit_mult() if is_crit else 1)
-	Utils.summon_damage_number(self, damage, Color.RED, damage_number_scale, damage_number_duration)
-	PlayerStats.hp -= damage
+	var damage_num = hitbox.get_damage() * (hitbox.get_crit_mult() if is_crit else 1)
+	Utils.summon_damage_number(self, damage_num, Color.RED, damage_number_scale, damage_number_duration)
+	PlayerStats.hp -= damage_num
 	if PlayerStats.hp <= 0:
 		queue_free()
 
