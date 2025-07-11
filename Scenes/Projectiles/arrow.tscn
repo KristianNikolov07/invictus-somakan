@@ -7,10 +7,12 @@
 size = Vector2(34, 12)
 
 [node name="Arrow" type="Area2D"]
+scale = Vector2(0.4, 0.4)
 collision_layer = 4
 script = ExtResource("1_1fs1j")
 speed = 500
 damage = 15
+knockback = 0.7
 metadata/_custom_type_script = "uid://dbtugjkys1kpn"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
