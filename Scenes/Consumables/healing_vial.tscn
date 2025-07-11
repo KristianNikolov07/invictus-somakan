@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://dfxr0etm4kq32"]
+
+[ext_resource type="Script" uid="uid://dg4lh0wmcwbya" path="res://Scripts/Consumables/healing_vial.gd" id="1_0w6ym"]
+
+[node name="HealingVial" type="Node2D"]
+script = ExtResource("1_0w6ym")
+metadata/_custom_type_script = "uid://7o1mrcjkjr6j"

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://ctvhr04onudmb" path="res://Scripts/Enemies/zombie.gd" id="1_h3kin"]
 [ext_resource type="Texture2D" uid="uid://c1lo75th7b88g" path="res://Textures/icon.svg" id="2_n70j1"]
-[ext_resource type="Resource" uid="uid://cu00ittwd3mke" path="res://Items/lice_orb.tres" id="2_o6bce"]
+[ext_resource type="Resource" uid="uid://c2f4m1tu0vpb6" path="res://Items/Consumables/lice_orb.tres" id="2_o6bce"]
 [ext_resource type="Script" uid="uid://drqow7af66ehm" path="res://Scripts/Classes/Hitbox.gd" id="3_iyl7r"]
 [ext_resource type="PackedScene" uid="uid://bqo6qnqcmww4y" path="res://Scenes/UI/health_bar.tscn" id="4_vy0uf"]
 
@@ -21,7 +21,7 @@ size = Vector2(232, 112)
 size = Vector2(55, 77)
 
 [node name="Zombie" type="CharacterBody2D" groups=["Enemies"]]
-collision_mask = 2
+collision_mask = 6
 script = ExtResource("1_h3kin")
 knockback_strength = 1.8
 damage_number_scale = 1.5

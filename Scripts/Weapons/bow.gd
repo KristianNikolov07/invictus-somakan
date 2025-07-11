@@ -7,8 +7,6 @@ var arrow = preload("res://Scenes/Projectiles/arrow.tscn")
 
 var can_be_shot = true
 
-func _process(delta: float) -> void:
-	print($ReloadTimer.time_left)
 
 func hit(direction: int):
 	if loaded_arrows > 0 and can_be_shot:
@@ -31,9 +29,9 @@ func update_timer():
 		$ReloadTimer.wait_time = reload_time_per_arrow
 		$ReloadTimer.start()
 	else:
-		$ReloadTimer.wait_time = $ReloadTimer.time_left + reload_time_per_arrow
+		$ReloadTimer.wait_time = snappedf($ReloadTimer.time_left + reload_time_per_arrow, 0.01)
 		$ReloadTimer.start()
-		
+	$ProgressBar.max_value = snappedf($ReloadTimer.wait_time, 0.01)
 
 func _on_reload_timer_timeout() -> void:
 	loaded_arrows = max_loaded_arrows
@@ -41,3 +39,7 @@ func _on_reload_timer_timeout() -> void:
 
 func _on_cooldown_timeout() -> void:
 	can_be_shot = true
+
+
+func _on_refresh_progress_timeout() -> void:
+	$ProgressBar.value = $ReloadTimer.wait_time - $ReloadTimer.time_left

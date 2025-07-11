@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://d3mqmjk8bbtof"]
+
+[ext_resource type="Script" uid="uid://c4iq7maq13rsr" path="res://Scripts/Consumables/leech/leech_shot.gd" id="1_w54c5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sbrrs"]
+
+[node name="LeechShot" type="Area2D"]
+collision_layer = 4
+collision_mask = 11
+script = ExtResource("1_w54c5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_sbrrs")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

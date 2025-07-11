@@ -82,14 +82,33 @@ offset_bottom = -261.0
 theme_override_font_sizes/font_size = 40
 text = "←"
 
-[node name="SaveInfo" type="Label" parent="Play"]
+[node name="SaveInfo" type="HBoxContainer" parent="Play"]
 visible = false
-offset_left = -172.0
-offset_top = 160.0
-offset_right = 171.0
-offset_bottom = 229.0
-theme_override_font_sizes/font_size = 50
-text = "Save info here"
+offset_left = -576.0
+offset_top = 156.0
+offset_right = 574.0
+offset_bottom = 198.0
+size_flags_horizontal = 4
+theme_override_constants/separation = 330
+alignment = 1
+
+[node name="Souls" type="Label" parent="Play/SaveInfo"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Souls: "
+horizontal_alignment = 1
+
+[node name="UnlockedWeapons" type="Label" parent="Play/SaveInfo"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Weapons: "
+horizontal_alignment = 1
+
+[node name="UnlockedRecipes" type="Label" parent="Play/SaveInfo"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Recipes: "
+horizontal_alignment = 1
 
 [node name="ActionButtons" type="HBoxContainer" parent="Play"]
 anchors_preset = 7
@@ -116,6 +135,42 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 60
 disabled = true
 text = "Delete"
+
+[node name="DeleteConfirm" type="Panel" parent="Play"]
+visible = false
+self_modulate = Color(1, 1, 1, 0.560784)
+offset_left = -312.0
+offset_top = -191.0
+offset_right = 315.0
+offset_bottom = 185.0
+
+[node name="Label" type="Label" parent="Play/DeleteConfirm"]
+layout_mode = 0
+offset_right = 627.0
+offset_bottom = 107.0
+theme_override_font_sizes/font_size = 30
+text = "Are you sure you want to delete save 1?"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Play/DeleteConfirm"]
+layout_mode = 0
+offset_left = -1.0
+offset_top = 193.0
+offset_right = 627.0
+offset_bottom = 270.0
+theme_override_constants/separation = 280
+alignment = 1
+
+[node name="ConfirmDelete" type="Button" parent="Play/DeleteConfirm/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Yes"
+
+[node name="AbortDelete" type="Button" parent="Play/DeleteConfirm/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "No"
 
 [node name="SingleplayerOrMultiplayer" type="Camera2D" parent="."]
 position = Vector2(3009, 324)
@@ -162,6 +217,8 @@ text = "Multiplayer"
 [connection signal="pressed" from="Play/Back" to="." method="_on_back_pressed"]
 [connection signal="pressed" from="Play/ActionButtons/PlaySave" to="." method="_on_play_save_pressed"]
 [connection signal="pressed" from="Play/ActionButtons/DeleteSave" to="." method="_on_delete_save_pressed"]
+[connection signal="pressed" from="Play/DeleteConfirm/HBoxContainer/ConfirmDelete" to="." method="_on_confirm_delete_pressed"]
+[connection signal="pressed" from="Play/DeleteConfirm/HBoxContainer/AbortDelete" to="." method="_on_abort_delete_pressed"]
 [connection signal="pressed" from="SingleplayerOrMultiplayer/Back" to="." method="_on_back_to_saves_pressed"]
 [connection signal="pressed" from="SingleplayerOrMultiplayer/VBoxContainer/Singleplayer" to="." method="_on_singleplayer_pressed"]
 [connection signal="pressed" from="SingleplayerOrMultiplayer/VBoxContainer/Multiplayer" to="." method="_on_multiplayer_pressed"]

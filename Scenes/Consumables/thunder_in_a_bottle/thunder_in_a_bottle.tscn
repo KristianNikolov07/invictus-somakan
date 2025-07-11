@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://bkocbp8g0yngr"]
+
+[ext_resource type="Script" uid="uid://dsjc1b7nevgkb" path="res://Scripts/Consumables/thunder_in_a_bottle/thunder_in_a_bottle.gd" id="1_7pm8x"]
+
+[node name="ThunderInABottle" type="Node2D"]
+script = ExtResource("1_7pm8x")
+metadata/_custom_type_script = "uid://7o1mrcjkjr6j"

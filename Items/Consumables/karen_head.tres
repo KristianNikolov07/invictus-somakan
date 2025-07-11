@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="ConsumableItem" load_steps=3 format=3 uid="uid://dfw2ajc6r7tvo"]
+
+[ext_resource type="PackedScene" uid="uid://dmfcq2n85y1tb" path="res://Scenes/Consumables/karen_head.tscn" id="1_2rvgp"]
+[ext_resource type="Script" uid="uid://gpkkx5lpmjrp" path="res://Scripts/Classes/ConsumableItem.gd" id="1_muaap"]
+
+[resource]
+script = ExtResource("1_muaap")
+consumable_action = ExtResource("1_2rvgp")
+item_name = "Karen Head"
+type = 3
+price = 0
+metadata/_custom_type_script = "uid://gpkkx5lpmjrp"

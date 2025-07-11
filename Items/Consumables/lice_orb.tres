@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="ConsumableItem" load_steps=4 format=3 uid="uid://c2f4m1tu0vpb6"]
+
+[ext_resource type="PackedScene" uid="uid://dfogkdlvreyb4" path="res://Scenes/Consumables/lice_orb/lice_orb.tscn" id="1_8bdmt"]
+[ext_resource type="Texture2D" uid="uid://btw26yyrmrj6c" path="res://Textures/lice_orb.png" id="1_mhpur"]
+[ext_resource type="Script" uid="uid://gpkkx5lpmjrp" path="res://Scripts/Classes/ConsumableItem.gd" id="2_8bdmt"]
+
+[resource]
+script = ExtResource("2_8bdmt")
+consumable_action = ExtResource("1_8bdmt")
+item_name = "Lice Orb"
+icon = ExtResource("1_mhpur")
+type = 3
+price = 500
+metadata/_custom_type_script = "uid://b3auab72tb6j6"

@@ -3,7 +3,7 @@ extends CharacterBody2D
 const accel = 150
 const max_falling_speed = 1000
 const max_walking_speed = 400
-const jump_force = 900
+const jump_force = 1000
 const gravity = 40
 const jump_easing = -200
 const dash_speed = 3 * max_walking_speed
@@ -11,8 +11,6 @@ var jumps_remaining = 1
 var max_jumps = 1
 var speed_mult = 1
 var direction = 1
-var max_hp = 50
-var hp = 50
 var damage_number_scale: float = 1.5
 var damage_number_duration: float = 1.5
 
@@ -21,7 +19,14 @@ var selected_weapon
 @onready var inventory = $UI/Inventory
 
 func _ready() -> void:
-	switch_weapon(PlayerStats.weapon1)
+	var node1 = PlayerStats.weapon1.weapon_action_scene.instantiate()
+	var node2 = PlayerStats.weapon2.weapon_action_scene.instantiate()
+	$Weapons.add_child(node1)
+	$Weapons.add_child(node2)
+	node2.process_mode = Node.PROCESS_MODE_DISABLED
+	selected_weapon = PlayerStats.weapon1
+	node2.hide()
+
 
 func _physics_process(delta: float) -> void:
 	if $DashTimer.is_stopped():
@@ -30,7 +35,6 @@ func _physics_process(delta: float) -> void:
 		jumps_remaining = max_jumps
 	move_and_slide()
 	$ParryTimerTestLabel.text = str($Parry.time_left)
-	
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("Jump") and jumps_remaining > 0:
@@ -39,12 +43,6 @@ func _input(event: InputEvent) -> void:
 		velocity += Vector2(0, -jump_force)
 	elif event.is_action_released("Jump"):
 		velocity.y = max(velocity.y, jump_easing)
-	elif event.is_action_pressed("Left"):
-		$ParryArea.rotation_degrees = 180
-		direction = -1
-	elif event.is_action_pressed("Right"):
-		$ParryArea.rotation_degrees = 0
-		direction = 1
 	elif event.is_action_pressed("Dash") and $DashCooldown.is_stopped():
 		$DashTimer.start()
 		$DashCooldown.start()
@@ -67,6 +65,10 @@ func _input(event: InputEvent) -> void:
 	#		selected_weapon = PlayerStats.weapon2
 	#	else:
 	#		selected_weapon = PlayerStats.weapon1
+	elif event.is_action_pressed("UseConsumable1"):
+		use_consumable(1)
+	elif event.is_action_pressed("UseConsumable2"):
+		use_consumable(2)
 
 func check_parry(area):
 	if !$Parry.is_stopped():
@@ -91,8 +93,12 @@ func process_movement():
 	if $Parry.is_stopped():
 		if Input.is_action_pressed("Right"):
 			velocity.x = move_toward(velocity.x, max_walking_speed * speed_mult, accel)
+			$ParryArea.rotation_degrees = 0
+			direction = 1
 		elif Input.is_action_pressed("Left"):
 			velocity.x = move_toward(velocity.x, -max_walking_speed * speed_mult, accel)
+			$ParryArea.rotation_degrees = 180
+			direction = -1
 		else:
 			velocity.x = move_toward(velocity.x, 0, accel)
 		
@@ -107,7 +113,15 @@ func process_movement():
 
 func attack():
 	if selected_weapon != null:
-		$Weapons.get_child(0).hit(direction)
+		if $Weapons.get_child(0).visible:
+			$Weapons.get_child(0).hit(direction)
+		else:
+			$Weapons.get_child(1).hit(direction)
+
+func use_consumable(consumable: int):
+	if $Consumables.get_node(str(consumable)) != null:
+		$Consumables.get_node(str(consumable)).use(get_path())
+		PlayerStats.remove_consumable(consumable - 1)
 
 func open_crafting_menu():
 	$UI/Crafting.show()
@@ -122,11 +136,11 @@ func damage_amount(amount: int, knockback) -> void:
 	$Invincibility.start()
 	velocity.x = 1600 * knockback
 	velocity.y = -500 * abs(knockback)
-	hp -= amount
+	PlayerStats.hp -= amount
 	$Parry.stop()
-	if hp <= 0:
-		queue_free()
-	print(amount)
+	#if hp <= 0:
+		#get_tree().quit()
+
 	
 func damage(hitbox: Hitbox, knockback):
 	var is_crit = Utils.calculate_crit(hitbox.get_crit_chance())
@@ -137,8 +151,8 @@ func damage(hitbox: Hitbox, knockback):
 	velocity.y = -500 * abs(knockback)
 	var damage = hitbox.get_damage() * (hitbox.get_crit_mult() if is_crit else 1)
 	Utils.summon_damage_number(self, damage, Color.RED, damage_number_scale, damage_number_duration)
-	hp -= damage
-	if hp <= 0:
+	PlayerStats.hp -= damage
+	if PlayerStats.hp <= 0:
 		queue_free()
 
 func unlock_recipe(recipe: Recipe):
@@ -146,7 +160,6 @@ func unlock_recipe(recipe: Recipe):
 
 func _on_invincibility_timeout() -> void:
 	set_collision_layer_value(1, true)
-
 
 func _on_parry_timeout() -> void:
 	$ParryArea.set_collision_mask_value(1, false)
@@ -160,26 +173,39 @@ func begin_hitstop():
 func _on_hitstop_timeout() -> void:
 	call_deferred("set_process_mode", Node.PROCESS_MODE_INHERIT)
 
-
 func interact_with():
 	for area in $InteractionRange.get_overlapping_areas():
-		print(area)
 		if area.has_method("interact"):
 			area.interact(get_path())
 			return
-
 
 func _on_interaction_range_area_entered(area: Area2D) -> void:
 	if area.has_method("pickup_weapon"):
 		area.pickup_weapon()
 
 func switch_weapon(weapon : WeaponItem):
-	if $Weapons.get_child(0) != null:
-		$Weapons.get_child(0).queue_free()
-	if weapon != null:
-		var node = weapon.get_action_node()
-		$Weapons.add_child(node)
+	var wep1 = $Weapons.get_child(1)
+	var wep2 = $Weapons.get_child(0)
+	if weapon == PlayerStats.weapon1:
+		wep1.process_mode = Node.PROCESS_MODE_DISABLED
+		wep2.process_mode = Node.PROCESS_MODE_INHERIT
+		selected_weapon = PlayerStats.weapon1
+		wep1.hide()
+		wep2.show()
 	else:
-		if $Weapons.get_child(0) != null:
-			$Weapons.get_child(0).queue_free()
-	selected_weapon = weapon
+		wep1.process_mode = Node.PROCESS_MODE_INHERIT
+		wep2.process_mode = Node.NOTIFICATION_DISABLED
+		selected_weapon = PlayerStats.weapon2
+		wep1.show()
+		wep2.hide()
+
+func heal(_hp: int):
+	PlayerStats.hp += _hp
+	if PlayerStats.hp > PlayerStats.max_hp:
+		PlayerStats.hp = PlayerStats.max_hp
+
+func get_hp():
+	return PlayerStats.hp
+
+func get_max_hp():
+	return PlayerStats.max_hp

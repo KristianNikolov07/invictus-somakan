@@ -37,11 +37,11 @@ func _on_act_button_pressed() -> void:
 		get_tree().current_scene.add_child(new_item)
 		#get_node("../Inventory").add_item(selected_item)
 	else:
-		var node = get_node("../Inventory/Slots").get_child(selected_index)
-		if node.item != null:
-			PlayerStats.scrap += node.item.price/2
-			node.decrease_amount()
-			if node.item == null:
+		if PlayerStats.items[selected_index] != null:
+			var _item = PlayerStats.items[selected_index]
+			PlayerStats.scrap += _item.price/2
+			PlayerStats.remove_item(_item)
+			if PlayerStats.items[selected_index] == null:
 				set_confirm_status(false)
 				$ItemsToSell.get_child(selected_index).reset_bg_color()
 			refresh_sell()

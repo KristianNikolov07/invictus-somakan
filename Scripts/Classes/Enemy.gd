@@ -4,9 +4,9 @@ class_name Enemy
 @export var speed = 150
 @export var coll_damage = 5
 @export var attack_damage = 15
-@export var knockback_strength = 1.5
+@export var knockback_strength: float = 1.5
 @export var hp = 20
-@export var coll_knockback = 1
+@export var coll_knockback: float = 1
 @export var max_hp = 20
 @export var parry_damage = 1
 @export var parry_knockback_mult = 1
@@ -178,3 +178,9 @@ func status_damage(damage: int, number_color: Color, crit_chance: float = 0):
 
 func _on_invincibility_timer_timeout():
 	set_collision_layer_value(1, true)
+
+func get_hp():
+	return hp
+
+func get_max_hp():
+	return max_hp

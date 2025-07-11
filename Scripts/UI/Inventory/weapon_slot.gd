@@ -1,9 +1,15 @@
 extends Control
 
-@export var weapon: Item
+@export var item: Item
 
 
-func set_weapon(_item: Item) -> void:
+func set_item(_item: Item) -> void:
 	if _item != null:
-		weapon = _item
-		$WeaponIcon.texture = weapon.icon
+		item = _item
+		$WeaponIcon.texture = item.icon
+	else:
+		clear_item()
+
+func clear_item():
+	item = null
+	$WeaponIcon.texture = null
