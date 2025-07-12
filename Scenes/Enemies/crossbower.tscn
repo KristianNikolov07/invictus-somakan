@@ -16,7 +16,7 @@ size = Vector2(848, 768)
 
 [node name="Crossbower" type="CharacterBody2D" groups=["Enemies"]]
 scale = Vector2(0.4, 0.4)
-collision_mask = 2
+collision_mask = 18
 script = ExtResource("1_50btn")
 speed = 100
 attack_damage = 0
@@ -60,13 +60,11 @@ one_shot = true
 
 [node name="LeftFloorCheck" type="RayCast2D" parent="."]
 position = Vector2(-40, 0)
-scale = Vector2(1, 1)
-collision_mask = 2
+collision_mask = 18
 
 [node name="RightFloorCheck" type="RayCast2D" parent="."]
 position = Vector2(40, 0)
-scale = Vector2(1, 1)
-collision_mask = 2
+collision_mask = 18
 
 [connection signal="body_entered" from="CollisionDamage" to="." method="_on_collision_damage_body_entered"]
 [connection signal="body_entered" from="AttackRange" to="." method="_on_attack_range_body_entered"]
