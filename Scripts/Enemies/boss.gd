@@ -217,6 +217,6 @@ func calculate_direction(body):
 	return knockback_dir
 
 
-func _on_boss_bounce_body_entered(body: Node2D) -> void:
+func _on_boss_bounce_body_entered(_body: Node2D) -> void:
 	if is_dashing:
 		direction *= -1

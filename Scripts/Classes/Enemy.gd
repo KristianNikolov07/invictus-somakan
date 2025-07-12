@@ -16,7 +16,8 @@ class_name Enemy
 @export var damage_number_duration: float = 2
 @export var can_move = true
 @export var loot: Dictionary[Item, float]
-const dropped_item_scene = preload("res://Scenes/Objects/dropped_item.tscn")
+const soul := preload("res://Scenes/soul.tscn")
+const dropped_item_scene := preload("res://Scenes/Objects/dropped_item.tscn")
 const JUMP_VELOCITY = -400.0
 const FOLLOW_DEADZONE = 1
 var is_moving = true
@@ -49,6 +50,7 @@ func damage_amount(amount: int, knockback) -> void:
 	velocity.y = -500 * abs(knockback)
 	hp -= amount
 	if hp <= 0:
+		drop_soul()
 		drop_loot()
 		queue_free()
 
@@ -63,6 +65,13 @@ func drop_loot():
 				node.global_position = global_position
 				get_parent().call_deferred("add_child", node)
 
+func drop_soul():
+	for player in get_tree().get_nodes_in_group("Players"):
+		var new_soul: Area2D = soul.instantiate()
+		new_soul.global_position = global_position
+		new_soul.target = player
+		get_tree().current_scene.call_deferred("add_child", new_soul)
+
 
 func damage(hitbox: Hitbox, knockback) -> void:
 	var is_crit = Utils.calculate_crit(hitbox.get_crit_chance())
@@ -76,6 +85,7 @@ func damage(hitbox: Hitbox, knockback) -> void:
 	Utils.summon_damage_number(self, dam, Color.ORANGE_RED if is_crit else Color.WHITE, damage_number_scale, damage_number_duration)
 	hp -= dam
 	if hp <= 0:
+		drop_soul()
 		drop_loot()
 		queue_free()
 
