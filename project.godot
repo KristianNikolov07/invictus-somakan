@@ -27,6 +27,10 @@ CurrentRunStats="*res://Scripts/Globals/CurrentRunStats.gd"
 Utils="*res://Scripts/Globals/Utils.gd"
 PlayerStats="*res://Scripts/Globals/PlayerStats.gd"
 
+[debug]
+
+gdscript/warnings/integer_division=0
+
 [global_group]
 
 Players=""

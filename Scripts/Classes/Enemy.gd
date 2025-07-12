@@ -14,12 +14,12 @@ class_name Enemy
 @export var can_be_knockedback = true
 @export var damage_number_scale: float = 2
 @export var damage_number_duration: float = 2
+@export var is_moving = true
+@export var loot: Dictionary[Item, float]
+const dropped_item_scene = preload("res://Scenes/Objects/dropped_item.tscn")
 const JUMP_VELOCITY = -400.0
 const FOLLOW_DEADZONE = 1
-@export var is_moving = true
 var attacking = false
-@export var loot : Item
-const dropped_item_scene = preload("res://Scenes/Objects/dropped_item.tscn")
 
 var invincibility_timer = Timer.new()
 
@@ -50,11 +50,16 @@ func damage_amount(amount: int, knockback) -> void:
 		queue_free()
 
 func drop_loot():
-	if loot != null:
-		var node = dropped_item_scene.instantiate()
-		node.get_node("Area").set_item(loot)
-		node.global_position = global_position
-		get_parent().call_deferred("add_child", node)
+	if !loot.is_empty():
+		for key in loot.keys():
+			var rand = randi_range(0, 10000)
+			print(str(rand) + ": " + str(loot[key]*100))
+			if loot[key]*100 >= rand:
+				var node = dropped_item_scene.instantiate()
+				node.get_node("Area").set_item(key)
+				node.global_position = global_position
+				get_parent().call_deferred("add_child", node)
+
 
 func damage(hitbox: Hitbox, knockback) -> void:
 	var is_crit = Utils.calculate_crit(hitbox.get_crit_chance())
