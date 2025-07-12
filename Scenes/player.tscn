@@ -54,7 +54,8 @@ size = Vector2(120, 104)
 
 [node name="Player" type="CharacterBody2D" groups=["Players"]]
 z_index = 1
-collision_mask = 6
+scale = Vector2(0.4, 0.4)
+collision_mask = 22
 script = ExtResource("1_cvnsp")
 
 [node name="PlayerSprite" type="Sprite2D" parent="."]
@@ -68,6 +69,7 @@ shape = SubResource("CapsuleShape2D_cvnsp")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 process_mode = 3
+zoom = Vector2(1.72, 1.72)
 
 [node name="Flash" type="MeshInstance2D" parent="Camera2D"]
 visible = false

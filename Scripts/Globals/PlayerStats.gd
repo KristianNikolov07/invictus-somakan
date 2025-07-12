@@ -124,6 +124,7 @@ func save_stats(saveNum: int):
 	config.set_value("save", "souls", souls)
 	config.set_value("save", "recipes", unlocked_recipes)
 	config.set_value("save", "weapons", unlocked_weapons)
+	config.set_value("save", "max_hp", max_hp)
 	config.save_encrypted_pass("user://save" + str(saveNum) + ".save", "cursedgodotisntrealhecanthurtyou")
 
 func load_stats(saveNum: int):
@@ -134,6 +135,8 @@ func load_stats(saveNum: int):
 		unlocked_recipes = config.get_value("save", "recipes")
 	if config.has_section_key("save", "weapons"):
 		unlocked_weapons = config.get_value("save", "weapons")
+	if config.has_section_key("save", "max_hp"):
+		max_hp = config.get_value("save", "max_hp")
 
 func read_save_file(saveNum: int):
 	if FileAccess.file_exists("user://save" + str(saveNum) + ".save"):
@@ -141,7 +144,8 @@ func read_save_file(saveNum: int):
 		var stats = {
 			"souls" : int(config.get_value("save", "souls")),
 			"numWeapons" : config.get_value("save", "weapons").size(),
-			"numRecipes" : config.get_value("save", "recipes").size()
+			"numRecipes" : config.get_value("save", "recipes").size(),
+			"max_hp": int(config.get_value("save", "max_hp"))
 		}
 		
 		return stats

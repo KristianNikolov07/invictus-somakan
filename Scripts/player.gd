@@ -2,9 +2,9 @@ extends CharacterBody2D
 
 const accel = 150
 const max_falling_speed = 1000
-const max_walking_speed = 400
-const jump_force = 1000
-const gravity = 40
+const max_walking_speed = 200
+const jump_force = 600
+const gravity = 30
 const jump_easing = -200
 const dash_speed = 3 * max_walking_speed
 var jumps_remaining = 1
@@ -19,13 +19,7 @@ var selected_weapon
 @onready var inventory = $UI/Inventory
 
 func _ready() -> void:
-	var node1 = PlayerStats.weapon1.weapon_action_scene.instantiate()
-	var node2 = PlayerStats.weapon2.weapon_action_scene.instantiate()
-	$Weapons.add_child(node1)
-	$Weapons.add_child(node2)
-	node2.process_mode = Node.PROCESS_MODE_DISABLED
-	selected_weapon = PlayerStats.weapon1
-	node2.hide()
+	instanciate_weapons()
 
 
 func _physics_process(_delta: float) -> void:
@@ -68,6 +62,19 @@ func _input(event: InputEvent) -> void:
 		use_consumable(1)
 	elif event.is_action_pressed("UseConsumable2"):
 		use_consumable(2)
+
+func instanciate_weapons():
+	$UI/SelectedWeaponUI.set_weapon_1(PlayerStats.weapon1)
+	var node1 = PlayerStats.weapon1.weapon_action_scene.instantiate()
+	$Weapons.add_child(node1)
+	if PlayerStats.weapon2 != null:
+		$UI/SelectedWeaponUI.set_weapon_2(PlayerStats.weapon2)
+		var node2 = PlayerStats.weapon2.weapon_action_scene.instantiate()
+		$Weapons.add_child(node2)
+		node2.process_mode = Node.PROCESS_MODE_DISABLED
+		node2.hide()
+	switch_weapon(PlayerStats.weapon1)
+
 
 func check_parry(area):
 	if !$Parry.is_stopped():
@@ -184,18 +191,21 @@ func _on_interaction_range_area_entered(area: Area2D) -> void:
 func switch_weapon(weapon : WeaponItem):
 	var wep1 = $Weapons.get_child(1)
 	var wep2 = $Weapons.get_child(0)
-	if weapon == PlayerStats.weapon1:
-		wep1.process_mode = Node.PROCESS_MODE_DISABLED
-		wep2.process_mode = Node.PROCESS_MODE_INHERIT
-		selected_weapon = PlayerStats.weapon1
-		wep1.hide()
-		wep2.show()
-	else:
-		wep1.process_mode = Node.PROCESS_MODE_INHERIT
-		wep2.process_mode = Node.NOTIFICATION_DISABLED
-		selected_weapon = PlayerStats.weapon2
-		wep1.show()
-		wep2.hide()
+	if PlayerStats.weapon2 != null:
+		if weapon == PlayerStats.weapon1:
+			wep1.process_mode = Node.PROCESS_MODE_DISABLED
+			wep2.process_mode = Node.PROCESS_MODE_INHERIT
+			selected_weapon = PlayerStats.weapon1
+			$UI/SelectedWeaponUI.select_weapon_1()
+			wep1.hide()
+			wep2.show()
+		else:
+			wep1.process_mode = Node.PROCESS_MODE_INHERIT
+			wep2.process_mode = Node.NOTIFICATION_DISABLED
+			selected_weapon = PlayerStats.weapon2
+			$UI/SelectedWeaponUI.select_weapon_2()
+			wep1.show()
+			wep2.hide()
 
 func heal(_hp: int):
 	PlayerStats.hp += _hp

@@ -206,6 +206,7 @@ text = " Singleplayer "
 [node name="Multiplayer" type="Button" parent="SingleplayerOrMultiplayer/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 50
+disabled = true
 text = "Multiplayer"
 
 [connection signal="pressed" from="VBoxContainer/Play" to="." method="_on_play_pressed"]

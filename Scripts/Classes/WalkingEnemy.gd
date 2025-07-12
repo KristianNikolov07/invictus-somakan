@@ -3,6 +3,8 @@ class_name WalkingEnemy
 
 var target : CharacterBody2D
 var retarget_timer = Timer.new()
+var LeftFloorCheck: RayCast2D
+var RightFloorCheck: RayCast2D
 
 func _ready() -> void:
 	super._ready()
@@ -11,6 +13,10 @@ func _ready() -> void:
 	retarget_timer.autostart = true
 	add_child(retarget_timer)
 	set_new_target()
+	if $LeftFloorCheck != null:
+		LeftFloorCheck = $LeftFloorCheck
+	if $RightFloorCheck != null:
+		RightFloorCheck = $RightFloorCheck
 
 
 func _physics_process(delta: float) -> void:
@@ -24,8 +30,17 @@ func _physics_process(delta: float) -> void:
 		else:
 			direction = 1
 		
-		if direction and (target.global_position - global_position).abs().x > FOLLOW_DEADZONE and is_moving:
-			velocity.x = direction * speed
+		if direction and (target.global_position - global_position).abs().x > FOLLOW_DEADZONE and is_moving and can_move:
+			if direction == -1:
+				if (LeftFloorCheck != null and LeftFloorCheck.is_colliding()) or LeftFloorCheck == null:
+					velocity.x = direction * speed
+				else:
+					velocity.x = move_toward(velocity.x, 0, speed)
+			elif direction == 1:
+				if (RightFloorCheck != null and RightFloorCheck.is_colliding()) or RightFloorCheck == null:
+					velocity.x = direction * speed
+				else:
+					velocity.x = move_toward(velocity.x, 0, speed)
 		else:
 			velocity.x = move_toward(velocity.x, 0, speed)
 	

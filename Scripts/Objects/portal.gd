@@ -27,3 +27,7 @@ func interact(_player_path : String):
 			get_tree().change_scene_to_packed(RoomGen.get_boss_room())
 		RoomTypes.RoomTypes.HUB:
 			get_tree().change_scene_to_packed(RoomGen.get_hub())
+
+func activate():
+	show()
+	monitoring = true
