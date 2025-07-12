@@ -47,7 +47,7 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 func set_new_target():
-	var closest_player : CharacterBody2D
+	var closest_player : CharacterBody2D = null
 	for player in get_tree().get_nodes_in_group("Players"):
 		if closest_player == null:
 			closest_player = player

@@ -1,9 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://b451yhoqiov5a"]
+[gd_scene load_steps=12 format=3 uid="uid://b451yhoqiov5a"]
 
 [ext_resource type="Script" uid="uid://ctvhr04onudmb" path="res://Scripts/Enemies/zombie.gd" id="1_h3kin"]
+[ext_resource type="Script" uid="uid://b3auab72tb6j6" path="res://Scripts/Classes/Item.gd" id="2_3p0w2"]
 [ext_resource type="Texture2D" uid="uid://c1lo75th7b88g" path="res://Textures/icon.svg" id="2_n70j1"]
-[ext_resource type="Resource" uid="uid://c2f4m1tu0vpb6" path="res://Items/Consumables/lice_orb.tres" id="2_o6bce"]
+[ext_resource type="Resource" uid="uid://cm7g5mjsok0q5" path="res://Items/fire_orb.tres" id="3_fh4xe"]
 [ext_resource type="Script" uid="uid://drqow7af66ehm" path="res://Scripts/Classes/Hitbox.gd" id="3_iyl7r"]
+[ext_resource type="Resource" uid="uid://cu00ittwd3mke" path="res://Items/ice_orb.tres" id="4_usnig"]
 [ext_resource type="PackedScene" uid="uid://bqo6qnqcmww4y" path="res://Scenes/UI/health_bar.tscn" id="4_vy0uf"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_iyl7r"]
@@ -28,7 +30,10 @@ speed = 100
 knockback_strength = 1.0
 damage_number_scale = 1.5
 damage_number_duration = 1.5
-loot = ExtResource("2_o6bce")
+loot = Dictionary[ExtResource("2_3p0w2"), float]({
+ExtResource("3_fh4xe"): 10.0,
+ExtResource("4_usnig"): 5.0
+})
 
 [node name="PlayerSprite" type="Sprite2D" parent="."]
 position = Vector2(-1.90735e-06, 0)

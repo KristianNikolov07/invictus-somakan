@@ -27,7 +27,7 @@ func select_slot(slot: Control):
 		slot.grab_focus()
 		selected_slot = slot
 		slot.refresh()
-		var recipe = slot.get_recipe()
+		var _recipe = slot.get_recipe()
 		if check_craftable(slot.get_recipe()):
 			$CraftButton.disabled = false
 		else:
