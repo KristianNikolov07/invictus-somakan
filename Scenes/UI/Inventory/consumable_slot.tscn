@@ -20,5 +20,7 @@ scale = Vector2(3.5, 3.5)
 texture = ExtResource("1_ivkrs")
 
 [node name="ConsumableIcon" type="Sprite2D" parent="."]
+position = Vector2(46, 44)
+scale = Vector2(2, 2)
 
 [connection signal="pressed" from="TextureButton" to="." method="_on_pressed"]
