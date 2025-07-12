@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://ch7esotluxknf" path="res://Scenes/Objects/portal.tscn" id="2_0dlg8"]
 [ext_resource type="PackedScene" uid="uid://b451yhoqiov5a" path="res://Scenes/Enemies/zombie.tscn" id="2_lv8tk"]
 [ext_resource type="PackedScene" uid="uid://dqe7ft8qxejyd" path="res://Scenes/other/camera_limiter.tscn" id="3_0dlg8"]
-[ext_resource type="PackedScene" uid="uid://drh5mw5jb3hga" path="res://Scenes/Objects/platform.tscn" id="4_aqhgq"]
+[ext_resource type="PackedScene" path="res://Scenes/Objects/platform.tscn" id="4_aqhgq"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_358f1"]
 texture = ExtResource("1_pcoad")
