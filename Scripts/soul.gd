@@ -21,11 +21,11 @@ func _physics_process(delta: float) -> void:
 
 func _on_body_entered(body: Node2D) -> void:
 	if body == target:
+		set_collision_mask_value(1, false)
 		target_reached = true
 		PlayerStats.souls += 1
-		$CPUParticles2D.explosiveness = 1
-		$CPUParticles2D.one_shot = true
+		$CPUParticles2D.emitting = false
 		$AnimationPlayer.play("explode")
 		$Sprite.hide()
-		await $AnimationPlayer.animation_finished
+		await get_tree().create_timer($CPUParticles2D.lifetime).timeout
 		queue_free()

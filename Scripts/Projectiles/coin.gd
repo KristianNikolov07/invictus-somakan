@@ -22,7 +22,7 @@ func has_line_of_sight(enemy: Node2D):
 	var space_state = get_world_2d().direct_space_state
 	var from = global_position
 	var to = enemy.global_position
-	var res: Dictionary = space_state.intersect_ray(PhysicsRayQueryParameters2D.create(from, to, 4294967082, [self, enemy]))
+	var res: Dictionary = space_state.intersect_ray(PhysicsRayQueryParameters2D.create(from, to, 10, [self, enemy]))
 	
 	return res.is_empty()
 

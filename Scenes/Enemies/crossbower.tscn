@@ -20,8 +20,8 @@ script = ExtResource("1_50btn")
 speed = 100
 attack_damage = 0
 knockback_strength = 0.0
-hp = 40
-max_hp = 40
+hp = 35
+max_hp = 35
 parry_damage = 40
 
 [node name="PlayerSprite" type="Sprite2D" parent="."]
