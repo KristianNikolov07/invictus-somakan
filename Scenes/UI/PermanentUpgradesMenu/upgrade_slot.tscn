@@ -1,14 +1,14 @@
 [gd_scene load_steps=4 format=3 uid="uid://df8jfu4ipoemc"]
 
 [ext_resource type="Texture2D" uid="uid://qyvcg1lkbbak" path="res://Textures/Crafting/crafting_slot_background.png" id="1_j5isv"]
-[ext_resource type="Script" uid="uid://cn7reipbxjwws" path="res://Scripts/UI/Crafting/crafting_slot.gd" id="1_yi4xb"]
+[ext_resource type="Script" uid="uid://cp4mp6oy0gcbv" path="res://Scripts/UI/PermanentUpgradesMenu/upgrade_slot.gd" id="1_yjrc2"]
 [ext_resource type="Texture2D" uid="uid://cavse8ld5bby8" path="res://Textures/Crafting/crafting_slot_selected.png" id="3_n8jiv"]
 
-[node name="CraftingSlot" type="Control"]
+[node name="UpgradeSlot" type="Control"]
 texture_filter = 1
 layout_mode = 3
 anchors_preset = 0
-script = ExtResource("1_yi4xb")
+script = ExtResource("1_yjrc2")
 
 [node name="SelectedBackground" type="Sprite2D" parent="."]
 visible = false
