@@ -24,8 +24,12 @@ func _physics_process(delta: float) -> void:
 	if not is_dashing and not attacking:
 		direction = calculate_direction(target)
 		if direction == -1:
+			$BossSprite.flip_h = false
+			$BossSprite.position.x = -43
 			$Smash.scale = Vector2(-1, 1)
 		else:
+			$BossSprite.flip_h = true
+			$BossSprite.position.x = 43
 			$Smash.scale = Vector2(1, 1)
 	
 	if is_moving and not is_dashing:
@@ -39,11 +43,12 @@ func _physics_process(delta: float) -> void:
 func start():
 	set_is_moving(true)
 	$ChooseAttack.start()
+	$BossSprite.play("walk")
 
 
 func _on_choose_attack_timeout() -> void:
 	set_is_moving(false)
-	var rand = randi_range(1, 4)
+	var rand = randi_range(4, 4)
 	match rand:
 		1: attack_smash()
 		2: attack_ram()
@@ -54,8 +59,11 @@ func _on_choose_attack_timeout() -> void:
 
 func attack_smash() -> void:
 	attacking = true
-	await get_tree().create_timer(0.5).timeout
+	$BossSprite.play("smash_ready")
+	await $BossSprite.animation_finished
 	$Attacks.play("smash")
+	if phase == 2: $BossSprite.play("smash_fast")
+	else: $BossSprite.play("smash")
 	await $Attacks.animation_finished
 	var shock1: Area2D = shockwave.instantiate()
 	shock1.global_position = $Smash/Pivot/WeaponEnd.global_position
@@ -65,9 +73,13 @@ func attack_smash() -> void:
 	get_tree().current_scene.add_child(shock2)
 	if phase == 2:
 		for i in range(2):
-			await get_tree().create_timer(0.25).timeout
+			await $BossSprite.animation_finished
 			$Smash.scale.x *= -1
+			$BossSprite.position.x *= -1
+			$BossSprite.flip_h = !$BossSprite.flip_h
 			$Attacks.play("smash")
+			if i == 0: $BossSprite.play("smash_fast")
+			else: $BossSprite.play("smash")
 			await $Attacks.animation_finished
 			shock1 = shockwave.instantiate()
 			shock1.global_position = $Smash/Pivot/WeaponEnd.global_position
@@ -75,15 +87,20 @@ func attack_smash() -> void:
 			shock2.dir = -1
 			get_tree().current_scene.add_child(shock1)
 			get_tree().current_scene.add_child(shock2)
-	await get_tree().create_timer(stagger).timeout
-	set_is_moving(true)
-	attacking = false
 	$ChooseAttack.start(5)
+	await $BossSprite.animation_finished
+	attacking = false
+	set_is_moving(true)
+	$BossSprite.play("walk")
 
 
 func attack_ram() -> void:
 	is_dashing = true
-	await get_tree().create_timer(1).timeout
+	if phase == 2: $BossSprite.play("ram_ready_fast")
+	else: $BossSprite.play("ram_ready")
+	await $BossSprite.animation_finished
+	if phase == 2: $BossSprite.play("ram_fast")
+	else: $BossSprite.play("ram")
 	set_is_moving(true)
 	coll_damage = 20 * speed/60
 	coll_knockback = 2.35
@@ -92,48 +109,58 @@ func attack_ram() -> void:
 	coll_damage = 5
 	coll_knockback = 1
 	$ChooseAttack.start(5)
+	$BossSprite.play("walk")
 
 
 func attack_riberang() -> void:
-	attacking = true
-	await get_tree().create_timer(0.5).timeout
+	$BossSprite.play("riberang_throw")
+	await $BossSprite.animation_finished
 	var new_rib: Projectile = rib.instantiate()
 	new_rib.global_position = global_position
 	new_rib.rotation = global_position.direction_to(target.global_position).angle()
 	new_rib.shooter_vel = velocity
 	get_tree().current_scene.add_child(new_rib)
+	if phase == 1: attacking = true
 	if phase == 2:
 		for i in range(2):
+			$BossSprite.play("riberang_throw_fast")
 			await get_tree().create_timer(0.5).timeout
 			new_rib = rib.instantiate()
 			new_rib.global_position = global_position
 			new_rib.rotation = global_position.direction_to(target.global_position).angle()
 			new_rib.shooter_vel = velocity
+			await $BossSprite.animation_finished
 			get_tree().current_scene.add_child(new_rib)
+	attacking = true
 	await new_rib.tree_exited
-	await get_tree().create_timer(0.5).timeout
+	$BossSprite.play("riberang_catch")
+	await $BossSprite.animation_finished
 	set_is_moving(true)
 	attacking = false
 	$ChooseAttack.start(4)
+	$BossSprite.play("walk")
 
 
 func attack_bone_rain() -> void:
 	attacking = true
 	get_node("../Platforms/AnimationPlayer").play("bone_rain")
-	await get_tree().create_timer(0.5).timeout
 	for i in range(phase):
+		$BossSprite.play("bone_rain_ready")
 		var array := get_bone_positions()
+		await $BossSprite.animation_finished
 		for j in range(phase+7):
 			var new_finger: Area2D = finger.instantiate()
 			new_finger.global_position = global_position
 			new_finger.planned_pos = array.pop_at(randi_range(0, array.size()-1))
 			get_tree().current_scene.add_child(new_finger)
-		await get_tree().create_timer(1.5).timeout
+		$BossSprite.play("bone_rain")
+		await $BossSprite.animation_finished
 	await get_tree().create_timer(2).timeout
 	get_node("../Platforms/AnimationPlayer").play_backwards("bone_rain")
 	set_is_moving(true)
 	attacking = false
 	$ChooseAttack.start(6-phase)
+	$BossSprite.play("walk")
 
 
 func damage(hitbox: Hitbox, knockback):
@@ -220,3 +247,5 @@ func calculate_direction(body):
 func _on_boss_bounce_body_entered(_body: Node2D) -> void:
 	if is_dashing:
 		direction *= -1
+		$BossSprite.flip_h = !$BossSprite.flip_h
+		$BossSprite.position.x *= -1

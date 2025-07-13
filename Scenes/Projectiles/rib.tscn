@@ -1,10 +1,22 @@
-[gd_scene load_steps=4 format=3 uid="uid://djfmo1panco34"]
+[gd_scene load_steps=8 format=3 uid="uid://djfmo1panco34"]
 
 [ext_resource type="Script" uid="uid://35yka4i4fvuj" path="res://Scripts/Projectiles/rib.gd" id="1_td5ee"]
-[ext_resource type="Texture2D" uid="uid://c1lo75th7b88g" path="res://Textures/icon.svg" id="2_yio7y"]
+[ext_resource type="Texture2D" uid="uid://bkwhgmp8judxp" path="res://Textures/Boss/boss_attack_rib.png" id="2_td5ee"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_5x81h"]
-size = Vector2(151, 42)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yio7y"]
+size = Vector2(21, 39)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vfb2y"]
+size = Vector2(15, 39)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8ja7o"]
+size = Vector2(38, 12.5662)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j1mof"]
+size = Vector2(14.9058, 44.5933)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a512g"]
+size = Vector2(29.5, 10)
 
 [node name="Rib" type="Area2D"]
 z_index = 1
@@ -16,14 +28,12 @@ damage = 20
 can_hit_enemies = true
 metadata/_custom_type_script = "uid://dbtugjkys1kpn"
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(40.5, -15)
-scale = Vector2(1.17969, 0.34375)
-texture = ExtResource("2_yio7y")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(39.5, -15)
-shape = SubResource("RectangleShape2D_5x81h")
+[node name="BossAttackRib" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(43, -22)
+rotation = -1.5708
+scale = Vector2(2.5, 4)
+texture = ExtResource("2_td5ee")
 
 [node name="Hitstop" type="Timer" parent="."]
 process_mode = 3
@@ -34,6 +44,29 @@ one_shot = true
 wait_time = 0.5
 one_shot = true
 autostart = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(4, -27.5)
+shape = SubResource("RectangleShape2D_yio7y")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(86.5, -22)
+shape = SubResource("RectangleShape2D_vfb2y")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="."]
+position = Vector2(19, -3)
+rotation = 0.436332
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_8ja7o")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="."]
+position = Vector2(60.7246, -2.06192)
+rotation = 1.213
+shape = SubResource("RectangleShape2D_j1mof")
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="."]
+position = Vector2(39, 4)
+shape = SubResource("RectangleShape2D_a512g")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

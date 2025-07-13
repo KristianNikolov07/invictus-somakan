@@ -5,7 +5,7 @@ extends Projectile
 
 
 func _physics_process(delta: float) -> void:
-	$Sprite2D.rotation_degrees += rot_speed
+	$BossAttackRib.rotation_degrees += rot_speed
 	$CollisionShape2D.rotation_degrees += rot_speed
 	var direction  = Vector2.RIGHT.rotated(rotation)
 	global_position += (speed * direction + shooter_vel) * delta
