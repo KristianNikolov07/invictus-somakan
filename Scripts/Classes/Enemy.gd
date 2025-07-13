@@ -9,7 +9,7 @@ class_name Enemy
 @export var coll_knockback: float = 1
 @export var max_hp = 20
 @export var parry_damage = 1
-@export var parry_knockback_mult = 1
+@export var parry_knockback_mult: float = 1
 @export var invincibility_length = 0.5
 @export var can_be_knockedback = true
 @export var damage_number_scale: float = 2

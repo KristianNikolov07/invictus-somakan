@@ -687,7 +687,6 @@ speed = 60
 hp = 1500
 max_hp = 1500
 parry_damage = 0
-parry_knockback_mult = 0
 can_be_knockedback = false
 damage_number_scale = 4.0
 
