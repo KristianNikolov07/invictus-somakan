@@ -13,6 +13,7 @@ var souls: int = 0
 var hp: int = 50
 var max_hp: int = 50
 var is_multiplayer = false
+var current_save_file = 1
 
 var config = ConfigFile.new()
 
@@ -141,6 +142,8 @@ func load_stats(saveNum: int):
 		unlocked_weapons = config.get_value("save", "weapons")
 	if config.has_section_key("save", "max_hp"):
 		max_hp = config.get_value("save", "max_hp")
+	
+	current_save_file = saveNum
 
 func read_save_file(saveNum: int):
 	if FileAccess.file_exists("user://save" + str(saveNum) + ".save"):

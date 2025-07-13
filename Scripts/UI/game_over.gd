@@ -1,5 +1,7 @@
 extends Control
 
+func _ready() -> void:
+	PlayerStats.save_stats(PlayerStats.current_save_file)
 
 func _on_back_to_hub_pressed() -> void:
 	get_tree().change_scene_to_file("res://Scenes/Rooms/Hub/hub.tscn")
