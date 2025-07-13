@@ -5,6 +5,7 @@ var duration = 1.0
 var is_charging = false
 var is_damageing = false
 
+@rpc("any_peer", "call_local", "reliable")
 func hit(direction: int):
 	duration = 1
 	is_charging = true
@@ -30,7 +31,7 @@ func _on_hit_cooldown_timeout() -> void:
 	if is_damageing:
 		for body in $Hitbox.get_overlapping_bodies():
 			if body.has_method("damage") and body.is_in_group("Enemies"):
-				body.damage($Hitbox, 0)
+				body.damage.rpc($Hitbox.get_path(), 0)
 
 
 func _on_duration_timeout() -> void:

@@ -18,15 +18,19 @@ func interact(_player_path : String):
 		
 	match room_type:
 		RoomTypes.RoomTypes.PUZZLE:
-			get_tree().change_scene_to_packed(RoomGen.pull_puzzle_room())
+			change_level.rpc(RoomGen.pull_puzzle_room().resource_path)
 		RoomTypes.RoomTypes.COMBAT:
-			get_tree().change_scene_to_packed(RoomGen.pull_combat_room())
+			change_level.rpc(RoomGen.pull_combat_room().resource_path)
 		RoomTypes.RoomTypes.SHOP:
-			get_tree().change_scene_to_packed(RoomGen.get_shop_room())
+			change_level.rpc(RoomGen.get_shop_room().resource_path)
 		RoomTypes.RoomTypes.BOSS:
-			get_tree().change_scene_to_packed(RoomGen.get_boss_room())
+			change_level.rpc(RoomGen.get_boss_room().resource_path)
 		RoomTypes.RoomTypes.HUB:
-			get_tree().change_scene_to_packed(RoomGen.get_hub())
+			change_level.rpc(RoomGen.get_hub().resource_path)
+
+@rpc("any_peer", "call_local", "reliable")
+func change_level(level : String):
+	get_tree().change_scene_to_file(level)
 
 func activate():
 	show()

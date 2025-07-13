@@ -61,8 +61,8 @@ func attack_smash() -> void:
 	shock1.global_position = $Smash/Pivot/WeaponEnd.global_position
 	var shock2 = shock1.duplicate()
 	shock2.dir = -1
-	get_tree().current_scene.add_child(shock1)
-	get_tree().current_scene.add_child(shock2)
+	get_tree().current_scene.add_child(shock1, true)
+	get_tree().current_scene.add_child(shock2, true)
 	if phase == 2:
 		for i in range(2):
 			await get_tree().create_timer(0.25).timeout
@@ -73,8 +73,8 @@ func attack_smash() -> void:
 			shock1.global_position = $Smash/Pivot/WeaponEnd.global_position
 			shock2 = shock1.duplicate()
 			shock2.dir = -1
-			get_tree().current_scene.add_child(shock1)
-			get_tree().current_scene.add_child(shock2)
+			get_tree().current_scene.add_child(shock1, true)
+			get_tree().current_scene.add_child(shock2, true)
 	await get_tree().create_timer(stagger).timeout
 	set_is_moving(true)
 	attacking = false
@@ -101,7 +101,7 @@ func attack_riberang() -> void:
 	new_rib.global_position = global_position
 	new_rib.rotation = global_position.direction_to(target.global_position).angle()
 	new_rib.shooter_vel = velocity
-	get_tree().current_scene.add_child(new_rib)
+	get_tree().current_scene.add_child(new_rib, true)
 	if phase == 2:
 		for i in range(2):
 			await get_tree().create_timer(0.5).timeout
@@ -109,7 +109,7 @@ func attack_riberang() -> void:
 			new_rib.global_position = global_position
 			new_rib.rotation = global_position.direction_to(target.global_position).angle()
 			new_rib.shooter_vel = velocity
-			get_tree().current_scene.add_child(new_rib)
+			get_tree().current_scene.add_child(new_rib, true)
 	await new_rib.tree_exited
 	await get_tree().create_timer(0.5).timeout
 	set_is_moving(true)
@@ -127,7 +127,7 @@ func attack_bone_rain() -> void:
 			var new_finger: Area2D = finger.instantiate()
 			new_finger.global_position = global_position
 			new_finger.planned_pos = array.pop_at(randi_range(0, array.size()-1))
-			get_tree().current_scene.add_child(new_finger)
+			get_tree().current_scene.add_child(new_finger, true)
 		await get_tree().create_timer(1.5).timeout
 	await get_tree().create_timer(2).timeout
 	get_node("../Platforms/AnimationPlayer").play_backwards("bone_rain")
@@ -135,8 +135,9 @@ func attack_bone_rain() -> void:
 	attacking = false
 	$ChooseAttack.start(6-phase)
 
-
-func damage(hitbox: Hitbox, knockback):
+@rpc("any_peer", "call_local", "reliable")
+func damage(hitbox_path: String, knockback):
+	var hitbox = get_node(hitbox_path)
 	var is_crit = Utils.calculate_crit(hitbox.get_crit_chance())
 	set_collision_layer_value(1, false)
 	invincibility_timer.start()
@@ -156,6 +157,7 @@ func damage(hitbox: Hitbox, knockback):
 		dead.emit()
 		queue_free()
 
+@rpc("any_peer", "call_local", "reliable")
 func damage_amount(amount: int, knockback) -> void:
 	Utils.summon_damage_number(self, amount, Color.WHITE, damage_number_scale, damage_number_duration)
 	set_collision_layer_value(1, false)
@@ -179,12 +181,12 @@ func _on_collision_damage_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Players"):
 		var knockback_dir = calculate_direction(body)
 		if not attacking:
-			body.damage_amount(coll_damage, coll_knockback * knockback_dir)
+			body.damage_amount.rpc(coll_damage, coll_knockback * knockback_dir)
 
 func _on_smash_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Players"):
 		var knockback_dir = calculate_direction(body)
-		body.damage_amount(smash_damage, smash_knockback * knockback_dir)
+		body.damage_amount.rpc(smash_damage, smash_knockback * knockback_dir)
 
 
 func target_closest_player() -> void:

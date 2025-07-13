@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://b4r8t6ijsspl2"]
+[gd_scene load_steps=6 format=3 uid="uid://b4r8t6ijsspl2"]
 
 [ext_resource type="Script" uid="uid://bfw6orvi4twpy" path="res://Scripts/Enemies/dummy.gd" id="1_ccesc"]
 [ext_resource type="Texture2D" uid="uid://c1lo75th7b88g" path="res://Textures/icon.svg" id="1_fotkt"]
@@ -7,6 +7,11 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ccesc"]
 size = Vector2(128, 128)
 
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_dplh5"]
+properties/0/path = NodePath(".:hp")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+
 [node name="Dummy" type="CharacterBody2D" groups=["Enemies"]]
 collision_mask = 14
 script = ExtResource("1_ccesc")
@@ -14,7 +19,6 @@ hp = 1000
 max_hp = 1000
 invincibility_length = 0.3
 can_be_knockedback = false
-is_moving = false
 metadata/_custom_type_script = "uid://b3sn8h0wc0ike"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -28,3 +32,6 @@ offset_left = -96.0
 offset_top = -112.0
 offset_right = 96.0
 offset_bottom = -85.0
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_dplh5")

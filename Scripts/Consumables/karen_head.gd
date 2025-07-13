@@ -5,4 +5,4 @@ func use(player_path: String):
 	var player = get_node(player_path)
 	var karen_circle = karen_circle_scene.instantiate()
 	karen_circle.global_position = player.global_position
-	player.get_parent().add_child(karen_circle)
+	player.get_parent().add_child(karen_circle, true)

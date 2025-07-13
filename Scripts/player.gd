@@ -19,7 +19,11 @@ var selected_weapon
 @onready var inventory = $UI/Inventory
 
 func _ready() -> void:
+	if is_multiplayer_authority():
+		$Camera2D.enabled
+		add_to_group("Players")
 	instanciate_weapons()
+	limit_camera()
 
 
 func _physics_process(_delta: float) -> void:
@@ -31,37 +35,47 @@ func _physics_process(_delta: float) -> void:
 	$ParryTimerTestLabel.text = str($Parry.time_left)
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("Jump") and jumps_remaining > 0:
-		velocity.y = 0
-		jumps_remaining -= 1
-		velocity += Vector2(0, -jump_force)
-	elif event.is_action_released("Jump"):
-		velocity.y = max(velocity.y, jump_easing)
-	elif event.is_action_pressed("Dash") and $DashCooldown.is_stopped():
-		$DashTimer.start()
-		$DashCooldown.start()
-		velocity = Vector2(dash_speed * direction, 0)
-	elif event.is_action_pressed("Attack"):
-		attack()
-	elif event.is_action_pressed("Interact"):
-		interact_with()
-	elif event.is_action_pressed("Parry"):
-		$ParryArea.set_collision_mask_value(1, true)
-		$ParryArea.set_collision_mask_value(3, true)
-		$Parry.start()
-	elif event.is_action_pressed("Weapon1"):
-		switch_weapon(PlayerStats.weapon1)
-	elif event.is_action_pressed("Weapon2"):
-		switch_weapon(PlayerStats.weapon2)
-	#elif event.is_action_released("PreviousWeapon") or event.is_action_released("NextWeapon"):
-	#	if selected_weapon.item_name == PlayerStats.weapon1.item_name:
-	#		selected_weapon = PlayerStats.weapon2
-	#	else:
-	#		selected_weapon = PlayerStats.weapon1
-	elif event.is_action_pressed("UseConsumable1"):
-		use_consumable(1)
-	elif event.is_action_pressed("UseConsumable2"):
-		use_consumable(2)
+	if is_multiplayer_authority():
+		if event.is_action_pressed("Jump") and jumps_remaining > 0:
+			velocity.y = 0
+			jumps_remaining -= 1
+			velocity += Vector2(0, -jump_force)
+		elif event.is_action_released("Jump"):
+			velocity.y = max(velocity.y, jump_easing)
+		elif event.is_action_pressed("Dash") and $DashCooldown.is_stopped():
+			$DashTimer.start()
+			$DashCooldown.start()
+			velocity = Vector2(dash_speed * direction, 0)
+		elif event.is_action_pressed("Attack"):
+			attack()
+		elif event.is_action_pressed("Interact"):
+			interact_with()
+		elif event.is_action_pressed("Parry"):
+			$ParryArea.set_collision_mask_value(1, true)
+			$ParryArea.set_collision_mask_value(3, true)
+			$Parry.start()
+		elif event.is_action_pressed("Weapon1"):
+			switch_weapon(PlayerStats.weapon1)
+		elif event.is_action_pressed("Weapon2"):
+			switch_weapon(PlayerStats.weapon2)
+		#elif event.is_action_released("PreviousWeapon") or event.is_action_released("NextWeapon"):
+		#	if selected_weapon.item_name == PlayerStats.weapon1.item_name:
+		#		selected_weapon = PlayerStats.weapon2
+		#	else:
+		#		selected_weapon = PlayerStats.weapon1
+		elif event.is_action_pressed("UseConsumable1"):
+			use_consumable(1)
+		elif event.is_action_pressed("UseConsumable2"):
+			use_consumable(2)
+
+func limit_camera():
+	if get_parent().get_node("BorderLeft") != null:
+		$Camera2D.limit_left = get_parent().get_node("BorderLeft").global_position.x
+	if get_parent().get_node("BorderRight") != null:
+		$Camera2D.limit_right = get_parent().get_node("BorderRight").global_position.x
+	if get_parent().get_node("Roof") != null:
+		$Camera2D.limit_top = get_parent().get_node("Roof").global_position.y
+	$Camera2D.limit_bottom = 0
 
 func instanciate_weapons():
 	$UI/SelectedWeaponUI.set_weapon_1(PlayerStats.weapon1)
@@ -120,9 +134,9 @@ func process_movement():
 func attack():
 	if selected_weapon != null:
 		if $Weapons.get_child(0).visible:
-			$Weapons.get_child(0).hit(direction)
+			$Weapons.get_child(0).hit.rpc(direction)
 		else:
-			$Weapons.get_child(1).hit(direction)
+			$Weapons.get_child(1).hit.rpc(direction)
 
 func use_consumable(consumable: int):
 	if $Consumables.get_node(str(consumable)) != null:
@@ -136,29 +150,34 @@ func open_crafting_menu():
 func close_crafting_menu():
 	$UI/Crafting.hide()
 
+@rpc("any_peer", "call_local", "reliable")
 func damage_amount(amount: int, knockback) -> void:
-	Utils.summon_damage_number(self, amount, Color.RED, damage_number_scale, damage_number_duration)
-	set_collision_layer_value(1, false)
-	$Invincibility.start()
-	velocity.x = 1600 * knockback
-	velocity.y = -500 * abs(knockback)
-	PlayerStats.hp -= amount
-	$Parry.stop()
-	#if hp <= 0:
-		#get_tree().quit()
-	
-func damage(hitbox: Hitbox, knockback):
-	var is_crit = Utils.calculate_crit(hitbox.get_crit_chance())
-	set_collision_layer_value(1, false)
-	$Invincibility.start()
-	$Parry.stop()
-	velocity.x = 1600 * knockback
-	velocity.y = -500 * abs(knockback)
-	var damage_num = hitbox.get_damage() * (hitbox.get_crit_mult() if is_crit else 1)
-	Utils.summon_damage_number(self, damage_num, Color.RED, damage_number_scale, damage_number_duration)
-	PlayerStats.hp -= damage_num
-	if PlayerStats.hp <= 0:
-		queue_free()
+	if PlayerStats.is_multiplayer == false or str(multiplayer.get_unique_id()) == name:
+		Utils.summon_damage_number(self, amount, Color.RED, damage_number_scale, damage_number_duration)
+		set_collision_layer_value(1, false)
+		$Invincibility.start()
+		velocity.x = 1600 * knockback
+		velocity.y = -500 * abs(knockback)
+		PlayerStats.hp -= amount
+		$Parry.stop()
+		#if hp <= 0:
+			#get_tree().quit()
+
+@rpc("any_peer", "call_local", "reliable")
+func damage(hitbox_path : String, knockback):
+	if PlayerStats.is_multiplayer == false or str(multiplayer.get_unique_id()) == name:
+		var hitbox = get_node(hitbox_path)
+		var is_crit = Utils.calculate_crit(hitbox.get_crit_chance())
+		set_collision_layer_value(1, false)
+		$Invincibility.start()
+		$Parry.stop()
+		velocity.x = 1600 * knockback
+		velocity.y = -500 * abs(knockback)
+		var damage_num = hitbox.get_damage() * (hitbox.get_crit_mult() if is_crit else 1)
+		Utils.summon_damage_number(self, damage_num, Color.RED, damage_number_scale, damage_number_duration)
+		PlayerStats.hp -= damage_num
+		if PlayerStats.hp <= 0:
+			queue_free()
 
 func unlock_recipe(recipe: Recipe):
 	PlayerStats.unlocked_recipes.append(recipe)
@@ -213,7 +232,13 @@ func heal(_hp: int):
 		PlayerStats.hp = PlayerStats.max_hp
 
 func get_hp():
-	return PlayerStats.hp
+	if PlayerStats.is_multiplayer == false or is_multiplayer_authority():
+		return PlayerStats.hp
+	else:
+		return null
 
 func get_max_hp():
-	return PlayerStats.max_hp
+	if PlayerStats.is_multiplayer == false or is_multiplayer_authority():
+		return PlayerStats.max_hp
+	else:
+		return null

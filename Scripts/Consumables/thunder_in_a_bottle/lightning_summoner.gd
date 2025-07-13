@@ -8,7 +8,7 @@ func _ready() -> void:
 func _on_hit_interval_timeout() -> void:
 	var lightning = lightning_scene.instantiate()
 	lightning.global_position = target
-	add_child(lightning)
+	add_child(lightning, true)
 
 
 func _on_duration_timeout() -> void:

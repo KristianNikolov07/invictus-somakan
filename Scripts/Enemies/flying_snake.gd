@@ -6,14 +6,14 @@ func _on_attack_hitbox_body_entered(body: Node2D) -> void:
 		var parry_time_left = body.check_parry(self)
 		print(parry_time_left)
 		if parry_time_left > body.get_parry_time() / 1.2:
-			damage_amount(parry_damage, parry_knockback_mult)
+			damage_amount.rpc(parry_damage, parry_knockback_mult)
 			body.stop_parry()
 		elif parry_time_left > 0:
-			damage_amount(parry_damage, parry_knockback_mult)
+			damage_amount.rpc(parry_damage, parry_knockback_mult)
 			body.stop_parry()
-			body.damage_amount(attack_damage / 3, (knockback_strength * knockback_dir) / 3)
+			body.damage_amount.rpc(attack_damage / 3, (knockback_strength * knockback_dir) / 3)
 		else:
-			body.damage_amount(attack_damage, knockback_strength * knockback_dir)
+			body.damage_amount.rpc(attack_damage, knockback_strength * knockback_dir)
 
 
 func calculate_direction(body):

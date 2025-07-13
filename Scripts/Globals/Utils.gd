@@ -6,7 +6,7 @@ const explosion := preload("res://Scenes/explosion.tscn")
 func summon_damage_number(body: CharacterBody2D, damage: int, color: Color, scale: float, duration: float):
 	if damage > 0:
 		var damage_number = DamageNumber.new()
-		body.get_parent().add_child(damage_number)
+		body.get_parent().add_child(damage_number, true)
 		damage_number.text = str(damage)
 		damage_number.global_position = body.global_position + Vector2(0, -75)
 		damage_number.set_duration(duration)

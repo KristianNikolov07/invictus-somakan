@@ -9,4 +9,4 @@ func use(player_path: String):
 	new_lice.rotation = global_position.direction_to(target).angle()
 	new_lice.shooter_vel = player.velocity
 	new_lice.shooter_vel.y = 0
-	get_tree().current_scene.add_child(new_lice)
+	get_tree().current_scene.add_child(new_lice, true)

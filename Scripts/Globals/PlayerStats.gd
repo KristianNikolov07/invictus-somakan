@@ -30,6 +30,10 @@ func _ready() -> void:
 func get_player():
 	if !is_multiplayer:
 		return get_tree().get_first_node_in_group("Players")
+	else:
+		for player in get_tree().get_nodes_in_group("Players"):
+			if player.name == str(multiplayer.get_unique_id()):
+				return player
 
 func add_item(_item: Item, amount:= 1):
 	for i in range(items.size()):

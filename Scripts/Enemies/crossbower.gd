@@ -5,12 +5,13 @@ var arrow := preload("res://Scenes/Projectiles/arrow.tscn")
 
 
 func fire_arrow() -> void:
-	var arrow: Projectile = arrow.instantiate()
-	arrow.global_position = global_position
-	arrow.rotation = global_position.direction_to(target.global_position).angle()
-	arrow.shooter_vel = velocity
-	arrow.can_hit_enemies = false
-	get_tree().current_scene.add_child(arrow)
+	if PlayerStats.is_multiplayer == false or multiplayer.is_server():
+		var arrow: Projectile = arrow.instantiate()
+		arrow.global_position = global_position
+		arrow.rotation = global_position.direction_to(target.global_position).angle()
+		arrow.shooter_vel = velocity
+		arrow.can_hit_enemies = false
+		get_tree().current_scene.add_child(arrow, true)
 
 func calculate_direction(body):
 	var knockback_dir = 1
@@ -25,7 +26,7 @@ func _on_collision_damage_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Players"):
 		var knockback_dir = calculate_direction(body)
 		if not attacking:
-			body.damage_amount(coll_damage, coll_knockback * knockback_dir)
+			body.damage_amount.rpc(coll_damage, coll_knockback * knockback_dir)
 
 func _on_attack_range_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Players"):

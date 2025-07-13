@@ -1,13 +1,14 @@
-[gd_scene load_steps=17 format=4 uid="uid://bdnr0b4u0cl7l"]
+[gd_scene load_steps=18 format=4 uid="uid://bdnr0b4u0cl7l"]
 
 [ext_resource type="Script" uid="uid://dgsmtoldmfhn1" path="res://Scripts/Classes/CombatRoom.gd" id="1_lsvnq"]
 [ext_resource type="Texture2D" uid="uid://ctm47thfbe3uy" path="res://Textures/tile-set.png" id="1_pcoad"]
-[ext_resource type="PackedScene" uid="uid://be53snhq2r11i" path="res://Scenes/player.tscn" id="1_ykuiu"]
 [ext_resource type="PackedScene" uid="uid://ch7esotluxknf" path="res://Scenes/Objects/portal.tscn" id="2_0dlg8"]
 [ext_resource type="PackedScene" uid="uid://b451yhoqiov5a" path="res://Scenes/Enemies/zombie.tscn" id="2_lv8tk"]
 [ext_resource type="PackedScene" uid="uid://dqe7ft8qxejyd" path="res://Scenes/other/camera_limiter.tscn" id="3_0dlg8"]
 [ext_resource type="PackedScene" uid="uid://drh5mw5jb3hga" path="res://Scenes/Objects/platform.tscn" id="4_aqhgq"]
 [ext_resource type="Script" uid="uid://8utdi18iv0th" path="res://Scripts/Classes/Spawner.gd" id="6_lv8tk"]
+[ext_resource type="PackedScene" uid="uid://mvn7165yf2l1" path="res://Scenes/other/player_spawner.tscn" id="9_asrf0"]
+[ext_resource type="PackedScene" uid="uid://8osmgqm50een" path="res://Scenes/other/multiplayer_spawner.tscn" id="9_vjfrg"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_358f1"]
 texture = ExtResource("1_pcoad")
@@ -222,10 +223,9 @@ normal = Vector2(1, 0)
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ykuiu"]
 normal = Vector2(-1, 0)
 
-[node name="Room1" type="Node2D" node_paths=PackedStringArray("wave_2_trigger")]
+[node name="Room1" type="Node2D"]
 script = ExtResource("1_lsvnq")
 wave2_quantity = 0.5
-wave_2_trigger = NodePath("")
 metadata/_custom_type_script = "uid://dgsmtoldmfhn1"
 
 [node name="Background" type="TileMapLayer" parent="."]
@@ -237,9 +237,6 @@ tile_set = SubResource("TileSet_ykuiu")
 texture_filter = 1
 tile_map_data = PackedByteArray("AAAAAP//AAACAAEAAAABAP//AAACAAEAAAACAP//AAACAAEAAAADAP//AAACAAEAAAAEAP//AAACAAEAAAAFAP//AAACAAEAAAAGAP//AAACAAEAAAAHAP//AAACAAEAAAAIAP//AAACAAEAAAAJAP//AAACAAEAAAAKAP//AAACAAEAAAALAP//AAACAAEAAAAMAP//AAACAAEAAAANAP//AAACAAEAAAAOAP//AAACAAEAAAAPAP//AAACAAEAAAAQAP//AAACAAEAAAARAP//AAACAAEAAAASAP//AAACAAEAAAATAP//AAACAAEAAAAUAP//AAACAAEAAAAVAP//AAACAAEAAAAWAP//AAACAAEAAAAXAP//AAACAAEAAAAYAP//AAACAAEAAAAZAP//AAACAAEAAAAaAP//AAACAAEAAAAbAP//AAACAAEAAAAcAP//AAACAAEAAAAdAP//AAACAAEAAAAeAP//AAACAAEAAAAfAP//AAACAAEAAAAgAP//AAACAAEAAAAhAP//AAACAAEAAAAiAP//AAACAAEAAAAjAP//AAACAAEAAAAkAP//AAACAAEAAAAlAP//AAACAAEAAAAmAP//AAACAAEAAAAnAP//AAACAAEAAAAoAP//AAACAAEAAAApAP//AAACAAEAAAAqAP//AAACAAEAAAArAP//AAACAAEAAAAsAP//AAACAAEAAAAtAP//AAACAAEAAAAuAP//AAACAAEAAAAvAP//AAACAAEAAAAwAP//AAACAAEAAAAxAP//AAACAAEAAAAyAP//AAACAAEAAAAzAP//AAACAAEAAAA0AP//AAACAAEAAAA1AP//AAACAAEAAAA2AP//AAACAAEAAAA3AP//AAACAAEAAAA4AP//AAACAAEAAAA5AP//AAACAAEAAAA6AP//AAACAAEAAAA7AP//AAACAAEAAAA8AP//AAACAAEAAAA9AP//AAACAAEAAAA+AP//AAACAAEAAAA/AP//AAACAAEAAAA=")
 tile_set = SubResource("TileSet_1cvqe")
-
-[node name="Player" parent="." instance=ExtResource("1_ykuiu")]
-position = Vector2(144, -40)
 
 [node name="Floor" type="StaticBody2D" parent="."]
 position = Vector2(0, -16)
@@ -325,5 +322,12 @@ metadata/_custom_type_script = "uid://8utdi18iv0th"
 [node name="Portal" parent="." instance=ExtResource("2_0dlg8")]
 position = Vector2(960, -64)
 room_type = 2
+
+[node name="PlayerSpawner" parent="." instance=ExtResource("9_asrf0")]
+
+[node name="Marker2D" type="Marker2D" parent="PlayerSpawner"]
+position = Vector2(48, -88)
+
+[node name="MultiplayerSpawner" parent="." instance=ExtResource("9_vjfrg")]
 
 [connection signal="on_completion" from="." to="Portal" method="activate"]

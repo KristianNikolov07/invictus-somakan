@@ -6,6 +6,7 @@ class_name Weapon
 @export var crit_mult = 2
 @export var knockback_amount = 1
 
+@rpc("any_peer", "call_local", "reliable")
 func hit(_direction: int):
 	pass
 

@@ -15,9 +15,9 @@ func _ready() -> void:
 
 func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Players") and can_hit_players:
-		body.damage_amount(damage, knockback*calculate_direction(body))
+		body.damage_amount.rpc(damage, knockback*calculate_direction(body))
 	elif body.is_in_group("Enemies") and can_hit_enemies:
-		body.damage_amount(damage, knockback*calculate_direction(body))
+		body.damage_amount.rpc(damage, knockback*calculate_direction(body))
 
 func _on_area_entered(area: Area2D) -> void:
 	if "speed" in area:

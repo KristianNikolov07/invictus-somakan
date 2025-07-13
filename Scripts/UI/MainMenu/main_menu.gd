@@ -70,7 +70,8 @@ func _on_singleplayer_pressed() -> void:
 
 
 func _on_multiplayer_pressed() -> void:
-	pass # Replace with function body.
+	$Multiplayer.enabled = true
+	$SingleplayerOrMultiplayer.enabled = false
 
 
 func _on_confirm_delete_pressed() -> void:
@@ -84,3 +85,8 @@ func _on_abort_delete_pressed() -> void:
 	$Play/Saves/Save3.show()
 	$Play/SaveInfo.show()
 	$Play/DeleteConfirm.hide()
+
+
+func _on_multiplayer_back_pressed() -> void:
+	$Multiplayer.enabled = false
+	$SingleplayerOrMultiplayer.enabled = true

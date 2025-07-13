@@ -31,10 +31,10 @@ func _on_destroy_timer_timeout() -> void:
 func _on_body_entered(body: Node2D) -> void:
 	if !body.is_in_group("Players"):
 		if body.has_method("damage_amount"):
-			body.damage_amount(damage, 0)
+			body.damage_amount.rpc(damage, 0)
 
 
 func _on_damage_timer_timeout() -> void:
 	for body in get_overlapping_bodies():
 		if body.is_in_group("Enemies"):
-			body.damage_amount(damage, 0)
+			body.damage_amount.rpc(damage, 0)

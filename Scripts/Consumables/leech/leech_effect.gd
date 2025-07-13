@@ -10,5 +10,5 @@ func _on_effect_duration_timeout() -> void:
 
 
 func _on_damage_timer_timeout() -> void:
-	get_parent().damage_amount(damage, 0)
+	get_parent().damage_amount.rpc(damage, 0)
 	player.heal(heal_percentage / 100 * damage)

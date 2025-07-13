@@ -35,8 +35,9 @@ func set_new_target():
 			closest_player = player
 	target = closest_player
 
-
-func damage(hitbox: Hitbox, knockback) -> void:
+@rpc("any_peer", "call_local", "reliable")
+func damage(hitbox_path : String, knockback) -> void:
+	var hitbox: Hitbox = get_node(hitbox_path)
 	var is_crit = Utils.calculate_crit(hitbox.get_crit_chance())
 	set_collision_layer_value(1, false)
 	invincibility_timer.start()

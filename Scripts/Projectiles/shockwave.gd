@@ -22,7 +22,7 @@ func _on_death_time_timeout() -> void:
 func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Players"):
 		var knockback_dir = calculate_direction(body)
-		body.damage_amount(damage, 1 * knockback_dir)
+		body.damage_amount.rpc(damage, 1 * knockback_dir)
 
 func calculate_direction(body):
 	var knockback_dir = 1

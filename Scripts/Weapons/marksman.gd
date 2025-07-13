@@ -14,7 +14,7 @@ func _input(event: InputEvent) -> void:
 		get_tree().current_scene.add_child(new_coin)
 		$Coins.value -= 250
 
-
+@rpc("any_peer", "call_local", "reliable")
 func hit(_direction):
 	if $ShotCool.is_stopped():
 		var new_bullet: Projectile = bullet.instantiate()

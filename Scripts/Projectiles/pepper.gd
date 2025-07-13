@@ -39,12 +39,12 @@ func _physics_process(delta: float) -> void:
 func _on_body_entered(body: Node2D) -> void:
 	if cooking_phase > 2 and not body.is_in_group("Players"):
 		if body.has_method("damage_amount"):
-			body.damage_amount(damage, knockback * calculate_direction(body))
+			body.damage_amount.rpc(damage, knockback * calculate_direction(body))
 		var ex = Utils.summon_explosion(global_position, 3 if cooking_phase == 4 else 1.5, explosion_damage, knockback, 1.2, true if cooking_phase == 4 else false, true)
 		get_tree().current_scene.call_deferred("add_child", ex)
 		queue_free()
 	elif body.is_in_group("Enemies"):
-		body.damage_amount(damage, knockback * calculate_direction(body))
+		body.damage_amount.rpc(damage, knockback * calculate_direction(body))
 		queue_free()
 
 

@@ -2,7 +2,7 @@ extends Weapon
 var dir = 1
 var is_down = false
 
-
+@rpc("any_peer", "call_local", "reliable")
 func hit(direction : int):
 	if !is_down:
 		if direction == -1:
@@ -25,7 +25,7 @@ func hit(direction : int):
 
 func _on_sword_body_entered(body: Node2D) -> void:
 	if body.has_method("damage") and body.is_in_group("Enemies"):
-		body.damage($Hitbox, knockback_amount * dir)
+		body.damage.rpc($Hitbox.get_path(), knockback_amount * dir)
 
 
 func _on_cooldown_timeout() -> void:

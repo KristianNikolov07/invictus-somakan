@@ -1,18 +1,19 @@
 [gd_scene load_steps=11 format=3 uid="uid://drc5ejy1kocf"]
 
-[ext_resource type="PackedScene" uid="uid://be53snhq2r11i" path="res://Scenes/player.tscn" id="1_l4iyj"]
-[ext_resource type="PackedScene" uid="uid://ch7esotluxknf" path="res://Scenes/Objects/portal.tscn" id="2_kvfx3"]
-[ext_resource type="PackedScene" uid="uid://b4r8t6ijsspl2" path="res://Scenes/Enemies/dummy.tscn" id="3_kvfx3"]
-[ext_resource type="PackedScene" uid="uid://2txcwdq7eljo" path="res://Scenes/Objects/armor_stand.tscn" id="4_k2f67"]
-[ext_resource type="Resource" uid="uid://ca7em7q8srtxe" path="res://Items/Weapons/mace.tres" id="5_3faoc"]
-[ext_resource type="Resource" uid="uid://cos1nvi2km0id" path="res://Items/Weapons/bow.tres" id="6_r5otq"]
-[ext_resource type="Resource" uid="uid://djbh0r2b5yx2v" path="res://Items/Weapons/claws.tres" id="7_e5u4f"]
-[ext_resource type="Resource" uid="uid://b0t4amus74xte" path="res://Items/Weapons/damage_circle.tres" id="8_v75h1"]
-[ext_resource type="PackedScene" uid="uid://dax0ls6j0a5o4" path="res://Scenes/Objects/bin.tscn" id="9_v75h1"]
+[ext_resource type="PackedScene" uid="uid://ch7esotluxknf" path="res://Scenes/Objects/portal.tscn" id="1_5tym1"]
+[ext_resource type="PackedScene" uid="uid://b4r8t6ijsspl2" path="res://Scenes/Enemies/dummy.tscn" id="2_w71vg"]
+[ext_resource type="PackedScene" uid="uid://2txcwdq7eljo" path="res://Scenes/Objects/armor_stand.tscn" id="3_5y7pe"]
+[ext_resource type="Resource" uid="uid://ca7em7q8srtxe" path="res://Items/Weapons/Mace.tres" id="4_3lpgh"]
+[ext_resource type="Resource" uid="uid://cos1nvi2km0id" path="res://Items/Weapons/Bow.tres" id="5_as533"]
+[ext_resource type="Resource" uid="uid://djbh0r2b5yx2v" path="res://Items/Weapons/Claws.tres" id="6_7vh5v"]
+[ext_resource type="Resource" uid="uid://b0t4amus74xte" path="res://Items/Weapons/damage_circle.tres" id="7_q8omf"]
+[ext_resource type="PackedScene" uid="uid://dax0ls6j0a5o4" path="res://Scenes/Objects/bin.tscn" id="8_bp08p"]
+[ext_resource type="PackedScene" uid="uid://mvn7165yf2l1" path="res://Scenes/other/player_spawner.tscn" id="9_ww1ag"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_k2f67"]
 
 [node name="Hub" type="Node2D"]
+position = Vector2(-24, -656)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2(52, 647)
@@ -21,11 +22,10 @@ collision_layer = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 shape = SubResource("WorldBoundaryShape2D_k2f67")
 
-[node name="Player" parent="." instance=ExtResource("1_l4iyj")]
-position = Vector2(63, 580)
-
-[node name="Portal" parent="." instance=ExtResource("2_kvfx3")]
+[node name="Portal" parent="." instance=ExtResource("1_5tym1")]
+visible = true
 position = Vector2(1069, 570)
+monitoring = true
 is_stage_transition = true
 room_type = 2
 
@@ -36,29 +36,38 @@ offset_right = 131.0
 offset_bottom = 419.0
 text = "Welcome to hub"
 
-[node name="Dummy" parent="." instance=ExtResource("3_kvfx3")]
+[node name="Dummy" parent="." instance=ExtResource("2_w71vg")]
 position = Vector2(557, 604)
 scale = Vector2(0.7, 0.7)
 
-[node name="ArmorStand" parent="." instance=ExtResource("4_k2f67")]
+[node name="ArmorStand" parent="." instance=ExtResource("3_5y7pe")]
 position = Vector2(208, 608)
 scale = Vector2(0.5, 0.5)
-weapon = ExtResource("5_3faoc")
+weapon = ExtResource("4_3lpgh")
 
-[node name="ArmorStand2" parent="." instance=ExtResource("4_k2f67")]
+[node name="ArmorStand2" parent="." instance=ExtResource("3_5y7pe")]
 position = Vector2(96, 608)
 scale = Vector2(0.5, 0.5)
-weapon = ExtResource("6_r5otq")
+weapon = ExtResource("5_as533")
 
-[node name="ArmorStand3" parent="." instance=ExtResource("4_k2f67")]
+[node name="ArmorStand3" parent="." instance=ExtResource("3_5y7pe")]
 position = Vector2(-8, 608)
 scale = Vector2(0.5, 0.5)
-weapon = ExtResource("7_e5u4f")
+weapon = ExtResource("6_7vh5v")
 
-[node name="ArmorStand4" parent="." instance=ExtResource("4_k2f67")]
+[node name="ArmorStand4" parent="." instance=ExtResource("3_5y7pe")]
 position = Vector2(-120, 608)
 scale = Vector2(0.5, 0.5)
-weapon = ExtResource("8_v75h1")
+weapon = ExtResource("7_q8omf")
 
-[node name="Bin" parent="." instance=ExtResource("9_v75h1")]
+[node name="Bin" parent="." instance=ExtResource("8_bp08p")]
 position = Vector2(-248, 600)
+
+[node name="PlayerSpawner" parent="." instance=ExtResource("9_ww1ag")]
+
+[node name="Marker2D" type="Marker2D" parent="PlayerSpawner"]
+position = Vector2(128, 520)
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("uid://be53snhq2r11i", "uid://ddhk7fvsuut14")
+spawn_path = NodePath("..")

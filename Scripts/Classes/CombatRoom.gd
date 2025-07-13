@@ -45,28 +45,25 @@ func _physics_process(_delta: float) -> void:
 				on_completion.emit()
 			
 func spawn_current_wave(body = null):
-	current_enemies.clear()
-	if current_wave == 1:
-		current_enemy_count = wave1_quantity * len(remaining_spawnpoints)
-	else:
-		if wave_2_trigger != null:
-			wave_2_trigger.queue_free()
-		current_enemy_count = wave2_quantity * len(remaining_spawnpoints)
+	if PlayerStats.is_multiplayer == false or multiplayer.is_server():
+		current_enemies.clear()
+		if current_wave == 1:
+			current_enemy_count = wave1_quantity * len(remaining_spawnpoints)
+		else:
+			if wave_2_trigger != null:
+				wave_2_trigger.queue_free()
+			current_enemy_count = wave2_quantity * len(remaining_spawnpoints)
 
-	for i in range(current_enemy_count):
-		var rand = randi_range(0, len(remaining_spawnpoints) - 1)
-		var current_spawnpoint = remaining_spawnpoints.pop_at(rand)
-		var current_enemy = current_spawnpoint.enemy.instantiate()
-		print(current_enemy)
-		current_enemy.position = current_spawnpoint.position
-		add_child(current_enemy)
-	
-	remaining_spawnpoints = $Spawnpoints/Wave2.get_children()
-	current_wave += 1
-
-func generate_enemies():
-	pass
+		for i in range(current_enemy_count):
+			var rand = randi_range(0, len(remaining_spawnpoints) - 1)
+			var current_spawnpoint = remaining_spawnpoints.pop_at(rand)
+			var current_enemy = current_spawnpoint.enemy.instantiate()
+			print(current_enemy)
+			current_enemy.position = current_spawnpoint.position
+			add_child(current_enemy, true)
+		
+		remaining_spawnpoints = $Spawnpoints/Wave2.get_children()
+		current_wave += 1
 	
 func _on_spawn_delay_timer_timeout():
-	print("spawning")
 	spawn_current_wave()

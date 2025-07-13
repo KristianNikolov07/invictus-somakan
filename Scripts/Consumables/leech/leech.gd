@@ -7,4 +7,4 @@ func use(player_path: String):
 	leech_shot.global_position = player.global_position
 	leech_shot.target = get_global_mouse_position()
 	leech_shot.player = player
-	player.get_parent().add_child(leech_shot)
+	player.get_parent().add_child(leech_shot, true)

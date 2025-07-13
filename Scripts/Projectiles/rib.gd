@@ -24,7 +24,7 @@ func _on_body_entered(body: Node2D) -> void:
 			var is_perfect = parry_time_left > body.get_parry_time() / 1.2
 			body.stop_parry()
 			if not is_perfect and times_parried <= 1:
-				body.damage_amount(damage / 3, knockback / 3)
+				body.damage_amount.rpc(damage / 3, knockback / 3)
 				speed = -600
 			else:
 				damage *= 2
@@ -36,12 +36,12 @@ func _on_body_entered(body: Node2D) -> void:
 			times_parried += 1
 			rot_speed *= 3
 		else:
-			body.damage_amount(damage, knockback * knockback_dir)
+			body.damage_amount.rpc(damage, knockback * knockback_dir)
 
 func _on_area_entered(area: Area2D) -> void:
 	if area.is_in_group("Enemies") and $Return.is_stopped():
 		if times_parried > 0:
-			area.get_parent().damage_amount(damage, knockback)
+			area.get_parent().damage_amount.rpc(damage, knockback)
 		queue_free()
 
 

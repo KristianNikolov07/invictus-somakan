@@ -1,14 +1,15 @@
-[gd_scene load_steps=18 format=4 uid="uid://d2ng2gr2nosut"]
+[gd_scene load_steps=19 format=4 uid="uid://d2ng2gr2nosut"]
 
 [ext_resource type="Script" uid="uid://dgsmtoldmfhn1" path="res://Scripts/Classes/CombatRoom.gd" id="1_1535p"]
 [ext_resource type="Texture2D" uid="uid://ctm47thfbe3uy" path="res://Textures/tile-set.png" id="1_p20yc"]
-[ext_resource type="PackedScene" uid="uid://be53snhq2r11i" path="res://Scenes/player.tscn" id="1_y8yph"]
 [ext_resource type="PackedScene" uid="uid://b451yhoqiov5a" path="res://Scenes/Enemies/zombie.tscn" id="2_1535p"]
 [ext_resource type="PackedScene" uid="uid://ch7esotluxknf" path="res://Scenes/Objects/portal.tscn" id="2_px8am"]
 [ext_resource type="PackedScene" uid="uid://dqe7ft8qxejyd" path="res://Scenes/other/camera_limiter.tscn" id="3_1535p"]
 [ext_resource type="PackedScene" uid="uid://drh5mw5jb3hga" path="res://Scenes/Objects/platform.tscn" id="4_lwr4s"]
 [ext_resource type="Script" uid="uid://8utdi18iv0th" path="res://Scripts/Classes/Spawner.gd" id="6_lwr4s"]
 [ext_resource type="PackedScene" uid="uid://bd56rrohhtyve" path="res://Scenes/Triggers/wave_trigger.tscn" id="9_45c1b"]
+[ext_resource type="PackedScene" uid="uid://mvn7165yf2l1" path="res://Scenes/other/player_spawner.tscn" id="10_15d60"]
+[ext_resource type="PackedScene" uid="uid://8osmgqm50een" path="res://Scenes/other/multiplayer_spawner.tscn" id="10_w4bew"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1535p"]
 texture = ExtResource("1_p20yc")
@@ -238,9 +239,6 @@ texture_filter = 1
 tile_map_data = PackedByteArray("AAAAAP//AAAKAAkAAAABAP//AAAKAAkAAAACAP//AAAKAAkAAAADAP//AAAKAAkAAAAEAP//AAAKAAkAAAAFAP//AAAKAAkAAAAGAP//AAAKAAkAAAAHAP//AAAKAAkAAAAIAP//AAAKAAkAAAAJAP//AAAKAAkAAAAKAP//AAAKAAkAAAALAP//AAAKAAkAAAAMAP//AAAKAAkAAAANAP//AAAKAAkAAAAOAP//AAAKAAkAAAAPAP//AAAKAAkAAAAQAP//AAAKAAkAAAARAP//AAAKAAkAAAASAP//AAAKAAkAAAATAP//AAAKAAkAAAAUAP//AAAKAAkAAAAVAP//AAAKAAkAAAAWAP//AAAKAAkAAAAXAP//AAAKAAkAAAAYAP//AAAKAAkAAAAZAP//AAAKAAkAAAAaAP//AAAKAAkAAAAbAP//AAAKAAkAAAAcAP//AAAKAAkAAAAdAP//AAAKAAkAAAAeAP//AAAKAAkAAAAfAP//AAAKAAkAAAAgAP//AAAKAAkAAAAhAP//AAAKAAkAAAAiAP//AAAKAAkAAAAjAP//AAAKAAkAAAAkAP//AAAKAAkAAAAlAP//AAAKAAkAAAAmAP//AAAKAAkAAAAnAP//AAAKAAkAAAAoAP//AAAKAAkAAAApAP//AAAKAAkAAAApAND/AAADAAIAAAApANH/AAADAAIAAAApANL/AAADAAIAAAApANP/AAADAAIAAAApANT/AAADAAIAAAApANX/AAADAAIAAAApANb/AAADAAIAAAApANf/AAADAAIAAAApANj/AAADAAIAAAApANn/AAADAAIAAAApANr/AAADAAIAAAApANv/AAADAAIAAAApANz/AAADAAIAAAApAN3/AAADAAIAAAApAN7/AAADAAIAAAApAN//AAADAAIAAAApAOD/AAADAAIAAAApAOH/AAADAAIAAAApAOL/AAADAAIAAAApAOP/AAADAAIAAAApAOT/AAADAAIAAAApAOX/AAADAAIAAAApAOb/AAADAAIAAAApAOf/AAADAAIAAAApAOj/AAADAAIAAAApAOn/AAADAAIAAAApAOr/AAADAAIAAAApAOv/AAADAAIAAAApAOz/AAADAAIAAAApAO3/AAADAAIAAAApAO7/AAADAAIAAAApAO//AAADAAIAAAApAPD/AAADAAIAAAApAPH/AAADAAIAAAApAPL/AAADAAIAAAApAPP/AAADAAIAAAApAPT/AAADAAIAAAApAPX/AAADAAIAAAApAPb/AAADAAIAAAApAPf/AAADAAIAAAApAPj/AAADAAIAAAApAPn/AAADAAIAAAApAPr/AAADAAIAAAApAPv/AAADAAIAAAApAPz/AAADAAIAAAApAP3/AAADAAIAAAApAP7/AAADAAIAAAA=")
 tile_set = SubResource("TileSet_p20yc")
 
-[node name="Player" parent="." instance=ExtResource("1_y8yph")]
-position = Vector2(336, -40)
-
 [node name="Floor" type="StaticBody2D" parent="."]
 position = Vector2(0, -16)
 collision_layer = 10
@@ -379,5 +377,12 @@ room_type = 2
 [node name="WaveTrigger" parent="." instance=ExtResource("9_45c1b")]
 position = Vector2(0, -352)
 scale = Vector2(8.815, 1.01)
+
+[node name="PlayerSpawner" parent="." instance=ExtResource("10_15d60")]
+
+[node name="Marker2D" type="Marker2D" parent="PlayerSpawner"]
+position = Vector2(48, -88)
+
+[node name="MultiplayerSpawner" parent="." instance=ExtResource("10_w4bew")]
 
 [connection signal="on_completion" from="." to="Portal" method="activate"]

@@ -1,14 +1,15 @@
-[gd_scene load_steps=19 format=4 uid="uid://x5hib50ialgm"]
+[gd_scene load_steps=20 format=4 uid="uid://dwm18nqvyltro"]
 
 [ext_resource type="Texture2D" uid="uid://ctm47thfbe3uy" path="res://Textures/tile-set.png" id="1_g1b5i"]
 [ext_resource type="Script" uid="uid://dgsmtoldmfhn1" path="res://Scripts/Classes/CombatRoom.gd" id="1_i8an3"]
-[ext_resource type="PackedScene" uid="uid://be53snhq2r11i" path="res://Scenes/player.tscn" id="1_xke3f"]
 [ext_resource type="PackedScene" uid="uid://bq37pauhr7ehy" path="res://Scenes/Enemies/crossbower.tscn" id="2_cr4ua"]
 [ext_resource type="PackedScene" uid="uid://ch7esotluxknf" path="res://Scenes/Objects/portal.tscn" id="2_htadb"]
 [ext_resource type="PackedScene" uid="uid://dqe7ft8qxejyd" path="res://Scenes/other/camera_limiter.tscn" id="3_i8an3"]
 [ext_resource type="PackedScene" uid="uid://b451yhoqiov5a" path="res://Scenes/Enemies/zombie.tscn" id="3_o1k26"]
 [ext_resource type="PackedScene" uid="uid://drh5mw5jb3hga" path="res://Scenes/Objects/platform.tscn" id="4_cr4ua"]
 [ext_resource type="Script" uid="uid://8utdi18iv0th" path="res://Scripts/Classes/Spawner.gd" id="6_o1k26"]
+[ext_resource type="PackedScene" uid="uid://mvn7165yf2l1" path="res://Scenes/other/player_spawner.tscn" id="10_f7jiv"]
+[ext_resource type="PackedScene" uid="uid://8osmgqm50een" path="res://Scenes/other/multiplayer_spawner.tscn" id="10_kbxr3"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_g1b5i"]
 texture = ExtResource("1_g1b5i")
@@ -249,9 +250,6 @@ collision_layer = 2
 position = Vector2(0, 112)
 shape = SubResource("RectangleShape2D_o1k26")
 
-[node name="Player" parent="." instance=ExtResource("1_xke3f")]
-position = Vector2(144, -40)
-
 [node name="Floor" type="StaticBody2D" parent="."]
 position = Vector2(0, -16)
 collision_layer = 10
@@ -368,5 +366,12 @@ metadata/_custom_type_script = "uid://8utdi18iv0th"
 [node name="Portal" parent="." instance=ExtResource("2_htadb")]
 position = Vector2(968, -32)
 room_type = 2
+
+[node name="PlayerSpawner" parent="." instance=ExtResource("10_f7jiv")]
+
+[node name="Marker2D" type="Marker2D" parent="PlayerSpawner"]
+position = Vector2(48, -88)
+
+[node name="MultiplayerSpawner" parent="." instance=ExtResource("10_kbxr3")]
 
 [connection signal="on_completion" from="." to="Portal" method="activate"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://dk2vjvg75cd3q"]
+[gd_scene load_steps=7 format=3 uid="uid://dk2vjvg75cd3q"]
 
 [ext_resource type="Script" uid="uid://bvlly6je8wgxu" path="res://Scripts/Enemies/flying_snake.gd" id="1_irrbb"]
 [ext_resource type="Texture2D" uid="uid://c1lo75th7b88g" path="res://Textures/icon.svg" id="2_irrbb"]
@@ -9,6 +9,14 @@ size = Vector2(128, 128)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_irrbb"]
 size = Vector2(160, 160)
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_irrbb"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:hp")
+properties/1/spawn = true
+properties/1/replication_mode = 1
 
 [node name="FlyingEnemy" type="CharacterBody2D" groups=["Enemies"]]
 scale = Vector2(0.2, 0.2)
@@ -34,7 +42,9 @@ offset_bottom = -85.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackHitbox"]
 position = Vector2(-7.15256e-06, -7.15256e-06)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_irrbb")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_irrbb")
 
 [connection signal="body_entered" from="AttackHitbox" to="." method="_on_attack_hitbox_body_entered"]

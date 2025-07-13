@@ -36,9 +36,9 @@ func set_is_moving(_is_moving : bool):
 	is_moving = _is_moving
 
 func parry():
-	damage_amount(parry_damage, parry_knockback_mult)
+	damage_amount.rpc(parry_damage, parry_knockback_mult)
 
-
+@rpc("any_peer", "call_local", "reliable")
 func damage_amount(amount: int, knockback) -> void:
 	Utils.summon_damage_number(self, amount, Color.WHITE, damage_number_scale, damage_number_duration)
 	set_collision_layer_value(1, false)
@@ -50,7 +50,7 @@ func damage_amount(amount: int, knockback) -> void:
 	hp -= amount
 	if hp <= 0:
 		drop_loot()
-		queue_free()
+		kill.rpc()
 
 func drop_loot():
 	if !loot.is_empty():
@@ -63,8 +63,9 @@ func drop_loot():
 				node.global_position = global_position
 				get_parent().call_deferred("add_child", node)
 
-
-func damage(hitbox: Hitbox, knockback) -> void:
+@rpc("any_peer", "call_local", "reliable")
+func damage(hitbox_path: String, knockback) -> void:
+	var hitbox: Hitbox = get_node(hitbox_path)
 	var is_crit = Utils.calculate_crit(hitbox.get_crit_chance())
 	set_collision_layer_value(1, false)
 	invincibility_timer.start()
@@ -77,7 +78,7 @@ func damage(hitbox: Hitbox, knockback) -> void:
 	hp -= dam
 	if hp <= 0:
 		drop_loot()
-		queue_free()
+		kill.rpc()
 
 func _on_invincibility_timer_timeout():
 	set_collision_layer_value(1, true)
@@ -87,3 +88,7 @@ func get_hp():
 
 func get_max_hp():
 	return max_hp
+
+@rpc("any_peer", "reliable", "call_local")
+func kill():
+	queue_free()
