@@ -27,7 +27,7 @@ func _on_attack_range_body_entered(body: Node2D) -> void:
 			direction = 1
 
 func _on_attack_charge_timeout() -> void:
-	velocity.x = 1200 * direction
+	velocity.x = 2200 * direction
 	attacking = true
 	$Stagger.start()
 	$Attack.start()
@@ -47,9 +47,13 @@ func _on_attack_hitbox_body_entered(body: Node2D) -> void:
 		var parry_time_left = body.check_parry(self)
 		print(parry_time_left)
 		if parry_time_left > body.get_parry_time() / 1.2:
-			damage_amount(parry_damage, parry_knockback_mult)
+			$Hitstop.start()
+			body.begin_hitstop()
+			damage_amount(max_hp, parry_knockback_mult)
 			body.stop_parry()
 		elif parry_time_left > 0:
+			$Hitstop.start()
+			body.begin_hitstop()
 			damage_amount(parry_damage, parry_knockback_mult)
 			body.stop_parry()
 			body.damage_amount(attack_damage / 3, (knockback_strength * knockback_dir) / 3)

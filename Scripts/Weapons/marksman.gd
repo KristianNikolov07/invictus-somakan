@@ -1,4 +1,4 @@
-extends Node2D
+extends Weapon
 
 const coin := preload("res://Scenes/Projectiles/coin.tscn")
 const bullet := preload("res://Scenes/Projectiles/bullet.tscn")
@@ -7,6 +7,7 @@ const bullet := preload("res://Scenes/Projectiles/bullet.tscn")
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("right_click") and $Coins.value >= 250:
+		$Coin.play()
 		var new_coin = coin.instantiate()
 		new_coin.dir = player.direction
 		new_coin.shooter_vel = player.velocity
@@ -17,7 +18,10 @@ func _input(event: InputEvent) -> void:
 
 func hit(_direction):
 	if $ShotCool.is_stopped():
+		$Shoot.pitch_scale = randf_range(0.9, 1.1)
+		$Shoot.play()
 		var new_bullet: Projectile = bullet.instantiate()
+		new_bullet.damage = attack_damage
 		new_bullet.global_position = player.global_position
 		new_bullet.rotation = player.global_position.direction_to(get_global_mouse_position()).angle()
 		new_bullet.shooter_vel = player.velocity
