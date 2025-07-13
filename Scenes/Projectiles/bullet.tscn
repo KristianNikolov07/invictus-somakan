@@ -7,11 +7,10 @@
 size = Vector2(34, 8)
 
 [node name="Bullet" type="Area2D"]
-collision_layer = 20
+collision_layer = 68
 collision_mask = 3
 script = ExtResource("1_12ur6")
 speed = 2250
-damage = 5
 knockback = 0.2
 can_be_parried = false
 can_hit_enemies = true

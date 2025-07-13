@@ -27,7 +27,7 @@ func _on_attack_range_body_entered(body: Node2D) -> void:
 			direction = 1
 
 func _on_attack_charge_timeout() -> void:
-	velocity.x = 1200 * direction
+	velocity.x = 2200 * direction
 	attacking = true
 	$Stagger.start()
 	$Attack.start()

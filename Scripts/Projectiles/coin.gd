@@ -22,7 +22,7 @@ func has_line_of_sight(enemy: Node2D):
 	var space_state = get_world_2d().direct_space_state
 	var from = global_position
 	var to = enemy.global_position
-	var res: Dictionary = space_state.intersect_ray(PhysicsRayQueryParameters2D.create(from, to, 4294967295, [self, enemy]))
+	var res: Dictionary = space_state.intersect_ray(PhysicsRayQueryParameters2D.create(from, to, 4294967082, [self, enemy]))
 	
 	return res.is_empty()
 
@@ -55,8 +55,14 @@ func _on_area_entered(area: Area2D) -> void:
 	else:
 		area.rotation_degrees += randf_range(-120, 120)
 	
-	#area.speed += 200
-	area.damage += 20
+	area.speed += 25
+	area.damage += 25
+	hide()
+	remove_from_group("Coins")
+	set_collision_mask_value(2, false)
+	set_collision_mask_value(7, false)
+	$AudioStreamPlayer2D.play()
+	await $AudioStreamPlayer2D.finished
 	queue_free()
 
 

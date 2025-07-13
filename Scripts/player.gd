@@ -2,9 +2,9 @@ extends CharacterBody2D
 
 const accel = 150
 const max_falling_speed = 1000
-const max_walking_speed = 200
-const jump_force = 600
-const gravity = 30
+const max_walking_speed = 400
+const jump_force = 1000
+const gravity = 40
 const jump_easing = -200
 const dash_speed = 3 * max_walking_speed
 var jumps_remaining = 1
