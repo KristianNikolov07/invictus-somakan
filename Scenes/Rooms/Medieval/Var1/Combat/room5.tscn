@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=4 uid="uid://x5hib50ialgm"]
+[gd_scene load_steps=19 format=4 uid="uid://dwm18nqvyltro"]
 
 [ext_resource type="Texture2D" uid="uid://ctm47thfbe3uy" path="res://Textures/tile-set.png" id="1_g1b5i"]
 [ext_resource type="Script" uid="uid://dgsmtoldmfhn1" path="res://Scripts/Classes/CombatRoom.gd" id="1_i8an3"]
