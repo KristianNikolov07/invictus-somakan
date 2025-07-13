@@ -1,5 +1,7 @@
 extends Area2D
 
+@export var is_first = false
+
 @export_subgroup("Stage Transitions")
 @export var is_stage_transition = false
 @export var next_stage : Stages.Stages
@@ -15,7 +17,15 @@ func interact(_player_path : String):
 	
 	if is_stage_transition:
 		RoomGen.fill_rooms(next_stage)
+	
+	if is_first:
+		var consumables = DirAccess.get_files_at("res://Items/Consumables")
+		var rand = randi_range(0, consumables.size() - 1)
+		PlayerStats.add_consumable(0, load("res://Items/Consumables/" + consumables[rand]))
 		
+		rand = randi_range(0, consumables.size() - 1)
+		PlayerStats.add_consumable(1, load("res://Items/Consumables/" + consumables[rand]))
+	
 	match room_type:
 		RoomTypes.RoomTypes.PUZZLE:
 			get_tree().change_scene_to_packed(RoomGen.pull_puzzle_room())
