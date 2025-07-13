@@ -1,5 +1,6 @@
-[gd_scene load_steps=11 format=3 uid="uid://drc5ejy1kocf"]
+[gd_scene load_steps=12 format=3 uid="uid://drc5ejy1kocf"]
 
+[ext_resource type="Script" uid="uid://cdgpjt7cuu34b" path="res://Scripts/Rooms/hub.gd" id="1_2kdgj"]
 [ext_resource type="PackedScene" uid="uid://be53snhq2r11i" path="res://Scenes/player.tscn" id="1_l4iyj"]
 [ext_resource type="PackedScene" uid="uid://ch7esotluxknf" path="res://Scenes/Objects/portal.tscn" id="2_kvfx3"]
 [ext_resource type="PackedScene" uid="uid://b4r8t6ijsspl2" path="res://Scenes/Enemies/dummy.tscn" id="3_kvfx3"]
@@ -13,6 +14,7 @@
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_k2f67"]
 
 [node name="Hub" type="Node2D"]
+script = ExtResource("1_2kdgj")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2(52, 647)
@@ -25,6 +27,7 @@ shape = SubResource("WorldBoundaryShape2D_k2f67")
 position = Vector2(63, 580)
 
 [node name="Portal" parent="." instance=ExtResource("2_kvfx3")]
+visible = true
 position = Vector2(1069, 570)
 is_stage_transition = true
 room_type = 2
