@@ -29,6 +29,7 @@ position = Vector2(63, 580)
 [node name="Portal" parent="." instance=ExtResource("2_kvfx3")]
 visible = true
 position = Vector2(1069, 570)
+is_first = true
 is_stage_transition = true
 room_type = 2
 
