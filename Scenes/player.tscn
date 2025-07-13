@@ -1,7 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://be53snhq2r11i"]
+[gd_scene load_steps=12 format=3 uid="uid://be53snhq2r11i"]
 
 [ext_resource type="Script" uid="uid://dl6w610ren8v7" path="res://Scripts/player.gd" id="1_cvnsp"]
 [ext_resource type="Texture2D" uid="uid://c1lo75th7b88g" path="res://Textures/icon.svg" id="1_v0iea"]
+[ext_resource type="AudioStream" uid="uid://de1niah15dn0" path="res://Sounds/parry.mp3" id="3_fkybt"]
 [ext_resource type="PackedScene" uid="uid://bqo6qnqcmww4y" path="res://Scenes/UI/health_bar.tscn" id="4_vgqql"]
 [ext_resource type="PackedScene" uid="uid://da1ppyo25futr" path="res://Scenes/UI/Inventory/ui.tscn" id="5_fkybt"]
 
@@ -55,7 +56,7 @@ size = Vector2(120, 104)
 [node name="Player" type="CharacterBody2D" groups=["Players"]]
 z_index = 1
 scale = Vector2(0.4, 0.4)
-collision_mask = 6
+collision_mask = 22
 script = ExtResource("1_cvnsp")
 
 [node name="PlayerSprite" type="Sprite2D" parent="."]
@@ -101,6 +102,11 @@ debug_color = Color(0, 0.627881, 0.497695, 0.42)
 [node name="Weapons" type="Node2D" parent="."]
 
 [node name="Consumables" type="Node2D" parent="."]
+
+[node name="ParrySound" type="AudioStreamPlayer2D" parent="."]
+process_mode = 3
+stream = ExtResource("3_fkybt")
+volume_db = -5.0
 
 [node name="DashTimer" type="Timer" parent="."]
 wait_time = 0.2

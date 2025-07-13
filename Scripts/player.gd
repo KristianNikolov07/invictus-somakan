@@ -19,16 +19,7 @@ var selected_weapon
 @onready var inventory = $UI/Inventory
 
 func _ready() -> void:
-	var node1 = PlayerStats.weapon1.weapon_action_scene.instantiate()
-	node1.weapon_name = PlayerStats.weapon1.item_name
-	$Weapons.add_child(node1)
-	if PlayerStats.weapon2 != null:
-		var node2 = PlayerStats.weapon2.weapon_action_scene.instantiate()
-		node2.weapon_name = PlayerStats.weapon2.item_name
-		$Weapons.add_child(node2)
-		node2.process_mode = Node.PROCESS_MODE_DISABLED
-		node2.hide()
-	selected_weapon = PlayerStats.weapon1
+	instanciate_weapons()
 
 
 func _physics_process(_delta: float) -> void:
@@ -72,6 +63,19 @@ func _input(event: InputEvent) -> void:
 		use_consumable(1)
 	elif event.is_action_pressed("UseConsumable2"):
 		use_consumable(2)
+
+func instanciate_weapons():
+	$UI/SelectedWeaponUI.set_weapon_1(PlayerStats.weapon1)
+	var node1 = PlayerStats.weapon1.weapon_action_scene.instantiate()
+	$Weapons.add_child(node1)
+	if PlayerStats.weapon2 != null:
+		$UI/SelectedWeaponUI.set_weapon_2(PlayerStats.weapon2)
+		var node2 = PlayerStats.weapon2.weapon_action_scene.instantiate()
+		$Weapons.add_child(node2)
+		node2.process_mode = Node.PROCESS_MODE_DISABLED
+		node2.hide()
+	switch_weapon(PlayerStats.weapon1)
+
 
 func check_parry(area):
 	if !$Parry.is_stopped():
@@ -169,6 +173,7 @@ func _on_parry_timeout() -> void:
 	$ParryArea.set_collision_mask_value(3, false)
 
 func begin_hitstop():
+	$ParrySound.play()
 	$Hitstop.start()
 	$Camera2D/Hitstop.play("flash")
 	call_deferred("set_process_mode", Node.PROCESS_MODE_DISABLED)
@@ -194,12 +199,14 @@ func switch_weapon(weapon : WeaponItem):
 			wep1.process_mode = Node.PROCESS_MODE_DISABLED
 			wep2.process_mode = Node.PROCESS_MODE_INHERIT
 			selected_weapon = PlayerStats.weapon1
+			$UI/SelectedWeaponUI.select_weapon_1()
 			wep1.hide()
 			wep2.show()
 		else:
 			wep1.process_mode = Node.PROCESS_MODE_INHERIT
 			wep2.process_mode = Node.NOTIFICATION_DISABLED
 			selected_weapon = PlayerStats.weapon2
+			$UI/SelectedWeaponUI.select_weapon_2()
 			wep1.show()
 			wep2.hide()
 

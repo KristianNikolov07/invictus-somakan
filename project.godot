@@ -28,6 +28,10 @@ Utils="*res://Scripts/Globals/Utils.gd"
 PlayerStats="*res://Scripts/Globals/PlayerStats.gd"
 AspectSynergies="*res://Scripts/Globals/AspectSynergies.gd"
 
+[debug]
+
+gdscript/warnings/integer_division=0
+
 [global_group]
 
 Players=""
@@ -128,3 +132,5 @@ right_click={
 2d_physics/layer_2="Floors/Walls"
 2d_physics/layer_3="Projectiles"
 2d_physics/layer_4="Environment"
+2d_physics/layer_5="Platfroms"
+2d_physics/layer_6="Triggers"

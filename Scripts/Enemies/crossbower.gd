@@ -5,12 +5,12 @@ var arrow := preload("res://Scenes/Projectiles/arrow.tscn")
 
 
 func fire_arrow() -> void:
-	var arrow: Projectile = arrow.instantiate()
-	arrow.global_position = global_position
-	arrow.rotation = global_position.direction_to(target.global_position).angle()
-	arrow.shooter_vel = velocity
-	arrow.can_hit_enemies = false
-	get_tree().current_scene.add_child(arrow)
+	var new_arrow: Projectile = arrow.instantiate()
+	new_arrow.global_position = global_position
+	new_arrow.rotation = global_position.direction_to(target.global_position).angle()
+	new_arrow.shooter_vel = velocity
+	new_arrow.can_hit_enemies = false
+	get_tree().current_scene.add_child(new_arrow)
 
 func calculate_direction(body):
 	var knockback_dir = 1

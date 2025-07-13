@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=4 uid="uid://bdnr0b4u0cl7l"]
+[gd_scene load_steps=17 format=4 uid="uid://bdnr0b4u0cl7l"]
 
 [ext_resource type="Script" uid="uid://dgsmtoldmfhn1" path="res://Scripts/Classes/CombatRoom.gd" id="1_lsvnq"]
 [ext_resource type="Texture2D" uid="uid://ctm47thfbe3uy" path="res://Textures/tile-set.png" id="1_pcoad"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://b451yhoqiov5a" path="res://Scenes/Enemies/zombie.tscn" id="2_lv8tk"]
 [ext_resource type="PackedScene" uid="uid://dqe7ft8qxejyd" path="res://Scenes/other/camera_limiter.tscn" id="3_0dlg8"]
 [ext_resource type="PackedScene" uid="uid://drh5mw5jb3hga" path="res://Scenes/Objects/platform.tscn" id="4_aqhgq"]
+[ext_resource type="Script" uid="uid://8utdi18iv0th" path="res://Scripts/Classes/Spawner.gd" id="6_lv8tk"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_358f1"]
 texture = ExtResource("1_pcoad")
@@ -221,12 +222,10 @@ normal = Vector2(1, 0)
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ykuiu"]
 normal = Vector2(-1, 0)
 
-[node name="Room1" type="Node2D"]
+[node name="Room1" type="Node2D" node_paths=PackedStringArray("wave_2_trigger")]
 script = ExtResource("1_lsvnq")
-wave1_enemies = Array[PackedScene]([ExtResource("2_lv8tk")])
-wave1_quantity = 1.0
-wave2_enemies = Array[PackedScene]([ExtResource("2_lv8tk")])
-wave2_quantity = 1.0
+wave2_quantity = 0.5
+wave_2_trigger = NodePath("")
 metadata/_custom_type_script = "uid://dgsmtoldmfhn1"
 
 [node name="Background" type="TileMapLayer" parent="."]
@@ -287,23 +286,41 @@ position = Vector2(704, -93.035)
 
 [node name="Marker2D" type="Marker2D" parent="Spawnpoints/Wave1"]
 position = Vector2(320, -64)
+script = ExtResource("6_lv8tk")
+enemy = ExtResource("2_lv8tk")
+metadata/_custom_type_script = "uid://8utdi18iv0th"
 
 [node name="Marker2D2" type="Marker2D" parent="Spawnpoints/Wave1"]
 position = Vector2(448, -64)
+script = ExtResource("6_lv8tk")
+enemy = ExtResource("2_lv8tk")
+metadata/_custom_type_script = "uid://8utdi18iv0th"
 
 [node name="Marker2D3" type="Marker2D" parent="Spawnpoints/Wave1"]
 position = Vector2(576, -64)
+script = ExtResource("6_lv8tk")
+enemy = ExtResource("2_lv8tk")
+metadata/_custom_type_script = "uid://8utdi18iv0th"
 
 [node name="Marker2D4" type="Marker2D" parent="Spawnpoints/Wave1"]
 position = Vector2(704, -64)
+script = ExtResource("6_lv8tk")
+enemy = ExtResource("2_lv8tk")
+metadata/_custom_type_script = "uid://8utdi18iv0th"
 
 [node name="Wave2" type="Node" parent="Spawnpoints"]
 
 [node name="Marker2D" type="Marker2D" parent="Spawnpoints/Wave2"]
 position = Vector2(320, -152)
+script = ExtResource("6_lv8tk")
+enemy = ExtResource("2_lv8tk")
+metadata/_custom_type_script = "uid://8utdi18iv0th"
 
 [node name="Marker2D4" type="Marker2D" parent="Spawnpoints/Wave2"]
 position = Vector2(704, -152)
+script = ExtResource("6_lv8tk")
+enemy = ExtResource("2_lv8tk")
+metadata/_custom_type_script = "uid://8utdi18iv0th"
 
 [node name="Portal" parent="." instance=ExtResource("2_0dlg8")]
 position = Vector2(960, -64)

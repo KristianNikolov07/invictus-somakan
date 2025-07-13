@@ -14,3 +14,9 @@ func interact(_player_path : String):
 func set_item(_item : Item):
 	item = _item
 	$ItemIcon.texture = item.icon
+
+
+func _on_body_entered(body: Node2D) -> void:
+	if item.item_name == "Scrap" and body.is_in_group("Players"):
+		PlayerStats.scrap += 1
+		queue_free()

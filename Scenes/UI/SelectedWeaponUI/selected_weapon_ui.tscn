@@ -1,0 +1,48 @@
+[gd_scene load_steps=4 format=3 uid="uid://dfhv0jbrfmxoi"]
+
+[ext_resource type="Texture2D" uid="uid://uliao21q0au8" path="res://Textures/slot-deselected.png" id="1_664jw"]
+[ext_resource type="Script" uid="uid://cekxqe7n00xrh" path="res://Scripts/UI/SelectedWeaponUI/selected_weapon_ui.gd" id="1_i6lrl"]
+[ext_resource type="Texture2D" uid="uid://dt57eouwpxfuc" path="res://Textures/slot.png" id="2_7jvon"]
+
+[node name="SelectedWeaponUI" type="HBoxContainer"]
+texture_filter = 1
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 61.0
+offset_bottom = 41.0
+theme_override_constants/separation = 62
+script = ExtResource("1_i6lrl")
+
+[node name="Weapon1" type="Control" parent="."]
+layout_mode = 2
+
+[node name="BG" type="Sprite2D" parent="Weapon1"]
+position = Vector2(30, 30)
+scale = Vector2(2.4, 2.4)
+texture = ExtResource("1_664jw")
+
+[node name="Selected" type="Sprite2D" parent="Weapon1"]
+visible = false
+position = Vector2(30, 30)
+scale = Vector2(2.4, 2.4)
+texture = ExtResource("2_7jvon")
+
+[node name="Icon" type="Sprite2D" parent="Weapon1"]
+position = Vector2(30, 29)
+
+[node name="Weapon2" type="Control" parent="."]
+layout_mode = 2
+
+[node name="BG" type="Sprite2D" parent="Weapon2"]
+position = Vector2(30, 30)
+scale = Vector2(2.4, 2.4)
+texture = ExtResource("1_664jw")
+
+[node name="Selected" type="Sprite2D" parent="Weapon2"]
+visible = false
+position = Vector2(30, 30)
+scale = Vector2(2.4, 2.4)
+texture = ExtResource("2_7jvon")
+
+[node name="Icon" type="Sprite2D" parent="Weapon2"]
+position = Vector2(30, 29)

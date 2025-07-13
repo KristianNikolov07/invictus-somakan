@@ -1,0 +1,113 @@
+[gd_scene load_steps=9 format=3 uid="uid://calssw1rcxcvr"]
+
+[ext_resource type="Script" uid="uid://dttxulb2vifvc" path="res://Scripts/soul.gd" id="1_dmpwr"]
+[ext_resource type="Texture2D" uid="uid://bxbcn11k4i3i2" path="res://Textures/soul.png" id="2_ey5r1"]
+[ext_resource type="Texture2D" uid="uid://cfhdc4h3bf4f1" path="res://Textures/shockwave.png" id="3_ey5r1"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rjqw3"]
+radius = 15.0333
+
+[sub_resource type="Gradient" id="Gradient_q7yo3"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="Animation" id="Animation_rjqw3"]
+resource_name = "explode"
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Shock:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0.25, 0.25)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Shock:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 1),
+"transitions": PackedFloat32Array(1, 0.5, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_q7yo3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Shock:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Shock:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hye4i"]
+_data = {
+&"RESET": SubResource("Animation_q7yo3"),
+&"explode": SubResource("Animation_rjqw3")
+}
+
+[node name="Soul" type="Area2D"]
+z_index = 2
+scale = Vector2(0.25, 0.25)
+collision_layer = 0
+script = ExtResource("1_dmpwr")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("2_ey5r1")
+
+[node name="Shock" type="Sprite2D" parent="."]
+self_modulate = Color(0.223529, 0.0705882, 0.996078, 1)
+scale = Vector2(1e-05, 1e-05)
+texture = ExtResource("3_ey5r1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_rjqw3")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+z_index = -1
+amount = 100
+lifetime = 2.0
+emission_shape = 1
+emission_sphere_radius = 17.0
+gravity = Vector2(0, 0)
+color = Color(0.219608, 0.0705882, 1, 1)
+color_ramp = SubResource("Gradient_q7yo3")
+
+[node name="Travel" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
+autostart = true
+ignore_time_scale = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_hye4i")
+}
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

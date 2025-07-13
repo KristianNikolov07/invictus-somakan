@@ -12,7 +12,7 @@ func hit(_direction: int):
 	pass
 
 func _ready() -> void:
-	if $Hitbox != null:
+	if get_node_or_null("Hitbox") != null:
 		$Hitbox.set_damage(attack_damage)
 		$Hitbox.set_crit_chance(crit_chance)
 		$Hitbox.set_crit_mult(crit_mult)
