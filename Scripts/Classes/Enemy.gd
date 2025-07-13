@@ -16,8 +16,10 @@ class_name Enemy
 @export var damage_number_duration: float = 2
 @export var can_move = true
 @export var loot: Dictionary[Item, float]
+@export_range(0, 9999) var scrap_amount: int
 const soul := preload("res://Scenes/soul.tscn")
 const dropped_item_scene := preload("res://Scenes/Objects/dropped_item.tscn")
+const scrap := preload("res://Items/scrap.tres")
 const JUMP_VELOCITY = -400.0
 const FOLLOW_DEADZONE = 1
 var is_moving = true
@@ -55,15 +57,21 @@ func damage_amount(amount: int, knockback) -> void:
 		queue_free()
 
 func drop_loot():
-	if !loot.is_empty():
-		for key in loot.keys():
-			var rand = randi_range(0, 10000)
-			print(str(rand) + ": " + str(loot[key]*100))
-			if loot[key]*100 >= rand:
-				var node = dropped_item_scene.instantiate()
-				node.get_node("Area").set_item(key)
-				node.global_position = global_position
-				get_parent().call_deferred("add_child", node)
+	for player in range(get_tree().get_nodes_in_group("Players").size()):
+		if !loot.is_empty():
+			for key in loot.keys():
+				var rand = randi_range(0, 10000)
+				print(str(rand) + ": " + str(loot[key]*100))
+				if loot[key]*100 >= rand:
+					var node = dropped_item_scene.instantiate()
+					node.get_node("Area").set_item(key)
+					node.global_position = global_position
+					get_parent().call_deferred("add_child", node)
+		for i in range(scrap_amount):
+			var node = dropped_item_scene.instantiate()
+			node.get_node("Area").set_item(scrap)
+			node.global_position = global_position
+			get_parent().call_deferred("add_child", node)
 
 func drop_soul():
 	for player in get_tree().get_nodes_in_group("Players"):

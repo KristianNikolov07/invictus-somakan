@@ -171,6 +171,7 @@ func _on_parry_timeout() -> void:
 	$ParryArea.set_collision_mask_value(3, false)
 
 func begin_hitstop():
+	$ParrySound.play()
 	$Hitstop.start()
 	$Camera2D/Hitstop.play("flash")
 	call_deferred("set_process_mode", Node.PROCESS_MODE_DISABLED)
