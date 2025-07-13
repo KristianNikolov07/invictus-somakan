@@ -18,6 +18,7 @@ func hit(_direction: int):
 		new_arrow.global_position = global_position
 		new_arrow.rotation = global_position.direction_to(get_global_mouse_position()).angle()
 		new_arrow.shooter_vel = player.velocity
+		new_arrow.set_aspect(get_aspect_to_apply())
 		get_tree().current_scene.add_child(new_arrow)
 		loaded_arrows -= 1
 		update_timer()

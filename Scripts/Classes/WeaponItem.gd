@@ -6,4 +6,5 @@ class_name WeaponItem
 func get_action_node():
 	var node = weapon_action_scene.instantiate()
 	node.weapon = self
+	node.weapon_name = item_name
 	return node

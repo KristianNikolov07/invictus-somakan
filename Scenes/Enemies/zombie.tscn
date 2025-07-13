@@ -34,6 +34,7 @@ loot = Dictionary[ExtResource("2_3p0w2"), float]({
 ExtResource("3_fh4xe"): 10.0,
 ExtResource("4_usnig"): 5.0
 })
+scrap_amount = 10
 
 [node name="PlayerSprite" type="Sprite2D" parent="."]
 position = Vector2(-1.90735e-06, 0)

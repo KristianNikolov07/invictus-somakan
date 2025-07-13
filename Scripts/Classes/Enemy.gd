@@ -23,10 +23,7 @@ const scrap := preload("res://Items/scrap.tres")
 const JUMP_VELOCITY = -400.0
 const FOLLOW_DEADZONE = 1
 var is_moving = true
-@export var can_move = true
 var attacking = false
-@export var loot : Item
-const dropped_item_scene = preload("res://Scenes/Objects/dropped_item.tscn")
 var active_status_effects: Array[StatusEffect] = []
 var damage_mult: float = 1
 var knockback_velocity: Vector2 = Vector2.ZERO
@@ -45,7 +42,6 @@ func set_is_moving(_is_moving : bool):
 
 func is_frozen():
 	for status in active_status_effects:
-		print(status.status_name)
 		if status.status_name == "Freeze":
 			if not status.remaining_timer.is_stopped():
 				return status

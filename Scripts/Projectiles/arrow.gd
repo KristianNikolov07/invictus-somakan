@@ -29,10 +29,14 @@ func _on_body_entered(body: Node2D) -> void:
 			rotation_degrees += 180
 		else:
 			body.damage_amount(damage, knockback * knockback_dir)
+			if applied_aspect != null:
+				applied_aspect.apply_effect(body)
 			queue_free()
 		
 	elif body.is_in_group("Enemies") and can_hit_enemies:
 		body.damage_amount(damage, knockback)
+		if applied_aspect != null:
+			applied_aspect.apply_effect(body)
 		queue_free()
 	elif not body.is_in_group("Players") and not body.is_in_group("Enemies"):
 		queue_free()

@@ -12,7 +12,7 @@ func hit(direction : int):
 
 func _on_hitbox_body_entered(body: Node2D) -> void:
 	if body.has_method("damage") and body.is_in_group("Enemies"):
-		var aspect
+		var aspect = get_aspect_to_apply()
 		var equipped_aspects = get_equipped_aspects()
 		if equipped_aspects[0] != null and equipped_aspects[1] != null:
 			var synergetic_aspect_path = AspectSynergies.get_synergetic_aspect_path(equipped_aspects[0], equipped_aspects[1])

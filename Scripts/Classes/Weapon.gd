@@ -23,3 +23,14 @@ func get_equipped_aspects():
 	else:
 		return PlayerStats.weapon2_aspects
 	
+func get_aspect_to_apply():
+	var aspect = null
+	var equipped_aspects = get_equipped_aspects()
+	if equipped_aspects[0] != null and equipped_aspects[1] != null:
+		var synergetic_aspect_path = AspectSynergies.get_synergetic_aspect_path(equipped_aspects[0], equipped_aspects[1])
+		aspect = load(synergetic_aspect_path)
+	elif equipped_aspects[0] != null and equipped_aspects[1] == null:
+		aspect = equipped_aspects[0]
+	elif equipped_aspects[0] == null and equipped_aspects[1] != null:
+		aspect = equipped_aspects[1]
+	return aspect

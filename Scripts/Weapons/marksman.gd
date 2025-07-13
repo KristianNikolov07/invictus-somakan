@@ -1,4 +1,4 @@
-extends Node2D
+extends Weapon
 
 const coin := preload("res://Scenes/Projectiles/coin.tscn")
 const bullet := preload("res://Scenes/Projectiles/bullet.tscn")
@@ -21,6 +21,7 @@ func hit(_direction):
 		new_bullet.global_position = player.global_position
 		new_bullet.rotation = player.global_position.direction_to(get_global_mouse_position()).angle()
 		new_bullet.shooter_vel = player.velocity
+		new_bullet.set_aspect(get_aspect_to_apply())
 		get_tree().current_scene.add_child(new_bullet)
 		$ShotCool.start()
 

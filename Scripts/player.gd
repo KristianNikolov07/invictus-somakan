@@ -19,7 +19,7 @@ var selected_weapon
 @onready var inventory = $UI/Inventory
 
 func _ready() -> void:
-	instanciate_weapons()
+	instantiate_weapons()
 
 
 func _physics_process(_delta: float) -> void:
@@ -64,13 +64,13 @@ func _input(event: InputEvent) -> void:
 	elif event.is_action_pressed("UseConsumable2"):
 		use_consumable(2)
 
-func instanciate_weapons():
+func instantiate_weapons():
 	$UI/SelectedWeaponUI.set_weapon_1(PlayerStats.weapon1)
-	var node1 = PlayerStats.weapon1.weapon_action_scene.instantiate()
+	var node1 = PlayerStats.weapon1.get_action_node()
 	$Weapons.add_child(node1)
 	if PlayerStats.weapon2 != null:
 		$UI/SelectedWeaponUI.set_weapon_2(PlayerStats.weapon2)
-		var node2 = PlayerStats.weapon2.weapon_action_scene.instantiate()
+		var node2 = PlayerStats.weapon2.get_action_node()
 		$Weapons.add_child(node2)
 		node2.process_mode = Node.PROCESS_MODE_DISABLED
 		node2.hide()
