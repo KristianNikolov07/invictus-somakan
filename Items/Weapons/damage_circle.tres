@@ -1,9 +1,7 @@
 [gd_resource type="Resource" script_class="WeaponItem" load_steps=3 format=3 uid="uid://b0t4amus74xte"]
 
-[ext_resource type="PackedScene" uid="uid://dyxwxd6esrj8g" path="res://Scenes/Weapons/damage_circle.tscn" id="2_1ym0n"]
 [ext_resource type="Script" uid="uid://cyk6fbvc2v7n6" path="res://Scripts/Classes/WeaponItem.gd" id="1_1ym0n"]
 [ext_resource type="PackedScene" uid="uid://cvvu657tj36g5" path="res://Scenes/Weapons/bow.tscn" id="2_e1mrn"]
-
 
 [resource]
 script = ExtResource("1_1ym0n")

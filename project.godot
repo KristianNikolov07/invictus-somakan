@@ -32,6 +32,10 @@ AspectSynergies="*res://Scripts/Globals/AspectSynergies.gd"
 
 gdscript/warnings/integer_division=0
 
+[display]
+
+window/stretch/mode="canvas_items"
+
 [global_group]
 
 Players=""

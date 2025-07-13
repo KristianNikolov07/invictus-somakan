@@ -145,8 +145,8 @@ func damage_amount(amount: int, knockback) -> void:
 	velocity.y = -500 * abs(knockback)
 	PlayerStats.hp -= amount
 	$Parry.stop()
-	#if hp <= 0:
-		#get_tree().quit()
+	if PlayerStats.hp <= 0:
+		get_tree().change_scene_to_file("res://Scenes/UI/game_over.tscn")
 
 	
 func damage(hitbox: Hitbox, knockback):
