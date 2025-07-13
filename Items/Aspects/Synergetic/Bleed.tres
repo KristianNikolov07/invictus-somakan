@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="AspectItem" load_steps=3 format=3 uid="uid://ciybhfwt58ssl"]
+
+[ext_resource type="Script" uid="uid://bnm1nvl5v4528" path="res://Scripts/Classes/AspectItem.gd" id="1_wa652"]
+[ext_resource type="PackedScene" uid="uid://8srv5kssnbg1" path="res://Scenes/StatusEffects/bleed.tscn" id="2_nhfng"]
+
+[resource]
+script = ExtResource("1_wa652")
+status_effect = ExtResource("2_nhfng")
+aspect_name = "Bleed"
+crit_chance_mult = 1.5
+crit_damage_mult = 1.5
+item_name = "Bleed Aspect"
+type = 0
+price = 0
+metadata/_custom_type_script = "uid://bnm1nvl5v4528"

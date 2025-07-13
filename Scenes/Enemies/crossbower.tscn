@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://bq37pauhr7ehy"]
+[gd_scene load_steps=7 format=3 uid="uid://bq37pauhr7ehy"]
 
 [ext_resource type="Script" uid="uid://bygp0rxw28pnh" path="res://Scripts/Enemies/crossbower.gd" id="1_50btn"]
 [ext_resource type="Texture2D" uid="uid://c1lo75th7b88g" path="res://Textures/icon.svg" id="2_1qho8"]
+[ext_resource type="PackedScene" uid="uid://bqo6qnqcmww4y" path="res://Scenes/UI/health_bar.tscn" id="3_1qho8"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kuff7"]
 radius = 35.0
@@ -17,6 +18,7 @@ size = Vector2(848, 768)
 [node name="Crossbower" type="CharacterBody2D" groups=["Enemies"]]
 collision_mask = 18
 script = ExtResource("1_50btn")
+
 speed = 100
 attack_damage = 0
 knockback_strength = 0.0
@@ -64,6 +66,12 @@ collision_mask = 18
 [node name="RightFloorCheck" type="RayCast2D" parent="."]
 position = Vector2(40, 0)
 collision_mask = 18
+
+[node name="HealthBar" parent="." instance=ExtResource("3_1qho8")]
+offset_left = -75.0
+offset_top = -97.5
+offset_right = 77.0
+offset_bottom = -70.5
 
 [connection signal="body_entered" from="CollisionDamage" to="." method="_on_collision_damage_body_entered"]
 [connection signal="body_entered" from="AttackRange" to="." method="_on_attack_range_body_entered"]

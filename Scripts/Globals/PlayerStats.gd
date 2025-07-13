@@ -25,6 +25,10 @@ func _ready() -> void:
 	weapon2_aspects.resize(2)
 	consumables.resize(2)
 	
+	weapon1_aspects[1] = load("res://Items/Aspects/CriticalDamage.tres")
+	weapon1_aspects[0] = load("res://Items/Aspects/Fire.tres")
+	#weapon2_aspects[1] = load("res://Items/Aspects/CriticalDamage.tres")
+	weapon2_aspects[0] = load("res://Items/Aspects/Fire.tres")
 	add_item(load("res://Items/Consumables/leech.tres"))
 
 func get_player():

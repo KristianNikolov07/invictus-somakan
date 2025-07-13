@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="AspectItem" load_steps=3 format=3 uid="uid://dcpuxfqopepj0"]
+
+[ext_resource type="Script" uid="uid://bnm1nvl5v4528" path="res://Scripts/Classes/AspectItem.gd" id="1_xssya"]
+[ext_resource type="PackedScene" uid="uid://batlp060anfa" path="res://Scenes/StatusEffects/fire.tscn" id="2_k6w2w"]
+
+[resource]
+script = ExtResource("1_xssya")
+status_effect = ExtResource("2_k6w2w")
+aspect_name = "Fire"
+item_name = "Fire Aspect"
+type = 0
+price = 0
+metadata/_custom_type_script = "uid://bnm1nvl5v4528"

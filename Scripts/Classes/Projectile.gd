@@ -1,7 +1,6 @@
 extends Area2D
 class_name Projectile
 
-
 @export var speed = 400
 @export var damage: int = 10
 @export var knockback: float = 1
@@ -10,6 +9,7 @@ class_name Projectile
 @export var can_hit_players := true
 var times_parried = 0
 var shooter_vel = 0
+var applied_aspect: AspectItem
 
 func _physics_process(delta: float) -> void:
 	var direction  = Vector2.RIGHT.rotated(rotation)
@@ -24,3 +24,6 @@ func calculate_direction(body):
 	else:
 		knockback_dir = -1
 	return knockback_dir
+
+func set_aspect(aspect: AspectItem):
+	applied_aspect = aspect

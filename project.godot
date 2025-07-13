@@ -26,6 +26,7 @@ RoomData="*res://Scripts/Globals/RoomData.gd"
 CurrentRunStats="*res://Scripts/Globals/CurrentRunStats.gd"
 Utils="*res://Scripts/Globals/Utils.gd"
 PlayerStats="*res://Scripts/Globals/PlayerStats.gd"
+AspectSynergies="*res://Scripts/Globals/AspectSynergies.gd"
 
 [debug]
 

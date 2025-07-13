@@ -39,17 +39,26 @@ func _on_body_entered(body: Node2D) -> void:
 				already_hit = true
 				body.damage_amount(damage, knockback * knockback_dir)
 				queue_free()
-			
-		elif body.is_in_group("Enemies") and can_hit_enemies:
-			already_hit = true
-			set_collision_mask_value(1, false)
-			body.damage_amount(damage, knockback)
-			if perfect_parried:
-				var ex = Utils.summon_explosion(global_position, 1, damage/3)
-				get_tree().current_scene.call_deferred("add_child", ex)
+			can_hit_enemies = true
+			rotation_degrees += 180
+		else:
+			body.damage_amount(damage, knockback * knockback_dir)
+			if applied_aspect != null:
+				applied_aspect.apply_effect(body)
 			queue_free()
-		elif not body.is_in_group("Players") and not body.is_in_group("Enemies"):
-			queue_free()
+		
+    elif body.is_in_group("Enemies") and can_hit_enemies:
+        already_hit = true
+        body.damage_amount(damage, knockback)
+        if applied_aspect != null:
+          applied_aspect.apply_effect(body)
+        if perfect_parried:
+          var ex = Utils.summon_explosion(global_position, 1, damage/3)
+          get_tree().current_scene.call_deferred("add_child", ex)
+        queue_free()
+    elif not body.is_in_group("Players") and not body.is_in_group("Enemies"):
+      queue_free()
+
 
 
 func _on_hitstop_timeout() -> void:

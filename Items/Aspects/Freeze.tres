@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="AspectItem" load_steps=3 format=3 uid="uid://ce7addluxfo7p"]
+
+[ext_resource type="Script" uid="uid://bnm1nvl5v4528" path="res://Scripts/Classes/AspectItem.gd" id="1_h8676"]
+[ext_resource type="PackedScene" uid="uid://wwsifbj1y0yt" path="res://Scenes/StatusEffects/freeze.tscn" id="2_oxvlt"]
+
+[resource]
+script = ExtResource("1_h8676")
+status_effect = ExtResource("2_oxvlt")
+aspect_name = "Freeze"
+crit_chance_mult = 1.0
+crit_damage_mult = 1.0
+item_name = "Freeze Aspect"
+type = 0
+price = 0
+metadata/_custom_type_script = "uid://bnm1nvl5v4528"

@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://4ovyun2ybdhe"]
+
+[ext_resource type="Script" uid="uid://bvmxsl4lyl0jo" path="res://Scripts/StatusEffects/inferno.gd" id="1_gm6qe"]
+
+[node name="Inferno" type="Node2D"]
+script = ExtResource("1_gm6qe")
+crit_chance = 0.2
+status_name = "Inferno"
+damage_number_color = Color(1, 0.266667, 0, 1)
+metadata/_custom_type_script = "uid://yp3lw7og4m3t"

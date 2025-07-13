@@ -19,7 +19,7 @@ var selected_weapon
 @onready var inventory = $UI/Inventory
 
 func _ready() -> void:
-	instanciate_weapons()
+	instantiate_weapons()
 
 
 func _physics_process(_delta: float) -> void:
@@ -53,6 +53,7 @@ func _input(event: InputEvent) -> void:
 		switch_weapon(PlayerStats.weapon1)
 	elif event.is_action_pressed("Weapon2"):
 		switch_weapon(PlayerStats.weapon2)
+
 	#elif event.is_action_released("PreviousWeapon") or event.is_action_released("NextWeapon"):
 	#	if selected_weapon.item_name == PlayerStats.weapon1.item_name:
 	#		selected_weapon = PlayerStats.weapon2
@@ -63,13 +64,13 @@ func _input(event: InputEvent) -> void:
 	elif event.is_action_pressed("UseConsumable2"):
 		use_consumable(2)
 
-func instanciate_weapons():
+func instantiate_weapons():
 	$UI/SelectedWeaponUI.set_weapon_1(PlayerStats.weapon1)
-	var node1 = PlayerStats.weapon1.weapon_action_scene.instantiate()
+	var node1 = PlayerStats.weapon1.get_action_node()
 	$Weapons.add_child(node1)
 	if PlayerStats.weapon2 != null:
 		$UI/SelectedWeaponUI.set_weapon_2(PlayerStats.weapon2)
-		var node2 = PlayerStats.weapon2.weapon_action_scene.instantiate()
+		var node2 = PlayerStats.weapon2.get_action_node()
 		$Weapons.add_child(node2)
 		node2.process_mode = Node.PROCESS_MODE_DISABLED
 		node2.hide()
@@ -146,6 +147,7 @@ func damage_amount(amount: int, knockback) -> void:
 	$Parry.stop()
 	#if hp <= 0:
 		#get_tree().quit()
+
 	
 func damage(hitbox: Hitbox, knockback):
 	var is_crit = Utils.calculate_crit(hitbox.get_crit_chance())

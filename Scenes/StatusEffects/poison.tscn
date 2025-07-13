@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://bmrteoq8wnf28"]
+
+[ext_resource type="Script" uid="uid://1fpfi2v3q3rh" path="res://Scripts/StatusEffects/poison.gd" id="1_x7j0n"]
+
+[node name="Poison" type="Node2D"]
+script = ExtResource("1_x7j0n")
+damage = 3
+status_name = "Poison"
+damage_number_color = Color(0.440228, 0.222457, 1, 1)
+metadata/_custom_type_script = "uid://yp3lw7og4m3t"
