@@ -3,7 +3,6 @@ extends Projectile
 var perfect_parried := false
 var already_hit := false
 
-
 func _on_body_entered(body: Node2D) -> void:
 	if not already_hit:
 		if body.is_in_group("Players"):
@@ -39,25 +38,27 @@ func _on_body_entered(body: Node2D) -> void:
 				already_hit = true
 				body.damage_amount(damage, knockback * knockback_dir)
 				queue_free()
-			can_hit_enemies = true
-			rotation_degrees += 180
-		else:
+		elif body.is_in_group("Enemies") and can_hit_enemies:
+			var knockback_dir = calculate_direction(body)
 			body.damage_amount(damage, knockback * knockback_dir)
 			if applied_aspect != null:
 				applied_aspect.apply_effect(body)
 			queue_free()
-		
-    elif body.is_in_group("Enemies") and can_hit_enemies:
-        already_hit = true
-        body.damage_amount(damage, knockback)
-        if applied_aspect != null:
-          applied_aspect.apply_effect(body)
-        if perfect_parried:
-          var ex = Utils.summon_explosion(global_position, 1, damage/3)
-          get_tree().current_scene.call_deferred("add_child", ex)
-        queue_free()
-    elif not body.is_in_group("Players") and not body.is_in_group("Enemies"):
-      queue_free()
+		elif not body.is_in_group("Players") and not body.is_in_group("Enemies"):
+			queue_free()
+
+		#
+	#elif body.is_in_group("Enemies") and can_hit_enemies:
+		#already_hit = true
+		#body.damage_amount(damage, knockback)
+		#if applied_aspect != null:
+			#applied_aspect.apply_effect(body)
+		#if perfect_parried:
+			#var ex = Utils.summon_explosion(global_position, 1, damage/3)
+			#get_tree().current_scene.call_deferred("add_child", ex)
+		#queue_free()
+	#elif not body.is_in_group("Players") and not body.is_in_group("Enemies"):
+		#queue_free()
 
 
 
