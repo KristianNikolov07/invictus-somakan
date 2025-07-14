@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://0md13s0vcejo"]
+
+[ext_resource type="Script" uid="uid://dgw5oie5qk8s4" path="res://Scenes/Objects/shop_object.gd" id="1_sb40u"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wephv"]
+size = Vector2(179, 157)
+
+[node name="Shop" type="Area2D"]
+script = ExtResource("1_sb40u")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_wephv")
+
+[node name="Texture" type="Sprite2D" parent="."]

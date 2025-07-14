@@ -164,6 +164,9 @@ func open_upgrades_menu():
 
 func close_upgrades_menu():
 	$UI/Upgrades.hide()
+	
+func open_shop_menu():
+	$UI/Shop.show()
 
 func damage_amount(amount: int, knockback) -> void:
 	Utils.summon_damage_number(self, amount, Color.RED, damage_number_scale, damage_number_duration)
