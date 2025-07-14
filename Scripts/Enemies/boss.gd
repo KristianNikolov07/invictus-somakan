@@ -48,7 +48,7 @@ func start():
 
 func _on_choose_attack_timeout() -> void:
 	set_is_moving(false)
-	var rand = randi_range(4, 4)
+	var rand = randi_range(1, 4)
 	match rand:
 		1: attack_smash()
 		2: attack_ram()
@@ -143,7 +143,6 @@ func attack_riberang() -> void:
 
 func attack_bone_rain() -> void:
 	attacking = true
-	get_node("../Platforms/AnimationPlayer").play("bone_rain")
 	for i in range(phase):
 		$BossSprite.play("bone_rain_ready")
 		var array := get_bone_positions()
@@ -156,7 +155,6 @@ func attack_bone_rain() -> void:
 		$BossSprite.play("bone_rain")
 		await $BossSprite.animation_finished
 	await get_tree().create_timer(2).timeout
-	get_node("../Platforms/AnimationPlayer").play_backwards("bone_rain")
 	set_is_moving(true)
 	attacking = false
 	$ChooseAttack.start(6-phase)
