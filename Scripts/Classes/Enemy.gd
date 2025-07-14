@@ -31,6 +31,9 @@ var knockback_decay: float = 800.0
 
 var invincibility_timer = Timer.new()
 
+func calculate_direction(body):
+	pass
+
 func _ready() -> void:
 	invincibility_timer.wait_time = invincibility_length
 	invincibility_timer.timeout.connect(_on_invincibility_timer_timeout)
@@ -75,12 +78,12 @@ func is_bleeding():
 	
 	return null
 
-func parry():
-	damage_amount(parry_damage, parry_knockback_mult)
+func parry(body):
+	var dir = calculate_direction(body)
+	damage_amount(parry_damage, parry_knockback_mult * dir)
 
 
 func damage_amount(amount: int, knockback) -> void:
-	Utils.summon_damage_number(self, amount, Color.WHITE, damage_number_scale, damage_number_duration)
 	set_collision_layer_value(1, false)
 	invincibility_timer.start()
 	if !can_be_knockedback:
@@ -99,6 +102,7 @@ func damage_amount(amount: int, knockback) -> void:
 	if blizzard:
 		amount *= 3
 		blizzard.end_effect()
+	Utils.summon_damage_number(self, amount, Color.WHITE, damage_number_scale, damage_number_duration)
 	hp -= amount
 	if hp <= 0:
 		drop_soul()

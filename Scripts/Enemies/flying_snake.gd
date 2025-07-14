@@ -1,7 +1,7 @@
 extends FlyingEnemy
 
 func _on_attack_hitbox_body_entered(body: Node2D) -> void:
-	if body.is_in_group("Players"):
+	if body.is_in_group("Players") and not is_frozen() and not is_frostbitten() and not is_blizzard():
 		var knockback_dir = calculate_direction(body)
 		var parry_time_left = body.check_parry(self)
 		print(parry_time_left)

@@ -9,6 +9,7 @@ status_effect = ExtResource("2_oxvlt")
 aspect_name = "Freeze"
 crit_chance_mult = 1.0
 crit_damage_mult = 1.0
+explosion = false
 item_name = "Freeze Aspect"
 type = 0
 price = 0

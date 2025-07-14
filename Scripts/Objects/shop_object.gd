@@ -2,4 +2,4 @@ extends Area2D
 
 func interact(player_path: String):
 	var player = get_node(player_path)
-	player.open_crafting_menu()
+	player.open_shop_menu()
