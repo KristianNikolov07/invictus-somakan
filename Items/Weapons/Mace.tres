@@ -1,12 +1,14 @@
-[gd_resource type="Resource" script_class="WeaponItem" load_steps=3 format=3 uid="uid://ca7em7q8srtxe"]
+[gd_resource type="Resource" script_class="WeaponItem" load_steps=4 format=3 uid="uid://ca7em7q8srtxe"]
 
 [ext_resource type="Script" uid="uid://cyk6fbvc2v7n6" path="res://Scripts/Classes/WeaponItem.gd" id="1_hbikc"]
+[ext_resource type="Texture2D" uid="uid://c4bmum646x3ny" path="res://Textures/inv_sprite/inv_sprite_mace.png" id="1_xcmwh"]
 [ext_resource type="PackedScene" uid="uid://ck27w40tryjbv" path="res://Scenes/Weapons/mace.tscn" id="2_hbikc"]
 
 [resource]
 script = ExtResource("1_hbikc")
 weapon_action_scene = ExtResource("2_hbikc")
 item_name = "Mace"
+icon = ExtResource("1_xcmwh")
 type = 4
 price = 0
 metadata/_custom_type_script = "uid://cyk6fbvc2v7n6"
