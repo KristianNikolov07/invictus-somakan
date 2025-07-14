@@ -31,6 +31,7 @@ hp = 60
 max_hp = 60
 parry_damage = 40
 parry_knockback_mult = 1.2
+invincibility_length = 0.4
 damage_number_scale = 1.5
 damage_number_duration = 1.5
 loot = Dictionary[ExtResource("2_3p0w2"), float]({

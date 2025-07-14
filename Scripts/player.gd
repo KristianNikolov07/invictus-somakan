@@ -27,8 +27,9 @@ func _physics_process(_delta: float) -> void:
 		process_movement()
 	if is_on_floor():
 		jumps_remaining = max_jumps
-	animations()
-	move_and_slide()
+	if PlayerStats.hp > 0:
+		animations()
+		move_and_slide()
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("Jump") and jumps_remaining > 0:
@@ -194,6 +195,8 @@ func damage_amount(amount: int, knockback) -> void:
 	PlayerStats.hp -= amount
 	$Parry.stop()
 	if PlayerStats.hp <= 0:
+		$PlayerSprite.play("death")
+		await $PlayerSprite.animation_finished
 		get_tree().change_scene_to_file("res://Scenes/UI/game_over.tscn")
 
 	
@@ -208,6 +211,8 @@ func damage(hitbox: Hitbox, knockback):
 	Utils.summon_damage_number(self, damage_num, Color.RED, damage_number_scale, damage_number_duration)
 	PlayerStats.hp -= damage_num
 	if PlayerStats.hp <= 0:
+		$PlayerSprite.play("death")
+		await $PlayerSprite.animation_finished
 		queue_free()
 
 func unlock_recipe(recipe: Recipe):
