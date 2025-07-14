@@ -48,7 +48,7 @@ func start():
 
 func _on_choose_attack_timeout() -> void:
 	set_is_moving(false)
-	var rand = randi_range(1, 4)
+	var rand = randi_range(1, 1)
 	match rand:
 		1: attack_smash()
 		2: attack_ram()
@@ -65,6 +65,7 @@ func attack_smash() -> void:
 	if phase == 2: $BossSprite.play("smash_fast")
 	else: $BossSprite.play("smash")
 	await $Attacks.animation_finished
+	get_node("../ArenaCam/ScreenShaker2D").shake_screen(1, 20, true, 50)
 	var shock1: Area2D = shockwave.instantiate()
 	shock1.global_position = $Smash/Pivot/WeaponEnd.global_position
 	var shock2 = shock1.duplicate()
@@ -81,6 +82,7 @@ func attack_smash() -> void:
 			if i == 0: $BossSprite.play("smash_fast")
 			else: $BossSprite.play("smash")
 			await $Attacks.animation_finished
+			get_node("../ArenaCam/ScreenShaker2D").shake_screen(1, 20, true, 50)
 			shock1 = shockwave.instantiate()
 			shock1.global_position = $Smash/Pivot/WeaponEnd.global_position
 			shock2 = shock1.duplicate()
@@ -224,10 +226,11 @@ func damage_amount(amount: int, knockback) -> void:
 		$Break.play()
 		await $Break.finished
 		var ex = Utils.summon_explosion(global_position, 12, 0, 0, 0.9)
+		get_node("../ArenaCam/ScreenShaker2D").shake_screen(2.5, 100, true, 60)
 		ex.get_node("Boom").volume_db = 6
 		get_tree().current_scene.add_child(ex)
 		$BossSprite.hide()
-		await get_tree().create_timer(1).timeout
+		await get_tree().create_timer(2.5).timeout
 		drop_loot()
 		dead.emit()
 		queue_free()

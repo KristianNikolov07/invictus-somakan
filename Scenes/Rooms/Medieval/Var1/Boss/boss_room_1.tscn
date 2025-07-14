@@ -1,9 +1,10 @@
-[gd_scene load_steps=155 format=3 uid="uid://bxomot65ytf5n"]
+[gd_scene load_steps=156 format=3 uid="uid://bxomot65ytf5n"]
 
 [ext_resource type="Script" uid="uid://c80uwe0iluece" path="res://Scripts/Rooms/boss_room_1.gd" id="1_hnpp2"]
 [ext_resource type="Texture2D" uid="uid://c1lo75th7b88g" path="res://Textures/icon.svg" id="1_tjvdc"]
 [ext_resource type="PackedScene" uid="uid://be53snhq2r11i" path="res://Scenes/player.tscn" id="2_hnpp2"]
 [ext_resource type="PackedScene" uid="uid://drh5mw5jb3hga" path="res://Scenes/Objects/platform.tscn" id="3_5vdau"]
+[ext_resource type="Script" uid="uid://drw8t2a7vw41h" path="res://addons/screen_shaker/screen_shake.gd" id="4_3j7y5"]
 [ext_resource type="Script" uid="uid://c0r8ikcl8si3u" path="res://Scripts/Enemies/boss.gd" id="4_w82vf"]
 [ext_resource type="PackedScene" uid="uid://bqo6qnqcmww4y" path="res://Scenes/UI/health_bar.tscn" id="5_sufch"]
 [ext_resource type="Texture2D" uid="uid://dowfelenfbfhv" path="res://Textures/Boss/boss_bone_rain.png" id="6_88iah"]
@@ -1310,6 +1311,11 @@ tracks/14/keys = {
 "values": [&"walk"]
 }
 
+[sub_resource type="Animation" id="Animation_iyvfp"]
+resource_name = "death"
+length = 2.0
+step = 0.1
+
 [sub_resource type="Animation" id="Animation_p7duw"]
 resource_name = "intro"
 length = 3.5
@@ -1427,11 +1433,6 @@ tracks/2/keys = {
 "update": 0,
 "values": [-0.436332, 0.0, 0.0]
 }
-
-[sub_resource type="Animation" id="Animation_iyvfp"]
-resource_name = "death"
-length = 2.0
-step = 0.1
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_v638s"]
 _data = {
@@ -1622,6 +1623,11 @@ scale = Vector2(5.34, 4)
 position = Vector2(867, 455)
 enabled = false
 zoom = Vector2(1.5, 1.5)
+
+[node name="ScreenShaker2D" type="Node" parent="ArenaCam" node_paths=PackedStringArray("camera")]
+script = ExtResource("4_3j7y5")
+camera = NodePath("..")
+metadata/_custom_type_script = "uid://drw8t2a7vw41h"
 
 [node name="Player" parent="." instance=ExtResource("2_hnpp2")]
 position = Vector2(-509, 540)
