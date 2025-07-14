@@ -57,7 +57,7 @@ func _on_attack_hitbox_body_entered(body: Node2D) -> void:
 		elif parry_time_left > 0:
 			$Hitstop.start()
 			body.begin_hitstop()
-			damage_amount(parry_damage, parry_knockback_mult)
+			parry(body)
 			body.stop_parry()
 			body.damage_amount((attack_damage / 3) * damage_mult, (knockback_strength * knockback_dir) / 3)
 		else:

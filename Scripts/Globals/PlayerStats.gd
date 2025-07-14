@@ -32,7 +32,7 @@ func _ready() -> void:
 	weapon1_aspects[0] = load("res://Items/Aspects/Fire.tres")
 	#weapon2_aspects[1] = load("res://Items/Aspects/CriticalDamage.tres")
 	weapon2_aspects[0] = load("res://Items/Aspects/Freeze.tres")
-	add_item(load("res://Items/Consumables/leech.tres"))
+	add_item(load("res://Items/fire_orb.tres"))
 
 func get_player():
 	if !is_multiplayer:
@@ -149,6 +149,7 @@ func load_stats(saveNum: int):
 		unlocked_weapons = config.get_value("save", "weapons")
 	if config.has_section_key("save", "max_hp"):
 		max_hp = config.get_value("save", "max_hp")
+		hp = max_hp
 	if config.has_section_key("save", "double_jump"):
 		has_double_jump = config.get_value("save", "double_jump")
 	

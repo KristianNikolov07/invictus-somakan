@@ -32,12 +32,13 @@ AspectSynergies="*res://Scripts/Globals/AspectSynergies.gd"
 
 gdscript/warnings/integer_division=0
 
-[editor_plugins]
-
-enabled=PackedStringArray("res://addons/screen_shaker/plugin.cfg")
 [display]
 
 window/stretch/mode="canvas_items"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/screen_shaker/plugin.cfg")
 
 [global_group]
 

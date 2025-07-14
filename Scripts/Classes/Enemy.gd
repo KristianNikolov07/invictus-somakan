@@ -31,6 +31,9 @@ var knockback_decay: float = 800.0
 
 var invincibility_timer = Timer.new()
 
+func calculate_direction(body):
+	pass
+
 func _ready() -> void:
 	invincibility_timer.wait_time = invincibility_length
 	invincibility_timer.timeout.connect(_on_invincibility_timer_timeout)
@@ -75,8 +78,9 @@ func is_bleeding():
 	
 	return null
 
-func parry():
-	damage_amount(parry_damage, parry_knockback_mult)
+func parry(body):
+	var dir = calculate_direction(body)
+	damage_amount(parry_damage, parry_knockback_mult * dir)
 
 
 func damage_amount(amount: int, knockback) -> void:
