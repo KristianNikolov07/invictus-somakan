@@ -1,4 +1,4 @@
-[gd_scene load_steps=137 format=3 uid="uid://bxomot65ytf5n"]
+[gd_scene load_steps=155 format=3 uid="uid://bxomot65ytf5n"]
 
 [ext_resource type="Script" uid="uid://c80uwe0iluece" path="res://Scripts/Rooms/boss_room_1.gd" id="1_hnpp2"]
 [ext_resource type="Texture2D" uid="uid://c1lo75th7b88g" path="res://Textures/icon.svg" id="1_tjvdc"]
@@ -8,9 +8,14 @@
 [ext_resource type="PackedScene" uid="uid://bqo6qnqcmww4y" path="res://Scenes/UI/health_bar.tscn" id="5_sufch"]
 [ext_resource type="Texture2D" uid="uid://dowfelenfbfhv" path="res://Textures/Boss/boss_bone_rain.png" id="6_88iah"]
 [ext_resource type="Texture2D" uid="uid://d61ubgq87ik7" path="res://Textures/Boss/boss_walk.png" id="6_u53fo"]
+[ext_resource type="Script" uid="uid://b3auab72tb6j6" path="res://Scripts/Classes/Item.gd" id="6_ycvm6"]
+[ext_resource type="Texture2D" uid="uid://b7ygdhax07c3" path="res://Textures/Boss/boss_death.png" id="7_2yxwo"]
 [ext_resource type="Texture2D" uid="uid://c13k4ao4dvdqw" path="res://Textures/Boss/boss_ram_prep.png" id="7_ji88a"]
+[ext_resource type="Resource" uid="uid://cos1nvi2km0id" path="res://Items/Weapons/Bow.tres" id="7_ycvm6"]
 [ext_resource type="Texture2D" uid="uid://cth3eon34isjp" path="res://Textures/Boss/boss_smash.png" id="8_ji88a"]
 [ext_resource type="Texture2D" uid="uid://bjap1ervcxlsh" path="res://Textures/Boss/boss_ribarang.png" id="9_5vdau"]
+[ext_resource type="AudioStream" uid="uid://d1ba6w2ieo46k" path="res://Sounds/boss-breaking.mp3" id="12_6fyw7"]
+[ext_resource type="PackedScene" uid="uid://5v5smpd60gr8" path="res://Scenes/Objects/void.tscn" id="16_mxxn5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w82vf"]
 size = Vector2(22, 610)
@@ -66,6 +71,58 @@ tracks/0/keys = {
 _data = {
 &"RESET": SubResource("Animation_hnpp2"),
 &"lower": SubResource("Animation_tjvdc")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sufch"]
+size = Vector2(67, 279.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_286j2"]
+size = Vector2(67, 279.5)
+
+[sub_resource type="Animation" id="Animation_286j2"]
+resource_name = "phase"
+length = 10.0
+step = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Trapforms:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2, 10),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(862, 658), Vector2(862, 658), Vector2(862, 1500)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2, 10),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.72, 1), Vector2(0.72, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../BossBounce:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.71, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_sufch"]
+_data = {
+&"phase": SubResource("Animation_286j2")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b8t2r"]
@@ -145,58 +202,6 @@ _data = {
 &"open": SubResource("Animation_vvxw6")
 }
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_sufch"]
-size = Vector2(67, 279.5)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_286j2"]
-size = Vector2(67, 279.5)
-
-[sub_resource type="Animation" id="Animation_286j2"]
-resource_name = "phase"
-length = 10.0
-step = 1.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../Trapforms:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 2, 10),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(862, 658), Vector2(862, 658), Vector2(862, 1500)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("../BossPushers:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 2, 10),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(1, 1), Vector2(0.72, 1), Vector2(0.72, 1)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("../BossBounce:scale")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(1, 1), Vector2(0.71, 1)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_sufch"]
-_data = {
-&"phase": SubResource("Animation_286j2")
-}
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_6k41h"]
 atlas = ExtResource("6_88iah")
 region = Rect2(864, 0, 96, 96)
@@ -248,6 +253,54 @@ region = Rect2(672, 0, 96, 96)
 [sub_resource type="AtlasTexture" id="AtlasTexture_h0hi0"]
 atlas = ExtResource("6_88iah")
 region = Rect2(768, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ycvm6"]
+atlas = ExtResource("7_2yxwo")
+region = Rect2(0, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mxxn5"]
+atlas = ExtResource("7_2yxwo")
+region = Rect2(96, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3j7y5"]
+atlas = ExtResource("7_2yxwo")
+region = Rect2(192, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ljf53"]
+atlas = ExtResource("7_2yxwo")
+region = Rect2(288, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pxt46"]
+atlas = ExtResource("7_2yxwo")
+region = Rect2(384, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c0em5"]
+atlas = ExtResource("7_2yxwo")
+region = Rect2(480, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wofkp"]
+atlas = ExtResource("7_2yxwo")
+region = Rect2(576, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5cunp"]
+atlas = ExtResource("7_2yxwo")
+region = Rect2(672, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jdxpo"]
+atlas = ExtResource("7_2yxwo")
+region = Rect2(768, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p2c0n"]
+atlas = ExtResource("7_2yxwo")
+region = Rect2(864, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o3oom"]
+atlas = ExtResource("7_2yxwo")
+region = Rect2(960, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qr6dj"]
+atlas = ExtResource("7_2yxwo")
+region = Rect2(1056, 0, 96, 96)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g4ty4"]
 atlas = ExtResource("6_u53fo")
@@ -631,6 +684,47 @@ animations = [{
 "loop": false,
 "name": &"bone_rain_ready",
 "speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ycvm6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mxxn5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3j7y5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ljf53")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pxt46")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c0em5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wofkp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5cunp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jdxpo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p2c0n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o3oom")
+}, {
+"duration": 999.0,
+"texture": SubResource("AtlasTexture_qr6dj")
+}],
+"loop": false,
+"name": &"death",
+"speed": 12.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -1191,6 +1285,30 @@ tracks/12/keys = {
 "update": 1,
 "values": [130]
 }
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath(".:visible")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("BossSprite:animation")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"walk"]
+}
 
 [sub_resource type="Animation" id="Animation_p7duw"]
 resource_name = "intro"
@@ -1203,10 +1321,10 @@ tracks/0/path = NodePath(".:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1.6, 3.5),
-"transitions": PackedFloat32Array(2.07053, 1, 1),
+"times": PackedFloat32Array(0, 2, 3.5),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(860, -250), Vector2(860, 534), Vector2(860, 534)]
+"values": [Vector2(1500, 534), Vector2(860, 534), Vector2(860, 534)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -1243,6 +1361,30 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [130, 131]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:visible")
+tracks/4/interp = 0
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 3.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("BossSprite:animation")
+tracks/5/interp = 0
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 2, 3.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [&"walk", &"default", &"default"]
 }
 
 [sub_resource type="Animation" id="Animation_w82vf"]
@@ -1286,9 +1428,15 @@ tracks/2/keys = {
 "values": [-0.436332, 0.0, 0.0]
 }
 
+[sub_resource type="Animation" id="Animation_iyvfp"]
+resource_name = "death"
+length = 2.0
+step = 0.1
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_v638s"]
 _data = {
 &"RESET": SubResource("Animation_ly2s5"),
+&"death": SubResource("Animation_iyvfp"),
 &"intro": SubResource("Animation_p7duw"),
 &"smash": SubResource("Animation_w82vf")
 }
@@ -1382,6 +1530,24 @@ libraries = {
 &"": SubResource("AnimationLibrary_w82vf")
 }
 
+[node name="BossPushers" type="StaticBody2D" parent="."]
+position = Vector2(879, 542)
+collision_layer = 128
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BossPushers"]
+position = Vector2(-891.5, -12.75)
+shape = SubResource("RectangleShape2D_sufch")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="BossPushers"]
+position = Vector2(847, -19)
+shape = SubResource("RectangleShape2D_286j2")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="BossPushers"]
+libraries = {
+&"": SubResource("AnimationLibrary_sufch")
+}
+
 [node name="DoorChecker" type="Area2D" parent="."]
 collision_layer = 0
 
@@ -1452,24 +1618,6 @@ scale = Vector2(5.34, 4)
 position = Vector2(-422, 20)
 scale = Vector2(5.34, 4)
 
-[node name="BossPushers" type="StaticBody2D" parent="."]
-position = Vector2(879, 542)
-collision_layer = 128
-collision_mask = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BossPushers"]
-position = Vector2(-891.5, -12.75)
-shape = SubResource("RectangleShape2D_sufch")
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="BossPushers"]
-position = Vector2(847, -19)
-shape = SubResource("RectangleShape2D_286j2")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="BossPushers"]
-libraries = {
-&"": SubResource("AnimationLibrary_sufch")
-}
-
 [node name="ArenaCam" type="Camera2D" parent="."]
 position = Vector2(867, 455)
 enabled = false
@@ -1479,6 +1627,7 @@ zoom = Vector2(1.5, 1.5)
 position = Vector2(-509, 540)
 
 [node name="Boss" type="CharacterBody2D" parent="." node_paths=PackedStringArray("bone_positions") groups=["Enemies"]]
+visible = false
 position = Vector2(860, -250)
 collision_layer = 130
 collision_mask = 128
@@ -1490,13 +1639,17 @@ max_hp = 1500
 parry_damage = 0
 can_be_knockedback = false
 damage_number_scale = 4.0
+loot = Dictionary[ExtResource("6_ycvm6"), float]({
+ExtResource("7_ycvm6"): 100.0
+})
 
 [node name="BossSprite" type="AnimatedSprite2D" parent="Boss"]
 texture_filter = 1
 position = Vector2(-43, -60)
 scale = Vector2(3.65, 3.65)
 sprite_frames = SubResource("SpriteFrames_6537y")
-animation = &"bone_rain_ready"
+animation = &"walk"
+autoplay = "walk"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Boss"]
 position = Vector2(0, 8)
@@ -1531,6 +1684,10 @@ debug_color = Color(0.954773, 0.175863, 0.315043, 0.42)
 [node name="WeaponEnd" type="Marker2D" parent="Boss/Smash/Pivot"]
 position = Vector2(-1.77312, -231.071)
 
+[node name="Break" type="AudioStreamPlayer2D" parent="Boss"]
+stream = ExtResource("12_6fyw7")
+volume_db = 3.0
+
 [node name="ChooseAttack" type="Timer" parent="Boss"]
 wait_time = 3.0
 one_shot = true
@@ -1546,6 +1703,14 @@ offset_bottom = -110.0
 libraries = {
 &"": SubResource("AnimationLibrary_v638s")
 }
+
+[node name="Void" parent="." node_paths=PackedStringArray("start_pos") instance=ExtResource("16_mxxn5")]
+position = Vector2(863, 908)
+start_pos = NodePath("../Respawn")
+damage_percent = 0.4
+
+[node name="Respawn" type="Marker2D" parent="."]
+position = Vector2(439, 337)
 
 [node name="BoneRainGroup" type="HBoxContainer" parent="."]
 offset_left = 85.0

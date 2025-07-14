@@ -35,16 +35,6 @@ rotation = -1.5708
 scale = Vector2(2.5, 4)
 texture = ExtResource("2_td5ee")
 
-[node name="Hitstop" type="Timer" parent="."]
-process_mode = 3
-wait_time = 0.2
-one_shot = true
-
-[node name="Return" type="Timer" parent="."]
-wait_time = 0.5
-one_shot = true
-autostart = true
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(4, -27.5)
 shape = SubResource("RectangleShape2D_yio7y")
@@ -56,7 +46,6 @@ shape = SubResource("RectangleShape2D_vfb2y")
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="."]
 position = Vector2(19, -3)
 rotation = 0.436332
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_8ja7o")
 
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="."]
@@ -67,6 +56,16 @@ shape = SubResource("RectangleShape2D_j1mof")
 [node name="CollisionShape2D5" type="CollisionShape2D" parent="."]
 position = Vector2(39, 4)
 shape = SubResource("RectangleShape2D_a512g")
+
+[node name="Hitstop" type="Timer" parent="."]
+process_mode = 3
+wait_time = 0.2
+one_shot = true
+
+[node name="Return" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+autostart = true
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

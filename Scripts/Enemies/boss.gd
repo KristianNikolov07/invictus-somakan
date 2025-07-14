@@ -177,6 +177,22 @@ func damage(hitbox: Hitbox, knockback):
 		speed = 100
 		get_node("../BossPushers/AnimationPlayer").play("phase")
 	elif hp <= 0:
+		$CollisionShape2D.queue_free()
+		$RibReturn.queue_free()
+		$CollisionDamage.queue_free()
+		attacking = true
+		set_is_moving(false)
+		$Attacks.stop(true)
+		$ChooseAttack.stop()
+		$BossSprite.play("default")
+		await get_tree().create_timer(1.5).timeout
+		$BossSprite.play("death")
+		$Break.play()
+		await $Break.finished
+		var ex = Utils.summon_explosion(global_position, 12, 0, 0, 0.9)
+		ex.get_node("Boom").volume_db = 6
+		get_tree().current_scene.add_child(ex)
+		await get_tree().create_timer(1).timeout
 		drop_loot()
 		dead.emit()
 		queue_free()
@@ -195,6 +211,23 @@ func damage_amount(amount: int, knockback) -> void:
 		speed = 100
 		get_node("../BossPushers/AnimationPlayer").play("phase")
 	elif hp <= 0:
+		$CollisionShape2D.queue_free()
+		$RibReturn.queue_free()
+		$CollisionDamage.queue_free()
+		attacking = true
+		set_is_moving(false)
+		$Attacks.stop(true)
+		$ChooseAttack.stop()
+		$BossSprite.play("default")
+		await get_tree().create_timer(1.5).timeout
+		$BossSprite.play("death")
+		$Break.play()
+		await $Break.finished
+		var ex = Utils.summon_explosion(global_position, 12, 0, 0, 0.9)
+		ex.get_node("Boom").volume_db = 6
+		get_tree().current_scene.add_child(ex)
+		$BossSprite.hide()
+		await get_tree().create_timer(1).timeout
 		drop_loot()
 		dead.emit()
 		queue_free()
