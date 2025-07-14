@@ -1,10 +1,12 @@
-[gd_resource type="Resource" script_class="WeaponItem" load_steps=2 format=3 uid="uid://5gkitsd33fyr"]
+[gd_resource type="Resource" script_class="WeaponItem" load_steps=3 format=3 uid="uid://5gkitsd33fyr"]
 
 [ext_resource type="Script" uid="uid://cyk6fbvc2v7n6" path="res://Scripts/Classes/WeaponItem.gd" id="1_1yl0d"]
+[ext_resource type="PackedScene" uid="uid://b85px51yxbavk" path="res://Scenes/Weapons/chushkopek_sniper.tscn" id="2_28iqb"]
 
 [resource]
 script = ExtResource("1_1yl0d")
-item_name = ""
-type = 0
+weapon_action_scene = ExtResource("2_28iqb")
+item_name = "Chushkopek Sniper"
+type = 4
 price = 0
 metadata/_custom_type_script = "uid://cyk6fbvc2v7n6"

@@ -1,4 +1,4 @@
-extends Node2D
+extends Weapon
 
 const pepper := preload("res://Scenes/Projectiles/pepper.tscn")
 @onready var player = get_node("../../")

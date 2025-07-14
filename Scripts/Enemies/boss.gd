@@ -21,23 +21,24 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	if not is_dashing and not attacking:
-		direction = calculate_direction(target)
-		if direction == -1:
-			$BossSprite.flip_h = false
-			$BossSprite.position.x = -43
-			$Smash.scale = Vector2(-1, 1)
-		else:
-			$BossSprite.flip_h = true
-			$BossSprite.position.x = 43
-			$Smash.scale = Vector2(1, 1)
-	
-	if is_moving and not is_dashing:
-		global_position.x = move_toward(global_position.x, target.global_position.x, delta*speed)
-	elif is_moving:
-		global_position.x += delta*speed*direction*12
-	
-	move_and_slide()
+	if hp > 0:
+		if not is_dashing and not attacking:
+			direction = calculate_direction(target)
+			if direction == -1:
+				$BossSprite.flip_h = false
+				$BossSprite.position.x = -43
+				$Smash.scale = Vector2(-1, 1)
+			else:
+				$BossSprite.flip_h = true
+				$BossSprite.position.x = 43
+				$Smash.scale = Vector2(1, 1)
+		
+		if is_moving and not is_dashing:
+			global_position.x = move_toward(global_position.x, target.global_position.x, delta*speed)
+		elif is_moving:
+			global_position.x += delta*speed*direction*12
+		
+		move_and_slide()
 
 
 func start():
@@ -48,7 +49,7 @@ func start():
 
 func _on_choose_attack_timeout() -> void:
 	set_is_moving(false)
-	var rand = randi_range(1, 1)
+	var rand = randi_range(1, 4)
 	match rand:
 		1: attack_smash()
 		2: attack_ram()
@@ -185,7 +186,7 @@ func damage(hitbox: Hitbox, knockback):
 		attacking = true
 		set_is_moving(false)
 		$Attacks.stop(true)
-		$ChooseAttack.stop()
+		$ChooseAttack.queue_free()
 		$BossSprite.play("default")
 		await get_tree().create_timer(1.5).timeout
 		$BossSprite.play("death")
@@ -196,6 +197,9 @@ func damage(hitbox: Hitbox, knockback):
 		get_tree().current_scene.add_child(ex)
 		await get_tree().create_timer(1).timeout
 		drop_loot()
+		for i in range(50):
+			drop_soul()
+			await get_tree().create_timer(0.05).timeout
 		dead.emit()
 		queue_free()
 
@@ -219,7 +223,7 @@ func damage_amount(amount: int, knockback) -> void:
 		attacking = true
 		set_is_moving(false)
 		$Attacks.stop(true)
-		$ChooseAttack.stop()
+		$ChooseAttack.queue_free()
 		$BossSprite.play("default")
 		await get_tree().create_timer(1.5).timeout
 		$BossSprite.play("death")
@@ -232,6 +236,9 @@ func damage_amount(amount: int, knockback) -> void:
 		$BossSprite.hide()
 		await get_tree().create_timer(2.5).timeout
 		drop_loot()
+		for i in range(50):
+			drop_soul()
+			await get_tree().create_timer(0.05).timeout
 		dead.emit()
 		queue_free()
 
@@ -246,6 +253,14 @@ func _on_smash_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Players"):
 		var knockback_dir = calculate_direction(body)
 		body.damage_amount(smash_damage, smash_knockback * knockback_dir)
+
+
+func drop_soul():
+	for player in get_tree().get_nodes_in_group("Players"):
+		var new_soul: Area2D = soul.instantiate()
+		new_soul.global_position = global_position
+		new_soul.target = player
+		get_tree().current_scene.call_deferred("add_child", new_soul)
 
 
 func target_closest_player() -> void:
