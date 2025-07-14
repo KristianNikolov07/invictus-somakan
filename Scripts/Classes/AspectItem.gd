@@ -20,4 +20,4 @@ func apply_effect(body: CharacterBody2D):
 		body.apply_status_effect(status_effect)
 	if explosion:
 		var boom_thingy = Utils.summon_explosion(body.position, 0.8, 5, 1, 2, false, true)
-		body.get_tree().current_scene.add_child(boom_thingy)
+		body.get_tree().current_scene.call_deferred("add_child", boom_thingy)

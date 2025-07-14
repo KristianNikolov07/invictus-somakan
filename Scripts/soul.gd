@@ -7,7 +7,7 @@ var speed = 50
 
 
 func _ready() -> void:
-	velocity = Vector2(randf_range(-200, 200), randf_range(-200, 200))
+	velocity = Vector2(randf_range(-230, 230), randf_range(-230, 230))
 
 
 func _physics_process(delta: float) -> void:

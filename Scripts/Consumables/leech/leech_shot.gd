@@ -1,6 +1,6 @@
 extends Area2D
 var leech_effect_scene = preload("res://Scenes/Consumables/leech/leech_effect.tscn")
-@export var speed = 400
+@export var speed = 500
 var target: Vector2
 var player
 

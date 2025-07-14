@@ -1,6 +1,6 @@
 extends Area2D
 @export var weapon: WeaponItem
-var unlocked = false
+@export var unlocked = false
 
 func _ready() -> void:
 	unlock()
