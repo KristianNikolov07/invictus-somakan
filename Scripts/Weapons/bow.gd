@@ -7,9 +7,12 @@ var arrow = preload("res://Scenes/Projectiles/arrow.tscn")
 
 var can_be_shot = true
 
+func _physics_process(delta: float) -> void:
+	$Texture.look_at(get_global_mouse_position())
 
 func hit(_direction: int):
 	if loaded_arrows > 0 and can_be_shot:
+		$Texture/AnimatedSprite2D.play("Shoot")
 		var player = get_node("../../")
 		var new_arrow: Projectile = arrow.instantiate()
 		new_arrow.can_hit_enemies = true
@@ -44,3 +47,7 @@ func _on_cooldown_timeout() -> void:
 
 func _on_refresh_progress_timeout() -> void:
 	$ProgressBar.value = $ReloadTimer.wait_time - $ReloadTimer.time_left
+
+
+func _on_animated_sprite_2d_animation_finished() -> void:
+	$Texture/AnimatedSprite2D.play("default")

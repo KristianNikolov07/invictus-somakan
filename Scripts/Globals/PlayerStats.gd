@@ -22,17 +22,17 @@ func _ready() -> void:
 	
 	#unlocked_recipes.append(load("res://Recipes/fire_aspect.tres"))
 	set_weapon1(load("res://Items/Weapons/Marksman.tres"))
-	set_weapon2(load("res://Items/Weapons/Chushkopek.tres"))
+	#set_weapon2(load("res://Items/Weapons/Bow.tres"))
 	items.resize(5)
 	weapon1_aspects.resize(2)
 	weapon2_aspects.resize(2)
 	consumables.resize(2)
 	
-	weapon1_aspects[1] = load("res://Items/Aspects/CriticalDamage.tres")
-	weapon1_aspects[0] = load("res://Items/Aspects/Fire.tres")
+	#weapon1_aspects[1] = load("res://Items/Aspects/CriticalDamage.tres")
+	#weapon1_aspects[0] = load("res://Items/Aspects/Fire.tres")
 	#weapon2_aspects[1] = load("res://Items/Aspects/CriticalDamage.tres")
-	weapon2_aspects[0] = load("res://Items/Aspects/Freeze.tres")
-	add_item(load("res://Items/fire_orb.tres"))
+	#weapon2_aspects[0] = load("res://Items/Aspects/Fire.tres")
+	#add_item(load("res://Items/Consumables/leech.tres"))
 
 func get_player():
 	if !is_multiplayer:

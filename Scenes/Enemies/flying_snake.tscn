@@ -1,11 +1,96 @@
-[gd_scene load_steps=6 format=3 uid="uid://dk2vjvg75cd3q"]
+[gd_scene load_steps=18 format=3 uid="uid://dk2vjvg75cd3q"]
 
 [ext_resource type="Script" uid="uid://bvlly6je8wgxu" path="res://Scripts/Enemies/flying_snake.gd" id="1_irrbb"]
-[ext_resource type="Texture2D" uid="uid://c1lo75th7b88g" path="res://Textures/icon.svg" id="2_irrbb"]
+[ext_resource type="Texture2D" uid="uid://khqan0rdsxny" path="res://Textures/enemy_flying_snake.png" id="2_irrbb"]
 [ext_resource type="PackedScene" uid="uid://bqo6qnqcmww4y" path="res://Scenes/UI/health_bar.tscn" id="3_irrbb"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_r60sb"]
+atlas = ExtResource("2_irrbb")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cxyfc"]
+atlas = ExtResource("2_irrbb")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ki5rk"]
+atlas = ExtResource("2_irrbb")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pvpoi"]
+atlas = ExtResource("2_irrbb")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_on8ro"]
+atlas = ExtResource("2_irrbb")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4augr"]
+atlas = ExtResource("2_irrbb")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0so7j"]
+atlas = ExtResource("2_irrbb")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8r7h6"]
+atlas = ExtResource("2_irrbb")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2cfsi"]
+atlas = ExtResource("2_irrbb")
+region = Rect2(256, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ktnab"]
+atlas = ExtResource("2_irrbb")
+region = Rect2(288, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fmnit"]
+atlas = ExtResource("2_irrbb")
+region = Rect2(320, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_w0uml"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r60sb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cxyfc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ki5rk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pvpoi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_on8ro")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4augr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0so7j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8r7h6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2cfsi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ktnab")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fmnit")
+}],
+"loop": true,
+"name": &"default",
+"speed": 9.0
+}]
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dt2kf"]
-size = Vector2(128, 128)
+size = Vector2(152.5, 40)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_irrbb"]
 size = Vector2(160, 160)
@@ -18,10 +103,17 @@ knockback_strength = 1.0
 invincibility_length = 0.4
 metadata/_custom_type_script = "uid://cg8pbch1s6ga2"
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_irrbb")
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(5, 5)
+sprite_frames = SubResource("SpriteFrames_w0uml")
+autoplay = "default"
+frame_progress = 0.425413
+flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1.25001, -2.5)
+scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_dt2kf")
 
 [node name="HealthBar" parent="." instance=ExtResource("3_irrbb")]

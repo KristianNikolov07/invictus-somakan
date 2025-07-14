@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://drh5mw5jb3hga" path="res://Scenes/Objects/platform.tscn" id="4_cr4ua"]
 [ext_resource type="Script" uid="uid://8utdi18iv0th" path="res://Scripts/Classes/Spawner.gd" id="6_o1k26"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_g1b5i"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_syekl"]
 texture = ExtResource("1_g1b5i")
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
@@ -71,9 +71,9 @@ texture_region_size = Vector2i(32, 32)
 
 [sub_resource type="TileSet" id="TileSet_i8an3"]
 tile_size = Vector2i(32, 32)
-sources/0 = SubResource("TileSetAtlasSource_g1b5i")
+sources/0 = SubResource("TileSetAtlasSource_syekl")
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cr4ua"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_f7jiv"]
 texture = ExtResource("1_g1b5i")
 1:1/0 = 0
 2:1/0 = 0
@@ -210,7 +210,7 @@ texture = ExtResource("1_g1b5i")
 12:15/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_o1k26"]
-sources/0 = SubResource("TileSetAtlasSource_cr4ua")
+sources/0 = SubResource("TileSetAtlasSource_f7jiv")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o1k26"]
 size = Vector2(60, 448)

@@ -8,6 +8,10 @@ var is_damageing = false
 func hit(direction: int):
 	duration = 1
 	is_charging = true
+	if direction < 0:
+		$HoldLeft.show()
+	else:
+		$HoldRight.show()
 
 func _physics_process(delta: float) -> void:
 	if is_charging:
@@ -25,6 +29,9 @@ func start_damageing():
 	$Duration.wait_time = duration
 	$Duration.start()
 	is_damageing = true
+	$HoldLeft.hide()
+	$HoldRight.hide()
+	$Sprite2D.show()
 
 func _on_hit_cooldown_timeout() -> void:
 	if is_damageing:
@@ -41,3 +48,4 @@ func _on_hit_cooldown_timeout() -> void:
 
 func _on_duration_timeout() -> void:
 	is_damageing = false
+	$Sprite2D.hide()

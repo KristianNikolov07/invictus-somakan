@@ -4,10 +4,14 @@ var dir = 1
 
 func hit(direction : int):
 	if direction == -1:
-		$AnimationPlayer.play("Left")
+		$LeftSprite.show()
+		$LeftSprite.play("default")
+		$LeftHitbox.monitoring = true
 		dir = -1
 	else:
-		$AnimationPlayer.play("Right")
+		$RightSprite.show()
+		$RightSprite.play("default")
+		$RightHitbox.monitoring = true
 		dir = 1
 
 func _on_hitbox_body_entered(body: Node2D) -> void:
@@ -22,8 +26,17 @@ func _on_hitbox_body_entered(body: Node2D) -> void:
 		elif equipped_aspects[0] == null and equipped_aspects[1] != null:
 			aspect = equipped_aspects[1]
 		if aspect != null:
-			aspect.apply_crit_stats($Hitbox)
-		body.damage($Hitbox, knockback_amount * dir)
+			aspect.apply_crit_stats($RightHitbox)
+		body.damage($RightHitbox, knockback_amount * dir)
 		if aspect != null:
 			aspect.apply_effect(body)
-			aspect.unapply_crit_stats($Hitbox)	
+			aspect.unapply_crit_stats($RightHitbox)
+
+
+func _on_right_sprite_animation_finished() -> void:
+	$RightSprite.hide()
+	$RightHitbox.monitoring = false
+
+func _on_left_sprite_animation_finished() -> void:
+	$LeftSprite.hide()
+	$LeftHitbox.monitoring = false

@@ -1,12 +1,92 @@
-[gd_scene load_steps=6 format=3 uid="uid://wcjceeec225m"]
+[gd_scene load_steps=18 format=3 uid="uid://wcjceeec225m"]
 
 [ext_resource type="Script" uid="uid://qy24n6djifph" path="res://Scripts/Weapons/marksman.gd" id="1_xgjrt"]
 [ext_resource type="Texture2D" uid="uid://ca74mb3hepagq" path="res://Textures/coin_bar.png" id="2_10dty"]
 [ext_resource type="Texture2D" uid="uid://bylxmg21j72e2" path="res://Textures/coin_bar_fill.png" id="3_tgutn"]
 [ext_resource type="AudioStream" uid="uid://b6cavef1clkq" path="res://Sounds/Shoot.mp3" id="4_tgutn"]
 [ext_resource type="AudioStream" uid="uid://6gvvbtn7r2ue" path="res://Sounds/coin.mp3" id="5_a5fri"]
+[ext_resource type="Texture2D" uid="uid://pspn6vakbwfi" path="res://Textures/weapon/weapon_marksman_coin_toss.png" id="6_qpo0i"]
+[ext_resource type="Texture2D" uid="uid://cqlewll32wdv7" path="res://Textures/weapon/weapon_marksman_shoot.png" id="7_e50nf"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e50nf"]
+atlas = ExtResource("6_qpo0i")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_va3xe"]
+atlas = ExtResource("6_qpo0i")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sc6mh"]
+atlas = ExtResource("6_qpo0i")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_a5fri"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e50nf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_va3xe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sc6mh")
+}],
+"loop": false,
+"name": &"default",
+"speed": 9.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h4xae"]
+atlas = ExtResource("7_e50nf")
+region = Rect2(0, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kjli6"]
+atlas = ExtResource("7_e50nf")
+region = Rect2(0, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hhwwr"]
+atlas = ExtResource("7_e50nf")
+region = Rect2(64, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_atbxn"]
+atlas = ExtResource("7_e50nf")
+region = Rect2(128, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gox8j"]
+atlas = ExtResource("7_e50nf")
+region = Rect2(192, 0, 64, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qpo0i"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h4xae")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kjli6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hhwwr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_atbxn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gox8j")
+}],
+"loop": false,
+"name": &"shoot",
+"speed": 15.0
+}]
 
 [node name="Marksman" type="Node2D"]
+texture_filter = 1
 script = ExtResource("1_xgjrt")
 attack_damage = 100
 
@@ -44,4 +124,39 @@ fill_mode = 3
 texture_over = ExtResource("2_10dty")
 texture_progress = ExtResource("3_tgutn")
 
+[node name="Shoot" type="AudioStreamPlayer2D" parent="."]
+process_mode = 3
+stream = ExtResource("4_tgutn")
+max_polyphony = 5
+
+[node name="Coin" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_a5fri")
+max_polyphony = 4
+
+[node name="CoinRight" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(54, 0)
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_a5fri")
+frame = 2
+frame_progress = 1.0
+
+[node name="CoinLeft" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(-59, 0)
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_a5fri")
+frame = 2
+frame_progress = 1.0
+flip_h = true
+
+[node name="GunTexture" type="Node2D" parent="."]
+
+[node name="Gun" type="AnimatedSprite2D" parent="GunTexture"]
+position = Vector2(80, 0)
+sprite_frames = SubResource("SpriteFrames_qpo0i")
+autoplay = "default"
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="animation_finished" from="CoinRight" to="." method="_on_coin_right_animation_finished"]
+[connection signal="animation_finished" from="CoinLeft" to="." method="_on_coin_left_animation_finished"]

@@ -1,28 +1,118 @@
-[gd_scene load_steps=4 format=3 uid="uid://dxv5hnqf3rcdo"]
+[gd_scene load_steps=17 format=3 uid="uid://dxv5hnqf3rcdo"]
 
 [ext_resource type="Script" uid="uid://qwupif4hephw" path="res://Scripts/Consumables/thunder_in_a_bottle/lightning.gd" id="1_bo273"]
+[ext_resource type="Texture2D" uid="uid://b2iojtxvkerrx" path="res://Textures/consumables/lightning.png" id="2_o6nq0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bo273"]
-size = Vector2(20, 149)
+size = Vector2(20, 113.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o6nq0"]
 size = Vector2(157, 31)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2jwhp"]
+atlas = ExtResource("2_o6nq0")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_putvo"]
+atlas = ExtResource("2_o6nq0")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4qhwe"]
+atlas = ExtResource("2_o6nq0")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uwqix"]
+atlas = ExtResource("2_o6nq0")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7o3k7"]
+atlas = ExtResource("2_o6nq0")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xx0e6"]
+atlas = ExtResource("2_o6nq0")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_65sy0"]
+atlas = ExtResource("2_o6nq0")
+region = Rect2(64, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b8vnm"]
+atlas = ExtResource("2_o6nq0")
+region = Rect2(96, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p763w"]
+atlas = ExtResource("2_o6nq0")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_06uuy"]
+atlas = ExtResource("2_o6nq0")
+region = Rect2(32, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3vka2"]
+atlas = ExtResource("2_o6nq0")
+region = Rect2(64, 64, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_68vte"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2jwhp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_putvo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4qhwe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uwqix")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7o3k7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xx0e6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_65sy0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b8vnm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p763w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_06uuy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3vka2")
+}],
+"loop": false,
+"name": &"default",
+"speed": 20.0
+}]
 
 [node name="Lightning" type="Area2D"]
 script = ExtResource("1_bo273")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -75)
+position = Vector2(0, -57.25)
 shape = SubResource("RectangleShape2D_bo273")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
 position = Vector2(-0.5, -5.5)
 shape = SubResource("RectangleShape2D_o6nq0")
 
-[node name="DestroyTimer" type="Timer" parent="."]
-wait_time = 0.3
-one_shot = true
-autostart = true
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(1, -47)
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_68vte")
+autoplay = "default"
+frame = 10
+frame_progress = 1.0
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
-[connection signal="timeout" from="DestroyTimer" to="." method="_on_destroy_timer_timeout"]
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

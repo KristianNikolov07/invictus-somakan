@@ -4,6 +4,20 @@ const pepper := preload("res://Scenes/Projectiles/pepper.tscn")
 @onready var player = get_node("../../")
 
 
+func _physics_process(delta: float) -> void:
+	if player.direction < 0:
+		$ChushkopekHolderRight.hide()
+		$ChushkopekHolderLeft.show()
+		
+		$GunRight.hide()
+		$GunLeft.show()
+	else:
+		$ChushkopekHolderRight.show()
+		$ChushkopekHolderLeft.hide()
+		
+		$GunRight.hide()
+		$GunLeft.show()
+
 func hit(_direction):
 	var cooking_phase
 	if $Heat.value < 290:
@@ -24,8 +38,21 @@ func hit(_direction):
 	new_pepper.global_position = player.global_position
 	new_pepper.rotation = player.global_position.direction_to(get_global_mouse_position()).angle()
 	new_pepper.shooter_vel = player.velocity
+	if _direction < 0:
+		$GunLeft.play("shoot")
+	else:
+		$GunRight.play("shoot")
+	
 	get_tree().current_scene.add_child(new_pepper)
 
 
 func _on_refresh_bar_timeout() -> void:
 	$Heat.value += 1
+
+
+func _on_gun_right_animation_finished() -> void:
+	$GunRight.play("default")
+
+
+func _on_gun_left_animation_finished() -> void:
+	$GunLeft.play("default")
