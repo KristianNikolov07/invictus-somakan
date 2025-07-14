@@ -4,10 +4,10 @@ func _ready() -> void:
 	set_focus_mode(FOCUS_ALL)
 
 func check_upgradable():
-	return PlayerStats.souls >= 10 * 2 ** ((PlayerStats.max_hp - 50) / 10)
+	return PlayerStats.souls >= get_price()
 
 func get_price():
-	return 10 * 2 ** ((PlayerStats.max_hp - 50) / 10)
+	return 50 + 25 * 2 ** ((PlayerStats.max_hp - 50) / 10)
 
 func upgrade():
 	PlayerStats.max_hp += 10
@@ -15,7 +15,7 @@ func upgrade():
 
 func refresh():
 	print("refreshing")
-	$Price.text = str(10 * 2 ** ((PlayerStats.max_hp - 50) / 10))
+	$Price.text = str(get_price())
 	$FromTo.text = str(PlayerStats.max_hp) + " -> " + str(PlayerStats.max_hp + 10)
 	$Price.add_theme_color_override("font_color", Color.WHITE if check_upgradable() else Color.DIM_GRAY)
 

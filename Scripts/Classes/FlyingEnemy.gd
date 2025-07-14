@@ -23,6 +23,8 @@ func _physics_process(delta: float) -> void:
 		knockback_velocity = knockback_velocity.move_toward(Vector2.ZERO, knockback_decay * delta)
 
 	velocity = move_velocity + knockback_velocity
+	if is_frozen() or is_frostbitten() or is_blizzard():
+		velocity = Vector2.ZERO
 	move_and_slide()
 
 

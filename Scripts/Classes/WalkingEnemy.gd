@@ -44,7 +44,7 @@ func _physics_process(delta: float) -> void:
 		else:
 			velocity.x = move_toward(velocity.x, 0, speed)
 	
-	if is_frozen():
+	if is_frozen() or is_frostbitten() or is_blizzard():
 		velocity.x = 0
 				
 	move_and_slide()
