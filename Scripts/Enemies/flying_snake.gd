@@ -1,5 +1,8 @@
 extends FlyingEnemy
 
+func _process(delta: float) -> void:
+	$Sprite2D.look_at(target.global_position)
+
 func _on_attack_hitbox_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Players"):
 		var knockback_dir = calculate_direction(body)

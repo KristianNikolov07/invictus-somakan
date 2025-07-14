@@ -20,6 +20,7 @@ texture_filter = 1
 position = Vector2(4, 4)
 scale = Vector2(0.9375, 0.9375)
 texture = ExtResource("2_1fs1j")
+flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(7, 0)

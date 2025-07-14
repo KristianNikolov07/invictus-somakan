@@ -107,7 +107,7 @@ texture_filter = 1
 position = Vector2(4.76837e-07, 4.76837e-07)
 sprite_frames = SubResource("SpriteFrames_flmq0")
 autoplay = "default"
-frame_progress = 0.888144
+frame_progress = 0.281991
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_flmq0")

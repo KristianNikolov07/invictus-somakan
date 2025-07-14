@@ -48,5 +48,4 @@ func damage(hitbox: Hitbox, knockback) -> void:
 	Utils.summon_damage_number(self, dam, Color.ORANGE_RED if is_crit else Color.WHITE, damage_number_scale, damage_number_duration)
 	hp -= dam
 	if hp <= 0:
-		drop_loot()
-		queue_free()
+		death()
