@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=4 uid="uid://drc5ejy1kocf"]
+[gd_scene load_steps=21 format=4 uid="uid://drc5ejy1kocf"]
 
 [ext_resource type="Script" uid="uid://cdgpjt7cuu34b" path="res://Scripts/Rooms/hub.gd" id="1_2kdgj"]
 [ext_resource type="PackedScene" uid="uid://be53snhq2r11i" path="res://Scenes/player.tscn" id="1_l4iyj"]
@@ -215,8 +215,6 @@ texture = ExtResource("2_h41th")
 [sub_resource type="TileSet" id="TileSet_hrxnw"]
 sources/0 = SubResource("TileSetAtlasSource_0qjpg")
 
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_k2f67"]
-
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_h41th"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_jibhj"]
@@ -242,13 +240,6 @@ texture_filter = 1
 scale = Vector2(4, 4)
 tile_map_data = PackedByteArray("AAAAAP//AAACAAEAAAABAP//AAACAAEAAAACAP//AAACAAEAAAADAP//AAACAAEAAAAEAP//AAACAAEAAAAFAP//AAACAAEAAAAGAP//AAACAAEAAAAHAP//AAACAAEAAAAIAP//AAACAAEAAAAJAP//AAACAAEAAAAKAP//AAACAAEAAAALAP//AAACAAEAAAAMAP//AAACAAEAAAANAP//AAACAAEAAAAOAP//AAACAAEAAAAPAP//AAACAAEAAAAQAP//AAACAAEAAAARAP//AAACAAEAAAASAP//AAACAAEAAAATAP//AAACAAEAAAAUAP//AAACAAEAAAAVAP//AAACAAEAAAAWAP//AAACAAEAAAAXAP//AAACAAEAAAAYAP//AAACAAEAAAAZAP//AAACAAEAAAAaAP//AAACAAEAAAAbAP//AAACAAEAAAAcAP//AAACAAEAAAAdAP//AAACAAEAAAAeAP//AAACAAEAAAAfAP//AAACAAEAAAA=")
 tile_set = SubResource("TileSet_hrxnw")
-
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-position = Vector2(944, -78)
-collision_layer = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-shape = SubResource("WorldBoundaryShape2D_k2f67")
 
 [node name="Player" parent="." instance=ExtResource("1_l4iyj")]
 position = Vector2(134, -131)

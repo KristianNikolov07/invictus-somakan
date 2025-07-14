@@ -1,28 +1,12 @@
-[gd_scene load_steps=8 format=3 uid="uid://dyxwxd6esrj8g"]
+[gd_scene load_steps=14 format=3 uid="uid://dyxwxd6esrj8g"]
 
 [ext_resource type="Script" uid="uid://4oehem51oqah" path="res://Scripts/Weapons/damage_circle.gd" id="1_ahcn0"]
 [ext_resource type="Script" uid="uid://drqow7af66ehm" path="res://Scripts/Classes/Hitbox.gd" id="2_qau4o"]
 [ext_resource type="Texture2D" uid="uid://1n21s5o382li" path="res://Textures/weapon/weapon_catalyst_circle.png" id="3_ii3hg"]
+[ext_resource type="Texture2D" uid="uid://b0gql3p36je6y" path="res://Textures/weapon/weapon_catalyst_hold.png" id="4_0psrb"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qau4o"]
 radius = 312.103
-
-[sub_resource type="Animation" id="Animation_ii3hg"]
-resource_name = "anim"
-length = 2.0
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0.0, 6.28319]
-}
 
 [sub_resource type="Animation" id="Animation_0psrb"]
 length = 0.001
@@ -39,11 +23,64 @@ tracks/0/keys = {
 "values": [6.28319]
 }
 
+[sub_resource type="Animation" id="Animation_ii3hg"]
+resource_name = "anim"
+length = 10.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 10),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.28319]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_0psrb"]
 _data = {
 &"RESET": SubResource("Animation_0psrb"),
 &"anim": SubResource("Animation_ii3hg")
 }
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_40a18"]
+atlas = ExtResource("4_0psrb")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6qjp2"]
+atlas = ExtResource("4_0psrb")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_82n77"]
+atlas = ExtResource("4_0psrb")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4ub08"]
+atlas = ExtResource("4_0psrb")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ii3hg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_40a18")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6qjp2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_82n77")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4ub08")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="DamageCircle" type="Node2D"]
 script = ExtResource("1_ahcn0")
@@ -67,6 +104,7 @@ autostart = true
 one_shot = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
 texture_filter = 1
 rotation = 6.28319
 scale = Vector2(11.35, 11.35)
@@ -77,6 +115,23 @@ libraries = {
 &"": SubResource("AnimationLibrary_0psrb")
 }
 autoplay = "anim"
+
+[node name="HoldRight" type="AnimatedSprite2D" parent="."]
+visible = false
+texture_filter = 1
+position = Vector2(48, 0)
+sprite_frames = SubResource("SpriteFrames_ii3hg")
+autoplay = "default"
+frame_progress = 0.182105
+
+[node name="HoldLeft" type="AnimatedSprite2D" parent="."]
+visible = false
+texture_filter = 1
+position = Vector2(-48, 0)
+sprite_frames = SubResource("SpriteFrames_ii3hg")
+autoplay = "default"
+frame_progress = 0.676453
+flip_h = true
 
 [connection signal="timeout" from="HitCooldown" to="." method="_on_hit_cooldown_timeout"]
 [connection signal="timeout" from="Duration" to="." method="_on_duration_timeout"]
