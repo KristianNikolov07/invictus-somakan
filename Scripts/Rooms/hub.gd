@@ -10,6 +10,8 @@ func _ready() -> void:
 	PlayerStats.set_weapon1(null)
 	PlayerStats.set_weapon2(null)
 	
+	PlayerStats.get_player().remove_weapons()
+	
 	PlayerStats.set_aspect(1, 0, null)
 	PlayerStats.set_aspect(1, 1, null)
 	

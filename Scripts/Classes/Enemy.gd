@@ -100,10 +100,14 @@ func damage_amount(amount: int, knockback) -> void:
 		amount *= 3
 		blizzard.end_effect()
 	hp -= amount
+	damage_anim()
 	if hp <= 0:
-		drop_soul()
-		drop_loot()
-		queue_free()
+		death()
+
+func death():
+	drop_soul()
+	drop_loot()
+	queue_free()
 
 func drop_loot():
 	for player in range(get_tree().get_nodes_in_group("Players").size()):
@@ -157,10 +161,9 @@ func damage(hitbox: Hitbox, knockback) -> void:
 			bleeding.end_effect()
 	Utils.summon_damage_number(self, dam, Color.ORANGE_RED if is_crit else Color.WHITE, damage_number_scale, damage_number_duration)
 	hp -= dam
+	damage_anim()
 	if hp <= 0:
-		drop_soul()
-		drop_loot()
-		queue_free()
+		death()
 
 func apply_status_effect(effect: PackedScene):
 	var effect_node = effect.instantiate()
@@ -209,3 +212,6 @@ func get_hp():
 
 func get_max_hp():
 	return max_hp
+
+func damage_anim():
+	pass

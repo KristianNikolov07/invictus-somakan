@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://cu00ittwd3mke"]
 
-[ext_resource type="Texture2D" uid="uid://dj3r6888djp4n" path="res://Textures/ice_orb.png" id="1_8cgto"]
+[ext_resource type="Texture2D" uid="uid://d2sac6b524c2j" path="res://Textures/orbs/ice orb.png" id="1_8cgto"]
 [ext_resource type="Script" uid="uid://b3auab72tb6j6" path="res://Scripts/Classes/Item.gd" id="1_no3n7"]
 
 [resource]

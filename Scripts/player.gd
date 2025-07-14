@@ -20,6 +20,7 @@ var selected_weapon
 
 func _ready() -> void:
 	instantiate_weapons()
+	instantiate_consumables()
 
 
 func _physics_process(_delta: float) -> void:
@@ -63,6 +64,16 @@ func _input(event: InputEvent) -> void:
 		use_consumable(1)
 	elif event.is_action_pressed("UseConsumable2"):
 		use_consumable(2)
+
+func instantiate_consumables():
+	if PlayerStats.consumables[0] != null:
+		var node = PlayerStats.consumables[0].consumable_action.instantiate()
+		node.name = "1"
+		get_node("Consumables").add_child(node)
+	if PlayerStats.consumables[1] != null:
+		var node = PlayerStats.consumables[1].consumable_action.instantiate()
+		node.name = "2"
+		get_node("Consumables").add_child(node)
 
 func instantiate_weapons():
 	instantiate_weapon_1(PlayerStats.weapon1)

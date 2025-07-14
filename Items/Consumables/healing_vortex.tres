@@ -1,12 +1,14 @@
-[gd_resource type="Resource" script_class="ConsumableItem" load_steps=3 format=3 uid="uid://dt0d0f6lh6uuy"]
+[gd_resource type="Resource" script_class="ConsumableItem" load_steps=4 format=3 uid="uid://dt0d0f6lh6uuy"]
 
 [ext_resource type="PackedScene" uid="uid://dmuvwgd0112bx" path="res://Scenes/Consumables/healing_vortex/healing_vortex.tscn" id="1_g46es"]
 [ext_resource type="Script" uid="uid://gpkkx5lpmjrp" path="res://Scripts/Classes/ConsumableItem.gd" id="1_nhtc6"]
+[ext_resource type="Texture2D" uid="uid://c6110a45ulnua" path="res://Textures/consumables/HEALING VORTEX.png" id="2_iouh4"]
 
 [resource]
 script = ExtResource("1_nhtc6")
 consumable_action = ExtResource("1_g46es")
 item_name = "Healing Vortex"
+icon = ExtResource("2_iouh4")
 type = 3
 price = 0
 metadata/_custom_type_script = "uid://gpkkx5lpmjrp"

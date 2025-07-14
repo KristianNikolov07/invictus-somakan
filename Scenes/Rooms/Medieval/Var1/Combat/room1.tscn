@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://drh5mw5jb3hga" path="res://Scenes/Objects/platform.tscn" id="4_aqhgq"]
 [ext_resource type="Script" uid="uid://8utdi18iv0th" path="res://Scripts/Classes/Spawner.gd" id="6_lv8tk"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_358f1"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1cvqe"]
 texture = ExtResource("1_pcoad")
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
@@ -70,9 +70,9 @@ texture_region_size = Vector2i(32, 32)
 
 [sub_resource type="TileSet" id="TileSet_ykuiu"]
 tile_size = Vector2i(32, 32)
-sources/0 = SubResource("TileSetAtlasSource_358f1")
+sources/0 = SubResource("TileSetAtlasSource_1cvqe")
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lv8tk"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_asrf0"]
 texture = ExtResource("1_pcoad")
 1:1/0 = 0
 2:1/0 = 0
@@ -209,7 +209,7 @@ texture = ExtResource("1_pcoad")
 12:15/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_1cvqe"]
-sources/0 = SubResource("TileSetAtlasSource_lv8tk")
+sources/0 = SubResource("TileSetAtlasSource_asrf0")
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_358f1"]
 
