@@ -24,6 +24,7 @@ knockback_strength = 0.0
 hp = 35
 max_hp = 35
 parry_damage = 40
+invincibility_length = 0.4
 
 [node name="PlayerSprite" type="Sprite2D" parent="."]
 position = Vector2(-1.90735e-06, 0)

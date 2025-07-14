@@ -8,6 +8,7 @@ const bullet := preload("res://Scenes/Projectiles/bullet.tscn")
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("right_click") and $Coins.value >= 250:
 		$Coin.play()
+		player.get_node("PlayerSprite").play("cast")
 		var new_coin = coin.instantiate()
 		new_coin.dir = player.direction
 		new_coin.shooter_vel = player.velocity
