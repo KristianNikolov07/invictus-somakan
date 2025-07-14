@@ -1,13 +1,17 @@
-[gd_scene load_steps=4 format=3 uid="uid://c7hgx3j3lulo5"]
+[gd_scene load_steps=7 format=3 uid="uid://c7hgx3j3lulo5"]
 
+[ext_resource type="Script" uid="uid://c11tieqaph8rn" path="res://Scripts/UI/PermanentUpgradesMenu/permanent_upgrades_menu.gd" id="1_eqnm8"]
 [ext_resource type="Texture2D" uid="uid://nfjd1wonq2h2" path="res://Textures/Crafting/crafting_background.png" id="2_0pqiu"]
 [ext_resource type="Texture2D" uid="uid://cavse8ld5bby8" path="res://Textures/Crafting/crafting_slot_selected.png" id="3_vgxu8"]
 [ext_resource type="Texture2D" uid="uid://bxbcn11k4i3i2" path="res://Textures/soul.png" id="4_eqnm8"]
+[ext_resource type="PackedScene" uid="uid://3506da8rupwo" path="res://Scenes/UI/PermanentUpgradesMenu/double_jump_slot.tscn" id="4_pml07"]
+[ext_resource type="PackedScene" uid="uid://df8jfu4ipoemc" path="res://Scenes/UI/PermanentUpgradesMenu/max_hp_slot.tscn" id="5_ch2ra"]
 
 [node name="PermanentUpgradesMenu" type="Control"]
 texture_filter = 1
 layout_mode = 3
 anchors_preset = 0
+script = ExtResource("1_eqnm8")
 
 [node name="Background" type="Sprite2D" parent="."]
 position = Vector2(400, 270)
@@ -39,14 +43,21 @@ layout_mode = 2
 offset_left = 20.0
 offset_top = 78.0
 offset_right = 780.0
-offset_bottom = 528.0
+offset_bottom = 462.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
+layout_mode = 2
+theme_override_constants/separation = 132
+
+[node name="DoubleJumpSlot" parent="ScrollContainer/VBoxContainer" instance=ExtResource("4_pml07")]
+layout_mode = 2
+
+[node name="MaxHpSlot" parent="ScrollContainer/VBoxContainer" instance=ExtResource("5_ch2ra")]
 layout_mode = 2
 
 [node name="SoulsAmount" type="Label" parent="."]
 layout_mode = 0
-offset_left = 693.0
+offset_left = 665.0
 offset_top = 25.0
 offset_right = 752.0
 offset_bottom = 66.0
@@ -54,7 +65,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="SoulsSprite" type="Sprite2D" parent="."]
-position = Vector2(666, 46)
+position = Vector2(638, 46)
 scale = Vector2(1.0625, 1.09375)
 texture = ExtResource("4_eqnm8")
 

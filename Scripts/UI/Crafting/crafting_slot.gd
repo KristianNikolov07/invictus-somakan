@@ -13,7 +13,7 @@ func refresh():
 	$Price.text = str(recipe.price)
 	$NeededItem.texture = recipe.item.icon
 	$NeededItemQuantity.text = str(PlayerStats.get_item_quantity(recipe.item)) + "/" + str(recipe.amount)
-	$NeededItemQuantity.add_theme_color_override("font_color", Color.RED if PlayerStats.check_item(recipe.item, recipe.amount) == false else Color.WHITE)
+	$NeededItemQuantity.add_theme_color_override("font_color", Color.DIM_GRAY if PlayerStats.check_item(recipe.item, recipe.amount) == false else Color.WHITE)
 
 func get_recipe():
 	return recipe

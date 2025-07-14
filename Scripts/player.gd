@@ -21,7 +21,6 @@ var selected_weapon
 func _ready() -> void:
 	instantiate_weapons()
 
-
 func _physics_process(_delta: float) -> void:
 	if $DashTimer.is_stopped():
 		process_movement()
@@ -31,9 +30,12 @@ func _physics_process(_delta: float) -> void:
 	$ParryTimerTestLabel.text = str($Parry.time_left)
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("Jump") and jumps_remaining > 0:
+	if event.is_action_pressed("Jump") and is_on_floor():
 		velocity.y = 0
+		velocity += Vector2(0, -jump_force)
+	elif event.is_action_pressed("Jump") and PlayerStats.has_double_jump and jumps_remaining > 0:
 		jumps_remaining -= 1
+		velocity.y = 0
 		velocity += Vector2(0, -jump_force)
 	elif event.is_action_released("Jump"):
 		velocity.y = max(velocity.y, jump_easing)
@@ -136,6 +138,13 @@ func open_crafting_menu():
 
 func close_crafting_menu():
 	$UI/Crafting.hide()
+	
+func open_upgrades_menu():
+	$UI/Upgrades.show()
+	$UI/Upgrades.refresh()
+
+func close_upgrades_menu():
+	$UI/Upgrades.hide()
 
 func damage_amount(amount: int, knockback) -> void:
 	Utils.summon_damage_number(self, amount, Color.RED, damage_number_scale, damage_number_duration)

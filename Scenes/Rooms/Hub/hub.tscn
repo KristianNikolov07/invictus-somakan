@@ -1,6 +1,6 @@
 [gd_scene load_steps=12 format=3 uid="uid://drc5ejy1kocf"]
 
-[ext_resource type="Script" uid="uid://cdgpjt7cuu34b" path="res://Scripts/Rooms/hub.gd" id="1_2kdgj"]
+[ext_resource type="Script" path="res://Scripts/Rooms/hub.gd" id="1_2kdgj"]
 [ext_resource type="PackedScene" uid="uid://be53snhq2r11i" path="res://Scenes/player.tscn" id="1_l4iyj"]
 [ext_resource type="PackedScene" uid="uid://ch7esotluxknf" path="res://Scenes/Objects/portal.tscn" id="2_kvfx3"]
 [ext_resource type="PackedScene" uid="uid://b4r8t6ijsspl2" path="res://Scenes/Enemies/dummy.tscn" id="3_kvfx3"]

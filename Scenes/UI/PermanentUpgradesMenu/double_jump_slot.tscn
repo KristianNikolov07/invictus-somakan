@@ -1,27 +1,28 @@
-[gd_scene load_steps=4 format=3 uid="uid://df8jfu4ipoemc"]
+[gd_scene load_steps=5 format=3 uid="uid://3506da8rupwo"]
 
-[ext_resource type="Texture2D" uid="uid://qyvcg1lkbbak" path="res://Textures/Crafting/crafting_slot_background.png" id="1_j5isv"]
-[ext_resource type="Script" uid="uid://cp4mp6oy0gcbv" path="res://Scripts/UI/PermanentUpgradesMenu/upgrade_slot.gd" id="1_yjrc2"]
-[ext_resource type="Texture2D" uid="uid://cavse8ld5bby8" path="res://Textures/Crafting/crafting_slot_selected.png" id="3_n8jiv"]
+[ext_resource type="Script" uid="uid://d3lfpalu26g13" path="res://Scripts/UI/PermanentUpgradesMenu/double_jump_slot.gd" id="1_hwsol"]
+[ext_resource type="Texture2D" uid="uid://cavse8ld5bby8" path="res://Textures/Crafting/crafting_slot_selected.png" id="2_8tkm3"]
+[ext_resource type="Texture2D" uid="uid://qyvcg1lkbbak" path="res://Textures/Crafting/crafting_slot_background.png" id="3_jlgkx"]
+[ext_resource type="Texture2D" uid="uid://bxbcn11k4i3i2" path="res://Textures/soul.png" id="4_h0d66"]
 
-[node name="UpgradeSlot" type="Control"]
+[node name="DoubleJumpSlot" type="Control"]
 texture_filter = 1
 layout_mode = 3
 anchors_preset = 0
-script = ExtResource("1_yjrc2")
+script = ExtResource("1_hwsol")
 
 [node name="SelectedBackground" type="Sprite2D" parent="."]
 visible = false
 position = Vector2(380, 66)
 scale = Vector2(10, 6)
-texture = ExtResource("3_n8jiv")
+texture = ExtResource("2_8tkm3")
 
 [node name="Background" type="Sprite2D" parent="."]
 position = Vector2(380, 66)
 scale = Vector2(10, 6)
-texture = ExtResource("1_j5isv")
+texture = ExtResource("3_jlgkx")
 
-[node name="ItemIcon" type="Sprite2D" parent="."]
+[node name="Icon" type="Sprite2D" parent="."]
 position = Vector2(60, 66)
 scale = Vector2(3, 3)
 
@@ -29,25 +30,14 @@ scale = Vector2(3, 3)
 layout_mode = 0
 offset_left = 100.0
 offset_top = 36.0
-offset_right = 356.0
+offset_right = 321.0
 offset_bottom = 96.0
+text = "Double Jump"
 vertical_alignment = 1
 
-[node name="AmountCrafted" type="Label" parent="."]
+[node name="FromTo" type="Label" parent="."]
 layout_mode = 0
-offset_left = 74.0
-offset_top = 70.0
-offset_right = 102.0
-offset_bottom = 98.0
-vertical_alignment = 1
-
-[node name="NeededItem" type="Sprite2D" parent="."]
-position = Vector2(400, 66)
-scale = Vector2(3, 3)
-
-[node name="NeededItemQuantity" type="Label" parent="."]
-layout_mode = 0
-offset_left = 450.0
+offset_left = 364.0
 offset_top = 36.0
 offset_right = 550.0
 offset_bottom = 96.0
@@ -61,9 +51,10 @@ offset_right = 730.0
 offset_bottom = 96.0
 vertical_alignment = 1
 
-[node name="ScrapTexture" type="Sprite2D" parent="."]
+[node name="SoulsSprite" type="Sprite2D" parent="."]
 position = Vector2(590, 66)
-scale = Vector2(3, 3)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("4_h0d66")
 
 [node name="TextureButton" type="TextureButton" parent="."]
 layout_mode = 0
