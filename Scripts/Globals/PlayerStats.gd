@@ -8,6 +8,7 @@ var weapon2_aspects : Array[Item]
 var consumables : Array[ConsumableItem]
 var unlocked_recipes : Array[Recipe]
 var unlocked_weapons : Array[WeaponItem]
+var has_double_jump: bool = false
 var scrap: int = 0
 var souls: int = 0
 var hp: int = 50
@@ -30,7 +31,7 @@ func _ready() -> void:
 	weapon1_aspects[1] = load("res://Items/Aspects/CriticalDamage.tres")
 	weapon1_aspects[0] = load("res://Items/Aspects/Fire.tres")
 	#weapon2_aspects[1] = load("res://Items/Aspects/CriticalDamage.tres")
-	weapon2_aspects[0] = load("res://Items/Aspects/Fire.tres")
+	weapon2_aspects[0] = load("res://Items/Aspects/Freeze.tres")
 	add_item(load("res://Items/Consumables/leech.tres"))
 
 func get_player():
@@ -135,6 +136,7 @@ func save_stats(saveNum: int):
 	config.set_value("save", "recipes", unlocked_recipes)
 	config.set_value("save", "weapons", unlocked_weapons)
 	config.set_value("save", "max_hp", max_hp)
+	config.set_value("save", "double_jump", has_double_jump)
 	config.save_encrypted_pass("user://save" + str(saveNum) + ".save", "cursedgodotisntrealhecanthurtyou")
 
 func load_stats(saveNum: int):
@@ -147,6 +149,8 @@ func load_stats(saveNum: int):
 		unlocked_weapons = config.get_value("save", "weapons")
 	if config.has_section_key("save", "max_hp"):
 		max_hp = config.get_value("save", "max_hp")
+	if config.has_section_key("save", "double_jump"):
+		has_double_jump = config.get_value("save", "double_jump")
 	
 	current_save_file = saveNum
 
@@ -157,7 +161,8 @@ func read_save_file(saveNum: int):
 			"souls" : int(config.get_value("save", "souls")),
 			"numWeapons" : config.get_value("save", "weapons").size(),
 			"numRecipes" : config.get_value("save", "recipes").size(),
-			"max_hp": int(config.get_value("save", "max_hp"))
+			"max_hp": int(config.get_value("save", "max_hp")),
+			"double_jump": config.get_value("save", "double_jump")
 		}
 		
 		return stats

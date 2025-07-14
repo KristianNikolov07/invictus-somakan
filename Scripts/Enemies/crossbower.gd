@@ -34,7 +34,7 @@ func _on_attack_range_body_entered(body: Node2D) -> void:
 			$AttackCharge.start()
 
 func _on_attack_range_body_exited(body: Node2D) -> void:
-	if target != null and body == target:
+	if target != null and body == target and not is_frozen() and not is_frostbitten() and not is_blizzard():
 		if not $AttackCharge.is_stopped():
 			await $AttackCharge.timeout
 		

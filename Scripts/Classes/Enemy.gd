@@ -80,7 +80,6 @@ func parry():
 
 
 func damage_amount(amount: int, knockback) -> void:
-	Utils.summon_damage_number(self, amount, Color.WHITE, damage_number_scale, damage_number_duration)
 	set_collision_layer_value(1, false)
 	invincibility_timer.start()
 	if !can_be_knockedback:
@@ -99,6 +98,7 @@ func damage_amount(amount: int, knockback) -> void:
 	if blizzard:
 		amount *= 3
 		blizzard.end_effect()
+	Utils.summon_damage_number(self, amount, Color.WHITE, damage_number_scale, damage_number_duration)
 	hp -= amount
 	if hp <= 0:
 		drop_soul()
