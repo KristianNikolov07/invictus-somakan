@@ -7,6 +7,9 @@ func _ready() -> void:
 	PlayerStats.remove_consumable(0, 1000)
 	PlayerStats.remove_consumable(1, 1000)
 	
+	PlayerStats.set_weapon1(null)
+	PlayerStats.set_weapon2(null)
+	
 	PlayerStats.set_aspect(1, 0, null)
 	PlayerStats.set_aspect(1, 1, null)
 	

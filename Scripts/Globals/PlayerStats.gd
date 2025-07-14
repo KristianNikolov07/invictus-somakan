@@ -18,9 +18,10 @@ var current_save_file = 1
 var config = ConfigFile.new()
 
 func _ready() -> void:
+	
 	#unlocked_recipes.append(load("res://Recipes/fire_aspect.tres"))
-	set_weapon1(load("res://Items/Weapons/Marksman.tres"))
-	set_weapon2(load("res://Items/Weapons/Bow.tres"))
+	#set_weapon1(load("res://Items/Weapons/Marksman.tres"))
+	#set_weapon2(load("res://Items/Weapons/Bow.tres"))
 	items.resize(5)
 	weapon1_aspects.resize(2)
 	weapon2_aspects.resize(2)
@@ -77,9 +78,13 @@ func is_inventory_full():
 
 func set_weapon1(weapon: Item):
 	weapon1 = weapon
+	if get_player() != null:
+		get_player().instantiate_weapon_1(weapon1)
 	
 func set_weapon2(weapon: Item):
 	weapon2 = weapon
+	if get_player() != null:
+		get_player().instantiate_weapon_2(weapon2)
 
 func set_aspect(weaponNum: int, slot: int, aspect: Item):
 	if weaponNum == 1:

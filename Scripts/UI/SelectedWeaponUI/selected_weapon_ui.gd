@@ -9,7 +9,13 @@ func select_weapon_2():
 	$Weapon1/Selected.hide()
 
 func set_weapon_1(weapon : WeaponItem):
-	$Weapon1/Icon.texture = weapon.icon
+	if weapon == null:
+		$Weapon1/Icon.texture = null
+	else:
+		$Weapon1/Icon.texture = weapon.icon
 
 func set_weapon_2(weapon : WeaponItem):
-	$Weapon2/Icon.texture = weapon.icon
+	if weapon == null:
+		$Weapon2/Icon.texture = null
+	else:
+		$Weapon2/Icon.texture = weapon.icon
