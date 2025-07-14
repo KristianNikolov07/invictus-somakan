@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="WeaponItem" load_steps=3 format=3 uid="uid://dsvjxpomyctbc"]
 
 [ext_resource type="Script" uid="uid://cyk6fbvc2v7n6" path="res://Scripts/Classes/WeaponItem.gd" id="1_1uotn"]
-[ext_resource type="PackedScene" uid="uid://b85px51yxbavk" path="res://Testing/chushkopek_sniper.tscn" id="2_fwtsk"]
+[ext_resource type="PackedScene" uid="uid://b85px51yxbavk" path="res://Scenes/Weapons/chushkopek_sniper.tscn" id="2_fwtsk"]
 
 [resource]
 script = ExtResource("1_1uotn")
