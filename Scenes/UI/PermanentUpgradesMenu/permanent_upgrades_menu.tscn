@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://df8jfu4ipoemc" path="res://Scenes/UI/PermanentUpgradesMenu/max_hp_slot.tscn" id="5_ch2ra"]
 
 [node name="PermanentUpgradesMenu" type="Control"]
+visible = false
 texture_filter = 1
 layout_mode = 3
 anchors_preset = 0
