@@ -149,6 +149,7 @@ func load_stats(saveNum: int):
 		unlocked_weapons = config.get_value("save", "weapons")
 	if config.has_section_key("save", "max_hp"):
 		max_hp = config.get_value("save", "max_hp")
+		hp = max_hp
 	if config.has_section_key("save", "double_jump"):
 		has_double_jump = config.get_value("save", "double_jump")
 	
