@@ -25,8 +25,12 @@ func hit(direction : int):
 
 func _on_sword_body_entered(body: Node2D) -> void:
 	if body.has_method("damage") and body.is_in_group("Enemies"):
+		var aspect = get_aspect_to_apply()
+		if aspect != null:
+			aspect.apply_crit_stats($Hitbox)
 		body.damage($Hitbox, knockback_amount * dir)
-
-
+		if aspect != null:
+			aspect.apply_effect(body)
+			aspect.unapply_crit_stats($Hitbox)	
 func _on_cooldown_timeout() -> void:
 	is_down = false

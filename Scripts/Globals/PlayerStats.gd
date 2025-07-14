@@ -13,18 +13,24 @@ var souls: int = 0
 var hp: int = 50
 var max_hp: int = 50
 var is_multiplayer = false
+var current_save_file = 1
 
 var config = ConfigFile.new()
 
 func _ready() -> void:
+	
 	#unlocked_recipes.append(load("res://Recipes/fire_aspect.tres"))
-	set_weapon1(load("res://Items/Weapons/Marksman.tres"))
-	set_weapon2(load("res://Items/Weapons/Bow.tres"))
+	#set_weapon1(load("res://Items/Weapons/Marksman.tres"))
+	#set_weapon2(load("res://Items/Weapons/Bow.tres"))
 	items.resize(5)
 	weapon1_aspects.resize(2)
 	weapon2_aspects.resize(2)
 	consumables.resize(2)
 	
+	weapon1_aspects[1] = load("res://Items/Aspects/CriticalDamage.tres")
+	weapon1_aspects[0] = load("res://Items/Aspects/Fire.tres")
+	#weapon2_aspects[1] = load("res://Items/Aspects/CriticalDamage.tres")
+	weapon2_aspects[0] = load("res://Items/Aspects/Fire.tres")
 	add_item(load("res://Items/Consumables/leech.tres"))
 
 func get_player():
@@ -72,9 +78,13 @@ func is_inventory_full():
 
 func set_weapon1(weapon: Item):
 	weapon1 = weapon
+	if get_player() != null:
+		get_player().instantiate_weapon_1(weapon1)
 	
 func set_weapon2(weapon: Item):
 	weapon2 = weapon
+	if get_player() != null:
+		get_player().instantiate_weapon_2(weapon2)
 
 func set_aspect(weaponNum: int, slot: int, aspect: Item):
 	if weaponNum == 1:
@@ -137,6 +147,8 @@ func load_stats(saveNum: int):
 		unlocked_weapons = config.get_value("save", "weapons")
 	if config.has_section_key("save", "max_hp"):
 		max_hp = config.get_value("save", "max_hp")
+	
+	current_save_file = saveNum
 
 func read_save_file(saveNum: int):
 	if FileAccess.file_exists("user://save" + str(saveNum) + ".save"):

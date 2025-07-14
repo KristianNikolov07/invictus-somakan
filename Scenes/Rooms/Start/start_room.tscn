@@ -1,10 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://drc5ejy1kocf"]
+[gd_scene load_steps=4 format=3 uid="uid://drc5ejy1kocf"]
 
 [ext_resource type="PackedScene" uid="uid://be53snhq2r11i" path="res://Scenes/player.tscn" id="1_i44vj"]
 [ext_resource type="PackedScene" uid="uid://ch7esotluxknf" path="res://Scenes/Objects/portal.tscn" id="2_0od41"]
-[ext_resource type="PackedScene" uid="uid://dg8hy4n42lxx3" path="res://Scenes/Objects/dropped_item.tscn" id="3_0tr35"]
-[ext_resource type="Resource" path="res://Items/Weapons/Mace.tres" id="4_b7uyn"]
-[ext_resource type="Resource" path="res://Items/Weapons/Claws.tres" id="5_xgbhl"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_qvui7"]
 
@@ -21,19 +18,5 @@ shape = SubResource("WorldBoundaryShape2D_qvui7")
 position = Vector2(63, 580)
 
 [node name="Portal" parent="." instance=ExtResource("2_0od41")]
+visible = true
 position = Vector2(1069, 570)
-
-[node name="DroppedItem" parent="." instance=ExtResource("3_0tr35")]
-position = Vector2(417, 492)
-
-[node name="Area" parent="DroppedItem" index="1"]
-item = ExtResource("4_b7uyn")
-
-[node name="DroppedItem2" parent="." instance=ExtResource("3_0tr35")]
-position = Vector2(509, 492)
-
-[node name="Area" parent="DroppedItem2" index="1"]
-item = ExtResource("5_xgbhl")
-
-[editable path="DroppedItem"]
-[editable path="DroppedItem2"]

@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://b82ddulpyeuwn"]
+
+[ext_resource type="Script" uid="uid://bydol5j5k4fty" path="res://Scripts/StatusEffects/frostbite.gd" id="1_xvd4s"]
+
+[node name="Frostbite" type="Node2D"]
+script = ExtResource("1_xvd4s")
+tick_time = 4.983
+needed_stacks = 5
+status_name = "Frostbite"
+damage_number_color = Color(0, 0.223529, 1, 1)
+metadata/_custom_type_script = "uid://yp3lw7og4m3t"

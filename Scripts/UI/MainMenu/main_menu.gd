@@ -66,7 +66,7 @@ func _on_back_to_saves_pressed() -> void:
 func _on_singleplayer_pressed() -> void:
 	PlayerStats.load_stats(selected_save)
 	PlayerStats.is_multiplayer = false
-	get_tree().change_scene_to_file("res://Scenes/Rooms/Start/start_room.tscn")
+	get_tree().change_scene_to_file("res://Scenes/Rooms/Hub/hub.tscn")
 
 
 func _on_multiplayer_pressed() -> void:

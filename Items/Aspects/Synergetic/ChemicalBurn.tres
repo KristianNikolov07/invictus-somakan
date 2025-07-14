@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="AspectItem" load_steps=3 format=3 uid="uid://bnm8qr3pvnpuo"]
+
+[ext_resource type="Script" uid="uid://bnm1nvl5v4528" path="res://Scripts/Classes/AspectItem.gd" id="1_cui6h"]
+[ext_resource type="PackedScene" uid="uid://cj4xj1e24k3t0" path="res://Scenes/StatusEffects/chemical_burn.tscn" id="2_g6qyd"]
+
+[resource]
+script = ExtResource("1_cui6h")
+status_effect = ExtResource("2_g6qyd")
+aspect_name = "Chemical Burn"
+crit_chance_mult = 1.0
+crit_damage_mult = 1.0
+item_name = "Chemical Burn Aspect"
+type = 0
+price = 0
+metadata/_custom_type_script = "uid://bnm1nvl5v4528"

@@ -19,7 +19,7 @@ var selected_weapon
 @onready var inventory = $UI/Inventory
 
 func _ready() -> void:
-	instanciate_weapons()
+	instantiate_weapons()
 
 
 func _physics_process(_delta: float) -> void:
@@ -53,6 +53,7 @@ func _input(event: InputEvent) -> void:
 		switch_weapon(PlayerStats.weapon1)
 	elif event.is_action_pressed("Weapon2"):
 		switch_weapon(PlayerStats.weapon2)
+
 	#elif event.is_action_released("PreviousWeapon") or event.is_action_released("NextWeapon"):
 	#	if selected_weapon.item_name == PlayerStats.weapon1.item_name:
 	#		selected_weapon = PlayerStats.weapon2
@@ -63,18 +64,37 @@ func _input(event: InputEvent) -> void:
 	elif event.is_action_pressed("UseConsumable2"):
 		use_consumable(2)
 
-func instanciate_weapons():
-	$UI/SelectedWeaponUI.set_weapon_1(PlayerStats.weapon1)
-	var node1 = PlayerStats.weapon1.weapon_action_scene.instantiate()
-	$Weapons.add_child(node1)
+func instantiate_weapons():
+	instantiate_weapon_1(PlayerStats.weapon1)
+	instantiate_weapon_2(PlayerStats.weapon2)
+	switch_weapon(PlayerStats.weapon1)
+
+func instantiate_weapon_1(weapon: WeaponItem):
+	if weapon != null:
+		$UI/SelectedWeaponUI.set_weapon_1(PlayerStats.weapon1)
+		var node1 = PlayerStats.weapon1.get_action_node()
+		node1.name = "1"
+		$Weapons.add_child(node1)
+	else:
+		if $Weapons.get_node("1") != null:
+			$Weapons.get_node("1").queue_free()
+	
+func instantiate_weapon_2(weapon: WeaponItem):
 	if PlayerStats.weapon2 != null:
 		$UI/SelectedWeaponUI.set_weapon_2(PlayerStats.weapon2)
-		var node2 = PlayerStats.weapon2.weapon_action_scene.instantiate()
+		var node2 = PlayerStats.weapon2.get_action_node()
+		node2.name = "2"
 		$Weapons.add_child(node2)
 		node2.process_mode = Node.PROCESS_MODE_DISABLED
 		node2.hide()
-	switch_weapon(PlayerStats.weapon1)
+	else:
+		if $Weapons.get_node("2") != null:
+			$Weapons.get_node("2").queue_free()
 
+func remove_weapons():
+	instantiate_weapon_1(null)
+	instantiate_weapon_2(null)
+	selected_weapon = null
 
 func check_parry(area):
 	if !$Parry.is_stopped():
@@ -144,8 +164,9 @@ func damage_amount(amount: int, knockback) -> void:
 	velocity.y = -500 * abs(knockback)
 	PlayerStats.hp -= amount
 	$Parry.stop()
-	#if hp <= 0:
-		#get_tree().quit()
+	if PlayerStats.hp <= 0:
+		get_tree().change_scene_to_file("res://Scenes/UI/game_over.tscn")
+
 	
 func damage(hitbox: Hitbox, knockback):
 	var is_crit = Utils.calculate_crit(hitbox.get_crit_chance())
@@ -190,23 +211,22 @@ func _on_interaction_range_area_entered(area: Area2D) -> void:
 		area.pickup_weapon()
 
 func switch_weapon(weapon : WeaponItem):
-	var wep1 = $Weapons.get_child(1)
-	var wep2 = $Weapons.get_child(0)
-	if PlayerStats.weapon2 != null:
+	if weapon == null:
+		selected_weapon = null
+	if weapon != selected_weapon:
+		for w in $Weapons.get_children():
+			w.process_mode = Node.PROCESS_MODE_DISABLED
+			w.hide()
 		if weapon == PlayerStats.weapon1:
-			wep1.process_mode = Node.PROCESS_MODE_DISABLED
-			wep2.process_mode = Node.PROCESS_MODE_INHERIT
+			$Weapons.get_node("1").process_mode = Node.PROCESS_MODE_INHERIT
 			selected_weapon = PlayerStats.weapon1
 			$UI/SelectedWeaponUI.select_weapon_1()
-			wep1.hide()
-			wep2.show()
-		else:
-			wep1.process_mode = Node.PROCESS_MODE_INHERIT
-			wep2.process_mode = Node.NOTIFICATION_DISABLED
+			$Weapons.get_node("1").show()
+		elif weapon == PlayerStats.weapon2:
+			$Weapons.get_node("2").process_mode = Node.PROCESS_MODE_INHERIT
 			selected_weapon = PlayerStats.weapon2
 			$UI/SelectedWeaponUI.select_weapon_2()
-			wep1.show()
-			wep2.hide()
+			$Weapons.get_node("2").show()
 
 func heal(_hp: int):
 	PlayerStats.hp += _hp
