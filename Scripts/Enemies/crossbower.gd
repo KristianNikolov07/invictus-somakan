@@ -3,6 +3,34 @@ extends WalkingEnemy
 var direction = 1
 var arrow := preload("res://Scenes/Projectiles/arrow.tscn")
 
+func _process(delta: float) -> void:
+	if $Sprite.animation == "walking" or $Sprite.animation == "default" or $Sprite.animation == "falling":
+		if velocity.y > 0:
+			$Sprite.play("falling")
+		elif velocity.x == 0:
+			$Sprite.play("default")
+		elif velocity.x > 0:
+			$Sprite.flip_h = true
+			$Sprite.play("walking")
+		elif velocity.x < 0:
+			$Sprite.flip_h = false
+			$Sprite.play("walking")
+
+func death():
+	$Sprite.play("death")
+	speed = 0
+	for child in get_children():
+		if child.name != "Sprite" and child.name != "Collision":
+			child.queue_free()
+
+func damage_anim():
+	$Sprite.play("damage")
+
+func _on_sprite_animation_finished() -> void:
+	if $Sprite.animation == "damage":
+		$Sprite.play("default")
+	if $Sprite.animation == "death":
+		super.death()
 
 func fire_arrow() -> void:
 	var new_arrow: Projectile = arrow.instantiate()
