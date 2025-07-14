@@ -2,14 +2,14 @@
 
 [ext_resource type="Script" uid="uid://dau2tmay1q2ae" path="res://Scripts/Classes/Recipe.gd" id="1_7ni1h"]
 [ext_resource type="Resource" uid="uid://cm7g5mjsok0q5" path="res://Items/fire_orb.tres" id="1_slfyl"]
-[ext_resource type="Resource" uid="uid://cu00ittwd3mke" path="res://Items/ice_orb.tres" id="2_1ph4v"]
+[ext_resource type="Resource" uid="uid://dcpuxfqopepj0" path="res://Items/Aspects/Fire.tres" id="2_slfyl"]
 
 [resource]
 script = ExtResource("1_7ni1h")
-id = "fire_orb"
-item = ExtResource("2_1ph4v")
-amount = 2
-result = ExtResource("1_slfyl")
+id = "fire_aspect"
+item = ExtResource("1_slfyl")
+amount = 1
+result = ExtResource("2_slfyl")
 result_amount = 1
 price = 50
 metadata/_custom_type_script = "uid://dau2tmay1q2ae"
