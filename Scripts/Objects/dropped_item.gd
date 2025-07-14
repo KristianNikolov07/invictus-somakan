@@ -2,10 +2,6 @@ extends Area2D
 
 @export var item : Item
 
-func pickup_weapon():
-	if item.type == item.Type.WEAPON:
-		PlayerStats.unlock_weapon(item)
-		get_parent().queue_free()
 
 func interact(_player_path : String):
 	if PlayerStats.add_item(item):
@@ -20,3 +16,6 @@ func _on_body_entered(body: Node2D) -> void:
 	if item.item_name == "Scrap" and body.is_in_group("Players"):
 		PlayerStats.scrap += 1
 		queue_free()
+	elif item.type == item.Type.WEAPON:
+		PlayerStats.unlock_weapon(item)
+		get_parent().queue_free()

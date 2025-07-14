@@ -1,10 +1,14 @@
-[gd_scene load_steps=9 format=3 uid="uid://b4dowijx8u0r3"]
+[gd_scene load_steps=10 format=3 uid="uid://b4dowijx8u0r3"]
 
 [ext_resource type="Script" uid="uid://c2tca2hv85v4r" path="res://Scripts/Projectiles/bone_finger.gd" id="1_2884o"]
-[ext_resource type="Texture2D" uid="uid://c1lo75th7b88g" path="res://Textures/icon.svg" id="2_rscwd"]
+[ext_resource type="Texture2D" uid="uid://bydig0oucle6s" path="res://Textures/Boss/boss_attack_finger.png" id="2_2884o"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rscwd"]
+radius = 6.0
+height = 16.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e0oi0"]
-size = Vector2(20, 33)
+size = Vector2(7, 18)
 
 [sub_resource type="Animation" id="Animation_rscwd"]
 length = 0.001
@@ -159,12 +163,17 @@ collision_mask = 0
 script = ExtResource("1_2884o")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, -1)
-scale = Vector2(0.17, 0.275)
-texture = ExtResource("2_rscwd")
+texture_filter = 1
+position = Vector2(0, -3)
+scale = Vector2(0.76, 1.23)
+texture = ExtResource("2_2884o")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -1.5)
+position = Vector2(-0.5, -11)
+shape = SubResource("CapsuleShape2D_rscwd")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 4)
 shape = SubResource("RectangleShape2D_e0oi0")
 
 [node name="StartAnim" type="Timer" parent="."]

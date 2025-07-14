@@ -22,31 +22,34 @@ func _ready() -> void:
 	instantiate_weapons()
 	instantiate_consumables()
 
-
 func _physics_process(_delta: float) -> void:
 	if $DashTimer.is_stopped():
 		process_movement()
 	if is_on_floor():
 		jumps_remaining = max_jumps
-	move_and_slide()
-	$ParryTimerTestLabel.text = str($Parry.time_left)
+	if PlayerStats.hp > 0:
+		animations()
+		move_and_slide()
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("Jump") and jumps_remaining > 0:
+	if event.is_action_pressed("Jump") and is_on_floor():
 		velocity.y = 0
+		velocity += Vector2(0, -jump_force)
+	elif event.is_action_pressed("Jump") and PlayerStats.has_double_jump and jumps_remaining > 0:
 		jumps_remaining -= 1
+		velocity.y = 0
 		velocity += Vector2(0, -jump_force)
 	elif event.is_action_released("Jump"):
 		velocity.y = max(velocity.y, jump_easing)
-	elif event.is_action_pressed("Dash") and $DashCooldown.is_stopped():
+	elif event.is_action_pressed("Dash") and $DashCooldown.is_stopped() and $PlayerSprite.animation != "parry_ready" and $PlayerSprite.animation != "parry":
 		$DashTimer.start()
 		$DashCooldown.start()
 		velocity = Vector2(dash_speed * direction, 0)
-	elif event.is_action_pressed("Attack"):
+	elif event.is_action_pressed("Attack") and $PlayerSprite.animation != "parry_ready":
 		attack()
 	elif event.is_action_pressed("Interact"):
 		interact_with()
-	elif event.is_action_pressed("Parry"):
+	elif event.is_action_pressed("Parry") and $PlayerSprite.animation != "parry_ready" and $PlayerSprite.animation != "parry" and $PlayerSprite.animation != "dash":
 		$ParryArea.set_collision_mask_value(1, true)
 		$ParryArea.set_collision_mask_value(3, true)
 		$Parry.start()
@@ -60,9 +63,9 @@ func _input(event: InputEvent) -> void:
 	#		selected_weapon = PlayerStats.weapon2
 	#	else:
 	#		selected_weapon = PlayerStats.weapon1
-	elif event.is_action_pressed("UseConsumable1"):
+	elif event.is_action_pressed("UseConsumable1") and $PlayerSprite.animation != "dash":
 		use_consumable(1)
-	elif event.is_action_pressed("UseConsumable2"):
+	elif event.is_action_pressed("UseConsumable2") and $PlayerSprite.animation != "dash":
 		use_consumable(2)
 
 func instantiate_consumables():
@@ -131,10 +134,12 @@ func process_movement():
 		if Input.is_action_pressed("Right"):
 			velocity.x = move_toward(velocity.x, max_walking_speed * speed_mult, accel)
 			$ParryArea.rotation_degrees = 0
+			$PlayerSprite.flip_h = false
 			direction = 1
 		elif Input.is_action_pressed("Left"):
 			velocity.x = move_toward(velocity.x, -max_walking_speed * speed_mult, accel)
 			$ParryArea.rotation_degrees = 180
+			$PlayerSprite.flip_h = true
 			direction = -1
 		else:
 			velocity.x = move_toward(velocity.x, 0, accel)
@@ -148,8 +153,34 @@ func process_movement():
 	
 	velocity.y = move_toward(velocity.y, max_falling_speed, gravity)
 
+
+func animations() -> void:
+	if not $Parry.is_stopped():
+		$PlayerSprite.play("parry_ready")
+		return
+	if $PlayerSprite.animation == "parry" or $PlayerSprite.animation == "cast":
+		return
+	if not $DashTimer.is_stopped():
+		$PlayerSprite.play("dash")
+		return
+	if $PlayerSprite.animation == "consume":
+		return
+	
+	if is_on_floor() and velocity.x == 0:
+		$PlayerSprite.play("idle")
+	elif is_on_floor() and Input.is_action_pressed("Dash"):
+		$PlayerSprite.play("sprint")
+	elif is_on_floor():
+		$PlayerSprite.play("walk")
+	elif velocity.y < 0:
+		$PlayerSprite.play("jump")
+	elif velocity.y > 0:
+		$PlayerSprite.play("fall")
+
+
 func attack():
 	if selected_weapon != null:
+		$PlayerSprite.play("cast")
 		if $Weapons.get_child(0).visible:
 			$Weapons.get_child(0).hit(direction)
 		else:
@@ -157,6 +188,7 @@ func attack():
 
 func use_consumable(consumable: int):
 	if $Consumables.get_node(str(consumable)) != null:
+		$PlayerSprite.play("consume")
 		$Consumables.get_node(str(consumable)).use(get_path())
 		PlayerStats.remove_consumable(consumable - 1)
 
@@ -166,6 +198,16 @@ func open_crafting_menu():
 
 func close_crafting_menu():
 	$UI/Crafting.hide()
+	
+func open_upgrades_menu():
+	$UI/Upgrades.show()
+	$UI/Upgrades.refresh()
+
+func close_upgrades_menu():
+	$UI/Upgrades.hide()
+	
+func open_shop_menu():
+	$UI/Shop.show()
 
 func damage_amount(amount: int, knockback) -> void:
 	Utils.summon_damage_number(self, amount, Color.RED, damage_number_scale, damage_number_duration)
@@ -176,6 +218,8 @@ func damage_amount(amount: int, knockback) -> void:
 	PlayerStats.hp -= amount
 	$Parry.stop()
 	if PlayerStats.hp <= 0:
+		$PlayerSprite.play("death")
+		await $PlayerSprite.animation_finished
 		get_tree().change_scene_to_file("res://Scenes/UI/game_over.tscn")
 
 	
@@ -190,7 +234,9 @@ func damage(hitbox: Hitbox, knockback):
 	Utils.summon_damage_number(self, damage_num, Color.RED, damage_number_scale, damage_number_duration)
 	PlayerStats.hp -= damage_num
 	if PlayerStats.hp <= 0:
-		queue_free()
+		$PlayerSprite.play("death")
+		await $PlayerSprite.animation_finished
+		get_tree().change_scene_to_file("res://Scenes/UI/game_over.tscn")
 
 func unlock_recipe(recipe: Recipe):
 	PlayerStats.unlocked_recipes.append(recipe)
@@ -206,6 +252,8 @@ func begin_hitstop():
 	$ParrySound.play()
 	$Hitstop.start()
 	$Camera2D/Hitstop.play("flash")
+	$Parry.stop()
+	$PlayerSprite.play("parry")
 	call_deferred("set_process_mode", Node.PROCESS_MODE_DISABLED)
 
 func _on_hitstop_timeout() -> void:
@@ -249,3 +297,8 @@ func get_hp():
 
 func get_max_hp():
 	return PlayerStats.max_hp
+
+
+func _on_player_sprite_animation_finished() -> void:
+	if $PlayerSprite.animation == "parry" or $PlayerSprite.animation == "cast" or $PlayerSprite.animation == "consume":
+		$PlayerSprite.play("idle")

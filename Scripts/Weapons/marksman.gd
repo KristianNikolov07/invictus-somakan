@@ -13,6 +13,7 @@ func _physics_process(delta: float) -> void:
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("right_click") and $Coins.value >= 250:
 		$Coin.play()
+		player.get_node("PlayerSprite").play("cast")
 		var new_coin = coin.instantiate()
 		if player.direction < 0:
 			$CoinLeft.show()

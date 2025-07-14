@@ -5,8 +5,8 @@
 [ext_resource type="PackedScene" uid="uid://b85px51yxbavk" path="res://Scenes/Weapons/chushkopek_sniper.tscn" id="2_fwtsk"]
 
 [resource]
-script = ExtResource("1_1uotn")
-weapon_action_scene = ExtResource("2_fwtsk")
+script = ExtResource("1_1yl0d")
+weapon_action_scene = ExtResource("2_28iqb")
 item_name = "Chushkopek Sniper"
 icon = ExtResource("1_ovfh2")
 type = 4

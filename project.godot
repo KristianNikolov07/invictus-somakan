@@ -14,7 +14,7 @@ warnings/check_invalid_track_paths=false
 
 [application]
 
-config/name="invictus:somakan"
+config/name="Invictus: Somakan"
 run/main_scene="uid://c62bupgibxlpk"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://Textures/icon.svg"
@@ -35,6 +35,10 @@ gdscript/warnings/integer_division=0
 [display]
 
 window/stretch/mode="canvas_items"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/screen_shaker/plugin.cfg")
 
 [global_group]
 

@@ -88,6 +88,16 @@ animations = [{
 [node name="Marksman" type="Node2D"]
 texture_filter = 1
 script = ExtResource("1_xgjrt")
+attack_damage = 100
+
+[node name="Shoot" type="AudioStreamPlayer2D" parent="."]
+process_mode = 3
+stream = ExtResource("4_tgutn")
+max_polyphony = 5
+
+[node name="Coin" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_a5fri")
+max_polyphony = 4
 
 [node name="ShotCool" type="Timer" parent="."]
 process_mode = 3
