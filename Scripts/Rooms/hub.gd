@@ -18,4 +18,5 @@ func _ready() -> void:
 	PlayerStats.set_aspect(2, 0, null)
 	PlayerStats.set_aspect(2, 1, null)
 	
+	PlayerStats.remove_scrap(10000)
 	RoomGen.current_room = 0
