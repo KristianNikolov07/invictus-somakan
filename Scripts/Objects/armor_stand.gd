@@ -4,6 +4,10 @@ extends Area2D
 
 func _ready() -> void:
 	unlock()
+	if unlocked:
+		show()
+	else:
+		hide()
 
 func unlock():
 	for w in PlayerStats.unlocked_weapons:
@@ -17,6 +21,6 @@ func interact(player_path : String):
 		if PlayerStats.weapon1 == null:
 			PlayerStats.set_weapon1(weapon)
 			player.switch_weapon(weapon)
-		elif PlayerStats.weapon2 == null:
+		elif PlayerStats.weapon2 == null and PlayerStats.weapon1.item_name != weapon.item_name:
 			PlayerStats.set_weapon2(weapon)
 			player.switch_weapon(weapon)
