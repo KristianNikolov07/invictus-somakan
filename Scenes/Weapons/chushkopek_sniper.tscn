@@ -133,21 +133,12 @@ autoplay = "default"
 frame = 3
 frame_progress = 0.131751
 
-[node name="GunRight" type="AnimatedSprite2D" parent="."]
-visible = false
+[node name="GunTexture" type="Node2D" parent="."]
+
+[node name="Gun" type="AnimatedSprite2D" parent="GunTexture"]
 position = Vector2(96, 0)
 sprite_frames = SubResource("SpriteFrames_yo2g3")
-animation = &"shoot"
 autoplay = "default"
-
-[node name="GunLeft" type="AnimatedSprite2D" parent="."]
-visible = false
-position = Vector2(-96, 0)
-sprite_frames = SubResource("SpriteFrames_yo2g3")
-animation = &"shoot"
-autoplay = "default"
-flip_h = true
 
 [connection signal="timeout" from="RefreshBar" to="." method="_on_refresh_bar_timeout"]
-[connection signal="animation_finished" from="GunRight" to="." method="_on_gun_right_animation_finished"]
-[connection signal="animation_finished" from="GunLeft" to="." method="_on_gun_left_animation_finished"]
+[connection signal="animation_finished" from="GunTexture/Gun" to="." method="_on_gun_right_animation_finished"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=4 uid="uid://drc5ejy1kocf"]
+[gd_scene load_steps=23 format=4 uid="uid://drc5ejy1kocf"]
 
 [ext_resource type="Script" uid="uid://cdgpjt7cuu34b" path="res://Scripts/Rooms/hub.gd" id="1_2kdgj"]
 [ext_resource type="PackedScene" uid="uid://be53snhq2r11i" path="res://Scenes/player.tscn" id="1_l4iyj"]
@@ -12,6 +12,8 @@
 [ext_resource type="Resource" uid="uid://b0t4amus74xte" path="res://Items/Weapons/damage_circle.tres" id="8_v75h1"]
 [ext_resource type="PackedScene" uid="uid://dax0ls6j0a5o4" path="res://Scenes/Objects/bin.tscn" id="9_v75h1"]
 [ext_resource type="PackedScene" uid="uid://dqe7ft8qxejyd" path="res://Scenes/other/camera_limiter.tscn" id="11_dssej"]
+[ext_resource type="Resource" uid="uid://vqwu1245q1py" path="res://Items/Weapons/Marksman.tres" id="11_jibhj"]
+[ext_resource type="Resource" uid="uid://c3mr478j4bqcx" path="res://Items/Weapons/chushkopek_sniper.tres" id="12_t3o3a"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jibhj"]
 texture = ExtResource("2_h41th")
@@ -245,38 +247,54 @@ tile_set = SubResource("TileSet_hrxnw")
 position = Vector2(134, -131)
 
 [node name="Portal" parent="." instance=ExtResource("2_kvfx3")]
-visible = true
 position = Vector2(1961, -155)
-script = null
+monitoring = true
+is_first = true
+is_stage_transition = true
+room_type = 2
 
 [node name="Dummy" parent="." instance=ExtResource("3_kvfx3")]
 position = Vector2(1449, -121)
 scale = Vector2(0.7, 0.7)
 
 [node name="ArmorStand" parent="." instance=ExtResource("4_k2f67")]
-position = Vector2(1100, -117)
+position = Vector2(1096, -128)
 scale = Vector2(0.5, 0.5)
 weapon = ExtResource("5_3faoc")
 unlocked = true
 
 [node name="ArmorStand2" parent="." instance=ExtResource("4_k2f67")]
-position = Vector2(988, -117)
+position = Vector2(984, -128)
 scale = Vector2(0.5, 0.5)
 weapon = ExtResource("6_r5otq")
 unlocked = true
 
 [node name="ArmorStand3" parent="." instance=ExtResource("4_k2f67")]
-position = Vector2(884, -117)
+position = Vector2(880, -128)
 scale = Vector2(0.5, 0.5)
 weapon = ExtResource("7_e5u4f")
+unlocked = true
 
 [node name="ArmorStand4" parent="." instance=ExtResource("4_k2f67")]
-position = Vector2(772, -117)
+position = Vector2(768, -128)
 scale = Vector2(0.5, 0.5)
 weapon = ExtResource("8_v75h1")
+unlocked = true
+
+[node name="ArmorStand5" parent="." instance=ExtResource("4_k2f67")]
+position = Vector2(656, -128)
+scale = Vector2(0.5, 0.5)
+weapon = ExtResource("11_jibhj")
+unlocked = true
+
+[node name="ArmorStand6" parent="." instance=ExtResource("4_k2f67")]
+position = Vector2(544, -128)
+scale = Vector2(0.5, 0.5)
+weapon = ExtResource("12_t3o3a")
+unlocked = true
 
 [node name="Bin" parent="." instance=ExtResource("9_v75h1")]
-position = Vector2(644, -125)
+position = Vector2(384, -104)
 
 [node name="Floor" type="StaticBody2D" parent="."]
 position = Vector2(0, -63)

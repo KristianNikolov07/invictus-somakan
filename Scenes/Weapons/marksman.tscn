@@ -124,12 +124,12 @@ fill_mode = 3
 texture_over = ExtResource("2_10dty")
 texture_progress = ExtResource("3_tgutn")
 
-[node name="Shoot" type="AudioStreamPlayer2D" parent="."]
+[node name="Shoot2" type="AudioStreamPlayer2D" parent="."]
 process_mode = 3
 stream = ExtResource("4_tgutn")
 max_polyphony = 5
 
-[node name="Coin" type="AudioStreamPlayer2D" parent="."]
+[node name="Coin2" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("5_a5fri")
 max_polyphony = 4
 
