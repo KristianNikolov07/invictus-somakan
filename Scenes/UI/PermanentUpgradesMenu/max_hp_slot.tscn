@@ -1,11 +1,11 @@
 [gd_scene load_steps=7 format=3 uid="uid://df8jfu4ipoemc"]
 
+
 [ext_resource type="Script" uid="uid://cp4mp6oy0gcbv" path="res://Scripts/UI/PermanentUpgradesMenu/max_hp_slot.gd" id="1_fmy6j"]
 [ext_resource type="Texture2D" uid="uid://cavse8ld5bby8" path="res://Textures/Crafting/crafting_slot_selected.png" id="2_kd0ks"]
 [ext_resource type="Texture2D" uid="uid://qyvcg1lkbbak" path="res://Textures/Crafting/crafting_slot_background.png" id="3_rjrnh"]
 [ext_resource type="Texture2D" uid="uid://bxbcn11k4i3i2" path="res://Textures/soul.png" id="4_kd0ks"]
 [ext_resource type="Texture2D" uid="uid://p77tcleytvti" path="res://Textures/upgrades/upgrade_icon_hp_increase.png" id="4_rjrnh"]
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_rjrnh"]
 atlas = ExtResource("4_kd0ks")
 region = Rect2(32, 0, 32, 32)
