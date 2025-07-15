@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://bbbiu8ou52nmt" path="res://Scenes/UI/Inventory/inventory.tscn" id="1_c6eky"]
 [ext_resource type="PackedScene" uid="uid://dlwog074e4w1h" path="res://Scenes/UI/Shop/shop.tscn" id="3_nljv7"]
 [ext_resource type="PackedScene" uid="uid://dfhv0jbrfmxoi" path="res://Scenes/UI/SelectedWeaponUI/selected_weapon_ui.tscn" id="4_0etao"]
-[ext_resource type="Script" path="res://Scenes/UI/stats.gd" id="4_5acsc"]
+[ext_resource type="Script" uid="uid://c3nn610ll6bpx" path="res://Scenes/UI/stats.gd" id="4_5acsc"]
 [ext_resource type="Texture2D" uid="uid://bxbcn11k4i3i2" path="res://Textures/soul.png" id="5_feywu"]
 [ext_resource type="Texture2D" uid="uid://c6w8tuaqpvb6" path="res://Textures/metal_scrap.png" id="6_b7uhy"]
 [ext_resource type="PackedScene" uid="uid://chmforw2q6tjr" path="res://Scenes/UI/Crafting/crafting_menu.tscn" id="7_5acsc"]

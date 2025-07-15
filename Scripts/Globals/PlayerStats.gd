@@ -81,11 +81,13 @@ func set_weapon1(weapon: Item):
 	weapon1 = weapon
 	if get_player() != null:
 		get_player().instantiate_weapon_1(weapon1)
+		get_player().get_node("UI/SelectedWeaponUI").set_weapon_1(PlayerStats.weapon1)
 	
 func set_weapon2(weapon: Item):
 	weapon2 = weapon
 	if get_player() != null:
 		get_player().instantiate_weapon_2(weapon2)
+		get_player().get_node("UI/SelectedWeaponUI").set_weapon_2(PlayerStats.weapon2)
 
 func set_aspect(weaponNum: int, slot: int, aspect: Item):
 	if weaponNum == 1:

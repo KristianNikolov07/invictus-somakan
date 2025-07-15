@@ -218,9 +218,11 @@ func damage_amount(amount: int, knockback) -> void:
 	PlayerStats.hp -= amount
 	$Parry.stop()
 	if PlayerStats.hp <= 0:
+		var tree = get_tree()
 		$PlayerSprite.play("death")
 		await $PlayerSprite.animation_finished
-		get_tree().change_scene_to_file("res://Scenes/UI/game_over.tscn")
+		if is_instance_valid(tree):
+			tree.change_scene_to_file("res://Scenes/UI/game_over.tscn")
 
 	
 func damage(hitbox: Hitbox, knockback):
@@ -234,9 +236,12 @@ func damage(hitbox: Hitbox, knockback):
 	Utils.summon_damage_number(self, damage_num, Color.RED, damage_number_scale, damage_number_duration)
 	PlayerStats.hp -= damage_num
 	if PlayerStats.hp <= 0:
+		var tree = get_tree()
 		$PlayerSprite.play("death")
 		await $PlayerSprite.animation_finished
-		get_tree().change_scene_to_file("res://Scenes/UI/game_over.tscn")
+		if is_instance_valid(tree):
+			tree.change_scene_to_file("res://Scenes/UI/game_over.tscn")
+
 
 func unlock_recipe(recipe: Recipe):
 	PlayerStats.unlocked_recipes.append(recipe)
