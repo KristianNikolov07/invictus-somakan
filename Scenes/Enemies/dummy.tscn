@@ -1,9 +1,20 @@
-[gd_scene load_steps=16 format=3 uid="uid://b4r8t6ijsspl2"]
+[gd_scene load_steps=27 format=3 uid="uid://b4r8t6ijsspl2"]
 
 [ext_resource type="Script" uid="uid://bfw6orvi4twpy" path="res://Scripts/Enemies/dummy.gd" id="1_ccesc"]
+[ext_resource type="Script" uid="uid://b3auab72tb6j6" path="res://Scripts/Classes/Item.gd" id="2_a4oun"]
 [ext_resource type="Texture2D" uid="uid://bb3ejklq273h6" path="res://Textures/dummy/dummy damaged.png" id="2_aql14"]
 [ext_resource type="Texture2D" uid="uid://8q8lsvkawvpg" path="res://Textures/dummy/dummy idlo.png" id="2_dplh5"]
 [ext_resource type="PackedScene" uid="uid://bqo6qnqcmww4y" path="res://Scenes/UI/health_bar.tscn" id="3_dplh5"]
+[ext_resource type="Resource" uid="uid://dnofb2jqjs35o" path="res://Items/Blueprints/fire_aspect.tres" id="3_lcv74"]
+[ext_resource type="Resource" uid="uid://4h7adkp3p0gy" path="res://Items/Blueprints/freeze_aspect.tres" id="4_v1jei"]
+[ext_resource type="Resource" uid="uid://deljpruiovqcf" path="res://Items/Blueprints/poison_aspect.tres" id="5_o7idc"]
+[ext_resource type="Resource" uid="uid://bywtyvbopiflj" path="res://Items/Blueprints/critical_chance_aspect.tres" id="6_prh03"]
+[ext_resource type="Resource" uid="uid://m6evn525rkg2" path="res://Items/Blueprints/critical_damage_aspect.tres" id="7_38nup"]
+[ext_resource type="Resource" uid="uid://bil30xv3u4jey" path="res://Items/crit_chance_orb.tres" id="8_apttv"]
+[ext_resource type="Resource" uid="uid://dxrvmurk8dtv8" path="res://Items/crit_damage_orb.tres" id="9_my552"]
+[ext_resource type="Resource" uid="uid://cm7g5mjsok0q5" path="res://Items/fire_orb.tres" id="10_iemqo"]
+[ext_resource type="Resource" uid="uid://cu00ittwd3mke" path="res://Items/ice_orb.tres" id="11_sk1h7"]
+[ext_resource type="Resource" uid="uid://bgxdxx3wuy0nf" path="res://Items/poison.tres" id="12_4irma"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_12477"]
 atlas = ExtResource("2_aql14")
@@ -94,6 +105,18 @@ hp = 1000
 max_hp = 1000
 invincibility_length = 0.3
 can_be_knockedback = false
+loot = Dictionary[ExtResource("2_a4oun"), float]({
+ExtResource("3_lcv74"): 1.5,
+ExtResource("4_v1jei"): 1.5,
+ExtResource("5_o7idc"): 1.5,
+ExtResource("6_prh03"): 1.5,
+ExtResource("7_38nup"): 1.5,
+ExtResource("8_apttv"): 3.0,
+ExtResource("9_my552"): 3.0,
+ExtResource("10_iemqo"): 3.0,
+ExtResource("11_sk1h7"): 3.0,
+ExtResource("12_4irma"): 3.0
+})
 metadata/_custom_type_script = "uid://b3sn8h0wc0ike"
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]

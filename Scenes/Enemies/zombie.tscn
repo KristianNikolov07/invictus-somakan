@@ -1,17 +1,25 @@
-[gd_scene load_steps=49 format=3 uid="uid://b451yhoqiov5a"]
+[gd_scene load_steps=57 format=3 uid="uid://b451yhoqiov5a"]
 
 [ext_resource type="Script" uid="uid://ctvhr04onudmb" path="res://Scripts/Enemies/zombie.gd" id="1_h3kin"]
 [ext_resource type="Script" uid="uid://b3auab72tb6j6" path="res://Scripts/Classes/Item.gd" id="2_3p0w2"]
 [ext_resource type="Resource" uid="uid://cm7g5mjsok0q5" path="res://Items/fire_orb.tres" id="3_fh4xe"]
 [ext_resource type="Script" uid="uid://drqow7af66ehm" path="res://Scripts/Classes/Hitbox.gd" id="3_iyl7r"]
+[ext_resource type="Resource" uid="uid://dnofb2jqjs35o" path="res://Items/Blueprints/fire_aspect.tres" id="3_r6erv"]
+[ext_resource type="Resource" uid="uid://4h7adkp3p0gy" path="res://Items/Blueprints/freeze_aspect.tres" id="4_rfrqw"]
 [ext_resource type="Resource" uid="uid://cu00ittwd3mke" path="res://Items/ice_orb.tres" id="4_usnig"]
 [ext_resource type="PackedScene" uid="uid://bqo6qnqcmww4y" path="res://Scenes/UI/health_bar.tscn" id="4_vy0uf"]
 [ext_resource type="Texture2D" uid="uid://bl4ybslgq7nrj" path="res://Textures/viking/viking walking.png" id="5_fh4xe"]
+[ext_resource type="Resource" uid="uid://deljpruiovqcf" path="res://Items/Blueprints/poison_aspect.tres" id="5_k51cm"]
 [ext_resource type="Texture2D" uid="uid://b3osc5yafjxfg" path="res://Textures/viking/viking attacking.png" id="5_pj4k2"]
 [ext_resource type="Texture2D" uid="uid://bogik5ebfv7ir" path="res://Textures/viking/viking falling.png" id="5_usnig"]
+[ext_resource type="Resource" uid="uid://bywtyvbopiflj" path="res://Items/Blueprints/critical_chance_aspect.tres" id="6_boqk5"]
 [ext_resource type="Texture2D" uid="uid://d2erwo57k7n40" path="res://Textures/viking/viking death.png" id="7_7yiho"]
 [ext_resource type="Texture2D" uid="uid://bm48xkv5plcam" path="res://Textures/viking/viking damaged.png" id="7_ixhgi"]
+[ext_resource type="Resource" uid="uid://m6evn525rkg2" path="res://Items/Blueprints/critical_damage_aspect.tres" id="7_knpxh"]
+[ext_resource type="Resource" uid="uid://bil30xv3u4jey" path="res://Items/crit_chance_orb.tres" id="8_a6mvv"]
 [ext_resource type="Texture2D" uid="uid://cg1ww0bqr2at3" path="res://Textures/viking/viking 128x128.png" id="8_pj4k2"]
+[ext_resource type="Resource" uid="uid://dxrvmurk8dtv8" path="res://Items/crit_damage_orb.tres" id="9_l3lkq"]
+[ext_resource type="Resource" uid="uid://bgxdxx3wuy0nf" path="res://Items/poison.tres" id="12_tce50"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jfbsr"]
 atlas = ExtResource("5_pj4k2")
@@ -302,8 +310,16 @@ invincibility_length = 0.4
 damage_number_scale = 1.5
 damage_number_duration = 1.5
 loot = Dictionary[ExtResource("2_3p0w2"), float]({
-ExtResource("3_fh4xe"): 10.0,
-ExtResource("4_usnig"): 5.0
+ExtResource("3_r6erv"): 1.5,
+ExtResource("4_rfrqw"): 1.5,
+ExtResource("5_k51cm"): 1.5,
+ExtResource("6_boqk5"): 1.5,
+ExtResource("7_knpxh"): 1.5,
+ExtResource("8_a6mvv"): 3.0,
+ExtResource("9_l3lkq"): 3.0,
+ExtResource("3_fh4xe"): 3.0,
+ExtResource("4_usnig"): 3.0,
+ExtResource("12_tce50"): 3.0
 })
 scrap_amount = 10
 
