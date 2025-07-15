@@ -1,9 +1,10 @@
-[gd_scene load_steps=16 format=4 uid="uid://b6upe1f4qtnim"]
+[gd_scene load_steps=17 format=4 uid="uid://b6upe1f4qtnim"]
 
 [ext_resource type="PackedScene" uid="uid://be53snhq2r11i" path="res://Scenes/player.tscn" id="1_pxgw1"]
 [ext_resource type="PackedScene" uid="uid://ch7esotluxknf" path="res://Scenes/Objects/portal.tscn" id="2_u8j54"]
 [ext_resource type="PackedScene" uid="uid://drp6ipmox6vyo" path="res://Scenes/Objects/crafting_table.tscn" id="3_u8j54"]
 [ext_resource type="Texture2D" uid="uid://ctm47thfbe3uy" path="res://Textures/tile-set.png" id="6_tog2q"]
+[ext_resource type="PackedScene" uid="uid://cgku7vpseg76d" path="res://Scenes/Triggers/blueprint_unlock_trigger.tscn" id="7_7mj1f"]
 [ext_resource type="PackedScene" uid="uid://dqe7ft8qxejyd" path="res://Scenes/other/camera_limiter.tscn" id="7_j8o24"]
 [ext_resource type="PackedScene" uid="uid://0md13s0vcejo" path="res://Scenes/Objects/shop.tscn" id="8_7mj1f"]
 
@@ -299,3 +300,6 @@ shape = SubResource("WorldBoundaryShape2D_kp86e")
 
 [node name="Shop" parent="." instance=ExtResource("8_7mj1f")]
 position = Vector2(776, 584)
+
+[node name="BlueprintUnlockTrigger" parent="." instance=ExtResource("7_7mj1f")]
+position = Vector2(64, 530)

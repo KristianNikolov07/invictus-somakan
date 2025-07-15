@@ -1,5 +1,6 @@
-[gd_resource type="Resource" script_class="Blueprint" load_steps=3 format=3 uid="uid://m6evn525rkg2"]
+[gd_resource type="Resource" script_class="Blueprint" load_steps=4 format=3 uid="uid://m6evn525rkg2"]
 
+[ext_resource type="Texture2D" uid="uid://bx6mkrb6a0883" path="res://Textures/blueprint.png" id="1_30ayc"]
 [ext_resource type="Resource" uid="uid://cub6nmiohauw6" path="res://Recipes/critical_damage_aspect.tres" id="1_q20mp"]
 [ext_resource type="Script" uid="uid://cao0septh7c23" path="res://Scripts/Classes/Blueprint.gd" id="1_qv3l6"]
 
@@ -7,6 +8,7 @@
 script = ExtResource("1_qv3l6")
 recipe = ExtResource("1_q20mp")
 item_name = "Critical Damage Blueprint"
+icon = ExtResource("1_30ayc")
 type = 2
 price = 0
 metadata/_custom_type_script = "uid://cao0septh7c23"

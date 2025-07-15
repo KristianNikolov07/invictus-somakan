@@ -67,7 +67,7 @@ animations = [{
 
 [node name="Bow" type="Node2D"]
 script = ExtResource("1_cggr6")
-arrow_damage = 3
+arrow_damage = 20
 reload_time_per_arrow = 2
 attack_damage = 0
 metadata/_custom_type_script = "uid://c365hr0ip46v1"
@@ -100,7 +100,6 @@ step = 0.05
 texture_filter = 1
 position = Vector2(48, 0)
 rotation = 0.785398
-scale = Vector2(1, 1)
 sprite_frames = SubResource("SpriteFrames_7a073")
 animation = &"Shoot"
 autoplay = "default"

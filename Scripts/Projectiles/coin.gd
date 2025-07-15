@@ -56,7 +56,7 @@ func _on_area_entered(area: Area2D) -> void:
 		area.rotation_degrees += randf_range(-120, 120)
 	
 	area.speed += 25
-	area.damage += 25
+	area.damage += 15
 	hide()
 	remove_from_group("Coins")
 	set_collision_mask_value(2, false)
