@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Recipe" load_steps=4 format=3 uid="uid://cbyudg4r4mksi"]
+
+[ext_resource type="Script" uid="uid://dau2tmay1q2ae" path="res://Scripts/Classes/Recipe.gd" id="1_8i8w1"]
+[ext_resource type="Resource" path="res://Items/poison.tres" id="1_rbk2o"]
+[ext_resource type="Resource" uid="uid://chj704myeaix6" path="res://Items/Aspects/Poison.tres" id="2_p7pbr"]
+
+[resource]
+script = ExtResource("1_8i8w1")
+id = "poison_aspect"
+item = ExtResource("1_rbk2o")
+amount = 1
+result = ExtResource("2_p7pbr")
+result_amount = 1
+price = 50
+metadata/_custom_type_script = "uid://dau2tmay1q2ae"
