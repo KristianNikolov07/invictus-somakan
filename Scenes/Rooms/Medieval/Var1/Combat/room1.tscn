@@ -318,6 +318,7 @@ enemy = ExtResource("2_lv8tk")
 [node name="CameraLimiter" parent="." instance=ExtResource("3_0dlg8")]
 
 [node name="Portal" parent="." instance=ExtResource("2_0dlg8")]
+visible = false
 position = Vector2(1960, -144)
 room_type = 2
 
