@@ -1,14 +1,26 @@
-[gd_scene load_steps=3 format=3 uid="uid://cvk1okiubt6nq"]
+[gd_scene load_steps=5 format=3 uid="uid://cvk1okiubt6nq"]
 
 [ext_resource type="Script" uid="uid://deedyilbji128" path="res://Scripts/Objects/upgrade_shop.gd" id="1_m2fgl"]
+[ext_resource type="Texture2D" uid="uid://bu7420bpx5few" path="res://Textures/shop/shop_permanent.png" id="2_og621"]
+[ext_resource type="Texture2D" uid="uid://6rwv1v3kpps8" path="res://Textures/shop/shop_permanent_sign.png" id="3_og621"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wephv"]
-size = Vector2(179, 157)
+size = Vector2(248, 157)
 
 [node name="UpgradeShop" type="Area2D"]
 script = ExtResource("1_m2fgl")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_wephv")
-
 [node name="Texture" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(2, 2)
+texture = ExtResource("2_og621")
+
+[node name="Texture2" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(8, -120)
+scale = Vector2(2, 2)
+texture = ExtResource("3_og621")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-4, 0)
+shape = SubResource("RectangleShape2D_wephv")
