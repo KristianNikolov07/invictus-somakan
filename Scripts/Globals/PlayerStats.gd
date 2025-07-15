@@ -34,6 +34,13 @@ func _ready() -> void:
 	#weapon2_aspects[0] = load("res://Items/Aspects/Fire.tres")
 	#add_item(load("res://Items/Consumables/leech.tres"))
 
+func add_scrap(_scrap : int):
+	scrap += _scrap
+
+func remove_scrap(_scrap : int):
+	scrap -= _scrap
+	scrap = 0
+
 func get_player():
 	if !is_multiplayer:
 		return get_tree().get_first_node_in_group("Players")
