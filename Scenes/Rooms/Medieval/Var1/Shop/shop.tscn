@@ -1,10 +1,8 @@
-[gd_scene load_steps=18 format=4 uid="uid://b6upe1f4qtnim"]
+[gd_scene load_steps=16 format=4 uid="uid://b6upe1f4qtnim"]
 
 [ext_resource type="PackedScene" uid="uid://be53snhq2r11i" path="res://Scenes/player.tscn" id="1_pxgw1"]
 [ext_resource type="PackedScene" uid="uid://ch7esotluxknf" path="res://Scenes/Objects/portal.tscn" id="2_u8j54"]
 [ext_resource type="PackedScene" uid="uid://drp6ipmox6vyo" path="res://Scenes/Objects/crafting_table.tscn" id="3_u8j54"]
-[ext_resource type="PackedScene" uid="uid://dg8hy4n42lxx3" path="res://Scenes/Objects/dropped_item.tscn" id="4_x8g23"]
-[ext_resource type="Resource" uid="uid://dnofb2jqjs35o" path="res://Items/Blueprints/fire_aspect.tres" id="5_dw5jv"]
 [ext_resource type="Texture2D" uid="uid://ctm47thfbe3uy" path="res://Textures/tile-set.png" id="6_tog2q"]
 [ext_resource type="PackedScene" uid="uid://dqe7ft8qxejyd" path="res://Scenes/other/camera_limiter.tscn" id="7_j8o24"]
 [ext_resource type="PackedScene" uid="uid://0md13s0vcejo" path="res://Scenes/Objects/shop.tscn" id="8_7mj1f"]
@@ -236,25 +234,12 @@ shape = SubResource("WorldBoundaryShape2D_x8g23")
 [node name="Player" parent="." instance=ExtResource("1_pxgw1")]
 position = Vector2(63, 580)
 
-[node name="Portal" parent="." instance=ExtResource("2_u8j54")]
-position = Vector2(1069, 570)
-room_type = 4
-
 [node name="Label" type="Label" parent="."]
 offset_left = 24.0
 offset_top = 392.0
 offset_right = 64.0
 offset_bottom = 415.0
 text = "Welcome to Medieval Var 1 Shop"
-
-[node name="CraftingTable" parent="." instance=ExtResource("3_u8j54")]
-position = Vector2(485, 570)
-
-[node name="DroppedItem" parent="." instance=ExtResource("4_x8g23")]
-position = Vector2(328, 424)
-
-[node name="Area" parent="DroppedItem" index="1"]
-item = ExtResource("5_dw5jv")
 
 [node name="Background" type="TileMapLayer" parent="."]
 texture_filter = 1
@@ -269,6 +254,14 @@ position = Vector2(-342, 713)
 scale = Vector2(4, 4)
 tile_map_data = PackedByteArray("AAAAAP//AAACAAEAAAABAP//AAACAAEAAAACAP//AAACAAEAAAADAP//AAACAAEAAAAEAP//AAACAAEAAAAFAP//AAACAAEAAAAGAP//AAACAAEAAAAHAP//AAACAAEAAAAIAP//AAACAAEAAAAJAP//AAACAAEAAAAKAP//AAACAAEAAAALAP//AAACAAEAAAAMAP//AAACAAEAAAANAP//AAACAAEAAAAOAP//AAACAAEAAAAPAP//AAACAAEAAAAQAP//AAACAAEAAAARAP//AAACAAEAAAASAP//AAACAAEAAAATAP//AAACAAEAAAAUAP//AAACAAEAAAAVAP//AAACAAEAAAAWAP//AAACAAEAAAAXAP//AAACAAEAAAAYAP//AAACAAEAAAAZAP//AAACAAEAAAAaAP//AAACAAEAAAAbAP//AAACAAEAAAAcAP//AAACAAEAAAAdAP//AAACAAEAAAAeAP//AAACAAEAAAAfAP//AAACAAEAAAA=")
 tile_set = SubResource("TileSet_rx7hd")
+
+[node name="Portal" parent="." instance=ExtResource("2_u8j54")]
+position = Vector2(1069, 570)
+monitoring = true
+room_type = 4
+
+[node name="CraftingTable" parent="." instance=ExtResource("3_u8j54")]
+position = Vector2(487, 587)
 
 [node name="Floor" type="StaticBody2D" parent="."]
 position = Vector2(-341, 646)
@@ -305,6 +298,4 @@ shape = SubResource("WorldBoundaryShape2D_kp86e")
 [node name="CameraLimiter" parent="." instance=ExtResource("7_j8o24")]
 
 [node name="Shop" parent="." instance=ExtResource("8_7mj1f")]
-position = Vector2(710, 570)
-
-[editable path="DroppedItem"]
+position = Vector2(776, 584)

@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://dax0ls6j0a5o4"]
 
 [ext_resource type="Script" uid="uid://bjenb780dcc4a" path="res://Scripts/Objects/bin.gd" id="1_at2d0"]
-[ext_resource type="Texture2D" uid="uid://ey1x0hs4diw5" path="res://Textures/bin.png" id="1_sht6r"]
+[ext_resource type="Texture2D" uid="uid://hyflslfrqy2b" path="res://Textures/interactable/interactable_trash_can.png" id="2_at2d0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sht6r"]
 size = Vector2(61, 83)
@@ -10,9 +10,10 @@ size = Vector2(61, 83)
 script = ExtResource("1_at2d0")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
 position = Vector2(2.38419e-07, 0)
-scale = Vector2(0.087, 0.087)
-texture = ExtResource("1_sht6r")
+scale = Vector2(3, 3)
+texture = ExtResource("2_at2d0")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.5, -1.5)

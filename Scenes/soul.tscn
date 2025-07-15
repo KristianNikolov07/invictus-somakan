@@ -1,8 +1,44 @@
-[gd_scene load_steps=9 format=3 uid="uid://calssw1rcxcvr"]
+[gd_scene load_steps=14 format=3 uid="uid://calssw1rcxcvr"]
 
 [ext_resource type="Script" uid="uid://dttxulb2vifvc" path="res://Scripts/soul.gd" id="1_dmpwr"]
 [ext_resource type="Texture2D" uid="uid://bxbcn11k4i3i2" path="res://Textures/soul.png" id="2_ey5r1"]
 [ext_resource type="Texture2D" uid="uid://cfhdc4h3bf4f1" path="res://Textures/shockwave.png" id="3_ey5r1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ey5r1"]
+atlas = ExtResource("2_ey5r1")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rjqw3"]
+atlas = ExtResource("2_ey5r1")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q7yo3"]
+atlas = ExtResource("2_ey5r1")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hye4i"]
+atlas = ExtResource("2_ey5r1")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_aypje"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ey5r1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rjqw3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q7yo3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hye4i")
+}],
+"loop": true,
+"name": &"default",
+"speed": 6.0
+}]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rjqw3"]
 radius = 15.0333
@@ -76,9 +112,11 @@ z_index = 2
 collision_layer = 0
 script = ExtResource("1_dmpwr")
 
-[node name="Sprite" type="Sprite2D" parent="."]
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
-texture = ExtResource("2_ey5r1")
+sprite_frames = SubResource("SpriteFrames_aypje")
+autoplay = "default"
+frame_progress = 0.664591
 
 [node name="Shock" type="Sprite2D" parent="."]
 self_modulate = Color(0.223529, 0.0705882, 0.996078, 1)

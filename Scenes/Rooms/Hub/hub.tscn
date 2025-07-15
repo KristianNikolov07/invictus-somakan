@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=4 uid="uid://drc5ejy1kocf"]
+[gd_scene load_steps=24 format=4 uid="uid://drc5ejy1kocf"]
 
 [ext_resource type="Script" uid="uid://cdgpjt7cuu34b" path="res://Scripts/Rooms/hub.gd" id="1_2kdgj"]
 [ext_resource type="PackedScene" uid="uid://be53snhq2r11i" path="res://Scenes/player.tscn" id="1_l4iyj"]
@@ -6,12 +6,15 @@
 [ext_resource type="PackedScene" uid="uid://ch7esotluxknf" path="res://Scenes/Objects/portal.tscn" id="2_kvfx3"]
 [ext_resource type="PackedScene" uid="uid://b4r8t6ijsspl2" path="res://Scenes/Enemies/dummy.tscn" id="3_kvfx3"]
 [ext_resource type="PackedScene" uid="uid://2txcwdq7eljo" path="res://Scenes/Objects/armor_stand.tscn" id="4_k2f67"]
-[ext_resource type="Resource" uid="uid://ca7em7q8srtxe" path="res://Items/Weapons/mace.tres" id="5_3faoc"]
+[ext_resource type="Resource" uid="uid://ca7em7q8srtxe" path="res://Items/Weapons/Mace.tres" id="5_3faoc"]
 [ext_resource type="Resource" uid="uid://dsqf3llghx7x7" path="res://Items/Weapons/Bow.tres" id="6_r5otq"]
 [ext_resource type="Resource" uid="uid://cpl2qt0rq4u2e" path="res://Items/Weapons/Claws.tres" id="7_e5u4f"]
 [ext_resource type="Resource" uid="uid://b0t4amus74xte" path="res://Items/Weapons/damage_circle.tres" id="8_v75h1"]
 [ext_resource type="PackedScene" uid="uid://dax0ls6j0a5o4" path="res://Scenes/Objects/bin.tscn" id="9_v75h1"]
 [ext_resource type="PackedScene" uid="uid://dqe7ft8qxejyd" path="res://Scenes/other/camera_limiter.tscn" id="11_dssej"]
+[ext_resource type="Resource" uid="uid://vqwu1245q1py" path="res://Items/Weapons/Marksman.tres" id="11_jibhj"]
+[ext_resource type="Resource" path="res://Items/Weapons/chushkopek_sniper.tres" id="12_t3o3a"]
+[ext_resource type="PackedScene" uid="uid://cvk1okiubt6nq" path="res://Scenes/Objects/upgrade_shop.tscn" id="15_0qjpg"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jibhj"]
 texture = ExtResource("2_h41th")
@@ -245,40 +248,54 @@ tile_set = SubResource("TileSet_hrxnw")
 position = Vector2(134, -131)
 
 [node name="Portal" parent="." instance=ExtResource("2_kvfx3")]
-visible = true
 position = Vector2(1961, -155)
+monitoring = true
 is_first = true
 is_stage_transition = true
 room_type = 2
 
 [node name="Dummy" parent="." instance=ExtResource("3_kvfx3")]
-position = Vector2(1449, -121)
+position = Vector2(1608, -106)
 scale = Vector2(0.7, 0.7)
 
 [node name="ArmorStand" parent="." instance=ExtResource("4_k2f67")]
-position = Vector2(1100, -117)
+position = Vector2(1096, -128)
 scale = Vector2(0.5, 0.5)
 weapon = ExtResource("5_3faoc")
 unlocked = true
 
 [node name="ArmorStand2" parent="." instance=ExtResource("4_k2f67")]
-position = Vector2(988, -117)
+position = Vector2(984, -128)
 scale = Vector2(0.5, 0.5)
 weapon = ExtResource("6_r5otq")
 unlocked = true
 
 [node name="ArmorStand3" parent="." instance=ExtResource("4_k2f67")]
-position = Vector2(884, -117)
+position = Vector2(880, -128)
 scale = Vector2(0.5, 0.5)
 weapon = ExtResource("7_e5u4f")
+unlocked = true
 
 [node name="ArmorStand4" parent="." instance=ExtResource("4_k2f67")]
-position = Vector2(772, -117)
+position = Vector2(768, -128)
 scale = Vector2(0.5, 0.5)
 weapon = ExtResource("8_v75h1")
+unlocked = true
+
+[node name="ArmorStand5" parent="." instance=ExtResource("4_k2f67")]
+position = Vector2(656, -128)
+scale = Vector2(0.5, 0.5)
+weapon = ExtResource("11_jibhj")
+unlocked = true
+
+[node name="ArmorStand6" parent="." instance=ExtResource("4_k2f67")]
+position = Vector2(544, -128)
+scale = Vector2(0.5, 0.5)
+weapon = ExtResource("12_t3o3a")
+unlocked = true
 
 [node name="Bin" parent="." instance=ExtResource("9_v75h1")]
-position = Vector2(644, -125)
+position = Vector2(384, -104)
 
 [node name="Floor" type="StaticBody2D" parent="."]
 position = Vector2(0, -63)
@@ -312,3 +329,6 @@ collision_mask = 5
 shape = SubResource("WorldBoundaryShape2D_0qjpg")
 
 [node name="CameraLimiter" parent="." instance=ExtResource("11_dssej")]
+
+[node name="UpgradeShop" parent="." instance=ExtResource("15_0qjpg")]
+position = Vector2(1280, -144)

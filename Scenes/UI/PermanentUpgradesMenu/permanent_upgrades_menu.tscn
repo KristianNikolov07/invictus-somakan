@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://c7hgx3j3lulo5"]
+[gd_scene load_steps=8 format=3 uid="uid://c7hgx3j3lulo5"]
 
 [ext_resource type="Script" uid="uid://c11tieqaph8rn" path="res://Scripts/UI/PermanentUpgradesMenu/permanent_upgrades_menu.gd" id="1_eqnm8"]
 [ext_resource type="Texture2D" uid="uid://nfjd1wonq2h2" path="res://Textures/Crafting/crafting_background.png" id="2_0pqiu"]
@@ -7,8 +7,11 @@
 [ext_resource type="PackedScene" uid="uid://3506da8rupwo" path="res://Scenes/UI/PermanentUpgradesMenu/double_jump_slot.tscn" id="4_pml07"]
 [ext_resource type="PackedScene" uid="uid://df8jfu4ipoemc" path="res://Scenes/UI/PermanentUpgradesMenu/max_hp_slot.tscn" id="5_ch2ra"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_pml07"]
+atlas = ExtResource("4_eqnm8")
+region = Rect2(32, 0, 32, 32)
+
 [node name="PermanentUpgradesMenu" type="Control"]
-visible = false
 texture_filter = 1
 layout_mode = 3
 anchors_preset = 0
@@ -68,7 +71,7 @@ vertical_alignment = 1
 [node name="SoulsSprite" type="Sprite2D" parent="."]
 position = Vector2(638, 46)
 scale = Vector2(1.0625, 1.09375)
-texture = ExtResource("4_eqnm8")
+texture = SubResource("AtlasTexture_pml07")
 
 [node name="ExitButton" type="Button" parent="."]
 layout_mode = 0
