@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://b451yhoqiov5a" path="res://Scenes/Enemies/zombie.tscn" id="2_lv8tk"]
 [ext_resource type="PackedScene" uid="uid://dqe7ft8qxejyd" path="res://Scenes/other/camera_limiter.tscn" id="3_0dlg8"]
 [ext_resource type="PackedScene" uid="uid://drh5mw5jb3hga" path="res://Scenes/Objects/platform.tscn" id="4_aqhgq"]
-[ext_resource type="Script" path="res://Scripts/Classes/Spawner.gd" id="6_lv8tk"]
+[ext_resource type="Script" uid="uid://8utdi18iv0th" path="res://Scripts/Classes/Spawner.gd" id="6_lv8tk"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1cvqe"]
 texture = ExtResource("1_pcoad")
