@@ -376,6 +376,7 @@ enemy = ExtResource("2_1535p")
 metadata/_custom_type_script = "uid://8utdi18iv0th"
 
 [node name="Portal" parent="." instance=ExtResource("2_px8am")]
+visible = false
 position = Vector2(1184, -1320)
 room_type = 2
 
