@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Recipe" load_steps=4 format=3 uid="uid://d2a5xo58qi3h1"]
 
-[ext_resource type="Resource" path="res://Items/crit_chance_orb.tres" id="1_37wre"]
+[ext_resource type="Resource" uid="uid://bil30xv3u4jey" path="res://Items/crit_chance_orb.tres" id="1_37wre"]
 [ext_resource type="Script" uid="uid://dau2tmay1q2ae" path="res://Scripts/Classes/Recipe.gd" id="1_uloh7"]
 [ext_resource type="Resource" uid="uid://fpoasv1emc6v" path="res://Items/Aspects/CriticalChance.tres" id="2_7r7c7"]
 

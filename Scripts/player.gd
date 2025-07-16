@@ -193,21 +193,24 @@ func use_consumable(consumable: int):
 		PlayerStats.remove_consumable(consumable - 1)
 
 func open_crafting_menu():
-	$UI/Crafting.show()
-	$UI/Crafting.refresh()
+	if not $UI/Inventory.visible and not $UI/Shop.visible and not $UI/Upgrades.visible:
+		$UI/Crafting.show()
+		$UI/Crafting.refresh()
 
 func close_crafting_menu():
 	$UI/Crafting.hide()
 	
 func open_upgrades_menu():
-	$UI/Upgrades.show()
-	$UI/Upgrades.refresh()
+	if not $UI/Inventory.visible and not $UI/Shop.visible and not $UI/Crafting.visible:
+		$UI/Upgrades.show()
+		$UI/Upgrades.refresh()
 
 func close_upgrades_menu():
 	$UI/Upgrades.hide()
 	
 func open_shop_menu():
-	$UI/Shop.show()
+	if not $UI/Inventory.visible and not $UI/Crafting.visible and not $UI/Upgrades.visible:
+		$UI/Shop.show()
 
 func damage_amount(amount: int, knockback) -> void:
 	Utils.summon_damage_number(self, amount, Color.RED, damage_number_scale, damage_number_duration)

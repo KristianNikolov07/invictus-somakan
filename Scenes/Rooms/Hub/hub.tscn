@@ -268,31 +268,26 @@ unlocked = true
 position = Vector2(984, -128)
 scale = Vector2(0.5, 0.5)
 weapon = ExtResource("6_r5otq")
-unlocked = true
 
 [node name="ArmorStand3" parent="." instance=ExtResource("4_k2f67")]
 position = Vector2(880, -128)
 scale = Vector2(0.5, 0.5)
 weapon = ExtResource("7_e5u4f")
-unlocked = true
 
 [node name="ArmorStand4" parent="." instance=ExtResource("4_k2f67")]
 position = Vector2(768, -128)
 scale = Vector2(0.5, 0.5)
 weapon = ExtResource("8_v75h1")
-unlocked = true
 
 [node name="ArmorStand5" parent="." instance=ExtResource("4_k2f67")]
 position = Vector2(656, -128)
 scale = Vector2(0.5, 0.5)
 weapon = ExtResource("11_jibhj")
-unlocked = true
 
 [node name="ArmorStand6" parent="." instance=ExtResource("4_k2f67")]
 position = Vector2(544, -128)
 scale = Vector2(0.5, 0.5)
 weapon = ExtResource("12_t3o3a")
-unlocked = true
 
 [node name="Bin" parent="." instance=ExtResource("9_v75h1")]
 position = Vector2(384, -104)

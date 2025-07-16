@@ -229,7 +229,7 @@ size = Vector2(56, 768)
 
 [node name="Room6" type="Node2D"]
 script = ExtResource("1_7hbct")
-wave1_quantity = 0.5
+wave1_quantity = 0.15
 wave2_quantity = 0.25
 metadata/_custom_type_script = "uid://dgsmtoldmfhn1"
 

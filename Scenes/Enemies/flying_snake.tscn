@@ -1,8 +1,18 @@
-[gd_scene load_steps=18 format=3 uid="uid://dk2vjvg75cd3q"]
+[gd_scene load_steps=28 format=3 uid="uid://dk2vjvg75cd3q"]
 
 [ext_resource type="Script" uid="uid://bvlly6je8wgxu" path="res://Scripts/Enemies/flying_snake.gd" id="1_irrbb"]
+[ext_resource type="Script" uid="uid://b3auab72tb6j6" path="res://Scripts/Classes/Item.gd" id="2_fmnit"]
 [ext_resource type="Texture2D" uid="uid://khqan0rdsxny" path="res://Textures/enemy_flying_snake.png" id="2_irrbb"]
 [ext_resource type="PackedScene" uid="uid://bqo6qnqcmww4y" path="res://Scenes/UI/health_bar.tscn" id="3_irrbb"]
+[ext_resource type="Resource" uid="uid://dnofb2jqjs35o" path="res://Items/Blueprints/fire_aspect.tres" id="3_ymoun"]
+[ext_resource type="Resource" uid="uid://4h7adkp3p0gy" path="res://Items/Blueprints/freeze_aspect.tres" id="4_mlcvw"]
+[ext_resource type="Resource" uid="uid://deljpruiovqcf" path="res://Items/Blueprints/poison_aspect.tres" id="5_oaoag"]
+[ext_resource type="Resource" uid="uid://bywtyvbopiflj" path="res://Items/Blueprints/critical_chance_aspect.tres" id="6_pwrgw"]
+[ext_resource type="Resource" uid="uid://m6evn525rkg2" path="res://Items/Blueprints/critical_damage_aspect.tres" id="7_kqsdl"]
+[ext_resource type="Resource" uid="uid://bil30xv3u4jey" path="res://Items/crit_damage_orb.tres" id="9_jyvvv"]
+[ext_resource type="Resource" uid="uid://cm7g5mjsok0q5" path="res://Items/fire_orb.tres" id="10_0071p"]
+[ext_resource type="Resource" uid="uid://cu00ittwd3mke" path="res://Items/ice_orb.tres" id="11_7t47l"]
+[ext_resource type="Resource" uid="uid://bgxdxx3wuy0nf" path="res://Items/poison.tres" id="12_w7l60"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_r60sb"]
 atlas = ExtResource("2_irrbb")
@@ -101,6 +111,17 @@ collision_mask = 6
 script = ExtResource("1_irrbb")
 knockback_strength = 1.0
 invincibility_length = 0.4
+loot = Dictionary[ExtResource("2_fmnit"), float]({
+ExtResource("3_ymoun"): 1.5,
+ExtResource("4_mlcvw"): 1.5,
+ExtResource("5_oaoag"): 1.5,
+ExtResource("6_pwrgw"): 1.5,
+ExtResource("7_kqsdl"): 1.5,
+ExtResource("9_jyvvv"): 3.0,
+ExtResource("10_0071p"): 3.0,
+ExtResource("11_7t47l"): 3.0,
+ExtResource("12_w7l60"): 3.0
+})
 metadata/_custom_type_script = "uid://cg8pbch1s6ga2"
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]
@@ -113,7 +134,6 @@ flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(1.25001, -2.5)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_dt2kf")
 
 [node name="HealthBar" parent="." instance=ExtResource("3_irrbb")]

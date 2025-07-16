@@ -1,6 +1,15 @@
 extends Weapon
 var dir = 1
 
+func _ready():
+	if get_node_or_null("LeftHitbox") != null:
+		$LeftHitbox.set_damage(attack_damage)
+		$LeftHitbox.set_crit_chance(crit_chance)
+		$LeftHitbox.set_crit_mult(crit_mult)
+	if get_node_or_null("RightHitbox") != null:
+		$RightHitbox.set_damage(attack_damage)
+		$RightHitbox.set_crit_chance(crit_chance)
+		$RightHitbox.set_crit_mult(crit_mult)
 
 func hit(direction : int):
 	if direction == -1:

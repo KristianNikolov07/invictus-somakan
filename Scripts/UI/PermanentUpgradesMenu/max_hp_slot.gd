@@ -7,7 +7,7 @@ func check_upgradable():
 	return PlayerStats.souls >= get_price()
 
 func get_price():
-	return 50 + 25 * 2 ** ((PlayerStats.max_hp - 50) / 10)
+	return 10 + 25 * 2 ** ((PlayerStats.max_hp - 50) / 10)
 
 func upgrade():
 	PlayerStats.max_hp += 10

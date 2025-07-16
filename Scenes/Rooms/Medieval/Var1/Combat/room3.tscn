@@ -86,8 +86,8 @@ normal = Vector2(-1, 0)
 
 [node name="Room3" type="Node2D"]
 script = ExtResource("1_yoqpo")
-wave1_quantity = 0.1
-wave2_quantity = 0.3
+wave1_quantity = 0.2
+wave2_quantity = 0.4
 metadata/_custom_type_script = "uid://dgsmtoldmfhn1"
 
 [node name="Background" type="TileMapLayer" parent="."]

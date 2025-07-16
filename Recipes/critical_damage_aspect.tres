@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="Recipe" load_steps=4 format=3 uid="uid://cub6nmiohauw6"]
 
 [ext_resource type="Script" uid="uid://dau2tmay1q2ae" path="res://Scripts/Classes/Recipe.gd" id="1_4kes1"]
-[ext_resource type="Resource" path="res://Items/crit_damage_orb.tres" id="1_ykllt"]
+[ext_resource type="Resource" uid="uid://bil30xv3u4jey" path="res://Items/crit_damage_orb.tres" id="1_ykllt"]
 [ext_resource type="Resource" uid="uid://evfi6r71ccwl" path="res://Items/Aspects/CriticalDamage.tres" id="2_dwtn6"]
 
 [resource]

@@ -1,12 +1,22 @@
-[gd_scene load_steps=34 format=3 uid="uid://bq37pauhr7ehy"]
+[gd_scene load_steps=44 format=3 uid="uid://bq37pauhr7ehy"]
 
 [ext_resource type="Script" uid="uid://bygp0rxw28pnh" path="res://Scripts/Enemies/crossbower.gd" id="1_50btn"]
 [ext_resource type="Texture2D" uid="uid://dfo3ge4ax5f6h" path="res://Textures/archer/archer damaged.png" id="2_axits"]
 [ext_resource type="Texture2D" uid="uid://bxo763bif6x7u" path="res://Textures/archer/archer.png" id="2_kuff7"]
+[ext_resource type="Script" uid="uid://b3auab72tb6j6" path="res://Scripts/Classes/Item.gd" id="2_q23rv"]
 [ext_resource type="PackedScene" uid="uid://bqo6qnqcmww4y" path="res://Scenes/UI/health_bar.tscn" id="3_1qho8"]
+[ext_resource type="Resource" uid="uid://dnofb2jqjs35o" path="res://Items/Blueprints/fire_aspect.tres" id="3_dlcvx"]
 [ext_resource type="Texture2D" uid="uid://b2orybvf5puw2" path="res://Textures/archer/archer walking.png" id="3_pm5xl"]
 [ext_resource type="Texture2D" uid="uid://wpv5mqsyafl1" path="res://Textures/archer/archer death.png" id="3_pnm3m"]
 [ext_resource type="Texture2D" uid="uid://sojdtyev7k5c" path="res://Textures/archer/archer falling.png" id="4_pnm3m"]
+[ext_resource type="Resource" uid="uid://4h7adkp3p0gy" path="res://Items/Blueprints/freeze_aspect.tres" id="4_xfat3"]
+[ext_resource type="Resource" uid="uid://deljpruiovqcf" path="res://Items/Blueprints/poison_aspect.tres" id="5_b6dtg"]
+[ext_resource type="Resource" uid="uid://bywtyvbopiflj" path="res://Items/Blueprints/critical_chance_aspect.tres" id="6_7sjay"]
+[ext_resource type="Resource" uid="uid://m6evn525rkg2" path="res://Items/Blueprints/critical_damage_aspect.tres" id="7_dd268"]
+[ext_resource type="Resource" uid="uid://bil30xv3u4jey" path="res://Items/crit_damage_orb.tres" id="9_7jm1k"]
+[ext_resource type="Resource" uid="uid://cm7g5mjsok0q5" path="res://Items/fire_orb.tres" id="10_ib83k"]
+[ext_resource type="Resource" uid="uid://cu00ittwd3mke" path="res://Items/ice_orb.tres" id="11_6jpet"]
+[ext_resource type="Resource" uid="uid://bgxdxx3wuy0nf" path="res://Items/poison.tres" id="12_724gs"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wk06a"]
 atlas = ExtResource("2_axits")
@@ -218,6 +228,17 @@ hp = 35
 max_hp = 35
 parry_damage = 40
 invincibility_length = 0.4
+loot = Dictionary[ExtResource("2_q23rv"), float]({
+ExtResource("3_dlcvx"): 0.7,
+ExtResource("4_xfat3"): 0.7,
+ExtResource("5_b6dtg"): 0.7,
+ExtResource("6_7sjay"): 0.7,
+ExtResource("7_dd268"): 0.7,
+ExtResource("9_7jm1k"): 3.0,
+ExtResource("10_ib83k"): 3.0,
+ExtResource("11_6jpet"): 3.0,
+ExtResource("12_724gs"): 3.0
+})
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 position = Vector2(4, 0)

@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Blueprint" load_steps=4 format=3 uid="uid://deljpruiovqcf"]
+
+[ext_resource type="Texture2D" uid="uid://bx6mkrb6a0883" path="res://Textures/blueprint.png" id="1_7sbwq"]
+[ext_resource type="Script" uid="uid://cao0septh7c23" path="res://Scripts/Classes/Blueprint.gd" id="1_dtbbf"]
+[ext_resource type="Resource" uid="uid://cbyudg4r4mksi" path="res://Recipes/poison_aspect.tres" id="1_kgogc"]
+
+[resource]
+script = ExtResource("1_dtbbf")
+recipe = ExtResource("1_kgogc")
+item_name = "Poison Aspect Blueprint"
+icon = ExtResource("1_7sbwq")
+type = 2
+price = 0
+metadata/_custom_type_script = "uid://cao0septh7c23"
