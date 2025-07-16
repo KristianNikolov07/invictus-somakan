@@ -13,7 +13,7 @@
 [ext_resource type="Resource" uid="uid://deljpruiovqcf" path="res://Items/Blueprints/poison_aspect.tres" id="5_b6dtg"]
 [ext_resource type="Resource" uid="uid://bywtyvbopiflj" path="res://Items/Blueprints/critical_chance_aspect.tres" id="6_7sjay"]
 [ext_resource type="Resource" uid="uid://m6evn525rkg2" path="res://Items/Blueprints/critical_damage_aspect.tres" id="7_dd268"]
-[ext_resource type="Resource" uid="uid://dxrvmurk8dtv8" path="res://Items/crit_damage_orb.tres" id="9_7jm1k"]
+[ext_resource type="Resource" uid="uid://bil30xv3u4jey" path="res://Items/crit_damage_orb.tres" id="9_7jm1k"]
 [ext_resource type="Resource" uid="uid://cm7g5mjsok0q5" path="res://Items/fire_orb.tres" id="10_ib83k"]
 [ext_resource type="Resource" uid="uid://cu00ittwd3mke" path="res://Items/ice_orb.tres" id="11_6jpet"]
 [ext_resource type="Resource" uid="uid://bgxdxx3wuy0nf" path="res://Items/poison.tres" id="12_724gs"]
@@ -229,11 +229,11 @@ max_hp = 35
 parry_damage = 40
 invincibility_length = 0.4
 loot = Dictionary[ExtResource("2_q23rv"), float]({
-ExtResource("3_dlcvx"): 1.5,
-ExtResource("4_xfat3"): 1.5,
-ExtResource("5_b6dtg"): 1.5,
-ExtResource("6_7sjay"): 1.5,
-ExtResource("7_dd268"): 1.5,
+ExtResource("3_dlcvx"): 0.7,
+ExtResource("4_xfat3"): 0.7,
+ExtResource("5_b6dtg"): 0.7,
+ExtResource("6_7sjay"): 0.7,
+ExtResource("7_dd268"): 0.7,
 ExtResource("9_7jm1k"): 3.0,
 ExtResource("10_ib83k"): 3.0,
 ExtResource("11_6jpet"): 3.0,

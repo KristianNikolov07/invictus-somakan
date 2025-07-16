@@ -13,7 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://dax0ls6j0a5o4" path="res://Scenes/Objects/bin.tscn" id="9_v75h1"]
 [ext_resource type="PackedScene" uid="uid://dqe7ft8qxejyd" path="res://Scenes/other/camera_limiter.tscn" id="11_dssej"]
 [ext_resource type="Resource" uid="uid://vqwu1245q1py" path="res://Items/Weapons/Marksman.tres" id="11_jibhj"]
-[ext_resource type="Resource" path="res://Items/Weapons/chushkopek_sniper.tres" id="12_t3o3a"]
+[ext_resource type="Resource" uid="uid://c3mr478j4bqcx" path="res://Items/Weapons/chushkopek_sniper.tres" id="12_t3o3a"]
 [ext_resource type="PackedScene" uid="uid://cvk1okiubt6nq" path="res://Scenes/Objects/upgrade_shop.tscn" id="15_0qjpg"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jibhj"]
@@ -268,31 +268,26 @@ unlocked = true
 position = Vector2(984, -128)
 scale = Vector2(0.5, 0.5)
 weapon = ExtResource("6_r5otq")
-unlocked = true
 
 [node name="ArmorStand3" parent="." instance=ExtResource("4_k2f67")]
 position = Vector2(880, -128)
 scale = Vector2(0.5, 0.5)
 weapon = ExtResource("7_e5u4f")
-unlocked = true
 
 [node name="ArmorStand4" parent="." instance=ExtResource("4_k2f67")]
 position = Vector2(768, -128)
 scale = Vector2(0.5, 0.5)
 weapon = ExtResource("8_v75h1")
-unlocked = true
 
 [node name="ArmorStand5" parent="." instance=ExtResource("4_k2f67")]
 position = Vector2(656, -128)
 scale = Vector2(0.5, 0.5)
 weapon = ExtResource("11_jibhj")
-unlocked = true
 
 [node name="ArmorStand6" parent="." instance=ExtResource("4_k2f67")]
 position = Vector2(544, -128)
 scale = Vector2(0.5, 0.5)
 weapon = ExtResource("12_t3o3a")
-unlocked = true
 
 [node name="Bin" parent="." instance=ExtResource("9_v75h1")]
 position = Vector2(384, -104)

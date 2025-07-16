@@ -1,4 +1,4 @@
-[gd_scene load_steps=168 format=4 uid="uid://c1rc4j254q34j"]
+[gd_scene load_steps=172 format=4 uid="uid://c1rc4j254q34j"]
 
 [ext_resource type="Script" uid="uid://c80uwe0iluece" path="res://Scripts/Rooms/boss_room_1.gd" id="1_gt27v"]
 [ext_resource type="Texture2D" uid="uid://ctm47thfbe3uy" path="res://Textures/tile-set.png" id="2_5igek"]
@@ -10,8 +10,12 @@
 [ext_resource type="Script" uid="uid://b3auab72tb6j6" path="res://Scripts/Classes/Item.gd" id="7_5igek"]
 [ext_resource type="Resource" uid="uid://dsqf3llghx7x7" path="res://Items/Weapons/Bow.tres" id="8_foa0n"]
 [ext_resource type="Texture2D" uid="uid://dowfelenfbfhv" path="res://Textures/Boss/boss_bone_rain.png" id="9_h7elt"]
+[ext_resource type="Resource" uid="uid://c3mr478j4bqcx" path="res://Items/Weapons/chushkopek_sniper.tres" id="9_sa05p"]
 [ext_resource type="Texture2D" uid="uid://b7ygdhax07c3" path="res://Textures/Boss/boss_death.png" id="10_4lyss"]
+[ext_resource type="Resource" uid="uid://cpl2qt0rq4u2e" path="res://Items/Weapons/Claws.tres" id="10_ll8fm"]
+[ext_resource type="Resource" uid="uid://b0t4amus74xte" path="res://Items/Weapons/damage_circle.tres" id="11_p423f"]
 [ext_resource type="Texture2D" uid="uid://d61ubgq87ik7" path="res://Textures/Boss/boss_walk.png" id="11_sa05p"]
+[ext_resource type="Resource" uid="uid://vqwu1245q1py" path="res://Items/Weapons/Marksman.tres" id="12_bxixo"]
 [ext_resource type="Texture2D" uid="uid://c13k4ao4dvdqw" path="res://Textures/Boss/boss_ram_prep.png" id="12_ll8fm"]
 [ext_resource type="Texture2D" uid="uid://bjap1ervcxlsh" path="res://Textures/Boss/boss_ribarang.png" id="13_p423f"]
 [ext_resource type="Texture2D" uid="uid://cth3eon34isjp" path="res://Textures/Boss/boss_smash.png" id="14_bxixo"]
@@ -2063,7 +2067,11 @@ parry_damage = 0
 can_be_knockedback = false
 damage_number_scale = 4.0
 loot = Dictionary[ExtResource("7_5igek"), float]({
-ExtResource("8_foa0n"): 100.0
+ExtResource("8_foa0n"): 20.0,
+ExtResource("9_sa05p"): 20.0,
+ExtResource("10_ll8fm"): 20.0,
+ExtResource("11_p423f"): 20.0,
+ExtResource("12_bxixo"): 20.0
 })
 
 [node name="BossSprite" type="AnimatedSprite2D" parent="Boss"]
