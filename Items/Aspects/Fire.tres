@@ -7,7 +7,10 @@
 script = ExtResource("1_xssya")
 status_effect = ExtResource("2_k6w2w")
 aspect_name = "Fire"
+crit_chance_mult = 1.0
+crit_damage_mult = 1.0
+explosion = false
 item_name = "Fire Aspect"
-type = 0
+type = 1
 price = 0
 metadata/_custom_type_script = "uid://bnm1nvl5v4528"

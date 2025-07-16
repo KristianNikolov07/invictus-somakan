@@ -1,12 +1,12 @@
-[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://dxrvmurk8dtv8"]
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://bil30xv3u4jey"]
 
-[ext_resource type="Texture2D" uid="uid://d1o4afuol3fg8" path="res://Textures/orbs/crit chance orb.png" id="1_4dc6x"]
-[ext_resource type="Script" uid="uid://b3auab72tb6j6" path="res://Scripts/Classes/Item.gd" id="2_6xxt6"]
+[ext_resource type="Script" uid="uid://b3auab72tb6j6" path="res://Scripts/Classes/Item.gd" id="1_i55wu"]
+[ext_resource type="Texture2D" uid="uid://pfsixpeo2xe0" path="res://Textures/orbs/crit damangen orb.png" id="1_w32kn"]
 
 [resource]
-script = ExtResource("2_6xxt6")
-item_name = "Crit Chance Orb"
-icon = ExtResource("1_4dc6x")
+script = ExtResource("1_i55wu")
+item_name = "Crit Damage Orb"
+icon = ExtResource("1_w32kn")
 type = 0
 price = 0
 metadata/_custom_type_script = "uid://b3auab72tb6j6"

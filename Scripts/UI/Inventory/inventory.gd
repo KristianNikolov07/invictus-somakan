@@ -12,7 +12,7 @@ func _ready() -> void:
 
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("Inventory"):
+	if event.is_action_pressed("Inventory") and not get_node("../Crafting").visible and not get_node("../Shop").visible and not get_node("../Upgrades").visible:
 		print("WTF")
 		visible = !visible
 		refresh()

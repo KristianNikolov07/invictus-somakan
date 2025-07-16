@@ -7,7 +7,7 @@ func check_upgradable():
 	return not PlayerStats.has_double_jump and PlayerStats.souls >= 500
 
 func get_price():
-	return 500
+	return 250
 	
 func upgrade():
 	PlayerStats.has_double_jump = true

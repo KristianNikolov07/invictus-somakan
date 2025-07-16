@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://dk2vjvg75cd3q"]
+[gd_scene load_steps=28 format=3 uid="uid://dk2vjvg75cd3q"]
 
 [ext_resource type="Script" uid="uid://bvlly6je8wgxu" path="res://Scripts/Enemies/flying_snake.gd" id="1_irrbb"]
 [ext_resource type="Script" uid="uid://b3auab72tb6j6" path="res://Scripts/Classes/Item.gd" id="2_fmnit"]
@@ -9,7 +9,6 @@
 [ext_resource type="Resource" uid="uid://deljpruiovqcf" path="res://Items/Blueprints/poison_aspect.tres" id="5_oaoag"]
 [ext_resource type="Resource" uid="uid://bywtyvbopiflj" path="res://Items/Blueprints/critical_chance_aspect.tres" id="6_pwrgw"]
 [ext_resource type="Resource" uid="uid://m6evn525rkg2" path="res://Items/Blueprints/critical_damage_aspect.tres" id="7_kqsdl"]
-[ext_resource type="Resource" uid="uid://bil30xv3u4jey" path="res://Items/crit_chance_orb.tres" id="8_3v3kp"]
 [ext_resource type="Resource" uid="uid://dxrvmurk8dtv8" path="res://Items/crit_damage_orb.tres" id="9_jyvvv"]
 [ext_resource type="Resource" uid="uid://cm7g5mjsok0q5" path="res://Items/fire_orb.tres" id="10_0071p"]
 [ext_resource type="Resource" uid="uid://cu00ittwd3mke" path="res://Items/ice_orb.tres" id="11_7t47l"]
@@ -118,7 +117,6 @@ ExtResource("4_mlcvw"): 1.5,
 ExtResource("5_oaoag"): 1.5,
 ExtResource("6_pwrgw"): 1.5,
 ExtResource("7_kqsdl"): 1.5,
-ExtResource("8_3v3kp"): 3.0,
 ExtResource("9_jyvvv"): 3.0,
 ExtResource("10_0071p"): 3.0,
 ExtResource("11_7t47l"): 3.0,

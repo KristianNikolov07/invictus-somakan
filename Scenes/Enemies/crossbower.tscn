@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://bq37pauhr7ehy"]
+[gd_scene load_steps=44 format=3 uid="uid://bq37pauhr7ehy"]
 
 [ext_resource type="Script" uid="uid://bygp0rxw28pnh" path="res://Scripts/Enemies/crossbower.gd" id="1_50btn"]
 [ext_resource type="Texture2D" uid="uid://dfo3ge4ax5f6h" path="res://Textures/archer/archer damaged.png" id="2_axits"]
@@ -13,7 +13,6 @@
 [ext_resource type="Resource" uid="uid://deljpruiovqcf" path="res://Items/Blueprints/poison_aspect.tres" id="5_b6dtg"]
 [ext_resource type="Resource" uid="uid://bywtyvbopiflj" path="res://Items/Blueprints/critical_chance_aspect.tres" id="6_7sjay"]
 [ext_resource type="Resource" uid="uid://m6evn525rkg2" path="res://Items/Blueprints/critical_damage_aspect.tres" id="7_dd268"]
-[ext_resource type="Resource" uid="uid://bil30xv3u4jey" path="res://Items/crit_chance_orb.tres" id="8_bhmjc"]
 [ext_resource type="Resource" uid="uid://dxrvmurk8dtv8" path="res://Items/crit_damage_orb.tres" id="9_7jm1k"]
 [ext_resource type="Resource" uid="uid://cm7g5mjsok0q5" path="res://Items/fire_orb.tres" id="10_ib83k"]
 [ext_resource type="Resource" uid="uid://cu00ittwd3mke" path="res://Items/ice_orb.tres" id="11_6jpet"]
@@ -235,7 +234,6 @@ ExtResource("4_xfat3"): 1.5,
 ExtResource("5_b6dtg"): 1.5,
 ExtResource("6_7sjay"): 1.5,
 ExtResource("7_dd268"): 1.5,
-ExtResource("8_bhmjc"): 3.0,
 ExtResource("9_7jm1k"): 3.0,
 ExtResource("10_ib83k"): 3.0,
 ExtResource("11_6jpet"): 3.0,
