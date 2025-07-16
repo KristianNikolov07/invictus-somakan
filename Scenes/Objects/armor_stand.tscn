@@ -216,7 +216,6 @@ size = Vector2(144, 143)
 script = ExtResource("1_to3uv")
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]
-self_modulate = Color(0, 0.262745, 1, 1)
 texture_filter = 1
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_upmc7")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=172 format=4 uid="uid://c1rc4j254q34j"]
+[gd_scene load_steps=171 format=4 uid="uid://c1rc4j254q34j"]
 
 [ext_resource type="Script" uid="uid://c80uwe0iluece" path="res://Scripts/Rooms/boss_room_1.gd" id="1_gt27v"]
 [ext_resource type="Texture2D" uid="uid://ctm47thfbe3uy" path="res://Textures/tile-set.png" id="2_5igek"]
@@ -1865,8 +1865,6 @@ _data = {
 &"smash": SubResource("Animation_w82vf")
 }
 
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_3j7y5"]
-
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_6k41h"]
 normal = Vector2(0, 1)
 
@@ -2083,10 +2081,12 @@ animation = &"walk"
 autoplay = "walk"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Boss"]
+visible = false
 position = Vector2(0, 8)
 shape = SubResource("RectangleShape2D_71aqr")
 
 [node name="RibReturn" type="Area2D" parent="Boss" groups=["Enemies"]]
+visible = false
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Boss/RibReturn"]
@@ -2094,6 +2094,7 @@ position = Vector2(0, 7.5)
 shape = SubResource("RectangleShape2D_p7duw")
 
 [node name="CollisionDamage" type="Area2D" parent="Boss"]
+visible = false
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Boss/CollisionDamage"]
@@ -2101,6 +2102,7 @@ position = Vector2(0, 8)
 shape = SubResource("RectangleShape2D_u78rf")
 
 [node name="Smash" type="Node2D" parent="Boss"]
+visible = false
 
 [node name="Pivot" type="Area2D" parent="Boss/Smash"]
 collision_layer = 0
@@ -2192,14 +2194,6 @@ layout_mode = 2
 
 [node name="Container15" type="Container" parent="BoneRainGroup"]
 layout_mode = 2
-
-[node name="Floor" type="StaticBody2D" parent="."]
-position = Vector2(-704, 642)
-collision_layer = 10
-collision_mask = 5
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
-shape = SubResource("WorldBoundaryShape2D_3j7y5")
 
 [node name="Roof" type="StaticBody2D" parent="."]
 position = Vector2(-690, -320)

@@ -35,6 +35,10 @@ func interact(_player_path : String):
 		
 		rand = randi_range(0, consumables.size() - 1)
 		PlayerStats.add_consumable(1, load("res://Items/Consumables/" + consumables[rand]))
+		
+		#PlayerStats.set_aspect(1, 1, load("res://Items/Aspects/Fire.tres"))
+		#PlayerStats.set_aspect(2, 1, load("res://Items/Aspects/Poison.tres"))
+
 	
 	match room_type:
 		RoomTypes.RoomTypes.PUZZLE:
