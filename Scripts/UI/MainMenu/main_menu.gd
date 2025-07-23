@@ -1,5 +1,6 @@
 extends Control
 var selected_save : int
+var is_save_empty = false
 
 func _on_play_pressed() -> void:
 	$Play.enabled = true
@@ -54,9 +55,11 @@ func display_save_info(save_info : Dictionary):
 		$Play/SaveInfo/Souls.text = "Souls: " + str(save_info.souls)
 		$Play/SaveInfo/UnlockedWeapons.text = "Weapons: " + str(save_info.numWeapons)
 		$Play/SaveInfo/UnlockedRecipes.text = "Recipes: " + str(save_info.numRecipes)
+		is_save_empty = false
 	else:
 		$Play/SaveInfo.hide()
 		$Play/ActionButtons/DeleteSave.disabled = true
+		is_save_empty = true
 
 func _on_back_to_saves_pressed() -> void:
 	$Play.enabled = true
@@ -66,7 +69,10 @@ func _on_back_to_saves_pressed() -> void:
 func _on_singleplayer_pressed() -> void:
 	PlayerStats.load_stats(selected_save)
 	PlayerStats.is_multiplayer = false
-	get_tree().change_scene_to_file("res://Scenes/Rooms/Hub/hub.tscn")
+	if is_save_empty:
+		get_tree().change_scene_to_file("res://Scenes/Rooms/Tutorial/tutorial.tscn")
+	else:
+		get_tree().change_scene_to_file("res://Scenes/Rooms/Hub/hub.tscn")
 
 
 func _on_multiplayer_pressed() -> void:
