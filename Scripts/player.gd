@@ -271,6 +271,10 @@ func _on_hitstop_timeout() -> void:
 	call_deferred("set_process_mode", Node.PROCESS_MODE_INHERIT)
 
 func interact_with():
+	for area : Area2D in $InteractionRange.get_overlapping_areas():
+		if area.has_method("interact") and area.get_parent().name == "DroppedItem":
+			area.interact(get_path())
+			return
 	for area in $InteractionRange.get_overlapping_areas():
 		if area.has_method("interact"):
 			area.interact(get_path())

@@ -10,5 +10,5 @@ consumable_action = ExtResource("1_yvlji")
 item_name = "Healing Barrel"
 icon = ExtResource("1_0bpit")
 type = 3
-price = 1200
+price = 40
 metadata/_custom_type_script = "uid://b3auab72tb6j6"

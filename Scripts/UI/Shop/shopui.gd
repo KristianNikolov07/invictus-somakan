@@ -70,7 +70,14 @@ func add_buttons():
 	$ItemsToBuy/ShopSlot1.set_item(load("res://Items/Consumables/healing_vial.tres"))
 	$ItemsToBuy/ShopSlot2.set_item(load("res://Items/Consumables/healing_potion.tres"))
 	$ItemsToBuy/ShopSlot3.set_item(load("res://Items/Consumables/healing_barrel.tres"))
+	var consumables_poll : Array[String]
+	for file in DirAccess.get_files_at("res://Items/Consumables"):
+		if file != "healing_vial.tres" and file != "healing_potion.tres" and file != "healing_barrel.tres":
+			consumables_poll.append("res://Items/Consumables/" + file)
 	
+	consumables_poll.shuffle()
+	$ItemsToBuy/ShopSlot4.set_item(load(consumables_poll[0]))
+	$ItemsToBuy/ShopSlot5.set_item(load(consumables_poll[1]))
 	refresh_sell()
 
 

@@ -8,5 +8,5 @@ script = ExtResource("1_17il3")
 consumable_action = ExtResource("1_pr38k")
 item_name = "Leech"
 type = 3
-price = 0
+price = 60
 metadata/_custom_type_script = "uid://gpkkx5lpmjrp"
