@@ -35,6 +35,9 @@ func _on_act_button_pressed() -> void:
 		new_item.global_position = get_node("../../").global_position
 		new_item.get_child(1).set_item(selected_item.duplicate())
 		get_tree().current_scene.add_child(new_item)
+		
+		if PlayerStats.scrap < selected_item.price:
+			set_confirm_status(false)
 		#get_node("../Inventory").add_item(selected_item)
 	else:
 		if PlayerStats.items[selected_index] != null:
@@ -44,7 +47,7 @@ func _on_act_button_pressed() -> void:
 			if PlayerStats.items[selected_index] == null:
 				set_confirm_status(false)
 				$ItemsToSell.get_child(selected_index).reset_bg_color()
-			refresh_sell()
+		refresh_sell()
 
 
 func _on_exit_button_pressed() -> void:
@@ -61,7 +64,7 @@ func set_confirm_status(enabled: bool):
 func select(item: Item, index: int):
 	selected_index = index
 	selected_item = item
-	if selected_item.price > PlayerStats.scrap:
+	if selected_item.price > PlayerStats.scrap and is_buying:
 		set_confirm_status(false)
 	else:
 		set_confirm_status(true)
@@ -82,12 +85,12 @@ func add_buttons():
 
 
 func refresh_sell():
-	var item_slots: Control = get_node("../Inventory/Slots")
 	var index = 1
-	for slot: Control in item_slots.get_children():
-		if slot.item != null:
-			get_node("ItemsToSell/ShopSlot" + str(index)).set_item(slot.item)
-			get_node("ItemsToSell/ShopSlot" + str(index) + "/ItemName").text += "   " + str(slot.item.amount) + "x"
+	for i in range(PlayerStats.items.size()):
+		var item : Item = PlayerStats.items[i]
+		if item != null:
+			get_node("ItemsToSell/ShopSlot" + str(index)).set_item(item)
+			get_node("ItemsToSell/ShopSlot" + str(index) + "/ItemName").text += "   " + str(item.amount) + "x"
 			get_node("ItemsToSell/ShopSlot" + str(index) + "/Price").text = str(int(get_node("ItemsToSell/ShopSlot" + str(index) + "/Price").text)/2)
 		else:
 			get_node("ItemsToSell/ShopSlot" + str(index)).clear_item()
