@@ -157,6 +157,9 @@ position = Vector2(80, 0)
 sprite_frames = SubResource("SpriteFrames_qpo0i")
 autoplay = "default"
 
+[node name="ShootPoint" type="Marker2D" parent="GunTexture"]
+position = Vector2(99, -3)
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="animation_finished" from="CoinRight" to="." method="_on_coin_right_animation_finished"]
 [connection signal="animation_finished" from="CoinLeft" to="." method="_on_coin_left_animation_finished"]

@@ -10,6 +10,8 @@ func _physics_process(delta: float) -> void:
 		$GunTexture/Gun.flip_v = true
 	else:
 		$GunTexture/Gun.flip_v = false
+		
+
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("right_click") and $Coins.value >= 250:
 		$Coin.play()
@@ -35,7 +37,7 @@ func hit(_direction):
 		$Shoot.play()
 		var new_bullet: Projectile = bullet.instantiate()
 		new_bullet.damage = attack_damage
-		new_bullet.global_position = player.global_position
+		new_bullet.global_position = $GunTexture/ShootPoint.global_position
 		new_bullet.rotation = player.global_position.direction_to(get_global_mouse_position()).angle()
 		new_bullet.shooter_vel = player.velocity
 		new_bullet.set_aspect(get_aspect_to_apply())
