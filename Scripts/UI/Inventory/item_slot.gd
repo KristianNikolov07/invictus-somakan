@@ -15,6 +15,7 @@ func set_item(_item: Item) -> void:
 func clear_item() -> void:
 	item = null
 	$Name.text = ""
+	$Amount.text = ""
 	$ItemIcon.texture = null
 
 func _on_texture_button_pressed() -> void:

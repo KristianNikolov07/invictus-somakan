@@ -272,7 +272,7 @@ func _on_hitstop_timeout() -> void:
 
 func interact_with():
 	for area : Area2D in $InteractionRange.get_overlapping_areas():
-		if area.has_method("interact") and area.get_parent().name == "DroppedItem":
+		if area.has_method("interact") and area.get_parent().is_in_group("DroppedItems"):
 			area.interact(get_path())
 			return
 	for area in $InteractionRange.get_overlapping_areas():

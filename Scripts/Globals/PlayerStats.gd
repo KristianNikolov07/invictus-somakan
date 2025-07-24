@@ -32,8 +32,9 @@ func _ready() -> void:
 	#weapon1_aspects[0] = load("res://Items/Aspects/Fire.tres")
 	#weapon2_aspects[1] = load("res://Items/Aspects/CriticalDamage.tres")
 	#weapon2_aspects[0] = load("res://Items/Aspects/Fire.tres")
-	#add_item(load("res://Items/Consumables/leech.tres"))
-
+	#add_item(load("res://Items/fire_orb.tres"))
+	#add_scrap(1000)
+	
 func add_scrap(_scrap : int):
 	scrap += _scrap
 

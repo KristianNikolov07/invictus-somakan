@@ -354,7 +354,9 @@ scale = Vector2(0.3, 0.3)
 theme_override_font_sizes/font_size = 50
 text = "Use Left Click to use the weapon
 
-Use 1 and 2 or the scroll weal to switch between weapons "
+Use 1 and 2 or the scroll wheel to switch between weapons 
+
+Use TAB to open the Inventory"
 
 [node name="Platform" parent="." instance=ExtResource("5_lsevh")]
 position = Vector2(800, -224)

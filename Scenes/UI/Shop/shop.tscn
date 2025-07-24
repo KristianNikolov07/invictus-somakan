@@ -47,18 +47,23 @@ theme_override_constants/separation = 78
 
 [node name="ShopSlot1" parent="ItemsToSell" instance=ExtResource("2_2l5lg")]
 layout_mode = 2
+is_selling = true
 
 [node name="ShopSlot2" parent="ItemsToSell" instance=ExtResource("2_2l5lg")]
 layout_mode = 2
+is_selling = true
 
 [node name="ShopSlot3" parent="ItemsToSell" instance=ExtResource("2_2l5lg")]
 layout_mode = 2
+is_selling = true
 
 [node name="ShopSlot4" parent="ItemsToSell" instance=ExtResource("2_2l5lg")]
 layout_mode = 2
+is_selling = true
 
 [node name="ShopSlot5" parent="ItemsToSell" instance=ExtResource("2_2l5lg")]
 layout_mode = 2
+is_selling = true
 
 [node name="BuyButton" type="TextureButton" parent="."]
 layout_mode = 0

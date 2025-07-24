@@ -140,5 +140,8 @@ position = Vector2(96, 0)
 sprite_frames = SubResource("SpriteFrames_yo2g3")
 autoplay = "default"
 
+[node name="ShootPoint" type="Marker2D" parent="GunTexture"]
+position = Vector2(126, -2)
+
 [connection signal="timeout" from="RefreshBar" to="." method="_on_refresh_bar_timeout"]
 [connection signal="animation_finished" from="GunTexture/Gun" to="." method="_on_gun_right_animation_finished"]

@@ -1,6 +1,7 @@
 extends Control
 
 var item: Item
+@export var is_selling = false
 
 func set_item(_item: Item):
 	item = _item
@@ -22,7 +23,7 @@ func reset_bg_color():
 
 func refresh_price_color():
 	if item != null:
-		if PlayerStats.scrap < item.price:
+		if PlayerStats.scrap < item.price and !is_selling:
 			$Price.self_modulate = Color(1, 0, 0, 1)
 		else:
 			$Price.self_modulate = Color(1, 1, 1, 1)
