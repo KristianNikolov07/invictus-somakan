@@ -47,6 +47,7 @@ enabled=PackedStringArray("res://addons/screen_shaker/plugin.cfg")
 Players=""
 Enemies=""
 Coins=""
+DroppedItems=""
 
 [input]
 
