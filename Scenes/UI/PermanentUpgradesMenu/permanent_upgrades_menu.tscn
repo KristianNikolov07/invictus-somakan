@@ -55,6 +55,7 @@ theme_override_constants/separation = 132
 
 [node name="DoubleJumpSlot" parent="ScrollContainer/VBoxContainer" instance=ExtResource("4_pml07")]
 layout_mode = 2
+price = 150
 
 [node name="MaxHpSlot" parent="ScrollContainer/VBoxContainer" instance=ExtResource("5_ch2ra")]
 layout_mode = 2

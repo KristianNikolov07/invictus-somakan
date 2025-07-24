@@ -26,6 +26,7 @@ offset_right = 176.0
 offset_bottom = 48.0
 
 [node name="Shop" parent="." instance=ExtResource("3_nljv7")]
+visible = false
 
 [node name="Stats" type="Control" parent="."]
 z_index = 5

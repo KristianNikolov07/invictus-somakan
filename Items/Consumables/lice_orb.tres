@@ -10,5 +10,5 @@ consumable_action = ExtResource("1_8bdmt")
 item_name = "Lice Orb"
 icon = ExtResource("2_yt5jl")
 type = 3
-price = 500
+price = 70
 metadata/_custom_type_script = "uid://b3auab72tb6j6"

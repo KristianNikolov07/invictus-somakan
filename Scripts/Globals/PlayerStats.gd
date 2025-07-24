@@ -57,12 +57,13 @@ func add_item(_item: Item, amount:= 1):
 	return false
 
 func remove_item(item : Item, amount:= 1):
-	for i in range(items.size()):
-		if items[i] != null:
-			if items[i].item_name == item.item_name:
-				items[i].amount -= amount
-				if items[i].amount <= 0:
-					items[i] = null
+	if item != null:
+		for i in range(items.size()):
+			if items[i] != null:
+				if items[i].item_name == item.item_name:
+					items[i].amount -= amount
+					if items[i].amount <= 0:
+						items[i] = null
 
 func check_item(item: Item, amount: int):
 	for current_item in items:

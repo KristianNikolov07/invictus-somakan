@@ -1,13 +1,14 @@
 extends Control
+@export var price : int
 
 func _ready() -> void:
 	set_focus_mode(FOCUS_ALL)
 
 func check_upgradable():
-	return not PlayerStats.has_double_jump and PlayerStats.souls >= 500
+	return not PlayerStats.has_double_jump and PlayerStats.souls >= get_price()
 
 func get_price():
-	return 250
+	return price
 	
 func upgrade():
 	PlayerStats.has_double_jump = true
@@ -15,7 +16,7 @@ func upgrade():
 
 func refresh():
 	print("refreshing")
-	$Price.text = "500" if not PlayerStats.has_double_jump else "Unlocked"
+	$Price.text = str(price) if not PlayerStats.has_double_jump else "Unlocked"
 	$FromTo.text = "Unlocks Double Jump"
 	$Price.add_theme_color_override("font_color", Color.WHITE if check_upgradable() else Color.DIM_GRAY)
 

@@ -10,5 +10,5 @@ consumable_action = ExtResource("1_g46es")
 item_name = "Healing Vortex"
 icon = ExtResource("2_iouh4")
 type = 3
-price = 0
+price = 70
 metadata/_custom_type_script = "uid://gpkkx5lpmjrp"

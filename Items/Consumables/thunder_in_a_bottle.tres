@@ -10,5 +10,5 @@ consumable_action = ExtResource("1_k68u7")
 item_name = "Thunder In A Bottle"
 icon = ExtResource("2_jccwr")
 type = 3
-price = 0
+price = 70
 metadata/_custom_type_script = "uid://gpkkx5lpmjrp"

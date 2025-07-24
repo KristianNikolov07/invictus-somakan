@@ -10,5 +10,5 @@ consumable_action = ExtResource("1_2rvgp")
 item_name = "Karen Head"
 icon = ExtResource("2_h143o")
 type = 3
-price = 0
+price = 50
 metadata/_custom_type_script = "uid://gpkkx5lpmjrp"

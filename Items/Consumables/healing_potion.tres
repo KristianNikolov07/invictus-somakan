@@ -10,5 +10,5 @@ consumable_action = ExtResource("1_7ufow")
 item_name = "Healing Potion"
 icon = ExtResource("1_ggpen")
 type = 3
-price = 500
+price = 25
 metadata/_custom_type_script = "uid://b3auab72tb6j6"
