@@ -11,6 +11,7 @@ func _physics_process(delta: float) -> void:
 		_on_retarget_timeout()
 	else:
 		global_position = global_position.move_toward(target.global_position, delta * speed)
+		look_at(target.global_position)
 
 
 func _on_retarget_timeout() -> void:
