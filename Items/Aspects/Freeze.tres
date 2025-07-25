@@ -1,6 +1,7 @@
-[gd_resource type="Resource" script_class="AspectItem" load_steps=3 format=3 uid="uid://ce7addluxfo7p"]
+[gd_resource type="Resource" script_class="AspectItem" load_steps=4 format=3 uid="uid://ce7addluxfo7p"]
 
 [ext_resource type="Script" uid="uid://bnm1nvl5v4528" path="res://Scripts/Classes/AspectItem.gd" id="1_h8676"]
+[ext_resource type="Texture2D" uid="uid://bt3kmt38wm6c7" path="res://Textures/scrolls/ice scroll.png" id="1_xw1yq"]
 [ext_resource type="PackedScene" uid="uid://wwsifbj1y0yt" path="res://Scenes/StatusEffects/freeze.tscn" id="2_oxvlt"]
 
 [resource]
@@ -11,6 +12,7 @@ crit_chance_mult = 1.0
 crit_damage_mult = 1.0
 explosion = false
 item_name = "Freeze Aspect"
+icon = ExtResource("1_xw1yq")
 type = 1
 price = 0
 metadata/_custom_type_script = "uid://bnm1nvl5v4528"

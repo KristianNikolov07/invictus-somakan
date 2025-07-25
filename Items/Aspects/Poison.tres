@@ -1,6 +1,7 @@
-[gd_resource type="Resource" script_class="AspectItem" load_steps=3 format=3 uid="uid://chj704myeaix6"]
+[gd_resource type="Resource" script_class="AspectItem" load_steps=4 format=3 uid="uid://chj704myeaix6"]
 
 [ext_resource type="Script" uid="uid://bnm1nvl5v4528" path="res://Scripts/Classes/AspectItem.gd" id="1_e2gvm"]
+[ext_resource type="Texture2D" uid="uid://c7s7d3gmlomkn" path="res://Textures/scrolls/poison scroll.png" id="1_ku0pk"]
 [ext_resource type="PackedScene" uid="uid://bmrteoq8wnf28" path="res://Scenes/StatusEffects/poison.tscn" id="2_f733a"]
 
 [resource]
@@ -11,6 +12,7 @@ crit_chance_mult = 1.0
 crit_damage_mult = 1.0
 explosion = false
 item_name = "Poison Aspect"
+icon = ExtResource("1_ku0pk")
 type = 1
 price = 0
 metadata/_custom_type_script = "uid://bnm1nvl5v4528"
