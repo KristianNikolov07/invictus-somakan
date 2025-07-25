@@ -6,7 +6,11 @@ var selected_slot: Control = null
 
 func _ready():
 	refresh()
-		
+
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("Inventory") and visible:
+		hide()
+
 func check_craftable(recipe: Recipe):
 	return PlayerStats.scrap >= recipe.price \
 	and PlayerStats.check_item(recipe.item, recipe.amount) \

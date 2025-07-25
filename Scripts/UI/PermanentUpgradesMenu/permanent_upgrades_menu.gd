@@ -5,6 +5,10 @@ var selected_slot: Control = null
 func _ready():
 	refresh()
 
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("Inventory") and visible:
+		hide()
+
 func refresh():
 	select_slot(null)
 	for child in $ScrollContainer/VBoxContainer.get_children():
