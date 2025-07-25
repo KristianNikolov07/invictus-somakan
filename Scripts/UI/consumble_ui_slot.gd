@@ -1,11 +1,10 @@
 extends Control
-@export var item: Item
-
+var item : ConsumableItem
 
 func set_item(_item: Item) -> void:
 	if _item != null:
 		item = _item.duplicate()
-		$ConsumableIcon.texture = item.icon
+		$Icon.texture = item.icon
 		item.amount = _item.amount
 		if item.amount == 1:
 			$Amount.text = ""
@@ -17,10 +16,5 @@ func set_item(_item: Item) -> void:
 
 func clear_item() -> void:
 	item = null
-	$ConsumableIcon.texture = null
+	$Icon.texture = null
 	$Amount.text = ""
-
-
-func _on_pressed() -> void:
-	if item != null:
-		get_node("../../").show_item_options(self, true)

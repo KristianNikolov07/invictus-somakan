@@ -113,6 +113,7 @@ func unlock_weapon(weapon: Item):
 func unlock_blueprint(blueprint : Blueprint):
 	for recipe in unlocked_recipes:
 		if recipe.id == blueprint.recipe.id:
+			remove_item(blueprint)
 			return
 	unlocked_recipes.append(blueprint.recipe)
 	remove_item(blueprint)
@@ -125,13 +126,14 @@ func unlock_all_blueprints():
 
 func add_consumable(slot: int, consumable: ConsumableItem, amount:= 1):
 	if consumables[slot] == null:
-		consumables[slot] = consumable
+		consumables[slot] = consumable.duplicate()
 		consumables[slot].amount = amount
 		var node = consumable.consumable_action.instantiate()
 		node.name = str(slot + 1)
 		get_player().get_node("Consumables").add_child(node)
 	elif consumables[slot].item_name == consumable.item_name:
 		consumables[slot].amount += amount
+	get_player().get_node("UI/ConsumablesUI").refresh()
 
 func remove_consumable(slot: int, amount:= 1):
 	if consumables[slot] != null:
@@ -140,6 +142,7 @@ func remove_consumable(slot: int, amount:= 1):
 			consumables[slot] = null
 			if get_player().get_node("Consumables").get_node(str(slot + 1)) != null:
 				get_player().get_node("Consumables").get_node(str(slot + 1)).queue_free()
+	get_player().get_node("UI/ConsumablesUI").refresh()
 
 func save_stats(saveNum: int):
 	config.load_encrypted_pass("user://save" + str(saveNum) + ".save", "cursedgodotisntrealhecanthurtyou")

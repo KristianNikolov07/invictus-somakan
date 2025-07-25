@@ -60,10 +60,11 @@ func _input(event: InputEvent) -> void:
 		switch_weapon(PlayerStats.weapon2)
 
 	elif event.is_action_released("PreviousWeapon") or event.is_action_released("NextWeapon"):
-		if selected_weapon.item_name == PlayerStats.weapon1.item_name:
-			switch_weapon(PlayerStats.weapon2)
-		else:
-			switch_weapon(PlayerStats.weapon1)
+		if PlayerStats.weapon1 != null and PlayerStats.weapon2 != null:
+			if selected_weapon.item_name == PlayerStats.weapon1.item_name:
+				switch_weapon(PlayerStats.weapon2)
+			else:
+				switch_weapon(PlayerStats.weapon1)
 	elif event.is_action_pressed("UseConsumable1") and $PlayerSprite.animation != "dash":
 		use_consumable(1)
 	elif event.is_action_pressed("UseConsumable2") and $PlayerSprite.animation != "dash":
