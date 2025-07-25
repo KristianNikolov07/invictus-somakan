@@ -17,15 +17,16 @@ func _input(event: InputEvent) -> void:
 		$Coin.play()
 		player.get_node("PlayerSprite").play("cast")
 		var new_coin = coin.instantiate()
-		if player.direction < 0:
+		if get_global_mouse_position().x < player.global_position.x:
 			$CoinLeft.show()
 			$CoinLeft.play("default")
 			new_coin.global_position = $CoinLeft.global_position
+			new_coin.dir = -1
 		else:
 			$CoinRight.show()
 			$CoinRight.play("default")
 			new_coin.global_position = $CoinRight.global_position
-		new_coin.dir = player.direction
+			new_coin.dir = 1
 		new_coin.shooter_vel = player.velocity
 		get_tree().current_scene.add_child(new_coin)
 		$Coins.value -= 250
