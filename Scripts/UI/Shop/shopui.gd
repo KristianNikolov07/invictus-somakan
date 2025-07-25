@@ -91,7 +91,7 @@ func refresh_sell():
 	var index = 1
 	for i in range(PlayerStats.items.size()):
 		var item : Item = PlayerStats.items[i]
-		if item != null:
+		if item != null and item.type != Item.Type.BLUEPRINT:
 			get_node("ItemsToSell/ShopSlot" + str(index)).set_item(item)
 			get_node("ItemsToSell/ShopSlot" + str(index) + "/ItemName").text += "   " + str(item.amount) + "x"
 			get_node("ItemsToSell/ShopSlot" + str(index) + "/Price").text = str(int(get_node("ItemsToSell/ShopSlot" + str(index) + "/Price").text)/2)
