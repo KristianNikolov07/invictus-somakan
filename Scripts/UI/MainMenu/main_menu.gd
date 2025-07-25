@@ -53,7 +53,7 @@ func display_save_info(save_info : Dictionary):
 		$Play/SaveInfo.show()
 		$Play/ActionButtons/DeleteSave.disabled = false
 		$Play/SaveInfo/Souls.text = "Souls: " + str(save_info.souls)
-		$Play/SaveInfo/UnlockedWeapons.text = "Weapons: " + str(save_info.numWeapons)
+		$Play/SaveInfo/UnlockedWeapons.text = "Weapons: " + str(save_info.numWeapons + 2)
 		$Play/SaveInfo/UnlockedRecipes.text = "Recipes: " + str(save_info.numRecipes)
 		is_save_empty = false
 	else:

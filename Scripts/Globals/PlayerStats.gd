@@ -13,6 +13,7 @@ var scrap: int = 0
 var souls: int = 0
 var hp: int = 50
 var max_hp: int = 50
+var default_max_hp = 50
 var is_multiplayer = false
 var current_save_file = 1
 
@@ -154,18 +155,40 @@ func save_stats(saveNum: int):
 	config.save_encrypted_pass("user://save" + str(saveNum) + ".save", "cursedgodotisntrealhecanthurtyou")
 
 func load_stats(saveNum: int):
-	config.load_encrypted_pass("user://save" + str(saveNum) + ".save", "cursedgodotisntrealhecanthurtyou")
-	if config.has_section_key("save", "souls"):
-		souls = config.get_value("save", "souls")
-	if config.has_section_key("save", "recipes"):
-		unlocked_recipes = config.get_value("save", "recipes")
-	if config.has_section_key("save", "weapons"):
-		unlocked_weapons = config.get_value("save", "weapons")
-	if config.has_section_key("save", "max_hp"):
-		max_hp = config.get_value("save", "max_hp")
+	if config.load_encrypted_pass("user://save" + str(saveNum) + ".save", "cursedgodotisntrealhecanthurtyou") == OK:
+		if config.has_section_key("save", "souls"):
+			souls = config.get_value("save", "souls")
+		else:
+			souls = 0
+			
+		if config.has_section_key("save", "recipes"):
+			unlocked_recipes = config.get_value("save", "recipes")
+		else:
+			unlocked_recipes = []
+			
+		if config.has_section_key("save", "weapons"):
+			unlocked_weapons = config.get_value("save", "weapons")
+		else:
+			unlocked_weapons = []
+			
+		if config.has_section_key("save", "max_hp"):
+			max_hp = config.get_value("save", "max_hp")
+			hp = max_hp
+		else:
+			max_hp = default_max_hp
+			hp = max_hp
+			
+		if config.has_section_key("save", "double_jump"):
+			has_double_jump = config.get_value("save", "double_jump")
+		else:
+			has_double_jump = false
+	else:
+		souls = 0
+		unlocked_recipes = []
+		unlocked_weapons = []
+		max_hp = default_max_hp
 		hp = max_hp
-	if config.has_section_key("save", "double_jump"):
-		has_double_jump = config.get_value("save", "double_jump")
+		has_double_jump = false
 	
 	current_save_file = saveNum
 
