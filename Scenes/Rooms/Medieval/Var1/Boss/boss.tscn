@@ -1,4 +1,4 @@
-[gd_scene load_steps=171 format=4 uid="uid://c1rc4j254q34j"]
+[gd_scene load_steps=170 format=4 uid="uid://c1rc4j254q34j"]
 
 [ext_resource type="Script" uid="uid://c80uwe0iluece" path="res://Scripts/Rooms/boss_room_1.gd" id="1_gt27v"]
 [ext_resource type="Texture2D" uid="uid://ctm47thfbe3uy" path="res://Textures/tile-set.png" id="2_5igek"]
@@ -8,7 +8,6 @@
 [ext_resource type="Script" uid="uid://c0r8ikcl8si3u" path="res://Scripts/Enemies/boss.gd" id="5_gstnu"]
 [ext_resource type="PackedScene" uid="uid://bqo6qnqcmww4y" path="res://Scenes/UI/health_bar.tscn" id="6_ic5vd"]
 [ext_resource type="Script" uid="uid://b3auab72tb6j6" path="res://Scripts/Classes/Item.gd" id="7_5igek"]
-[ext_resource type="Resource" uid="uid://dsqf3llghx7x7" path="res://Items/Weapons/Bow.tres" id="8_foa0n"]
 [ext_resource type="Texture2D" uid="uid://dowfelenfbfhv" path="res://Textures/Boss/boss_bone_rain.png" id="9_h7elt"]
 [ext_resource type="Resource" uid="uid://c3mr478j4bqcx" path="res://Items/Weapons/chushkopek_sniper.tres" id="9_sa05p"]
 [ext_resource type="Texture2D" uid="uid://b7ygdhax07c3" path="res://Textures/Boss/boss_death.png" id="10_4lyss"]
@@ -2065,7 +2064,6 @@ parry_damage = 0
 can_be_knockedback = false
 damage_number_scale = 4.0
 loot = Dictionary[ExtResource("7_5igek"), float]({
-ExtResource("8_foa0n"): 20.0,
 ExtResource("9_sa05p"): 20.0,
 ExtResource("10_ll8fm"): 20.0,
 ExtResource("11_p423f"): 20.0,
