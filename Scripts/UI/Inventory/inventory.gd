@@ -71,26 +71,28 @@ func show_item_options(_item_slot: Control, _is_equipped: bool):
 
 func _on_equip_1_pressed() -> void:
 	if item_slot.item.type == Item.Type.CONSUMABLE:
-		PlayerStats.add_consumable(0, item_slot.item)
+		PlayerStats.add_consumable(0, item_slot.item, item_slot.item.amount)
+		PlayerStats.remove_item(item_slot.item, item_slot.item.amount)
 	else:
 		if PlayerStats.weapon1_aspects[0] == null:
 			PlayerStats.set_aspect(1, 0, item_slot.item)
 		elif PlayerStats.weapon1_aspects[1] == null:
 			PlayerStats.set_aspect(1, 1, item_slot.item)
-	
-	PlayerStats.remove_item(item_slot.item)
+		PlayerStats.remove_item(item_slot.item)
+		
 	refresh()
 
 func _on_equip_2_pressed() -> void:
 	if item_slot.item.type == Item.Type.CONSUMABLE:
-		PlayerStats.add_consumable(1, item_slot.item)
+		PlayerStats.add_consumable(1, item_slot.item, item_slot.item.amount)
+		PlayerStats.remove_item(item_slot.item, item_slot.item.amount)
 	else:
 		if PlayerStats.weapon2_aspects[0] == null:
 			PlayerStats.set_aspect(2, 0, item_slot.item)
 		elif PlayerStats.weapon2_aspects[1] == null:
 			PlayerStats.set_aspect(2, 1, item_slot.item)
-	
-	PlayerStats.remove_item(item_slot.item)
+		PlayerStats.remove_item(item_slot.item)
+		
 	refresh()
 
 func _on_drop_pressed() -> void:

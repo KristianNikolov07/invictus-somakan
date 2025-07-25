@@ -18,6 +18,7 @@ func set_item(_item: Item) -> void:
 func clear_item() -> void:
 	item = null
 	$ConsumableIcon.texture = null
+	$Amount.text = ""
 
 
 func _on_pressed() -> void:
