@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://dhyrhghvucxut"]
+
+[ext_resource type="Script" uid="uid://b3ovnw1i1131t" path="res://Scripts/UI/consumables_ui.gd" id="1_ayjvl"]
+[ext_resource type="PackedScene" uid="uid://cwhnn8ep6ggtu" path="res://Scenes/UI/consumble_ui_slot.tscn" id="1_ypuau"]
+
+[node name="ConsumablesUI" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_ayjvl")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/separation = 64
+
+[node name="ConsumbleUISlot1" parent="HBoxContainer" instance=ExtResource("1_ypuau")]
+layout_mode = 2
+
+[node name="ConsumbleUISlot2" parent="HBoxContainer" instance=ExtResource("1_ypuau")]
+layout_mode = 2

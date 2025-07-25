@@ -23,6 +23,9 @@ func _ready() -> void:
 		$Sprite2D.play("shop")
 	elif room_type == RoomTypes.RoomTypes.BOSS:
 		$Sprite2D.play("boss")
+		
+	if !visible:
+		monitorable = false
 
 func interact(_player_path : String):
 	if is_stage_transition:
