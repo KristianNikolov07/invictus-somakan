@@ -64,6 +64,13 @@ sprite_frames = SubResource("SpriteFrames_j3ucw")
 autoplay = "default"
 frame_progress = 0.0511038
 
+[node name="Background4" type="AnimatedSprite2D" parent="."]
+position = Vector2(576, 1092)
+scale = Vector2(0.6, 0.6)
+sprite_frames = SubResource("SpriteFrames_j3ucw")
+autoplay = "default"
+frame_progress = 0.0511038
+
 [node name="Title" type="Sprite2D" parent="."]
 position = Vector2(576, 264)
 scale = Vector2(0.418519, 0.418519)
@@ -272,6 +279,74 @@ theme_override_font_sizes/font_size = 50
 disabled = true
 text = "Multiplayer"
 
+[node name="Options" type="Camera2D" parent="."]
+position = Vector2(576, 1092)
+enabled = false
+
+[node name="Panel" type="Panel" parent="Options"]
+self_modulate = Color(1, 1, 1, 0.596078)
+offset_left = -257.0
+offset_top = -166.0
+offset_right = 255.0
+offset_bottom = 162.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Options/Panel"]
+layout_mode = 0
+offset_left = 25.0
+offset_top = 10.0
+offset_right = 489.0
+offset_bottom = 306.0
+theme_override_constants/separation = 40
+alignment = 1
+
+[node name="MasterVolume" type="VBoxContainer" parent="Options/Panel/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Options/Panel/VBoxContainer/MasterVolume"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Master Volume: "
+horizontal_alignment = 1
+
+[node name="MasterVolume" type="HSlider" parent="Options/Panel/VBoxContainer/MasterVolume"]
+layout_mode = 2
+max_value = 1.0
+step = 0.001
+value = 1.0
+
+[node name="MusicVolume" type="VBoxContainer" parent="Options/Panel/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="Options/Panel/VBoxContainer/MusicVolume"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Music Volume: "
+horizontal_alignment = 1
+
+[node name="MusicVolume" type="HSlider" parent="Options/Panel/VBoxContainer/MusicVolume"]
+layout_mode = 2
+max_value = 1.0
+step = 0.001
+value = 1.0
+
+[node name="Apply" type="Button" parent="Options/Panel"]
+layout_mode = 0
+offset_left = 65.0
+offset_top = 277.0
+offset_right = 155.0
+offset_bottom = 327.0
+theme_override_font_sizes/font_size = 30
+text = "Apply"
+
+[node name="Back" type="Button" parent="Options/Panel"]
+layout_mode = 0
+offset_left = 359.0
+offset_top = 278.0
+offset_right = 449.0
+offset_bottom = 328.0
+theme_override_font_sizes/font_size = 30
+text = "Back"
+
 [connection signal="pressed" from="VBoxContainer/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="VBoxContainer/Options" to="." method="_on_options_pressed"]
 [connection signal="pressed" from="VBoxContainer/Quit" to="." method="_on_quit_pressed"]
@@ -286,3 +361,5 @@ text = "Multiplayer"
 [connection signal="pressed" from="SingleplayerOrMultiplayer/Back" to="." method="_on_back_to_saves_pressed"]
 [connection signal="pressed" from="SingleplayerOrMultiplayer/VBoxContainer/Singleplayer" to="." method="_on_singleplayer_pressed"]
 [connection signal="pressed" from="SingleplayerOrMultiplayer/VBoxContainer/Multiplayer" to="." method="_on_multiplayer_pressed"]
+[connection signal="pressed" from="Options/Panel/Apply" to="." method="_on_apply_options_pressed"]
+[connection signal="pressed" from="Options/Panel/Back" to="." method="_on_back_options_pressed"]
