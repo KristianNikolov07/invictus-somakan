@@ -327,4 +327,4 @@ shape = SubResource("WorldBoundaryShape2D_0qjpg")
 [node name="CameraLimiter" parent="." instance=ExtResource("11_dssej")]
 
 [node name="UpgradeShop" parent="." instance=ExtResource("15_0qjpg")]
-position = Vector2(1280, -144)
+position = Vector2(1280, -128)
