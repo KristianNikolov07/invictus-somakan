@@ -8,5 +8,5 @@ script = ExtResource("2_56aas")
 item_name = "Poison Orb"
 icon = ExtResource("1_ck7n4")
 type = 0
-price = 500
+price = 120
 metadata/_custom_type_script = "uid://b3auab72tb6j6"

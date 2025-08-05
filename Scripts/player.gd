@@ -212,6 +212,7 @@ func close_upgrades_menu():
 	
 func open_shop_menu():
 	if not $UI/Inventory.visible and not $UI/Crafting.visible and not $UI/Upgrades.visible:
+		$UI/Shop.refresh_sell()
 		$UI/Shop.show()
 
 func damage_amount(amount: int, knockback) -> void:
