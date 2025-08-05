@@ -13,6 +13,7 @@ var speed_mult = 1
 var direction = 1
 var damage_number_scale: float = 1.5
 var damage_number_duration: float = 1.5
+@export var can_take_damage = true
 
 var selected_weapon
 
@@ -20,6 +21,7 @@ var selected_weapon
 
 func _ready() -> void:
 	instantiate_weapons()
+	instantiate_consumables()
 
 func _physics_process(_delta: float) -> void:
 	if $DashTimer.is_stopped():
@@ -57,15 +59,26 @@ func _input(event: InputEvent) -> void:
 	elif event.is_action_pressed("Weapon2"):
 		switch_weapon(PlayerStats.weapon2)
 
-	#elif event.is_action_released("PreviousWeapon") or event.is_action_released("NextWeapon"):
-	#	if selected_weapon.item_name == PlayerStats.weapon1.item_name:
-	#		selected_weapon = PlayerStats.weapon2
-	#	else:
-	#		selected_weapon = PlayerStats.weapon1
+	elif event.is_action_released("PreviousWeapon") or event.is_action_released("NextWeapon"):
+		if PlayerStats.weapon1 != null and PlayerStats.weapon2 != null:
+			if selected_weapon.item_name == PlayerStats.weapon1.item_name:
+				switch_weapon(PlayerStats.weapon2)
+			else:
+				switch_weapon(PlayerStats.weapon1)
 	elif event.is_action_pressed("UseConsumable1") and $PlayerSprite.animation != "dash":
 		use_consumable(1)
 	elif event.is_action_pressed("UseConsumable2") and $PlayerSprite.animation != "dash":
 		use_consumable(2)
+
+func instantiate_consumables():
+	if PlayerStats.consumables[0] != null:
+		var node = PlayerStats.consumables[0].consumable_action.instantiate()
+		node.name = "1"
+		get_node("Consumables").add_child(node)
+	if PlayerStats.consumables[1] != null:
+		var node = PlayerStats.consumables[1].consumable_action.instantiate()
+		node.name = "2"
+		get_node("Consumables").add_child(node)
 
 func instantiate_weapons():
 	instantiate_weapon_1(PlayerStats.weapon1)
@@ -182,34 +195,40 @@ func use_consumable(consumable: int):
 		PlayerStats.remove_consumable(consumable - 1)
 
 func open_crafting_menu():
-	$UI/Crafting.show()
-	$UI/Crafting.refresh()
+	if not $UI/Inventory.visible and not $UI/Shop.visible and not $UI/Upgrades.visible:
+		$UI/Crafting.show()
+		$UI/Crafting.refresh()
 
 func close_crafting_menu():
 	$UI/Crafting.hide()
 	
 func open_upgrades_menu():
-	$UI/Upgrades.show()
-	$UI/Upgrades.refresh()
+	if not $UI/Inventory.visible and not $UI/Shop.visible and not $UI/Crafting.visible:
+		$UI/Upgrades.show()
+		$UI/Upgrades.refresh()
 
 func close_upgrades_menu():
 	$UI/Upgrades.hide()
 	
 func open_shop_menu():
-	$UI/Shop.show()
+	if not $UI/Inventory.visible and not $UI/Crafting.visible and not $UI/Upgrades.visible:
+		$UI/Shop.show()
 
 func damage_amount(amount: int, knockback) -> void:
 	Utils.summon_damage_number(self, amount, Color.RED, damage_number_scale, damage_number_duration)
-	set_collision_layer_value(1, false)
-	$Invincibility.start()
-	velocity.x = 1600 * knockback
-	velocity.y = -500 * abs(knockback)
-	PlayerStats.hp -= amount
-	$Parry.stop()
-	if PlayerStats.hp <= 0:
-		$PlayerSprite.play("death")
-		await $PlayerSprite.animation_finished
-		get_tree().change_scene_to_file("res://Scenes/UI/game_over.tscn")
+	if can_take_damage:
+		set_collision_layer_value(1, false)
+		$Invincibility.start()
+		velocity.x = 1600 * knockback
+		velocity.y = -500 * abs(knockback)
+		PlayerStats.hp -= amount
+		$Parry.stop()
+		if PlayerStats.hp <= 0:
+			var tree = get_tree()
+			$PlayerSprite.play("death")
+			await $PlayerSprite.animation_finished
+			if is_instance_valid(tree):
+				tree.change_scene_to_file("res://Scenes/Rooms/Hub/hub.tscn")
 
 	
 func damage(hitbox: Hitbox, knockback):
@@ -221,11 +240,15 @@ func damage(hitbox: Hitbox, knockback):
 	velocity.y = -500 * abs(knockback)
 	var damage_num = hitbox.get_damage() * (hitbox.get_crit_mult() if is_crit else 1)
 	Utils.summon_damage_number(self, damage_num, Color.RED, damage_number_scale, damage_number_duration)
-	PlayerStats.hp -= damage_num
-	if PlayerStats.hp <= 0:
-		$PlayerSprite.play("death")
-		await $PlayerSprite.animation_finished
-		get_tree().change_scene_to_file("res://Scenes/UI/game_over.tscn")
+	if can_take_damage:
+		PlayerStats.hp -= damage_num
+		if PlayerStats.hp <= 0:
+			var tree = get_tree()
+			$PlayerSprite.play("death")
+			await $PlayerSprite.animation_finished
+			if is_instance_valid(tree):
+				tree.change_scene_to_file("res://Scenes/Rooms/Hub/hub.tscn")
+
 
 func unlock_recipe(recipe: Recipe):
 	PlayerStats.unlocked_recipes.append(recipe)
@@ -249,6 +272,10 @@ func _on_hitstop_timeout() -> void:
 	call_deferred("set_process_mode", Node.PROCESS_MODE_INHERIT)
 
 func interact_with():
+	for area : Area2D in $InteractionRange.get_overlapping_areas():
+		if area.has_method("interact") and area.get_parent().is_in_group("DroppedItems"):
+			area.interact(get_path())
+			return
 	for area in $InteractionRange.get_overlapping_areas():
 		if area.has_method("interact"):
 			area.interact(get_path())

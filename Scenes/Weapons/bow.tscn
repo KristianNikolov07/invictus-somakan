@@ -1,10 +1,73 @@
-[gd_scene load_steps=2 format=3 uid="uid://cvvu657tj36g5"]
+[gd_scene load_steps=11 format=3 uid="uid://cvvu657tj36g5"]
 
 [ext_resource type="Script" uid="uid://dkbay5f0kyf6i" path="res://Scripts/Weapons/bow.gd" id="1_cggr6"]
+[ext_resource type="Texture2D" uid="uid://bnhsljuvlfb0s" path="res://Textures/weapon/weapon_bow.png" id="2_wb0hi"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kjin7"]
+atlas = ExtResource("2_wb0hi")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hk5d7"]
+atlas = ExtResource("2_wb0hi")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r4t6c"]
+atlas = ExtResource("2_wb0hi")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nlqf0"]
+atlas = ExtResource("2_wb0hi")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w8c72"]
+atlas = ExtResource("2_wb0hi")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yxbc2"]
+atlas = ExtResource("2_wb0hi")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wb0hi"]
+atlas = ExtResource("2_wb0hi")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7a073"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kjin7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hk5d7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r4t6c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nlqf0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w8c72")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yxbc2")
+}],
+"loop": false,
+"name": &"Shoot",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wb0hi")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="Bow" type="Node2D"]
 script = ExtResource("1_cggr6")
-arrow_damage = 3
+arrow_damage = 20
 reload_time_per_arrow = 2
 attack_damage = 0
 metadata/_custom_type_script = "uid://c365hr0ip46v1"
@@ -31,6 +94,17 @@ scale = Vector2(0.9, 0.9)
 max_value = 1.0
 step = 0.05
 
+[node name="Texture" type="Node2D" parent="."]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Texture"]
+texture_filter = 1
+position = Vector2(48, 0)
+rotation = 0.785398
+sprite_frames = SubResource("SpriteFrames_7a073")
+animation = &"Shoot"
+autoplay = "default"
+
 [connection signal="timeout" from="ReloadTimer" to="." method="_on_reload_timer_timeout"]
 [connection signal="timeout" from="Cooldown" to="." method="_on_cooldown_timeout"]
 [connection signal="timeout" from="RefreshProgress" to="." method="_on_refresh_progress_timeout"]
+[connection signal="animation_finished" from="Texture/AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

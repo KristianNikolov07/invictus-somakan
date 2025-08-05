@@ -19,7 +19,10 @@ func retarget():
 			_target = player
 	
 	target = _target
-
+	if target.global_position < global_position:
+		$AnimationPlayer.play("left")
+	else:
+		$AnimationPlayer.play("right")
 
 func _on_healing_cooldown_timeout() -> void:
 	for body in get_overlapping_bodies():

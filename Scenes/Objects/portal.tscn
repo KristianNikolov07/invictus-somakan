@@ -1,20 +1,104 @@
-[gd_scene load_steps=4 format=3 uid="uid://ch7esotluxknf"]
+[gd_scene load_steps=11 format=3 uid="uid://ch7esotluxknf"]
 
 [ext_resource type="Script" uid="uid://c5myelt261v7t" path="res://Scripts/Objects/portal.gd" id="1_j133l"]
-[ext_resource type="Texture2D" uid="uid://c1lo75th7b88g" path="res://Textures/icon.svg" id="1_yjf24"]
+[ext_resource type="Texture2D" uid="uid://y81rh12rrsmf" path="res://Textures/interactable/interactable_portal_boss.png" id="2_3ay4y"]
+[ext_resource type="Texture2D" uid="uid://b28v6f06j0b3r" path="res://Textures/interactable/interactable_portal_location.png" id="2_j133l"]
+[ext_resource type="Texture2D" uid="uid://d2m8gobh2beea" path="res://Textures/interactable/interactable_portal_combat.png" id="3_0wrax"]
+[ext_resource type="Texture2D" uid="uid://b5wpjvwue2tms" path="res://Textures/interactable/interactable_portal_shop.png" id="4_pvtky"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_yjf24"]
-size = Vector2(128, 128)
+[sub_resource type="SpriteFrames" id="SpriteFrames_yjf24"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_3ay4y")
+}],
+"loop": true,
+"name": &"boss",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_0wrax")
+}],
+"loop": true,
+"name": &"combat",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_pvtky")
+}],
+"loop": true,
+"name": &"shop",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_j133l")
+}],
+"loop": true,
+"name": &"stage_transition",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3ay4y"]
+size = Vector2(119, 117)
+
+[sub_resource type="Animation" id="Animation_0wrax"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_3ay4y"]
+resource_name = "spin"
+length = 4.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.28319]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0wrax"]
+_data = {
+&"RESET": SubResource("Animation_0wrax"),
+&"spin": SubResource("Animation_3ay4y")
+}
 
 [node name="Portal" type="Area2D"]
-visible = false
-self_modulate = Color(0.439216, 1, 0.12549, 1)
 monitoring = false
 script = ExtResource("1_j133l")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-self_modulate = Color(0, 0.609754, 0.242067, 1)
-texture = ExtResource("1_yjf24")
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(4, 4)
+sprite_frames = SubResource("SpriteFrames_yjf24")
+animation = &"stage_transition"
+autoplay = "stage_transition"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_yjf24")
+position = Vector2(-0.5, -3.5)
+shape = SubResource("RectangleShape2D_3ay4y")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_0wrax")
+}
+autoplay = "spin"

@@ -8,7 +8,7 @@ class_name Projectile
 @export var can_hit_enemies := false
 @export var can_hit_players := true
 var times_parried = 0
-var shooter_vel = 0
+var shooter_vel := Vector2.ZERO
 var applied_aspect: AspectItem
 
 func _physics_process(delta: float) -> void:

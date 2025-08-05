@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://drp6ipmox6vyo"]
+[gd_scene load_steps=4 format=3 uid="uid://drp6ipmox6vyo"]
 
 [ext_resource type="Script" uid="uid://de0i0xid3y53r" path="res://Scripts/Objects/crafting_table.gd" id="1_8642y"]
+[ext_resource type="Texture2D" uid="uid://bqp7v4egly5dy" path="res://Textures/shop/shop_crafting_table.png" id="2_wephv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wephv"]
 size = Vector2(179, 157)
@@ -12,3 +13,6 @@ script = ExtResource("1_8642y")
 shape = SubResource("RectangleShape2D_wephv")
 
 [node name="Texture" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(2, 2)
+texture = ExtResource("2_wephv")

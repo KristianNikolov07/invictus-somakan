@@ -1,12 +1,14 @@
-[gd_resource type="Resource" script_class="WeaponItem" load_steps=3 format=3 uid="uid://vqwu1245q1py"]
+[gd_resource type="Resource" script_class="WeaponItem" load_steps=4 format=3 uid="uid://vqwu1245q1py"]
 
 [ext_resource type="Script" uid="uid://cyk6fbvc2v7n6" path="res://Scripts/Classes/WeaponItem.gd" id="1_hgs6k"]
+[ext_resource type="Texture2D" uid="uid://hxcblg4ev7dj" path="res://Textures/inv_sprite/inv_sprite_marksman.png" id="1_u68e8"]
 [ext_resource type="PackedScene" uid="uid://wcjceeec225m" path="res://Scenes/Weapons/marksman.tscn" id="2_u862r"]
 
 [resource]
 script = ExtResource("1_hgs6k")
 weapon_action_scene = ExtResource("2_u862r")
 item_name = "Marksman"
+icon = ExtResource("1_u68e8")
 type = 4
 price = 0
 metadata/_custom_type_script = "uid://cyk6fbvc2v7n6"

@@ -1,5 +1,6 @@
-[gd_resource type="Resource" script_class="AspectItem" load_steps=3 format=3 uid="uid://dcpuxfqopepj0"]
+[gd_resource type="Resource" script_class="AspectItem" load_steps=4 format=3 uid="uid://dcpuxfqopepj0"]
 
+[ext_resource type="Texture2D" uid="uid://cpy68w25n1mis" path="res://Textures/scrolls/fire scroll.png" id="1_wvfkb"]
 [ext_resource type="Script" uid="uid://bnm1nvl5v4528" path="res://Scripts/Classes/AspectItem.gd" id="1_xssya"]
 [ext_resource type="PackedScene" uid="uid://batlp060anfa" path="res://Scenes/StatusEffects/fire.tscn" id="2_k6w2w"]
 
@@ -7,7 +8,11 @@
 script = ExtResource("1_xssya")
 status_effect = ExtResource("2_k6w2w")
 aspect_name = "Fire"
+crit_chance_mult = 1.0
+crit_damage_mult = 1.0
+explosion = false
 item_name = "Fire Aspect"
-type = 0
+icon = ExtResource("1_wvfkb")
+type = 1
 price = 0
 metadata/_custom_type_script = "uid://bnm1nvl5v4528"

@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Blueprint" load_steps=4 format=3 uid="uid://bywtyvbopiflj"]
+
+[ext_resource type="Texture2D" uid="uid://bx6mkrb6a0883" path="res://Textures/blueprint.png" id="1_efbmw"]
+[ext_resource type="Script" uid="uid://cao0septh7c23" path="res://Scripts/Classes/Blueprint.gd" id="1_l8wcw"]
+[ext_resource type="Resource" uid="uid://d2a5xo58qi3h1" path="res://Recipes/critical_chance_aspect.tres" id="1_v0d5a"]
+
+[resource]
+script = ExtResource("1_l8wcw")
+recipe = ExtResource("1_v0d5a")
+item_name = "Critical Chance Blueprint"
+icon = ExtResource("1_efbmw")
+type = 2
+price = 0
+metadata/_custom_type_script = "uid://cao0septh7c23"

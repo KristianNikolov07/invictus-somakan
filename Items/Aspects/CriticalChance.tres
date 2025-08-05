@@ -1,13 +1,16 @@
-[gd_resource type="Resource" script_class="AspectItem" load_steps=2 format=3 uid="uid://fpoasv1emc6v"]
+[gd_resource type="Resource" script_class="AspectItem" load_steps=3 format=3 uid="uid://fpoasv1emc6v"]
 
 [ext_resource type="Script" uid="uid://bnm1nvl5v4528" path="res://Scripts/Classes/AspectItem.gd" id="1_40p4t"]
+[ext_resource type="Texture2D" uid="uid://derovkdnh0gdf" path="res://Textures/scrolls/critical chance scroll.png" id="1_rbxkq"]
 
 [resource]
 script = ExtResource("1_40p4t")
 aspect_name = "Critical Chance"
 crit_chance_mult = 2.0
 crit_damage_mult = 1.0
+explosion = false
 item_name = "Crit Chance Aspect"
-type = 0
+icon = ExtResource("1_rbxkq")
+type = 1
 price = 0
 metadata/_custom_type_script = "uid://bnm1nvl5v4528"

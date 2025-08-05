@@ -1,12 +1,14 @@
-[gd_resource type="Resource" script_class="ConsumableItem" load_steps=3 format=3 uid="uid://c6i6qjilbexis"]
+[gd_resource type="Resource" script_class="ConsumableItem" load_steps=4 format=3 uid="uid://c6i6qjilbexis"]
 
 [ext_resource type="Script" uid="uid://gpkkx5lpmjrp" path="res://Scripts/Classes/ConsumableItem.gd" id="1_17il3"]
 [ext_resource type="PackedScene" uid="uid://cju3jsmjddg4x" path="res://Scenes/Consumables/leech/leech.tscn" id="1_pr38k"]
+[ext_resource type="Texture2D" uid="uid://cje8b5t5lf4e8" path="res://Textures/leech.png" id="2_7sasq"]
 
 [resource]
 script = ExtResource("1_17il3")
 consumable_action = ExtResource("1_pr38k")
 item_name = "Leech"
+icon = ExtResource("2_7sasq")
 type = 3
-price = 0
+price = 60
 metadata/_custom_type_script = "uid://gpkkx5lpmjrp"

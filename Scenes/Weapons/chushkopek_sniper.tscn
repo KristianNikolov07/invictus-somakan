@@ -1,10 +1,97 @@
-[gd_scene load_steps=4 format=3 uid="uid://b85px51yxbavk"]
+[gd_scene load_steps=17 format=3 uid="uid://b85px51yxbavk"]
 
 [ext_resource type="Script" uid="uid://br2f41co2w030" path="res://Scripts/Weapons/chushkopek_sniper.gd" id="1_iw0ey"]
 [ext_resource type="Texture2D" uid="uid://6jcwo0w01o5o" path="res://Textures/pepper_bar.png" id="2_j0d3l"]
 [ext_resource type="Texture2D" uid="uid://bmx1xppg8rolw" path="res://Textures/pepper_fill.png" id="3_ey34x"]
+[ext_resource type="Texture2D" uid="uid://c07471inwdbv7" path="res://Textures/weapon/weapon_chushkopek_sniper_ammo_holder.png" id="4_yo2g3"]
+[ext_resource type="Texture2D" uid="uid://c4mp3eeacat7a" path="res://Textures/weapon/weapon_chushkopek_sniper_shoot.png" id="5_kn4c4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kn4c4"]
+atlas = ExtResource("4_yo2g3")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y0fw0"]
+atlas = ExtResource("4_yo2g3")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v3e5r"]
+atlas = ExtResource("4_yo2g3")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cmxbt"]
+atlas = ExtResource("4_yo2g3")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bh4lm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kn4c4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y0fw0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v3e5r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cmxbt")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nbnh1"]
+atlas = ExtResource("5_kn4c4")
+region = Rect2(0, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bh4lm"]
+atlas = ExtResource("5_kn4c4")
+region = Rect2(0, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fnh6l"]
+atlas = ExtResource("5_kn4c4")
+region = Rect2(64, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vd1t4"]
+atlas = ExtResource("5_kn4c4")
+region = Rect2(128, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m64bg"]
+atlas = ExtResource("5_kn4c4")
+region = Rect2(192, 0, 64, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yo2g3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nbnh1")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bh4lm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fnh6l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vd1t4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m64bg")
+}],
+"loop": false,
+"name": &"shoot",
+"speed": 9.0
+}]
 
 [node name="ChushkopekSniper" type="Node2D"]
+texture_filter = 1
 script = ExtResource("1_iw0ey")
 
 [node name="Cooldown" type="Timer" parent="."]
@@ -29,4 +116,32 @@ max_value = 1000.0
 texture_over = ExtResource("2_j0d3l")
 texture_progress = ExtResource("3_ey34x")
 
+[node name="ChushkopekHolderLeft" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(-72, 0)
+sprite_frames = SubResource("SpriteFrames_bh4lm")
+autoplay = "default"
+frame = 3
+frame_progress = 0.131751
+flip_h = true
+
+[node name="ChushkopekHolderRight" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(72, 0)
+sprite_frames = SubResource("SpriteFrames_bh4lm")
+autoplay = "default"
+frame = 3
+frame_progress = 0.131751
+
+[node name="GunTexture" type="Node2D" parent="."]
+
+[node name="Gun" type="AnimatedSprite2D" parent="GunTexture"]
+position = Vector2(96, 0)
+sprite_frames = SubResource("SpriteFrames_yo2g3")
+autoplay = "default"
+
+[node name="ShootPoint" type="Marker2D" parent="GunTexture"]
+position = Vector2(126, -2)
+
 [connection signal="timeout" from="RefreshBar" to="." method="_on_refresh_bar_timeout"]
+[connection signal="animation_finished" from="GunTexture/Gun" to="." method="_on_gun_right_animation_finished"]

@@ -104,10 +104,14 @@ func damage_amount(amount: int, knockback) -> void:
 		blizzard.end_effect()
 	Utils.summon_damage_number(self, amount, Color.WHITE, damage_number_scale, damage_number_duration)
 	hp -= amount
+	damage_anim()
 	if hp <= 0:
-		drop_soul()
-		drop_loot()
-		queue_free()
+		death()
+
+func death():
+	drop_soul()
+	drop_loot()
+	queue_free()
 
 func drop_loot():
 	for player in range(get_tree().get_nodes_in_group("Players").size()):
@@ -161,10 +165,9 @@ func damage(hitbox: Hitbox, knockback) -> void:
 			bleeding.end_effect()
 	Utils.summon_damage_number(self, dam, Color.ORANGE_RED if is_crit else Color.WHITE, damage_number_scale, damage_number_duration)
 	hp -= dam
+	damage_anim()
 	if hp <= 0:
-		drop_soul()
-		drop_loot()
-		queue_free()
+		death()
 
 func apply_status_effect(effect: PackedScene):
 	var effect_node = effect.instantiate()
@@ -202,8 +205,7 @@ func status_damage(damage: int, number_color: Color, crit_chance: float = 0):
 	Utils.summon_damage_number(self, damage, number_color, damage_number_scale / 1.3, damage_number_duration / 1.3)
 	hp -= damage
 	if hp <= 0:
-		drop_loot()
-		queue_free()
+		death()
 
 func _on_invincibility_timer_timeout():
 	set_collision_layer_value(1, true)
@@ -213,3 +215,6 @@ func get_hp():
 
 func get_max_hp():
 	return max_hp
+
+func damage_anim():
+	pass

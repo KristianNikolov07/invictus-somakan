@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://b451yhoqiov5a" path="res://Scenes/Enemies/zombie.tscn" id="2_lv8tk"]
 [ext_resource type="PackedScene" uid="uid://dqe7ft8qxejyd" path="res://Scenes/other/camera_limiter.tscn" id="3_0dlg8"]
 [ext_resource type="PackedScene" uid="uid://drh5mw5jb3hga" path="res://Scenes/Objects/platform.tscn" id="4_aqhgq"]
-[ext_resource type="Script" path="res://Scripts/Classes/Spawner.gd" id="6_lv8tk"]
+[ext_resource type="Script" uid="uid://8utdi18iv0th" path="res://Scripts/Classes/Spawner.gd" id="6_lv8tk"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1cvqe"]
 texture = ExtResource("1_pcoad")
@@ -224,7 +224,8 @@ normal = Vector2(-1, 0)
 
 [node name="Room1" type="Node2D"]
 script = ExtResource("1_lsvnq")
-wave2_quantity = 0.5
+wave1_quantity = 0.6
+wave2_quantity = 0.8
 metadata/_custom_type_script = "uid://dgsmtoldmfhn1"
 
 [node name="Background" type="TileMapLayer" parent="."]
@@ -318,6 +319,7 @@ enemy = ExtResource("2_lv8tk")
 [node name="CameraLimiter" parent="." instance=ExtResource("3_0dlg8")]
 
 [node name="Portal" parent="." instance=ExtResource("2_0dlg8")]
+visible = false
 position = Vector2(1960, -144)
 room_type = 2
 

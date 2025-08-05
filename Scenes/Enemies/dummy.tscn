@@ -1,11 +1,101 @@
-[gd_scene load_steps=5 format=3 uid="uid://b4r8t6ijsspl2"]
+[gd_scene load_steps=26 format=3 uid="uid://b4r8t6ijsspl2"]
 
 [ext_resource type="Script" uid="uid://bfw6orvi4twpy" path="res://Scripts/Enemies/dummy.gd" id="1_ccesc"]
-[ext_resource type="Texture2D" uid="uid://c1lo75th7b88g" path="res://Textures/icon.svg" id="1_fotkt"]
+[ext_resource type="Script" uid="uid://b3auab72tb6j6" path="res://Scripts/Classes/Item.gd" id="2_a4oun"]
+[ext_resource type="Texture2D" uid="uid://bb3ejklq273h6" path="res://Textures/dummy/dummy damaged.png" id="2_aql14"]
+[ext_resource type="Texture2D" uid="uid://8q8lsvkawvpg" path="res://Textures/dummy/dummy idlo.png" id="2_dplh5"]
 [ext_resource type="PackedScene" uid="uid://bqo6qnqcmww4y" path="res://Scenes/UI/health_bar.tscn" id="3_dplh5"]
+[ext_resource type="Resource" uid="uid://dnofb2jqjs35o" path="res://Items/Blueprints/fire_aspect.tres" id="3_lcv74"]
+[ext_resource type="Resource" uid="uid://4h7adkp3p0gy" path="res://Items/Blueprints/freeze_aspect.tres" id="4_v1jei"]
+[ext_resource type="Resource" uid="uid://deljpruiovqcf" path="res://Items/Blueprints/poison_aspect.tres" id="5_o7idc"]
+[ext_resource type="Resource" uid="uid://bywtyvbopiflj" path="res://Items/Blueprints/critical_chance_aspect.tres" id="6_prh03"]
+[ext_resource type="Resource" uid="uid://m6evn525rkg2" path="res://Items/Blueprints/critical_damage_aspect.tres" id="7_38nup"]
+[ext_resource type="Resource" uid="uid://bil30xv3u4jey" path="res://Items/crit_damage_orb.tres" id="9_my552"]
+[ext_resource type="Resource" uid="uid://cm7g5mjsok0q5" path="res://Items/fire_orb.tres" id="10_iemqo"]
+[ext_resource type="Resource" uid="uid://cu00ittwd3mke" path="res://Items/ice_orb.tres" id="11_sk1h7"]
+[ext_resource type="Resource" uid="uid://bgxdxx3wuy0nf" path="res://Items/poison.tres" id="12_4irma"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_12477"]
+atlas = ExtResource("2_aql14")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h6xn8"]
+atlas = ExtResource("2_aql14")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lcdn3"]
+atlas = ExtResource("2_aql14")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ld3p6"]
+atlas = ExtResource("2_aql14")
+region = Rect2(0, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_amsxt"]
+atlas = ExtResource("2_aql14")
+region = Rect2(128, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vdq05"]
+atlas = ExtResource("2_aql14")
+region = Rect2(256, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nhs8v"]
+atlas = ExtResource("2_aql14")
+region = Rect2(384, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3mfwb"]
+atlas = ExtResource("2_aql14")
+region = Rect2(0, 256, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w0s7e"]
+atlas = ExtResource("2_aql14")
+region = Rect2(128, 256, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ccesc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_12477")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h6xn8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lcdn3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ld3p6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_amsxt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vdq05")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nhs8v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3mfwb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w0s7e")
+}],
+"loop": false,
+"name": &"damage",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_dplh5")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ccesc"]
-size = Vector2(128, 128)
+size = Vector2(80, 128)
 
 [node name="Dummy" type="CharacterBody2D" groups=["Enemies"]]
 collision_mask = 14
@@ -14,10 +104,23 @@ hp = 1000
 max_hp = 1000
 invincibility_length = 0.3
 can_be_knockedback = false
+loot = Dictionary[ExtResource("2_a4oun"), float]({
+ExtResource("3_lcv74"): 1.5,
+ExtResource("4_v1jei"): 1.5,
+ExtResource("5_o7idc"): 1.5,
+ExtResource("6_prh03"): 1.5,
+ExtResource("7_38nup"): 1.5,
+ExtResource("9_my552"): 3.0,
+ExtResource("10_iemqo"): 3.0,
+ExtResource("11_sk1h7"): 3.0,
+ExtResource("12_4irma"): 3.0
+})
 metadata/_custom_type_script = "uid://b3sn8h0wc0ike"
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_fotkt")
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(11, 0)
+sprite_frames = SubResource("SpriteFrames_ccesc")
+autoplay = "default"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_ccesc")
@@ -27,3 +130,5 @@ offset_left = -96.0
 offset_top = -112.0
 offset_right = 96.0
 offset_bottom = -85.0
+
+[connection signal="animation_finished" from="Sprite" to="." method="_on_sprite_animation_finished"]

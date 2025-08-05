@@ -5,8 +5,12 @@ extends Control
 func set_item(_item: Item) -> void:
 	if _item != null:
 		item = _item.duplicate()
-		item.amount = 1
 		$ConsumableIcon.texture = item.icon
+		item.amount = _item.amount
+		if item.amount == 1:
+			$Amount.text = ""
+		else:
+			$Amount.text = str(item.amount)
 	else:
 		clear_item()
 
@@ -14,6 +18,7 @@ func set_item(_item: Item) -> void:
 func clear_item() -> void:
 	item = null
 	$ConsumableIcon.texture = null
+	$Amount.text = ""
 
 
 func _on_pressed() -> void:

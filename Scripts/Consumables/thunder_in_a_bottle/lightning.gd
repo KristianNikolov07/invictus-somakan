@@ -6,5 +6,5 @@ func _on_body_entered(body: Node2D) -> void:
 		body.damage_amount(damage_amount, 0)
 
 
-func _on_destroy_timer_timeout() -> void:
+func _on_animated_sprite_2d_animation_finished() -> void:
 	queue_free()

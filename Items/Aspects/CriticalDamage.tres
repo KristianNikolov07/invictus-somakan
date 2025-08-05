@@ -1,5 +1,6 @@
-[gd_resource type="Resource" script_class="AspectItem" load_steps=2 format=3 uid="uid://evfi6r71ccwl"]
+[gd_resource type="Resource" script_class="AspectItem" load_steps=3 format=3 uid="uid://evfi6r71ccwl"]
 
+[ext_resource type="Texture2D" uid="uid://ctod64k5iolxl" path="res://Textures/scrolls/crit damage scroll.png" id="1_6y3xj"]
 [ext_resource type="Script" uid="uid://bnm1nvl5v4528" path="res://Scripts/Classes/AspectItem.gd" id="1_rj1at"]
 
 [resource]
@@ -7,7 +8,9 @@ script = ExtResource("1_rj1at")
 aspect_name = "Critical Damage"
 crit_chance_mult = 1.0
 crit_damage_mult = 2.0
+explosion = false
 item_name = "Crit Damage Aspect"
-type = 0
+icon = ExtResource("1_6y3xj")
+type = 1
 price = 0
 metadata/_custom_type_script = "uid://bnm1nvl5v4528"
