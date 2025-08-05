@@ -205,8 +205,7 @@ func status_damage(damage: int, number_color: Color, crit_chance: float = 0):
 	Utils.summon_damage_number(self, damage, number_color, damage_number_scale / 1.3, damage_number_duration / 1.3)
 	hp -= damage
 	if hp <= 0:
-		drop_loot()
-		queue_free()
+		death()
 
 func _on_invincibility_timer_timeout():
 	set_collision_layer_value(1, true)
