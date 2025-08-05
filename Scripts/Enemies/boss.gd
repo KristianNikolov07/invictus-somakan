@@ -36,7 +36,7 @@ func _physics_process(delta: float) -> void:
 		if is_moving and not is_dashing:
 			global_position.x = move_toward(global_position.x, target.global_position.x, delta*speed)
 		elif is_moving:
-			global_position.x += delta*speed*direction*12
+			global_position.x += delta*speed*direction*10
 		
 		move_and_slide()
 
@@ -180,28 +180,7 @@ func damage(hitbox: Hitbox, knockback):
 		speed = 100
 		get_node("../BossPushers/AnimationPlayer").play("phase")
 	elif hp <= 0:
-		$CollisionShape2D.queue_free()
-		$RibReturn.queue_free()
-		$CollisionDamage.queue_free()
-		attacking = true
-		set_is_moving(false)
-		$Attacks.stop(true)
-		$ChooseAttack.queue_free()
-		$BossSprite.play("default")
-		await get_tree().create_timer(1.5).timeout
-		$BossSprite.play("death")
-		$Break.play()
-		await $Break.finished
-		var ex = Utils.summon_explosion(global_position, 12, 0, 0, 0.9)
-		ex.get_node("Boom").volume_db = 6
-		get_tree().current_scene.add_child(ex)
-		await get_tree().create_timer(1).timeout
-		drop_loot()
-		for i in range(50):
-			drop_soul()
-			await get_tree().create_timer(0.05).timeout
-		dead.emit()
-		queue_free()
+		death()
 
 func damage_amount(amount: int, knockback) -> void:
 	Utils.summon_damage_number(self, amount, Color.WHITE, damage_number_scale, damage_number_duration)
@@ -217,30 +196,60 @@ func damage_amount(amount: int, knockback) -> void:
 		speed = 100
 		get_node("../BossPushers/AnimationPlayer").play("phase")
 	elif hp <= 0:
-		$CollisionShape2D.queue_free()
-		$RibReturn.queue_free()
-		$CollisionDamage.queue_free()
-		attacking = true
-		set_is_moving(false)
-		$Attacks.stop(true)
-		$ChooseAttack.queue_free()
-		$BossSprite.play("default")
-		await get_tree().create_timer(1.5).timeout
-		$BossSprite.play("death")
-		$Break.play()
-		await $Break.finished
-		var ex = Utils.summon_explosion(global_position, 12, 0, 0, 0.9)
-		get_node("../ArenaCam/ScreenShaker2D").shake_screen(2.5, 100, true, 60)
-		ex.get_node("Boom").volume_db = 6
-		get_tree().current_scene.add_child(ex)
-		$BossSprite.hide()
-		await get_tree().create_timer(2.5).timeout
-		drop_loot()
-		for i in range(50):
-			drop_soul()
-			await get_tree().create_timer(0.05).timeout
-		dead.emit()
-		queue_free()
+		death()
+
+func status_damage(damage: int, number_color: Color, crit_chance: float = 0):
+	var frozen = is_frozen()
+	if frozen:
+		frozen.end_effect()
+	var frostbitten = is_frostbitten()
+	if frostbitten:
+		frostbitten.end_effect()
+	var blizzard = is_blizzard()
+	if blizzard:
+		blizzard.end_effect()
+	var is_crit = Utils.calculate_crit(crit_chance)
+	if is_crit:
+		damage *= 2
+		var bleeding = is_bleeding()
+		if bleeding:
+			bleeding.end_effect()
+	if hp > 0: Utils.summon_damage_number(self, damage, number_color, damage_number_scale / 1.3, damage_number_duration / 1.3)
+	hp -= damage
+	if hp <= max_hp/2 and phase < 2:
+		phase = 2
+		speed = 100
+		get_node("../BossPushers/AnimationPlayer").play("phase")
+	elif hp <= 0 and get_node_or_null("CollisionShape2D") != null:
+		death()
+
+
+func death():
+	print("death")
+	$HealthBar.hide()
+	$CollisionShape2D.queue_free()
+	$RibReturn.queue_free()
+	$CollisionDamage.queue_free()
+	attacking = true
+	set_is_moving(false)
+	$Attacks.stop(true)
+	$ChooseAttack.queue_free()
+	$BossSprite.play("default")
+	await get_tree().create_timer(1.5).timeout
+	$BossSprite.play("death")
+	$Break.play()
+	await $Break.finished
+	var ex = Utils.summon_explosion(global_position, 12, 0, 0, 0.9)
+	ex.get_node("Boom").volume_db = 6
+	get_tree().current_scene.add_child(ex)
+	$BossSprite.hide()
+	await get_tree().create_timer(1).timeout
+	drop_loot()
+	for i in range(50):
+		drop_soul()
+		await get_tree().create_timer(0.05).timeout
+	dead.emit()
+	queue_free()
 
 
 func _on_collision_damage_body_entered(body: Node2D) -> void:

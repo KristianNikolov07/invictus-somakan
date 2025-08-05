@@ -311,10 +311,10 @@ size = Vector2(1728, 56)
 size = Vector2(1216, 64)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vuilr"]
-size = Vector2(726, 56)
+size = Vector2(768, 56)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5y65l"]
-size = Vector2(786.004, 64)
+size = Vector2(832.002, 64)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ec1yx"]
 texture = ExtResource("2_5igek")
@@ -1909,11 +1909,11 @@ position = Vector2(864, 672)
 shape = SubResource("RectangleShape2D_v638s")
 
 [node name="CollisionShape2D5" type="CollisionShape2D" parent="Floors-Walls"]
-position = Vector2(-341, 668)
+position = Vector2(-320, 668)
 shape = SubResource("RectangleShape2D_vuilr")
 
 [node name="CollisionShape2D6" type="CollisionShape2D" parent="Floors-Walls"]
-position = Vector2(2103, 672)
+position = Vector2(2080, 672)
 shape = SubResource("RectangleShape2D_5y65l")
 
 [node name="Trapforms" type="StaticBody2D" parent="."]

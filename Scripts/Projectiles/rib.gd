@@ -4,9 +4,21 @@ extends Projectile
 @export var rot_speed: float = 4
 
 
+func _ready() -> void:
+	var pts = $CollisionPolygon2D.polygon.duplicate()
+	var center := Vector2.ZERO
+	for p in pts:
+		center += p
+	center /= pts.size()
+	for i in range(pts.size()):
+		pts[i] -= center
+	$CollisionPolygon2D.polygon = pts
+	$CollisionPolygon2D.position += center
+
+
 func _physics_process(delta: float) -> void:
 	$BossAttackRib.rotation_degrees += rot_speed
-	$CollisionShape2D.rotation_degrees += rot_speed
+	$CollisionPolygon2D.rotation_degrees += rot_speed
 	var direction  = Vector2.RIGHT.rotated(rotation)
 	global_position += (speed * direction + shooter_vel) * delta
 	if $Return.is_stopped(): speed -= return_speed
