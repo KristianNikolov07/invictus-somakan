@@ -23,7 +23,7 @@
 [ext_resource type="PackedScene" uid="uid://dqe7ft8qxejyd" path="res://Scenes/other/camera_limiter.tscn" id="18_foa0n"]
 [ext_resource type="PackedScene" uid="uid://ch7esotluxknf" path="res://Scenes/Objects/portal.tscn" id="19_h7elt"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8xapk"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4lyss"]
 texture = ExtResource("2_5igek")
 1:1/0 = 0
 2:1/0 = 0
@@ -160,9 +160,9 @@ texture = ExtResource("2_5igek")
 12:15/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_ec1yx"]
-sources/0 = SubResource("TileSetAtlasSource_8xapk")
+sources/0 = SubResource("TileSetAtlasSource_4lyss")
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6k41h"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sa05p"]
 texture = ExtResource("2_5igek")
 1:1/0 = 0
 2:1/0 = 0
@@ -299,7 +299,7 @@ texture = ExtResource("2_5igek")
 12:15/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_8xapk"]
-sources/0 = SubResource("TileSetAtlasSource_6k41h")
+sources/0 = SubResource("TileSetAtlasSource_sa05p")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w82vf"]
 size = Vector2(64, 576)
@@ -316,7 +316,7 @@ size = Vector2(768, 56)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5y65l"]
 size = Vector2(832.002, 64)
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ec1yx"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ll8fm"]
 texture = ExtResource("2_5igek")
 1:1/0 = 0
 2:1/0 = 0
@@ -453,7 +453,7 @@ texture = ExtResource("2_5igek")
 12:15/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_ribl2"]
-sources/0 = SubResource("TileSetAtlasSource_ec1yx")
+sources/0 = SubResource("TileSetAtlasSource_ll8fm")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tjvdc"]
 size = Vector2(192, 64)
