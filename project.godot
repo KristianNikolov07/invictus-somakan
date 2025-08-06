@@ -15,6 +15,7 @@ warnings/check_invalid_track_paths=false
 [application]
 
 config/name="Invictus: Somakan"
+config/version="0.1.0"
 run/main_scene="uid://c62bupgibxlpk"
 config/features=PackedStringArray("4.4", "Forward Plus")
 boot_splash/show_image=false
