@@ -2064,10 +2064,10 @@ parry_damage = 0
 can_be_knockedback = false
 damage_number_scale = 4.0
 loot = Dictionary[ExtResource("7_5igek"), float]({
-ExtResource("9_sa05p"): 20.0,
-ExtResource("10_ll8fm"): 20.0,
-ExtResource("11_p423f"): 20.0,
-ExtResource("12_bxixo"): 20.0
+ExtResource("9_sa05p"): 25.0,
+ExtResource("10_ll8fm"): 25.0,
+ExtResource("11_p423f"): 25.0,
+ExtResource("12_bxixo"): 25.0
 })
 
 [node name="BossSprite" type="AnimatedSprite2D" parent="Boss"]
