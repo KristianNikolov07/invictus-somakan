@@ -13,7 +13,7 @@
 [ext_resource type="Resource" uid="uid://deljpruiovqcf" path="res://Items/Blueprints/poison_aspect.tres" id="5_b6dtg"]
 [ext_resource type="Resource" uid="uid://bywtyvbopiflj" path="res://Items/Blueprints/critical_chance_aspect.tres" id="6_7sjay"]
 [ext_resource type="Resource" uid="uid://m6evn525rkg2" path="res://Items/Blueprints/critical_damage_aspect.tres" id="7_dd268"]
-[ext_resource type="Resource" uid="uid://bil30xv3u4jey" path="res://Items/crit_chance_orb.tres" id="9_7jm1k"]
+[ext_resource type="Resource" uid="uid://bil30xv3u4jey" path="res://Items/crit_damage_orb.tres" id="9_7jm1k"]
 [ext_resource type="Resource" uid="uid://cm7g5mjsok0q5" path="res://Items/fire_orb.tres" id="10_ib83k"]
 [ext_resource type="Resource" uid="uid://cu00ittwd3mke" path="res://Items/ice_orb.tres" id="11_6jpet"]
 [ext_resource type="Resource" uid="uid://bgxdxx3wuy0nf" path="res://Items/poison.tres" id="12_724gs"]
@@ -284,10 +284,10 @@ position = Vector2(40, 0)
 collision_mask = 18
 
 [node name="HealthBar" parent="." instance=ExtResource("3_1qho8")]
-offset_left = -75.0
-offset_top = -97.5
-offset_right = 77.0
-offset_bottom = -70.5
+offset_left = -96.0
+offset_top = -120.0
+offset_right = -48.0
+offset_bottom = -93.0
 
 [connection signal="animation_finished" from="Sprite" to="." method="_on_sprite_animation_finished"]
 [connection signal="body_entered" from="CollisionDamage" to="." method="_on_collision_damage_body_entered"]

@@ -126,9 +126,9 @@ autoplay = "default"
 shape = SubResource("RectangleShape2D_ccesc")
 
 [node name="HealthBar" parent="." instance=ExtResource("3_dplh5")]
-offset_left = -96.0
-offset_top = -112.0
-offset_right = 96.0
-offset_bottom = -85.0
+offset_left = -88.0
+offset_top = -162.0
+offset_right = -44.0
+offset_bottom = -135.0
 
 [connection signal="animation_finished" from="Sprite" to="." method="_on_sprite_animation_finished"]

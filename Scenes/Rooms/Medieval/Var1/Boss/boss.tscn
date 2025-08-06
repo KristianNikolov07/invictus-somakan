@@ -2125,10 +2125,10 @@ one_shot = true
 ignore_time_scale = true
 
 [node name="HealthBar" parent="Boss" instance=ExtResource("6_ic5vd")]
-offset_left = -94.0
-offset_top = -137.0
-offset_right = 98.0
-offset_bottom = -110.0
+offset_left = -92.0
+offset_top = -193.0
+offset_right = -44.0
+offset_bottom = -166.0
 
 [node name="Attacks" type="AnimationPlayer" parent="Boss"]
 libraries = {
