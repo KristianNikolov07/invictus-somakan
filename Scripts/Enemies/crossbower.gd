@@ -33,6 +33,10 @@ func _on_sprite_animation_finished() -> void:
 		super.death()
 
 func fire_arrow() -> void:
+	$Sprite.play("attack")
+	await $Sprite.animation_finished
+	$Sprite.play("default")
+	
 	var new_arrow: Projectile = arrow.instantiate()
 	new_arrow.global_position = global_position
 	new_arrow.rotation = global_position.direction_to(target.global_position).angle()
