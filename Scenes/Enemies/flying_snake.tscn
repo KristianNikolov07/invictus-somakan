@@ -137,10 +137,10 @@ position = Vector2(1.25001, -2.5)
 shape = SubResource("RectangleShape2D_dt2kf")
 
 [node name="HealthBar" parent="." instance=ExtResource("3_irrbb")]
-offset_left = -96.0
-offset_top = -112.0
-offset_right = 96.0
-offset_bottom = -85.0
+offset_left = -47.5
+offset_top = -102.5
+offset_right = 16.5
+offset_bottom = -38.5
 
 [node name="AttackHitbox" type="Area2D" parent="."]
 

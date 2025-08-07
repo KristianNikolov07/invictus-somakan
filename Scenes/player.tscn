@@ -813,10 +813,10 @@ stream = ExtResource("3_fkybt")
 volume_db = -5.0
 
 [node name="HealthBar" parent="." instance=ExtResource("4_vgqql")]
-offset_left = -96.0
-offset_top = -104.0
-offset_right = 96.0
-offset_bottom = -77.0
+offset_left = -48.0
+offset_top = -128.0
+offset_right = 16.0
+offset_bottom = -64.0
 
 [node name="DashTimer" type="Timer" parent="."]
 wait_time = 0.2

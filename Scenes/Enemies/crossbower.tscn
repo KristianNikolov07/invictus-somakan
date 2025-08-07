@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://bq37pauhr7ehy"]
+[gd_scene load_steps=53 format=3 uid="uid://bq37pauhr7ehy"]
 
 [ext_resource type="Script" uid="uid://bygp0rxw28pnh" path="res://Scripts/Enemies/crossbower.gd" id="1_50btn"]
 [ext_resource type="Texture2D" uid="uid://dfo3ge4ax5f6h" path="res://Textures/archer/archer damaged.png" id="2_axits"]
@@ -13,10 +13,43 @@
 [ext_resource type="Resource" uid="uid://deljpruiovqcf" path="res://Items/Blueprints/poison_aspect.tres" id="5_b6dtg"]
 [ext_resource type="Resource" uid="uid://bywtyvbopiflj" path="res://Items/Blueprints/critical_chance_aspect.tres" id="6_7sjay"]
 [ext_resource type="Resource" uid="uid://m6evn525rkg2" path="res://Items/Blueprints/critical_damage_aspect.tres" id="7_dd268"]
-[ext_resource type="Resource" uid="uid://bil30xv3u4jey" path="res://Items/crit_chance_orb.tres" id="9_7jm1k"]
+[ext_resource type="Resource" uid="uid://bil30xv3u4jey" path="res://Items/crit_damage_orb.tres" id="9_7jm1k"]
 [ext_resource type="Resource" uid="uid://cm7g5mjsok0q5" path="res://Items/fire_orb.tres" id="10_ib83k"]
 [ext_resource type="Resource" uid="uid://cu00ittwd3mke" path="res://Items/ice_orb.tres" id="11_6jpet"]
 [ext_resource type="Resource" uid="uid://bgxdxx3wuy0nf" path="res://Items/poison.tres" id="12_724gs"]
+[ext_resource type="Texture2D" uid="uid://0rhry0sqv6xo" path="res://Textures/archer/archer attacking.png" id="12_q23rv"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_724gs"]
+atlas = ExtResource("12_q23rv")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u2hfg"]
+atlas = ExtResource("12_q23rv")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wskv3"]
+atlas = ExtResource("12_q23rv")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eyqti"]
+atlas = ExtResource("12_q23rv")
+region = Rect2(0, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fqpsk"]
+atlas = ExtResource("12_q23rv")
+region = Rect2(128, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t1jxk"]
+atlas = ExtResource("12_q23rv")
+region = Rect2(256, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qt63i"]
+atlas = ExtResource("12_q23rv")
+region = Rect2(0, 256, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s0rbt"]
+atlas = ExtResource("12_q23rv")
+region = Rect2(128, 256, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wk06a"]
 atlas = ExtResource("2_axits")
@@ -108,6 +141,35 @@ region = Rect2(128, 256, 128, 128)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_50btn"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_724gs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u2hfg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wskv3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eyqti")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fqpsk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t1jxk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qt63i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s0rbt")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 9.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_wk06a")
@@ -244,7 +306,7 @@ ExtResource("12_724gs"): 3.0
 position = Vector2(4, 0)
 scale = Vector2(0.79, 0.79)
 sprite_frames = SubResource("SpriteFrames_50btn")
-animation = &"walking"
+animation = &"attack"
 autoplay = "default"
 
 [node name="Collision" type="CollisionShape2D" parent="."]
@@ -284,10 +346,10 @@ position = Vector2(40, 0)
 collision_mask = 18
 
 [node name="HealthBar" parent="." instance=ExtResource("3_1qho8")]
-offset_left = -75.0
-offset_top = -97.5
-offset_right = 77.0
-offset_bottom = -70.5
+offset_left = -48.0
+offset_top = -103.0
+offset_right = 16.0
+offset_bottom = -39.0
 
 [connection signal="animation_finished" from="Sprite" to="." method="_on_sprite_animation_finished"]
 [connection signal="body_entered" from="CollisionDamage" to="." method="_on_collision_damage_body_entered"]

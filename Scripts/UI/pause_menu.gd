@@ -1,5 +1,11 @@
 extends Control
 
+func _ready() -> void:
+	if get_tree().current_scene.name == "Tutorial":
+		$"VBoxContainer/Back to Hub".text = "Skip Tutorial"
+	elif get_tree().current_scene.name == "Hub":
+		$"VBoxContainer/Back to Hub".disabled = true
+
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("esc"):
 		if visible:

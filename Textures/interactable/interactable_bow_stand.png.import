@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://nwd6h5q50von"
-path="res://.godot/imported/interactable_bow_stand.png-d35c1ca0ca346d4ac61a7fb65bc186a7.ctex"
+path="res://.godot/imported/interactable_bow_stand.png-f8d09f9d71fc37f8211efd39baaa920c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Textures/interactable/interactable_bow_stand.png"
-dest_files=["res://.godot/imported/interactable_bow_stand.png-d35c1ca0ca346d4ac61a7fb65bc186a7.ctex"]
+source_file="res://Textures/Interactable/interactable_bow_stand.png"
+dest_files=["res://.godot/imported/interactable_bow_stand.png-f8d09f9d71fc37f8211efd39baaa920c.ctex"]
 
 [params]
 

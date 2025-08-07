@@ -8,5 +8,5 @@ script = ExtResource("1_i55wu")
 item_name = "Crit Damage Orb"
 icon = ExtResource("1_w32kn")
 type = 0
-price = 0
+price = 140
 metadata/_custom_type_script = "uid://b3auab72tb6j6"

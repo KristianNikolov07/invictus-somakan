@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dm7j4brv2meec"
-path="res://.godot/imported/vortex.png-eef8c2c54b9ba5464eb92eeca4481126.ctex"
+uid="uid://c8ir3b1pxm88p"
+path="res://.godot/imported/healthbar1.png-f3af9c08a39119e3e7fa50d8ff9c1309.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Textures/vortex.png"
-dest_files=["res://.godot/imported/vortex.png-eef8c2c54b9ba5464eb92eeca4481126.ctex"]
+source_file="res://Textures/healthbar1.png"
+dest_files=["res://.godot/imported/healthbar1.png-f3af9c08a39119e3e7fa50d8ff9c1309.ctex"]
 
 [params]
 

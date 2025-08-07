@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://8q8lsvkawvpg"
-path="res://.godot/imported/dummy idlo.png-1170846e63494f21c36ef7fe23b0eb4e.ctex"
+path="res://.godot/imported/dummy idlo.png-305e753f823fabf92e320b434f848daa.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Textures/dummy/dummy idlo.png"
-dest_files=["res://.godot/imported/dummy idlo.png-1170846e63494f21c36ef7fe23b0eb4e.ctex"]
+source_file="res://Textures/Dummy/dummy idlo.png"
+dest_files=["res://.godot/imported/dummy idlo.png-305e753f823fabf92e320b434f848daa.ctex"]
 
 [params]
 

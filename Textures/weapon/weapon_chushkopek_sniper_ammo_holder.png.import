@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c07471inwdbv7"
-path="res://.godot/imported/weapon_chushkopek_sniper_ammo_holder.png-bb513d0368be387b2323bb8cf2cf25d4.ctex"
+path="res://.godot/imported/weapon_chushkopek_sniper_ammo_holder.png-d29a57eb4aabcec387857bf852448fed.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Textures/weapon/weapon_chushkopek_sniper_ammo_holder.png"
-dest_files=["res://.godot/imported/weapon_chushkopek_sniper_ammo_holder.png-bb513d0368be387b2323bb8cf2cf25d4.ctex"]
+source_file="res://Textures/Weapon/weapon_chushkopek_sniper_ammo_holder.png"
+dest_files=["res://.godot/imported/weapon_chushkopek_sniper_ammo_holder.png-d29a57eb4aabcec387857bf852448fed.ctex"]
 
 [params]
 

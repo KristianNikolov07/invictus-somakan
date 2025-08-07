@@ -102,6 +102,6 @@ grow_vertical = 2
 
 [node name="ConsumablesUI" parent="." instance=ExtResource("10_vhbqn")]
 offset_left = 1008.0
-offset_top = 576.0
+offset_top = 542.0
 offset_right = 1048.0
-offset_bottom = 616.0
+offset_bottom = 582.0
