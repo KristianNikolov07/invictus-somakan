@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bm48xkv5plcam"
-path="res://.godot/imported/viking damaged.png-4567a98fea8fe47b50dbae90650a4c3a.ctex"
+path="res://.godot/imported/viking damaged.png-75d26e07e6d7e8d2735793081030e01a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Textures/viking/viking damaged.png"
-dest_files=["res://.godot/imported/viking damaged.png-4567a98fea8fe47b50dbae90650a4c3a.ctex"]
+source_file="res://Textures/Viking/viking damaged.png"
+dest_files=["res://.godot/imported/viking damaged.png-75d26e07e6d7e8d2735793081030e01a.ctex"]
 
 [params]
 

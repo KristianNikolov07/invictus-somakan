@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b3osc5yafjxfg"
-path="res://.godot/imported/viking attacking.png-3a4a03c250fb76cc3bedd5f93d072f4f.ctex"
+path="res://.godot/imported/viking attacking.png-27e0b866d64c59dc1336f0bc68ecf945.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Textures/viking/viking attacking.png"
-dest_files=["res://.godot/imported/viking attacking.png-3a4a03c250fb76cc3bedd5f93d072f4f.ctex"]
+source_file="res://Textures/Viking/viking attacking.png"
+dest_files=["res://.godot/imported/viking attacking.png-27e0b866d64c59dc1336f0bc68ecf945.ctex"]
 
 [params]
 

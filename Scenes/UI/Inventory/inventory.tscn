@@ -20,9 +20,9 @@ anchor_top = 0.086
 anchor_right = 0.889
 anchor_bottom = 0.864
 offset_left = 0.0639954
-offset_top = 0.271999
+offset_top = 7.272
 offset_right = -0.128052
-offset_bottom = 8.12799
+offset_bottom = 15.128
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_1timk")
@@ -70,10 +70,10 @@ layout_mode = 2
 
 [node name="AspectSlots1" type="HBoxContainer" parent="."]
 layout_mode = 0
-offset_left = 80.0
-offset_top = 234.0
-offset_right = 272.0
-offset_bottom = 274.0
+offset_left = 49.0
+offset_top = 208.0
+offset_right = 241.0
+offset_bottom = 248.0
 theme_override_constants/separation = 134
 alignment = 1
 
@@ -85,10 +85,10 @@ layout_mode = 2
 
 [node name="AspectSlots2" type="HBoxContainer" parent="."]
 layout_mode = 0
-offset_left = 368.0
-offset_top = 234.0
-offset_right = 560.0
-offset_bottom = 274.0
+offset_left = 344.0
+offset_top = 208.0
+offset_right = 536.0
+offset_bottom = 248.0
 theme_override_constants/separation = 134
 alignment = 1
 
@@ -100,11 +100,11 @@ layout_mode = 2
 
 [node name="Consumables" type="HBoxContainer" parent="."]
 layout_mode = 0
-offset_left = 190.0
-offset_top = 326.0
-offset_right = 414.0
-offset_bottom = 366.0
-theme_override_constants/separation = 224
+offset_left = 131.0
+offset_top = 321.0
+offset_right = 426.0
+offset_bottom = 361.0
+theme_override_constants/separation = 295
 alignment = 1
 
 [node name="Slot1" parent="Consumables" instance=ExtResource("7_buqpv")]

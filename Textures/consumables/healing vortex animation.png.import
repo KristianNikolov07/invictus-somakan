@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://by3mr54dxejjh"
-path="res://.godot/imported/healing vortex animation.png-fe993a3f8f8675a341b3cc62789704a6.ctex"
+path="res://.godot/imported/healing vortex animation.png-1b9f0f257857f5bd090d9cc555819c9f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Textures/consumables/healing vortex animation.png"
-dest_files=["res://.godot/imported/healing vortex animation.png-fe993a3f8f8675a341b3cc62789704a6.ctex"]
+source_file="res://Textures/Consumables/healing vortex animation.png"
+dest_files=["res://.godot/imported/healing vortex animation.png-1b9f0f257857f5bd090d9cc555819c9f.ctex"]
 
 [params]
 
