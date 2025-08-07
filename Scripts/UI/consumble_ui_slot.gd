@@ -10,6 +10,8 @@ func set_item(_item: Item) -> void:
 			$Amount.text = ""
 		else:
 			$Amount.text = str(item.amount)
+		if $Label != null:
+			$Label.show()
 	else:
 		clear_item()
 
@@ -18,3 +20,5 @@ func clear_item() -> void:
 	item = null
 	$Icon.texture = null
 	$Amount.text = ""
+	if $Label != null:
+		$Label.hide()
