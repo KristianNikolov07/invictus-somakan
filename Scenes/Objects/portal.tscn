@@ -1,10 +1,10 @@
 [gd_scene load_steps=11 format=3 uid="uid://ch7esotluxknf"]
 
 [ext_resource type="Script" uid="uid://c5myelt261v7t" path="res://Scripts/Objects/portal.gd" id="1_j133l"]
-[ext_resource type="Texture2D" uid="uid://y81rh12rrsmf" path="res://Textures/interactable/interactable_portal_boss.png" id="2_3ay4y"]
-[ext_resource type="Texture2D" uid="uid://b28v6f06j0b3r" path="res://Textures/interactable/interactable_portal_location.png" id="2_j133l"]
-[ext_resource type="Texture2D" uid="uid://d2m8gobh2beea" path="res://Textures/interactable/interactable_portal_combat.png" id="3_0wrax"]
-[ext_resource type="Texture2D" uid="uid://b5wpjvwue2tms" path="res://Textures/interactable/interactable_portal_shop.png" id="4_pvtky"]
+[ext_resource type="Texture2D" uid="uid://y81rh12rrsmf" path="res://Textures/Interactable/interactable_portal_boss.png" id="2_3ay4y"]
+[ext_resource type="Texture2D" uid="uid://b28v6f06j0b3r" path="res://Textures/Interactable/interactable_portal_location.png" id="2_j133l"]
+[ext_resource type="Texture2D" uid="uid://d2m8gobh2beea" path="res://Textures/Interactable/interactable_portal_combat.png" id="3_0wrax"]
+[ext_resource type="Texture2D" uid="uid://b5wpjvwue2tms" path="res://Textures/Interactable/interactable_portal_shop.png" id="4_pvtky"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_yjf24"]
 animations = [{

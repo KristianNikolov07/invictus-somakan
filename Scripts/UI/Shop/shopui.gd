@@ -78,6 +78,7 @@ func add_buttons():
 	$ItemsToBuy/ShopSlot3.set_item(load("res://Items/Consumables/healing_barrel.tres"))
 	var consumables_poll : Array[String]
 	for file in DirAccess.get_files_at("res://Items/Consumables"):
+		file = file.replace(".remap", "")
 		if file != "healing_vial.tres" and file != "healing_potion.tres" and file != "healing_barrel.tres":
 			consumables_poll.append("res://Items/Consumables/" + file)
 	

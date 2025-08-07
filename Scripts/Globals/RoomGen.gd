@@ -2,6 +2,9 @@ extends Node
 
 var combat_rooms: Array[PackedScene]
 var puzzle_rooms: Array[PackedScene]
+
+@export var medieval_var1_combat_rooms: Array[PackedScene]
+
 var shop_room: PackedScene
 var boss_room: PackedScene
 var hub: PackedScene = preload("res://Scenes/Rooms/Hub/hub.tscn")
@@ -30,11 +33,14 @@ func fill_rooms(era: Stages.Stages) -> void:
 	
 	var combat_files = DirAccess.get_files_at(path + "/Combat")
 	for file in combat_files:
+		file = file.replace(".remap", "")
+		print(file)
 		combat_rooms.append(load(path + "/Combat/" + file))
 	
 	var puzzle_files = DirAccess.get_files_at(path + "/Puzzles")
 	for file in puzzle_files:
-		puzzle_rooms.append(load(path + "/Puzzles/" + file))
+		if file.ends_with(".tscn"):
+			puzzle_rooms.append(load(path + "/Puzzles/" + file))
 	
 	shop_room = load(path + "/Shop/shop.tscn")
 	boss_room = load(path + "/Boss/boss.tscn")
