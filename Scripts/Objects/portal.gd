@@ -10,7 +10,7 @@ extends Area2D
 @export var room_type : RoomTypes.RoomTypes
 
 func _ready() -> void:
-	if RoomGen.current_room == 5:
+	if RoomGen.current_room == 5 and !is_first:
 		room_type = RoomTypes.RoomTypes.SHOP
 	
 	if is_stage_transition:
