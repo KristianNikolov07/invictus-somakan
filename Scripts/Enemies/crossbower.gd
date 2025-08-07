@@ -35,6 +35,9 @@ func _on_sprite_animation_finished() -> void:
 func fire_arrow() -> void:
 	$Sprite.play("attack")
 	await $Sprite.animation_finished
+	if $Sprite.animation != "attack":
+		return
+	
 	$Sprite.play("default")
 	
 	var new_arrow: Projectile = arrow.instantiate()
