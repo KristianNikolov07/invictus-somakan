@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://dg8hy4n42lxx3"]
 
 [ext_resource type="Script" uid="uid://dqxv6f04454e" path="res://Scripts/Objects/dropped_item.gd" id="1_1k5q3"]
-[ext_resource type="Texture2D" uid="uid://doaj5jrka7pib" path="res://Textures/fire_orb.png" id="1_5cnki"]
+[ext_resource type="Texture2D" uid="uid://cigdd1fgchakt" path="res://Textures/Orbs/fire orb.png" id="1_5cnki"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1k5q3"]
 

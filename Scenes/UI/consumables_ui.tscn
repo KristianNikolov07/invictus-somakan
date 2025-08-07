@@ -32,6 +32,7 @@ text = "Z"
 layout_mode = 2
 
 [node name="Label" type="Label" parent="HBoxContainer/ConsumbleUISlot2"]
+layout_mode = 0
 offset_left = 24.0
 offset_top = 62.0
 offset_right = 64.0
