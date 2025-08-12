@@ -390,6 +390,6 @@ metadata/_custom_type_script = "uid://8utdi18iv0th"
 [node name="Portal" parent="." instance=ExtResource("8_ppwt3")]
 visible = false
 position = Vector2(192, -675)
-room_type = 2
+room_type = 1
 
 [connection signal="on_completion" from="." to="Portal" method="activate"]

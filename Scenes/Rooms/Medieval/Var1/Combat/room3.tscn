@@ -264,7 +264,7 @@ metadata/_custom_type_script = "uid://8utdi18iv0th"
 [node name="Portal" parent="." instance=ExtResource("2_ma814")]
 visible = false
 position = Vector2(1246, -546)
-room_type = 2
+room_type = 1
 
 [node name="Void" parent="." node_paths=PackedStringArray("start_pos") instance=ExtResource("6_fxn7o")]
 position = Vector2(3, 19)

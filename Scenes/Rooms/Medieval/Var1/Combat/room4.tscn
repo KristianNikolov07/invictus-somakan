@@ -378,7 +378,7 @@ metadata/_custom_type_script = "uid://8utdi18iv0th"
 [node name="Portal" parent="." instance=ExtResource("2_px8am")]
 visible = false
 position = Vector2(1184, -1320)
-room_type = 2
+room_type = 1
 
 [node name="WaveTrigger" parent="." instance=ExtResource("9_45c1b")]
 position = Vector2(98, -829)

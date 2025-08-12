@@ -4,12 +4,19 @@ var is_save_empty = false
 var config = ConfigFile.new()
 
 func _ready() -> void:
+	var version_string: String = ProjectSettings.get_setting("application/config/version")
+	if version_string.begins_with("0."):
+		version_string = version_string.replace("0.", "Alpha ")
+	$Version.text = version_string
+	
+	#Load Settings
 	if config.load("user://settings.txt") == OK:
 		if config.has_section("options") and config.has_section_key("options", "master_volume"):
 			$Options/Panel/VBoxContainer/MasterVolume/MasterVolume.value = float(config.get_value("options", "master_volume"))
 		if config.has_section("options") and config.has_section_key("options", "music_volume"):
 			$Options/Panel/VBoxContainer/MusicVolume/MusicVolume.value = float(config.get_value("options", "music_volume"))
 		ApplySettings()
+	
 		
 func _on_play_pressed() -> void:
 	$Play.enabled = true

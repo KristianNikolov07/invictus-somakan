@@ -252,7 +252,7 @@ position = Vector2(1961, -155)
 monitoring = true
 is_first = true
 is_stage_transition = true
-room_type = 2
+room_type = 1
 
 [node name="Dummy" parent="." instance=ExtResource("3_kvfx3")]
 position = Vector2(1608, -106)
