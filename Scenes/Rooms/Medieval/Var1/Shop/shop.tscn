@@ -259,7 +259,7 @@ tile_set = SubResource("TileSet_rx7hd")
 [node name="Portal" parent="." instance=ExtResource("2_u8j54")]
 position = Vector2(1069, 570)
 monitoring = true
-room_type = 4
+room_type = 3
 
 [node name="CraftingTable" parent="." instance=ExtResource("3_u8j54")]
 position = Vector2(487, 587)

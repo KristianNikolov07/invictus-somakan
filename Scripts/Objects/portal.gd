@@ -37,8 +37,6 @@ func interact(_player_path : String):
 
 	
 	match room_type:
-		RoomTypes.RoomTypes.PUZZLE:
-			get_tree().change_scene_to_packed(RoomGen.pull_puzzle_room())
 		RoomTypes.RoomTypes.COMBAT:
 			get_tree().change_scene_to_packed(RoomGen.pull_combat_room())
 		RoomTypes.RoomTypes.SHOP:

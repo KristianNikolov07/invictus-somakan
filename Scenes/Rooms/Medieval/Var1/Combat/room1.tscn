@@ -321,6 +321,6 @@ enemy = ExtResource("2_lv8tk")
 [node name="Portal" parent="." instance=ExtResource("2_0dlg8")]
 visible = false
 position = Vector2(1960, -144)
-room_type = 2
+room_type = 1
 
 [connection signal="on_completion" from="." to="Portal" method="activate"]
