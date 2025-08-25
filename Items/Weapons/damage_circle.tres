@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="WeaponItem" load_steps=4 format=3 uid="uid://b0t4amus74xte"]
 
 [ext_resource type="Script" uid="uid://cyk6fbvc2v7n6" path="res://Scripts/Classes/WeaponItem.gd" id="1_1ym0n"]
-[ext_resource type="Texture2D" uid="uid://v4ovbjol3pki" path="res://Textures/inv_sprite/inv_sprite_catalyst.png" id="1_e1mrn"]
+[ext_resource type="Texture2D" uid="uid://v4ovbjol3pki" path="res://Textures/Inv_sprite/inv_sprite_catalyst.png" id="1_e1mrn"]
 [ext_resource type="PackedScene" uid="uid://dyxwxd6esrj8g" path="res://Scenes/Weapons/damage_circle.tscn" id="2_1ym0n"]
 
 [resource]

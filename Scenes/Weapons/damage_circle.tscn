@@ -1,7 +1,7 @@
 [gd_scene load_steps=14 format=3 uid="uid://dyxwxd6esrj8g"]
 
 [ext_resource type="Script" uid="uid://4oehem51oqah" path="res://Scripts/Weapons/damage_circle.gd" id="1_ahcn0"]
-[ext_resource type="Script" uid="uid://drqow7af66ehm" path="res://Scripts/Classes/Hitbox.gd" id="2_qau4o"]
+[ext_resource type="Script" uid="uid://n3gya5bj1yry" path="res://Scripts/Weapons/damage_circle_hitbox.gd" id="2_0psrb"]
 [ext_resource type="Texture2D" uid="uid://1n21s5o382li" path="res://Textures/Weapon/weapon_catalyst_circle.png" id="3_ii3hg"]
 [ext_resource type="Texture2D" uid="uid://b0gql3p36je6y" path="res://Textures/Weapon/weapon_catalyst_hold.png" id="4_0psrb"]
 
@@ -13,7 +13,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/path = NodePath("Hitbox/Sprite2D:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -30,7 +30,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/path = NodePath("Hitbox/Sprite2D:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -90,27 +90,30 @@ knockback_amount = 0
 metadata/_custom_type_script = "uid://c365hr0ip46v1"
 
 [node name="Hitbox" type="Area2D" parent="."]
-script = ExtResource("2_qau4o")
+process_mode = 3
+script = ExtResource("2_0psrb")
 metadata/_custom_type_script = "uid://drqow7af66ehm"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 shape = SubResource("CircleShape2D_qau4o")
 
-[node name="HitCooldown" type="Timer" parent="."]
-wait_time = 0.5
-autostart = true
-
-[node name="Duration" type="Timer" parent="."]
-one_shot = true
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="Hitbox"]
 visible = false
 texture_filter = 1
 rotation = 6.28319
 scale = Vector2(11.35, 11.35)
 texture = ExtResource("3_ii3hg")
 
+[node name="HitCooldown" type="Timer" parent="."]
+wait_time = 0.5
+autostart = true
+
+[node name="Duration" type="Timer" parent="."]
+process_mode = 3
+one_shot = true
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+process_mode = 3
 libraries = {
 &"": SubResource("AnimationLibrary_0psrb")
 }
@@ -133,5 +136,5 @@ autoplay = "default"
 frame_progress = 0.676453
 flip_h = true
 
-[connection signal="timeout" from="HitCooldown" to="." method="_on_hit_cooldown_timeout"]
-[connection signal="timeout" from="Duration" to="." method="_on_duration_timeout"]
+[connection signal="timeout" from="HitCooldown" to="Hitbox" method="_on_hit_cooldown_timeout"]
+[connection signal="timeout" from="Duration" to="Hitbox" method="_on_duration_timeout"]
