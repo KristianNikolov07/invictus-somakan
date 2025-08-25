@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b2p7h0pnan3g3"
-path="res://.godot/imported/interactable_chushkopek_stand.png-9839839846d7220606afc7fec646d455.ctex"
+path="res://.godot/imported/interactable_chushkopek_stand.png-c3ddfab20390ac3d4380c09b1dd11a7b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Textures/Interactable/interactable_chushkopek_stand.png"
-dest_files=["res://.godot/imported/interactable_chushkopek_stand.png-9839839846d7220606afc7fec646d455.ctex"]
+source_file="res://Textures/interactable/interactable_chushkopek_stand.png"
+dest_files=["res://.godot/imported/interactable_chushkopek_stand.png-c3ddfab20390ac3d4380c09b1dd11a7b.ctex"]
 
 [params]
 

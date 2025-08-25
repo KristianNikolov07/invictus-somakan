@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dis27veifp3cp"
-path="res://.godot/imported/interactable_mace_stand.png-7c403a0827117c345c5292f4eaf249c1.ctex"
+path="res://.godot/imported/interactable_mace_stand.png-c3efcd5f5dec9ca4ee9bd7f5f35711ae.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Textures/Interactable/interactable_mace_stand.png"
-dest_files=["res://.godot/imported/interactable_mace_stand.png-7c403a0827117c345c5292f4eaf249c1.ctex"]
+source_file="res://Textures/interactable/interactable_mace_stand.png"
+dest_files=["res://.godot/imported/interactable_mace_stand.png-c3efcd5f5dec9ca4ee9bd7f5f35711ae.ctex"]
 
 [params]
 

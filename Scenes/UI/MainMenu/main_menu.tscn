@@ -1,12 +1,12 @@
 [gd_scene load_steps=9 format=3 uid="uid://c62bupgibxlpk"]
 
 [ext_resource type="Script" uid="uid://ce1pqsx1d6flq" path="res://Scripts/UI/MainMenu/main_menu.gd" id="1_j3ucw"]
-[ext_resource type="Texture2D" uid="uid://b3a54nlcd0wtv" path="res://Textures/Background/bg_frame_1.png" id="2_608ul"]
-[ext_resource type="Texture2D" uid="uid://sx3r0acwi5n8" path="res://Textures/Background/bg_frame_2.png" id="3_u8afo"]
-[ext_resource type="Texture2D" uid="uid://dfhtiv2x2uolj" path="res://Textures/Background/bg_frame_3.png" id="4_xwepa"]
-[ext_resource type="Texture2D" uid="uid://dppk0e6yhaxnq" path="res://Textures/Background/bg_frame_4.png" id="5_8t05w"]
+[ext_resource type="Texture2D" uid="uid://b3a54nlcd0wtv" path="res://Textures/background/bg_frame_1.png" id="2_608ul"]
+[ext_resource type="Texture2D" uid="uid://sx3r0acwi5n8" path="res://Textures/background/bg_frame_2.png" id="3_u8afo"]
+[ext_resource type="Texture2D" uid="uid://dfhtiv2x2uolj" path="res://Textures/background/bg_frame_3.png" id="4_xwepa"]
+[ext_resource type="Texture2D" uid="uid://dppk0e6yhaxnq" path="res://Textures/background/bg_frame_4.png" id="5_8t05w"]
 [ext_resource type="Texture2D" uid="uid://d0cmuwxhudkl3" path="res://Textures/screen_title_logo.png" id="6_u8afo"]
-[ext_resource type="Texture2D" uid="uid://bat2644a7ddv3" path="res://Textures/Screen/screen_title_mephis.png" id="7_xwepa"]
+[ext_resource type="Texture2D" uid="uid://bat2644a7ddv3" path="res://Textures/screen/screen_title_mephis.png" id="7_xwepa"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_j3ucw"]
 animations = [{

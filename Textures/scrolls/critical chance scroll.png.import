@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://derovkdnh0gdf"
-path="res://.godot/imported/critical chance scroll.png-900f1128ac1a354d262e1dd26c684b5c.ctex"
+path="res://.godot/imported/critical chance scroll.png-4e24844aaa288a889640d06b62813c06.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Textures/Scrolls/critical chance scroll.png"
-dest_files=["res://.godot/imported/critical chance scroll.png-900f1128ac1a354d262e1dd26c684b5c.ctex"]
+source_file="res://Textures/scrolls/critical chance scroll.png"
+dest_files=["res://.godot/imported/critical chance scroll.png-4e24844aaa288a889640d06b62813c06.ctex"]
 
 [params]
 

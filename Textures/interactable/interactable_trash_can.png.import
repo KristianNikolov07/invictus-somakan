@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://hyflslfrqy2b"
-path="res://.godot/imported/interactable_trash_can.png-3a9b3b3406b54ad38e4ed037b0057240.ctex"
+path="res://.godot/imported/interactable_trash_can.png-4a2e624650f8303c44ea3d174818329d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Textures/Interactable/interactable_trash_can.png"
-dest_files=["res://.godot/imported/interactable_trash_can.png-3a9b3b3406b54ad38e4ed037b0057240.ctex"]
+source_file="res://Textures/interactable/interactable_trash_can.png"
+dest_files=["res://.godot/imported/interactable_trash_can.png-4a2e624650f8303c44ea3d174818329d.ctex"]
 
 [params]
 

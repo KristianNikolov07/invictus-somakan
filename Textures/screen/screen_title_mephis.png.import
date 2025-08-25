@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bat2644a7ddv3"
-path="res://.godot/imported/screen_title_mephis.png-6fc777037720ecf91fd41302e4387eec.ctex"
+path="res://.godot/imported/screen_title_mephis.png-d89811b06bc5a6937be04d9440e1b5fa.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Textures/Screen/screen_title_mephis.png"
-dest_files=["res://.godot/imported/screen_title_mephis.png-6fc777037720ecf91fd41302e4387eec.ctex"]
+source_file="res://Textures/screen/screen_title_mephis.png"
+dest_files=["res://.godot/imported/screen_title_mephis.png-d89811b06bc5a6937be04d9440e1b5fa.ctex"]
 
 [params]
 

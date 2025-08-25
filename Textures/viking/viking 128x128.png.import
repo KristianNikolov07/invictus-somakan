@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cg1ww0bqr2at3"
-path="res://.godot/imported/viking 128x128.png-ce3ce3d3d228b800a4236672e35c971f.ctex"
+path="res://.godot/imported/viking 128x128.png-95a3e51ab794bc9ac3193900002e77bb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Textures/Viking/viking 128x128.png"
-dest_files=["res://.godot/imported/viking 128x128.png-ce3ce3d3d228b800a4236672e35c971f.ctex"]
+source_file="res://Textures/viking/viking 128x128.png"
+dest_files=["res://.godot/imported/viking 128x128.png-95a3e51ab794bc9ac3193900002e77bb.ctex"]
 
 [params]
 

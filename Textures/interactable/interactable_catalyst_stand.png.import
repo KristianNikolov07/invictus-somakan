@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dpiloqgru4tbu"
-path="res://.godot/imported/interactable_catalyst_stand.png-3c2f39ef37a4431ffc958508376f51bb.ctex"
+path="res://.godot/imported/interactable_catalyst_stand.png-59e1e2cb39913d18eea797ec86fa00fa.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Textures/Interactable/interactable_catalyst_stand.png"
-dest_files=["res://.godot/imported/interactable_catalyst_stand.png-3c2f39ef37a4431ffc958508376f51bb.ctex"]
+source_file="res://Textures/interactable/interactable_catalyst_stand.png"
+dest_files=["res://.godot/imported/interactable_catalyst_stand.png-59e1e2cb39913d18eea797ec86fa00fa.ctex"]
 
 [params]
 
