@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://jpclhtdgn2p"
-path="res://.godot/imported/inv_sprite_chushkopek_sniper.png-877d3e9f5d72db3fc0c82ecd1da1a2c6.ctex"
+path="res://.godot/imported/inv_sprite_chushkopek_sniper.png-7db24f31d8d02a72ca7bfd1a66be5d7a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Textures/Inv_sprite/inv_sprite_chushkopek_sniper.png"
-dest_files=["res://.godot/imported/inv_sprite_chushkopek_sniper.png-877d3e9f5d72db3fc0c82ecd1da1a2c6.ctex"]
+source_file="res://Textures/inv_sprite/inv_sprite_chushkopek_sniper.png"
+dest_files=["res://.godot/imported/inv_sprite_chushkopek_sniper.png-7db24f31d8d02a72ca7bfd1a66be5d7a.ctex"]
 
 [params]
 

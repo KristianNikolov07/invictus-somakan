@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b2fwc5t1tj58b"
-path="res://.godot/imported/inv_sprite_claw.png-3d66a0aaa02c5204f10cb64afafa182f.ctex"
+path="res://.godot/imported/inv_sprite_claw.png-0892928d3784d60c71ca82d2a5f949ad.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Textures/Inv_sprite/inv_sprite_claw.png"
-dest_files=["res://.godot/imported/inv_sprite_claw.png-3d66a0aaa02c5204f10cb64afafa182f.ctex"]
+source_file="res://Textures/inv_sprite/inv_sprite_claw.png"
+dest_files=["res://.godot/imported/inv_sprite_claw.png-0892928d3784d60c71ca82d2a5f949ad.ctex"]
 
 [params]
 

@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bvvt0635l85su"
-path="res://.godot/imported/thunder in a bo'ole.png-801398b5b3372e9c0dc7c3dec901707b.ctex"
+path="res://.godot/imported/thunder in a bo'ole.png-c3a19cf7e28dd5b77c0d82e8ff3b3ec6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Textures/Consumables/thunder in a bo'ole.png"
-dest_files=["res://.godot/imported/thunder in a bo'ole.png-801398b5b3372e9c0dc7c3dec901707b.ctex"]
+source_file="res://Textures/consumables/thunder in a bo'ole.png"
+dest_files=["res://.godot/imported/thunder in a bo'ole.png-c3a19cf7e28dd5b77c0d82e8ff3b3ec6.ctex"]
 
 [params]
 

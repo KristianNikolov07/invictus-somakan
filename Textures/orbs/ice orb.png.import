@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://d2sac6b524c2j"
-path="res://.godot/imported/ice orb.png-2d21adade02bb8e9530af353a9a45b26.ctex"
+path="res://.godot/imported/ice orb.png-6ee4d9c463e82d3734d45579a3219bf2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Textures/Orbs/ice orb.png"
-dest_files=["res://.godot/imported/ice orb.png-2d21adade02bb8e9530af353a9a45b26.ctex"]
+source_file="res://Textures/orbs/ice orb.png"
+dest_files=["res://.godot/imported/ice orb.png-6ee4d9c463e82d3734d45579a3219bf2.ctex"]
 
 [params]
 

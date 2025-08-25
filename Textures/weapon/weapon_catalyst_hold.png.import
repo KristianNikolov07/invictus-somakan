@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b0gql3p36je6y"
-path="res://.godot/imported/weapon_catalyst_hold.png-0812703434ba401260f800fcf17b74bd.ctex"
+path="res://.godot/imported/weapon_catalyst_hold.png-b387d8964a9497a9c0273c1ab00ff5d0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Textures/Weapon/weapon_catalyst_hold.png"
-dest_files=["res://.godot/imported/weapon_catalyst_hold.png-0812703434ba401260f800fcf17b74bd.ctex"]
+source_file="res://Textures/weapon/weapon_catalyst_hold.png"
+dest_files=["res://.godot/imported/weapon_catalyst_hold.png-b387d8964a9497a9c0273c1ab00ff5d0.ctex"]
 
 [params]
 

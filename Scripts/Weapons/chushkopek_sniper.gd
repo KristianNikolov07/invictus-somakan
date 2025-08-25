@@ -45,7 +45,8 @@ func hit(_direction):
 
 
 func _on_refresh_bar_timeout() -> void:
-	$Heat.value += 1
+	if get_tree().paused == false:
+		$Heat.value += 1
 
 
 func _on_gun_right_animation_finished() -> void:

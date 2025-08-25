@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cqlewll32wdv7"
-path="res://.godot/imported/weapon_marksman_shoot.png-dc033f52f23f7ebd990b29e2b69bcdca.ctex"
+path="res://.godot/imported/weapon_marksman_shoot.png-697dd282f5b0441b6038872d86af1555.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Textures/Weapon/weapon_marksman_shoot.png"
-dest_files=["res://.godot/imported/weapon_marksman_shoot.png-dc033f52f23f7ebd990b29e2b69bcdca.ctex"]
+source_file="res://Textures/weapon/weapon_marksman_shoot.png"
+dest_files=["res://.godot/imported/weapon_marksman_shoot.png-697dd282f5b0441b6038872d86af1555.ctex"]
 
 [params]
 

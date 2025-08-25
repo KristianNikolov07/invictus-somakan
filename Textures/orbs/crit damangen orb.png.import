@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://pfsixpeo2xe0"
-path="res://.godot/imported/crit damangen orb.png-4f4dba517e29da1dc5f3342c66481b72.ctex"
+path="res://.godot/imported/crit damangen orb.png-f80efee98eb8c3e21f92b9c62a243d98.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Textures/Orbs/crit damangen orb.png"
-dest_files=["res://.godot/imported/crit damangen orb.png-4f4dba517e29da1dc5f3342c66481b72.ctex"]
+source_file="res://Textures/orbs/crit damangen orb.png"
+dest_files=["res://.godot/imported/crit damangen orb.png-f80efee98eb8c3e21f92b9c62a243d98.ctex"]
 
 [params]
 
