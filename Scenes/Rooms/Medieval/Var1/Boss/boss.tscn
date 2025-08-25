@@ -1,4 +1,4 @@
-[gd_scene load_steps=170 format=4 uid="uid://c1rc4j254q34j"]
+[gd_scene load_steps=171 format=4 uid="uid://c1rc4j254q34j"]
 
 [ext_resource type="Script" uid="uid://c80uwe0iluece" path="res://Scripts/Rooms/boss_room_1.gd" id="1_gt27v"]
 [ext_resource type="Texture2D" uid="uid://ctm47thfbe3uy" path="res://Textures/tile-set.png" id="2_5igek"]
@@ -1873,6 +1873,8 @@ normal = Vector2(1, 0)
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ec1yx"]
 normal = Vector2(-1, 0)
 
+[sub_resource type="CanvasTexture" id="CanvasTexture_4lyss"]
+
 [node name="BossRoom" type="Node2D"]
 script = ExtResource("1_gt27v")
 
@@ -2224,6 +2226,12 @@ floor_level = 704
 [node name="Portal" parent="." instance=ExtResource("19_h7elt")]
 position = Vector2(2432, 552)
 monitoring = true
+
+[node name="BlackShade" type="Sprite2D" parent="."]
+self_modulate = Color(0, 0, 0, 0.509804)
+position = Vector2(828, 800)
+scale = Vector2(3720, 192)
+texture = SubResource("CanvasTexture_4lyss")
 
 [connection signal="timeout" from="DoorChecker/CheckDoor" to="." method="_on_check_door_timeout"]
 [connection signal="body_entered" from="BossBounce" to="Boss" method="_on_boss_bounce_body_entered"]
