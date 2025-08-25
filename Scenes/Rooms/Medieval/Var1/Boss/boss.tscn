@@ -2229,8 +2229,8 @@ monitoring = true
 
 [node name="BlackShade" type="Sprite2D" parent="."]
 self_modulate = Color(0, 0, 0, 0.509804)
-position = Vector2(828, 800)
-scale = Vector2(3720, 192)
+position = Vector2(828, 796)
+scale = Vector2(3720, 200)
 texture = SubResource("CanvasTexture_4lyss")
 
 [connection signal="timeout" from="DoorChecker/CheckDoor" to="." method="_on_check_door_timeout"]
